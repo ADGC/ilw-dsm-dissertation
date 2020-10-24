@@ -1,6 +1,9 @@
 FILE=dissertation
 OUTPUTNAME=Klipfel\ -\ ILW\ Direct\ Scattering\ Map
 
+#==========================
+# For compiling on Windows: Comment lines 13 and 18-22 and then uncomment lines 14 and 23-26
+#==========================
 
 all: $(OUTPUTNAME).pdf clean
 
@@ -12,8 +15,12 @@ clean:
 
 
 $(OUTPUTNAME).pdf: $(FILE).tex
-	xelatex -job-name=$(OUTPUTNAME) $(FILE)
-# 	bibtex $(OUTPUTNAME) #For compiling on a Windows Machine
-	bibtex $(FILE) #For compiling on a Mac
-	xelatex -job-name=$(OUTPUTNAME) $(FILE)
-	xelatex -job-name=$(OUTPUTNAME) $(FILE)
+	xelatex $(FILE)
+	bibtex $(FILE)
+	xelatex $(FILE)
+	xelatex $(FILE)
+	mv $(FILE).pdf $(OUTPUTNAME).pdf
+# 	xelatex -job-name=$(OUTPUTNAME) $(FILE)
+# 	bibtex $(OUTPUTNAME)
+# 	xelatex -job-name=$(OUTPUTNAME) $(FILE)
+# 	xelatex -job-name=$(OUTPUTNAME) $(FILE)
