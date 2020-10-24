@@ -11,7 +11,7 @@ In this appendix we present an alternate proof of the jump relation
 
 We begin by considering the integral 
 \[
-	\int_{\gamma} \frac{e^{i x \xi }}{\xi - \zeta(\lambda)\(1-e^{-2 \delta \xi} \)} \, \mathrm{d}\xi
+	\int_{\gamma} \frac{e^{i x \xi }}{\xi - \zeta(\lambda; \delta)\(1-e^{-2 \delta \xi} \)} \, \mathrm{d}\xi
 \]
 taken over the counterclockwise contour $\gamma$ shown below
 \begin{center}
@@ -46,14 +46,15 @@ taken over the counterclockwise contour $\gamma$ shown below
 \end{center}	
 where 
 \[
-	\zeta(\lambda) 
+	\zeta(\lambda; \delta) 
+		= \frac{\lambda}{1-e^{-\lambda \delta}}
 		= \lambda \frac{e^{\lambda \delta}}{e^{\lambda \delta} - e^{-\lambda \delta}}
 		= \frac{1}{2} \lambda e^{\lambda \delta} \csch{\lambda \delta}.
 \]
 
 To simplify notation, define
 \[
-	f(\xi) := f(\xi, x, \lambda, \delta) 
+	f(\xi) := f(\xi, x; \lambda, \delta) 
 		:=  \frac{e^{i x \xi }}{\xi - \zeta(\lambda)\(1-e^{-2 \delta \xi}\)}.
 \]
 Since
@@ -86,19 +87,19 @@ and
 \]
 we see from Cauchy's Residue Theorem that
 \begin{align} \label{eq:1.02-ILW.GL-GR}
-	G_L^+(x) - G_R(x)^+ 
-		= \frac{i \(e^{2 \delta \lambda }-1\) 
+	G_L^+(x) - G_R^+(x)
+		&= \frac{i \(e^{2 \delta \lambda }-1\) 
 				e^{i \lambda x}}{e^{2 \delta  \lambda} -2 \delta \lambda -1}
-			-\frac{i e^{2 \delta  \lambda}-1}{2 \delta \lambda e^{2 \delta \lambda}-e^{2 \delta \lambda}+1}
-		= i \alpha(\lambda) + i \beta(\lambda) e^{i\lambda x},
+			-\frac{i e^{2 \delta  \lambda}-1}{2 \delta \lambda e^{2 \delta \lambda}-e^{2 \delta \lambda}+1} \\
+		&= i \alpha(\lambda; \delta) + i \beta(\lambda;\delta) e^{i\lambda x}, \nonumber
 \end{align}
 where
 \[
-	\alpha(\lambda) 
+	\alpha(\lambda; \delta) 
 		:= \frac{1 - e^{-2\delta \lambda}}
 			{1 - e^{-2 \delta \lambda} - 2\delta \lambda},
 	\qquad \text{and} \qquad
-	\beta(\lambda) 
+	\beta(\lambda; \delta) 
 		:= \frac{1-e^{-2\delta \lambda}}{1-2\delta - e^{-2\delta \lambda}}.
 \]
 In the limit $\lambda \to 0$ (\textit{i.e.} the pole at $\xi = \lambda$ collapses to the 
