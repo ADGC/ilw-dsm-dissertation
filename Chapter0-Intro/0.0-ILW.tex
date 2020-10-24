@@ -1,0 +1,52 @@
+%%==================================
+%% Section 0.00: Overview of the ILW
+%%==================================
+
+\documentclass[../dissertation.tex]{subfiles}
+
+\begin{document}
+\setcounter{section}{-1}
+\section{The Intermediate Long Wave Equation}\label{sec0:ILW}
+
+
+The Intermediate Long Wave (ILW) equation
+\begin{align}
+	u_t + \frac{1}{\delta} u_x + 2 u u_x + Tu_{xx} = 0, 
+\end{align}
+models the behavior of long internal gravitational waves in stratified fluid 
+of depth \label{sym:delta}
+$0< \delta < \infty$, \label{sym:delta}
+where $T$ denotes the singular integral operator given by
+\[
+	(Tf)(x) 
+		:= \frac{1}{2 \delta} 
+			\pv \int_{\mathbb R} \coth\left( \frac{\pi}{2\delta}(y - x) \right) f(y) \, \mathrm{d}y,
+\]
+\label{sym:def}and $\pv$ denotes the Cauchy principal value, \label{sym:pv}
+$\pv \int \, \mathrm{d}x = \lim_{\varepsilon\searrow0} \int_{|x|> \varepsilon}\,dx$.
+In the
+limit $\delta \to 0$, the ILW reduces to the Korteweg de Vries (KdV) equation, and under 
+the limit $\delta \to \infty$, Santini, Ablowitz and Fokas showed formally in their
+1984 paper \cite{Santini1984} that the ILW equation reduces to the Benjamin-Ono 
+(BO) equation. As such, the 
+ILW can be thought of as an intermediary between the two equations. While the KdV
+equation is very well understood, understanding the BO equation is still an area
+of active research.\footnote{For more on the BO equation, please see Allen Wu's papers 
+\cite{Wu2016} and \cite{Wu2017}.} Given the ILW's role as an 
+intermediary between the two equations, a mathematically rigorous understanding 
+of the ILW is of great interest to many mathematicians.
+
+As discussed in the 2019 survey paper \cite{Saut2019} by Jean-Claude Saut, 
+the formal derivation of the ILW as a model for physical phenomenon was 
+given by R. I. Joseph in \cite{Joseph_1977}. Joseph based his derivation on
+the Whithan non-local equation derived by Gerald Whitham in his 1967 paper 
+\cite{WhithamGB1967Ndow}. The modern form of the ILW was introduced by 
+T. Kubota, D.R.S. Ko, and L.D. Dobbs in their 1978 paper \cite{Kubota1978}.
+Some atmospheric and oceanic applications of the 
+ILW can be found in the 1978 paper by D.R. Christie \textit{et al.} 
+\cite{Christie1978}, the 1980 S.A. Maslow and L.G. Redekopp paper 
+\cite{maslowe_redekopp_1980}, the 1981 C. Gary Koop and Gerald Butler paper
+\cite{koop_butler_1981}, and the 1984 N.N. Romanova paper
+\cite{Romanova1984}.
+
+\end{document}

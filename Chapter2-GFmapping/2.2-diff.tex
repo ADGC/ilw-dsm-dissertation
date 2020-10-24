@@ -1,0 +1,524 @@
+%%==========================================
+%% Section 2.02: $\lambda$-DIFFERENTIABILITY
+%%==========================================
+\documentclass[../dissertation]{subfiles}
+
+
+\begin{document}
+
+\section{$\lambda$-Dif{}ferentiability}\label{sec2:diff}
+
+We begin this section by proving a useful variant of Young's inequality
+(Technical Lemma \ref{tlma2:1}) that we use in a number of proofs in this 
+dissertation. We then prove that that the operators $T_{\star, \lambda, u}$ are
+continuous in the spectral parameter $\lambda$ (Proposition 
+\ref{prop2:Tlamcont}). The remainder of this section the focuses on proving the 
+$\lambda$-dif{}ferentiability of $G_{\star}^+$. We direclty use the results 
+from all four propositions in this section in proving that the Jost solution 
+boundary $M_1^+$ is dif{}ferentiable in $\lambda$, and hence has a 
+linearization in $\lambda$. The $\lambda$ linearization of $M_1^+$ is ultimately 
+used in the proof that the direct scattering map $\mathscr D$ is Lipschitz 
+continuous.
+
+Since the proof of the $\lambda$-continuity of $T_{\star, \lambda, u}$ calls
+Technical Lemma \ref{tlma2:1}, we start with the proof of that lemma.
+
+\begin{tlma}\label{tlma2:1}
+	For $f \in \inn{\dotarg}^s L^1(\mathbb R)$ and 
+	$\inn{\dotarg}^s g \in L^\infty(\mathbb R)$ the inequality 
+	\begin{align} \label{eq3:tlma}
+		\| f * g\|_{\inn{\dotarg}^s L^\infty}
+			&\leq \|f\|_{\inn{\dotarg}^s L^1} \|\inn{\dotarg}^s g\|_{L^\infty}
+	\end{align}
+	holds for $s\geq0$. Alternatively, if $\inn{\dotarg}^s f \in L^1(\mathbb R)$
+	and $g \in \inn{\dotarg}^s L^\infty(\mathbb R)$ the estimate
+	\begin{align}\label{eq3:tlma2}
+		\| f * g\|_{\inn{\dotarg}^s L^\infty}
+			&\leq \nm{\inn{\dotarg}^s f}_{L^1}  \nm{g}_{\inn{\dotarg}^s L^\infty}
+	\end{align}
+	holds instead for $s \geq 0$. 
+\end{tlma}
+\begin{proof}
+	It is straightforward to show that
+	\begin{align*}
+		\frac{\inn{x'}}{\inn{x-x'}\inn{x}} \leq 1,
+	\end{align*}
+	for all $x, x' \in \mathbb R$, as
+	\begin{align*}
+		\left(\frac{\inn{x'}}{\inn{x-x'}\inn{x}}\right)^2
+			= \frac{1+(x')^2}{1+(x-x')^2 + x^2 + x^2(x-x')^2}
+			\leq \frac{1+(x')^2}{1+(x')^2}.
+	\end{align*}
+	As such, we find for $s> 0$ 
+	\begin{align*}
+		\| f * g\|_{\inn{\dotarg}^s L^\infty}
+			&= \sup_{x\in\mathbb R} \inn{x}^{-s} 
+				\int_{\mathbb R}
+					\big| 
+						f(x') \, g(x-x')
+					\big|
+				\, \mathrm{d}x'
+				\\
+			&= \sup_{x\in\mathbb R}
+				\int_{\mathbb R}
+					\Big| 
+						\big[\inn{x'}^{-s} f(x')\big]
+						\big[\inn{x-x'} g(x-x') \big]
+					\Big|
+						\left(
+							\frac{\inn{x'}}{\inn{x-x'}\inn{x}}
+						\right)^s
+				\, \mathrm{d}x'
+				\\
+			&\leq 
+				\left\|
+						\big[\inn{\dotarg}^{-s} f \big]
+						*
+						\big[\inn{\dotarg}^{s} g \big]
+				\right\|_{L^\infty} \\
+			&\leq 
+				\|f\|_{\inn{\dotarg}^s L^1} \|\inn{\dotarg}^s g\|_{L^\infty}
+	\end{align*}
+	by Minkowski's integral inequality \cite[Theorem 1.2.10]{Grafakos}. 
+	If $s=0$, then \eqref{eq3:tlma} automatically holds by 
+	\cite[Theorem 1.2.10]{Grafakos}. An analogous argument also verifies 
+	\eqref{eq3:tlma2}.
+\end{proof}
+
+
+\begin{prop}\label{prop2:Tlamcont}
+	For $u \in X \cap \inn{\dotarg}^{-2}L^\infty(\mathbb R)$, the operator 
+	$T_{\star, \lambda, u} : \inn{\dotarg}L^\infty(\mathbb R) \to 
+	\inn{\dotarg}L^\infty(\mathbb R)$ given by 
+	\begin{align*}
+		T_{\star, \lambda, u} : f\mapsto \big[G_\star^+(\cdot; \lambda)\big]*(u\,f)
+	\end{align*}
+	is continuous in the parameter $\lambda \in \mathbb R$ in the sense the limit 
+	\[
+		\lim_{h\to0} \| T_{\star, \lambda+h, u} - T_{\star, \lambda, u}
+			 \|_{\inn{\dotarg}L^\infty\toitself}
+			=0
+	\]
+	holds pointwise for each fixed $\lambda \in \mathbb R$.
+\end{prop}
+\begin{proof}
+	To simplify notation, let $T_{\star, \lambda, u}$ be denoted by 
+	$T_\lambda$. Then, we see from Technical Lemma \ref{tlma2:1}
+	that
+	\begin{align}\label{eq2:Tcont}
+		\|(T_{\lambda+h} - T_\lambda)f\|_{\inn{\dotarg}L^\infty}
+			&= 
+				\left\| 
+					\big[ 
+						G_\star^+(\dotarg, \lambda+h) 
+						- G_\star^+(\dotarg, \lambda)
+					\big]
+					*uf
+				\right\|_{\inn{\dotarg}L^\infty}  \\
+			&\leq 
+				\left\| 
+						G_\star^+(\dotarg, \lambda+h) 
+						- G_\star^+(\dotarg, \lambda)
+				\right\|_{\inn{\dotarg}L^\infty}
+				\left\|
+					\inn{\dotarg} u f
+				\right\|_{L^\infty}
+				\nonumber
+	\end{align}
+	for all $f \in \inn{\dotarg}L^\infty(\mathbb R)$ as 
+	$u \in X \cap \inn{\dotarg}^{-2}L^\infty(\mathbb R)$ implies 
+	$\inn{\dotarg} u\, f\in \inn{\dotarg}L^\infty(\mathbb R)$. 
+	Noting that the argument in the proof of Proposition 
+	\ref{prop2:ldervG} (which does not depend on this Proposition) implies
+	\begin{align}\label{eq2:Glamcont}
+		\lim_{h\to\infty} 
+			\left\| 
+					G_\star^+(\dotarg, \lambda+h) 
+					- G_\star^+(\dotarg, \lambda)
+			\right\|_{\inn{\dotarg}L^\infty}
+			=0,
+	\end{align}
+	Proposition \ref{prop2:Tlamcont} follows from \eqref{eq2:Tcont}
+	and \eqref{eq2:Glamcont}.
+\end{proof}
+
+
+\begin{rmk}\label{rmk2:notation}
+	The notation in proofs of Propositions \ref{prop2:ldervG} through 
+	\ref{prop2:ghconv} can get unnecessarily complicated. To avoid this, 
+	in these proof we use the notation $G(x, \lambda)$ and $G(\lambda)$ 
+	as stand-ins for $G_\star^+(x; \lambda)$. 
+\end{rmk}
+
+\begin{prop}\label{prop2:ldervG}
+	For each fixed $x\ne 0$ and $\lambda \in \mathbb R$, the Green's function 
+	boundary $G_\star^+$ ($\star = L \text{, or } R$) is dif{}ferentiable in 
+	the spectral parameter $\lambda$, and 
+	\begin{align*}
+		\frac{\partial}{\partial \lambda} G_\star^+(x; \lambda)
+			= \frac{1}{2\pi} 
+				\int_{{\Gamma_\star}} e^{ix\xi} 
+					\left(
+						\frac{\partial}{\partial \lambda} \frac{1}{p(\xi; \lambda)}
+					\right)
+				\, \mathrm{d}\xi.
+	\end{align*}
+\end{prop}
+\begin{rmk}
+	Since
+	\[
+		\frac{\partial}{\partial \lambda} \frac{1}{p(\xi; \lambda)}
+			= 
+				\frac{\zeta'(\lambda)}
+				{\Big(\xi - \zeta(\lambda)\big(1-e^{-2\xi}\big)\Big)^2},
+	\]
+	the function $\frac{\partial}{\partial \lambda} \frac{1}{p(\xi; \lambda)}$ 
+	decays exponentially to zero as $\xi\to -\infty$, and, for $\xi > 0$, decays
+	like $1/\xi^2$. As such, the integral
+	\begin{align*}
+		\int_{\Gamma_\star}
+			\left(
+				\frac{\partial}{\partial \lambda} \frac{1}{p(\xi; \lambda)}
+			\right)
+		\, \mathrm{d}\xi.
+	\end{align*}
+	converges absolutely.
+\end{rmk}
+\begin{proof}[Proof of Proposition \ref{prop2:ldervG}]
+	In accordance with Remark \ref{rmk2:notation}, we write $G_\star^+(x; \lambda)$ 
+	as either $G(x, \lambda)$ or as $G(\lambda)$. We further define $G_h$ to be the 
+	dif{}ference quotient
+	\[
+		G_h:= \frac{G(\lambda + h)- G(\lambda)}{h}.
+	\]
+	and seek to prove that $\lim_{h\to0} G_h$ converges. For $|h|>0$ suf{}ficiently 
+	small, we may assume by analyticity that $G(\lambda)$ and $G(\lambda+h)$ 
+	share the same contour of integration $\Gamma$. If $\lambda = 0$, the
+	contour $\Gamma$ runs along with a single small semi-circular detour below the 
+	real axis to avoid passing through $\xi = 0$ and $\xi=h$. In which case
+	\begin{align*}
+		G_h(\lambda) = 
+			\frac{1}{2\pi}\int_\Gamma e^{ix\xi}\,
+				\frac{1}{h}\,
+				\left[
+					\frac{1}{p(\xi; \lambda +h)}
+					-\frac{1}{p(\xi; \lambda)}
+				\right]
+			\, \mathrm{d}\xi
+			= 
+				\int_\Gamma e^{ix\xi} 
+					\left(\frac{1}{p_\lambda(\xi)}\right)_{h}
+				\, \mathrm{d}\xi,
+	\end{align*}
+	where we define
+	\begin{align*}
+		\left(\frac{1}{p_\lambda(\xi)}\right)_{h}
+			:= \frac{1}{h}\,
+				\left[
+					\frac{1}{p(\xi; \lambda +h)}
+					-\frac{1}{p(\xi; \lambda)}
+				\right]
+	\end{align*}
+	as the dif{}ference quotient of $1/p$ with respect to $\lambda$.
+	Since 
+	\[
+		\left(\frac{1}{p_\lambda(\xi)}\right)_{h}
+			= \frac{1}{h}
+				\frac{
+					\big[
+						\zeta(\lambda + h) - \zeta(h)
+					\big]
+					\big(1-e^{-2\xi}\big)
+				}
+				{p(\xi; \lambda+h)\,p(\xi;\lambda)}
+	\]
+	decays exponentially as $\xi \to -\infty$ and decays as 
+	$1/\xi^2$ for positive $\xi$, 
+	\[
+		\left(\frac{1}{p_\lambda(\xi)}\right)_{h} \in L^1(\Gamma)
+	\]
+	for each fixed $h\ne0$. Further, using the continuity of $\zeta$ and the reverse 
+	triangle inequality, we also have
+	\[
+		\left|\left(\frac{1}{p_\lambda(\xi)}\right)_{h}\right| 
+			\lesssim_\lambda 
+				\frac{
+					\big|1-e^{-2\xi}\big|
+				}{
+					|\xi|\big| \xi - \zeta(\lambda) \big(1-e^{-2\xi}\big)\big|
+				}
+			=: \iota(\xi).
+	\]
+	Since $\iota$ is continuous in $\xi$ on $\Gamma$ and $\iota(\xi) 
+	= \mathcal O(1/\xi^2)$ for large $|\xi|$, one application of the 
+	Dominated Convergence Theorem completes this proof.
+\end{proof}
+
+\begin{prop}\label{prop2:lderivGspace}
+	The partial derivative $\frac{\partial}{\partial \lambda} G_\star^+$
+	($\star = L \text{, or } R$)
+	of the Green's function boundary value $G_\star^+$ lies in $\inn{x}^s L_x^1(\mathbb R)$
+	for $s> 3$ and all $\lambda \in \mathbb R$. 
+	If $\lambda \in \mathbb R$ and $\lambda \ne 0$, then 
+	$\frac{\partial}{\partial \lambda} G_\star^+ 
+	\in \inn{x}^s L_x^1(\mathbb R)$ for $s > 2$.
+\end{prop}
+\begin{proof}
+	Define
+	\[
+		g(\xi; \lambda) 
+			:= e^{ix\xi}\, \frac{\partial}{\partial \lambda} \frac{1}{p},
+	\]
+	Through direct computation, one can show 
+	\begin{align}\label{eq2:gzerores}
+		\Res_{\xi=0} g
+			= 
+				\frac{
+					2 e^{2\lambda}\big(e^{2\lambda}-2\lambda-1\big)
+				}{
+					\big(
+						1 - e^{2\lambda}+ 2\lambda e^{2\lambda}
+					\big)^2
+				},
+	\end{align}
+	\begin{align}\label{eq3:glamres}
+		\Res_{\xi=\lambda} g
+			= 
+				\frac{
+					2 e^{2\lambda} - 2 - 4 \lambda e^{2\lambda}
+					+ i 
+					\big[
+						x -
+						2 x e^{2\lambda} + x e^{4\lambda} + 2x\lambda
+						- 2 x \lambda e^{2\lambda}
+					\big]
+				}
+				{\big(e^{2\lambda} - 2 \lambda -1\big)^2}
+				\, e^{i x \lambda},
+	\end{align}
+	and 
+	\begin{align}\label{eq2:gcollapsingpoles}
+		\lim_{\lambda\to0} 
+				\big[
+					\Res_{\xi=0} g + \Res_{\xi=\lambda} g
+				\big]
+			= -\frac{1}{2} \, x^2 + i \, \frac{1}{3} \, x.
+	\end{align}
+	In particular, equations \eqref{eq2:gzerores}, \eqref{eq3:glamres},
+	and \eqref{eq2:gcollapsingpoles} imply
+	\begin{align}\label{eq3:gsummary}
+		\begin{aligned}
+			\big|\Res_{\xi=0} g \big| \lesssim_\lambda 1, \qquad
+		\big|\Res_{\xi=\lambda} g \big| \lesssim_\lambda |x|, \\
+		\lim_{\lambda\to0} 
+				\big[
+					\Res_{\xi=0} g + \Res_{\xi=\lambda} g
+				\big]
+			= \mathcal O(x^2)
+		\end{aligned}
+	\end{align}
+
+	Further, on our work in the proof of Lemma \ref{prop2:ldervG}
+	also implies that
+	\begin{align}\label{eq3:pldervspace}
+		\frac{\partial}{\partial \lambda} \frac{1}{p}
+		 \in L_\xi^1(\mathbb R \pm i \pi).
+	\end{align}
+	As such, after applying the contour shift demonstrated in Figure
+	\ref{fig1:GammaContour} to the contour of integration for
+	$\frac{\partial}{\partial \lambda} G_L^+$, 
+	Lemma \ref{prop2:lderivGspace} is an immediate 
+	consequence of \eqref{eq3:gsummary} and \eqref{eq3:pldervspace}.
+\end{proof}
+
+\begin{prop}\label{prop2:ghconv}
+	The dif{}ference quotient
+	\[
+		G_h(x; \lambda) := \frac{G_L^+(x; \lambda+h) - G_L^+(x; \lambda)}{h}
+	\]
+	converges to $\frac{\partial}{\partial \lambda} G_L^+$ in 
+	$\inn{x}^s L_x^1(\mathbb R)$ for $s > 3$ and all real $\lambda$. 
+	If $\lambda$ is real and non-zero, then 
+	this convergence happens in $\inn{x}^s L_x^1(\mathbb R)$ for 
+	$s > 2$.
+\end{prop}
+\begin{proof}
+	Direct computation yields the following results
+	\begin{align*}
+		\Res_{\xi=0}
+				\left[
+					e^{ix\xi}
+					\left(
+						\frac{1}{p_\lambda(\xi)}
+					\right)_h
+				\right]
+			&= 
+				\frac{
+					2 e^{2\lambda}
+					\big(
+						h \, e^{2(\lambda+h)} 
+						+ \lambda 
+						- e^{2h}(\lambda + h)
+					\big)
+				}{
+					h 
+					\big(
+						1 + e^{2\lambda}(2\lambda - 1)
+					\big)
+					\big(
+						1 + e^{2(\lambda+h)(2\lambda + 2h - 1)}
+					\big)
+				} \\
+		\Res_{\xi=\lambda}
+				\left[
+					e^{ix\xi}
+					\left(
+						\frac{1}{p_\lambda(\xi)}
+					\right)_h
+				\right]
+			&= - \frac{1}{h}\frac{e^{2\lambda}-1}{e^{2\lambda}-2\lambda-1}
+				\, e^{ix\lambda} \\
+		\Res_{\xi=\lambda+h}
+				\left[
+					e^{ix\xi}
+					\left(
+						\frac{1}{p_\lambda(\xi)}
+					\right)_h
+				\right]
+			&= 
+				 \frac{1}{h}
+				 \frac{e^{2(\lambda+h)}-1}{e^{2(\lambda+h)}-2(\lambda+h)-1}
+				\, e^{ix(\lambda+h)}
+	\end{align*}
+	As such, through further direct computation, we find the
+	limits
+	\begin{align*}
+		\lim_{h\to0}
+			\Res_{\xi=0}
+				\left\{ 
+				\left(
+					e^{ix\xi}
+					\frac{\partial}{\partial \lambda}
+						\frac{1}{p_\lambda(\xi)}
+				\right)
+				-
+				\Res_{\xi=0}
+				\left[
+					e^{ix\xi}
+					\left(
+						\frac{1}{p_\lambda(\xi)}
+					\right)_h
+				\right]
+				\right\}
+			=0,
+	\end{align*}
+	and
+	\begin{align*}
+		\lim_{h\to0}
+			\Res_{\xi=\lambda}
+				\left\{ 
+				\left(
+					e^{ix\xi}
+					\frac{\partial}{\partial \lambda}
+						\frac{1}{p_\lambda(\xi)}
+				\right)
+				-
+				\sum_{k \in \{\lambda, \lambda+h\}}
+				\Res_{\xi=k}
+				\left[
+					e^{ix\xi}
+					\left(
+						\frac{1}{p_\lambda(\xi)}
+					\right)_h
+				\right]
+				\right\}
+			=0
+	\end{align*}
+	hold pointwise for each $x \in \mathbb R$. Thus, since
+	$\left(\frac{1}{p_\lambda(\xi)}\right)_h \in L_\xi^1(\mathbb R \pm i\pi)$
+	implies by Fourier theory that $\int_{\mathbb R\pm i\pi} e^{ix\xi} 
+	\left(\frac{1}{p_\lambda(\xi)}\right)_h \, \mathrm{d}\xi$ is continuous and bounded 
+	(in $x \in \mathbb R$), we may complete this proof by doing a contour shift
+	and then applying Dominated Convergence to 
+	$\int_{\mathbb R} \inn{x}^{-s} \, G_h (x) \, \mathrm{d}x$.
+	% \begin{align}
+	% 	\Res_{\xi=\lambda}
+	% 			\left[
+	% 				e^{ix\xi}
+	% 				\left(
+	% 					\frac{1}{p_\lambda(\xi)}
+	% 				\right)_h
+	% 			\right]
+	% 		= - \frac{1}{h}\frac{e^{2\lambda}-1}{e^{2\lambda}-2\lambda-1}
+	% 			\, e^{ix\lambda}
+	% \end{align}
+	% \begin{align}
+	% 	\Res_{\xi=\lambda+h}
+	% 			\left[
+	% 				e^{ix\xi}
+	% 				\left(
+	% 					\frac{1}{p_\lambda(\xi)}
+	% 				\right)_h
+	% 			\right]
+	% 		= 
+	% 			 \frac{1}{h}
+	% 			 \frac{e^{2(\lambda+h)}-1}{e^{2(\lambda+h)}-2(\lambda+h)-1}
+	% 			\, e^{ix(\lambda+h)}
+	% \end{align}
+	% \begin{align}
+	% 	&\lim_{\lambda\to0}
+	% 		\left\{
+	% 			\sum_{k \in \{0, \,\lambda,\, \lambda+h\}}
+	% 			\Res_{\xi=k}
+	% 			\left[
+	% 				e^{ix\xi}
+	% 				\left(
+	% 					\frac{1}{p_\lambda(\xi)}
+	% 				\right)_h
+	% 			\right]
+	% 			% +\Res_{\xi=\lambda}
+	% 			% \left[
+	% 			% 	e^{ix\xi}
+	% 			% 	\left(
+	% 			% 		\frac{1}{p_\lambda(\xi)}
+	% 			% 	\right)_h
+	% 			% \right]
+	% 			% +\Res_{\xi=\lambda+h}
+	% 			% \left[
+	% 			% 	e^{ix\xi}
+	% 			% 	\left(
+	% 			% 		\frac{1}{p_\lambda(\xi)}
+	% 			% 	\right)_h
+	% 			% \right]
+	% 		\right\} \\
+	% 	&\qquad =
+	% 		\frac{1}{h}
+	% 		\left[
+	% 			\frac{e^{2h}-1}{e^{2h}-2h-1}\,e^{ihx}
+	% 			-
+	% 			\frac{2\big(e^{2h}(h+1)-1\big)}
+	% 				{e^{2h}(6h-3)+3}
+	% 			- \frac{1}{3}
+	% 			- ix
+	% 		\right]
+	% 		\nonumber
+	% \end{align}
+	% \begin{align}
+	% 	&\lim_{h\to0}
+	% 		\lim_{\lambda\to0}
+	% 			\left\{
+	% 				\sum_{k \in \{0, \,\lambda,\, \lambda+h\}}
+	% 				\Res_{\xi=k}
+	% 				\left[
+	% 					e^{ix\xi}
+	% 					\left(
+	% 						\frac{1}{p_\lambda(\xi)}
+	% 					\right)_h
+	% 				\right]
+	% 			\right\} \\
+	% 	&\qquad=
+	% 		- \frac{1}{2} x^2 + i \frac{1}{3} x \nonumber
+	% \end{align}
+\end{proof}
+
+\end{document}

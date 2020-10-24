@@ -1,0 +1,508 @@
+
+%%==============================
+%% Section 4.01.01: DE $\implies$ IE (Temporary Title)
+%%==============================
+
+
+\documentclass[../dissertation.tex]{subfiles}
+
+\begin{document}
+\subsection{Jost Solutions Solve the Integral Equations}\label{subsec4:DEtoIE}
+
+In this subsection we prove that Jost solutions also solve the 
+corresponding integral equation, as respectively 
+defined in Definitions \ref{dfn4:DEsoln} and \ref{dfn4:IEsoln}. We do 
+so in two phases: first for $\lambda \ne 0$ (Lemma \ref{lma4:DEtoIE1}), and then 
+for $\lambda = 0$ (Lemma \ref{lma4:DEtoIE2}). 
+
+\begin{lma}\label{lma4:DEtoIE1}
+	A Jost solution $M$ satisfying Definition \ref{dfn4:DEsoln} also solves the 
+	associated integral equation \ref{eq4:MPluseq} in the sense of Definition 
+	\ref{dfn4:IEsoln} whenever $\lambda \in \mathbb R \sm \{0\}$.
+\end{lma}
+\begin{proof}
+	Proposition \ref{prop3:BndryRelProp} implies 
+	$\wh{M^-} = e^{-2\xi} \wh{M^+}$. Moreover, $\wh{M^+}$ is a tempered 
+	distribution by the hypothesis of Definition \ref{dfn4:DEsoln} which means
+	that $e^{2\xi} \wh{M^-}$ is also tempered. Taking the distribution Fourier
+	transform of both sides of \eqref{eq4:LinSpecProb} we consequently find
+	\begin{align}\label{eq3:DEtoIEsymbol}
+		\wh{uM^+} 
+			&= \xi \wh{M^+} - \zeta\left( \wh{M^+} - \wh{M^-} \right) \\
+			&= \left(\xi - \zeta(1-e^{-2\xi})\right) \wh{M^+} \nonumber \\
+			&= p(\xi) \wh{M^+} \nonumber 
+	\end{align}
+	in the sense of distributions in $\mathcal D'(\mathbb R)$. To avoid the 
+	zeros of the symbol $p$, we rewrite \eqref{eq3:DEtoIEsymbol} as 
+	\begin{align}\label{eq3:peps}
+		p(\xi - i\varepsilon) \wh{M^+} 
+			= [p(\xi - i\varepsilon) - p(\xi)] \wh{M^+} + \wh{uM^+}
+	\end{align}
+	for $0< \varepsilon \ll 1$ and introduce the approximate Green's function 
+	\begin{align}\label{eq4:approxGF}
+		G_L^\varepsilon(x; \lambda) 
+			= \frac{1}{2\pi} 
+				\int_{\mathbb R} 
+					e^{ix\xi} \frac{1}{p(\xi - i \varepsilon)}
+				\,d\xi.
+	\end{align}
+	Using the contour shift 
+	$\mathbb R-i\varepsilon \mapsto \mathbb R + i \sign(x) \pi$
+	in our work from Section \ref{sec1:GreensFunctions} to prove
+	\eqref{eq1:GLrep} shows that
+	\begin{align}\label{eq3:GLeps}
+		G_L^\varepsilon(x; \lambda)
+			=
+				\begin{cases}
+					K^+(x; \lambda) 
+						+ i
+						\big[ 
+							\alpha(\lambda) 
+							+ \beta(\lambda) e^{i\lambda x}
+						\big] e^{-\varepsilon x} \, \chi_L(x)
+						& \lambda \ne 0 \\
+					K^+(x; \lambda) 
+						+ i
+						\left[ 
+							\frac{2}{3} + i x
+						\right] e^{-\varepsilon x} \, \chi_L(x)
+						& \lambda = 0
+				\end{cases}
+	\end{align}
+	where $K^+$ is as defined in Theorem \ref{thm1:GFRep}
+	\[
+		K^+(x) 
+			= \frac{e^{-\pi|x|}}{2\pi}
+				\int_{\mathbb R}
+					e^{ix\xi}
+					\frac{1}{p(\xi)+i \sign(x) \pi}
+				\, \mathrm{d}\xi.
+	\]
+	An immediate consequence of \eqref{eq1:GLrep} and \eqref{eq3:GLeps} is that
+	\begin{align*}
+		G_L^+(x; \lambda) - G_L^\varepsilon(x; \lambda)
+			&= i 
+				\Big[ 
+					\alpha(\lambda) 
+					+ \beta(\lambda) e^{ix\lambda}
+				\Big]
+				\big(1-e^{-\varepsilon x}\big)
+				\chi_{(0, \infty)}.
+	\end{align*}
+	Hence, we see from \eqref{eq2:polesumbnd} that
+	\begin{align}\label{eq3:GLminusGeps}
+		\big| \left(G_L^+ - G_L^\varepsilon\right)*f(x) \big|
+			\lesssim \int_{-\infty}^x 
+					\left[ 1 -e^{-\varepsilon(x - x')}  \right] |f(x')| 
+				\, \mathrm{d}x'.
+	\end{align}
+	for real $\lambda\ne0$. 
+
+	The distribution identity $\wh 1 = 2\pi\delta_0$ (where $\delta_0$ denotes a 
+	Dirac delta-function centered at $\xi=0$) allows us ``subtract 1'' from both
+	sides of \eqref{eq3:peps} to obtain
+	\begin{align*}
+		&p(\xi -i \varepsilon)(\wh{M^+-1})(\xi) + 2\pi \, p(\xi-i\varepsilon)\,\delta_0 \\
+		&\qquad\qquad= [p(\xi-i\varepsilon) - p(\xi)]
+						(\wh{M^+-1})(\xi) 
+						+ 2\pi\,p(\xi-i\varepsilon)\,\delta_0 + \wh{uM^+}
+	\end{align*}
+	Dividing both sides by $p(\xi-i\xi)$\textemdash{}since it has no zeros 
+	for $\xi\in \mathbb R$\textemdash{}we have
+	\begin{align}\label{eq3:Mfouriered}
+		(\wh{M^+ -1})(\xi) 
+			= \frac{p(\xi-i\varepsilon) - p(\xi)}{p(\xi - i\varepsilon)}(\wh{M^+-1})(\xi)
+				+ \frac{1}{p(\xi - i\varepsilon)} \wh{uM^+}.
+	\end{align}
+	We therefore see from \eqref{eq3:Mfouriered} that in order to verify that $M^+$ satisfies
+	definition \ref{dfn4:IEsoln}, it suf{}fices to prove that the following two limits
+	\begin{subequations}
+		\label{eq3:suff}
+		\begin{align}
+			\label{eq3:suff1}
+			\lim_{\varepsilon \searrow 0} \mathcal F^{-1}
+				 	\left[\frac{1}{p(\xi - i\varepsilon)} \wh{uM^+}\right](x)
+				 &= G_L^+*(uM)(x)
+		\end{align}
+		and
+		\begin{align}
+			\label{eq3:suff2}
+				\lim_{\varepsilon \searrow 0} \mathcal F^{-1}
+						\left[ 
+							\frac{p(\xi-i\varepsilon) - p(\xi)}{p(\xi-i\varepsilon)}
+							(\wh{M^+-1})(\xi) 
+						\right]
+						(x)
+					&= 0
+		\end{align}
+	\end{subequations}
+	hold for \textit{a.e.} $x$.
+
+	Since $uM^+ \in L^1(\mathbb R)$, \eqref{eq3:suff1} follows from estimate 
+	\eqref{eq3:GLminusGeps} and the Dominated Convergence Theorem. 
+
+	To verify \eqref{eq3:suff2}, first note that 
+	\begin{align*}
+		\frac{p(\xi - i\varepsilon) - p(\xi)}{p(\xi - i \varepsilon)}
+			= \frac{-i \varepsilon + \zeta e^{-2\xi}\left(1-e^{2i\varepsilon}\right)}
+					{p(\xi-i\varepsilon)},
+	\end{align*}
+	which means it suf{}fices to prove 
+	\begin{subequations}
+		\label{eq3:secondlims}
+		\begin{align} \label{eq3:secondlims1}
+			\lim_{\varepsilon \searrow 0} 
+				\varepsilon \mathcal F^{-1}
+					\left[ 
+						\frac{1}{p(\xi-i\varepsilon)} (\wh{M^+-1})(\xi) 
+					\right](x) 
+			= 0
+		\end{align}
+		and
+		\begin{align} \label{eq3:secondlims2}
+			\lim_{\varepsilon \searrow 0} 
+				(1-e^{2i\varepsilon}) \mathcal F^{-1}
+					\left[ 
+						\frac{e^{-2\xi}}{p(\xi-i\varepsilon)} (\wh{M^+-1})(\xi) 
+					\right](x) 
+			= 0.
+		\end{align}
+	\end{subequations}
+
+
+
+	From the definition of $G_L^\varepsilon$ and \eqref{eq3:GLeps} we see that
+	\begin{align*}
+		\mathcal F^{-1}
+				\left[ 
+					\frac{1}{p(\xi-i\varepsilon)} (\wh{M^+-1})(\xi) 
+				\right](x) 
+			&= G_L^\varepsilon * (M^+-1)
+	\end{align*}
+	and
+	\begin{align*}
+		G_L^\varepsilon * (M^+-1)(x)
+			&= i \alpha(\lambda) \, 
+				\int_{-\infty}^x 
+					e^{-\varepsilon(x - x')} \big(M^+(x')-1\big) 
+				\, \mathrm{d}x' \\
+			&\quad + i \beta(\lambda) \, 
+					\int_{-\infty}^x 
+						e^{i\lambda (x-x')} e^{-\varepsilon(x-x')}\big(M^+(x')-1\big) 
+					\, \mathrm{d}x' \\
+			&\quad + \left( 
+						\int_{-\infty}^x K^+(x- x') + \int_{x}^\infty K^+(x - x') 
+					\right)
+					\big(M^+(x')-1\big) \, \mathrm{d}x'
+	\end{align*}
+	Thus, since $e^{i\lambda (x-x')}$ is a unitary phase (\textit{i.e.} has complex 
+	modulus 1), in order to verify \eqref{eq3:secondlims1}, we need to show that
+	\begin{subequations}
+		\label{eq3:thirdlims}
+		\begin{align}
+			\label{eq3:thirdlims1}
+			\lim_{\varepsilon\searrow 0} \varepsilon 
+				\int_{-\infty}^x 
+					e^{-\varepsilon(x-x')} |M^+(x') - 1| 
+				\, \mathrm{d}x' = 0
+		\end{align}
+		and
+		\begin{align}
+			\label{eq3:thirdlims2}
+			\lim_{\varepsilon\searrow 0} \varepsilon 
+					\int_{\mathbb R} K^+(x- x') \big(M^+(x')-1\big) \, \mathrm{d}x'
+				= 0.
+		\end{align}
+	\end{subequations}
+	To prove \eqref{eq3:thirdlims1}, we choose an arbitrary $\varepsilon'>0$, 
+	split the integral $\int_{-\infty}^x$ into $\int_{-\infty}^{x-L} + \int_{x-L}^x$, 
+	and use the fact that $M^+(x) \to 0$ as $x \to -\infty$ to choose $L>0$ 
+	suf{}ficiently large that $|M^+(x')  - 1| < \varepsilon'/2$ for $x' < x-L$. Then,
+	since 
+	\[
+		\int_{-\infty}^{x-L} e^{-\varepsilon (x-x')} \,dx'
+			= \int_{-\infty}^{-L} e^{\varepsilon t} \, \mathrm{d}t
+			< \int_{-\infty}^0 e^{\varepsilon t} \, \mathrm{d}t 
+			= \frac{1}{\varepsilon},
+	\]
+	where $t = x'-x$, we have
+	\begin{align} \label{eq3:DEtoIEthirdlim1v1}
+		\varepsilon \int_{-\infty}^{x-L} e^{-\varepsilon(x-x')} |M(x') - 1| \,dx'
+			< \frac{\varepsilon'}{2} \, \varepsilon \, \int_{-\infty}^{x-L} e^{-\varepsilon(x-x')} \, \mathrm{d}x'
+			< \frac{\varepsilon'}{2}.
+	\end{align}
+	Now, since $M^+$ is continuous, $M^+-1$ is bounded by $\varepsilon'/2$ on $(\infty, x-L)$,
+	and $[x-L, x]$ is compact, there exists a constant $C_x > 0$ depending only on $x$
+	so that $\sup_{x'\leq x-L}|M^+(x')-1| \leq C_x$. 
+	Set $\delta':= \frac{\varepsilon'}{2 L C_x}$.
+	For all $\varepsilon < \delta'$, we have
+	\begin{align} \label{eq3:DEtoIEthirdlim1v2}
+		\varepsilon \int_{x-L}^{x} e^{-\varepsilon(x-x')} |M(x') - 1| \,dx'
+			\leq \varepsilon \, C_x \int_{-L}^0 e^{\varepsilon x'} \, \mathrm{d}x'
+			< \frac{\varepsilon'}{2},
+	\end{align}
+	as $e^{\varepsilon x'} \leq 1$ for $x' \leq 0$ implies 
+	$\int_{-L}^0 e^{\varepsilon x'} \, \mathrm{d}x'\leq L$. Limit \eqref{eq3:thirdlims1} follows
+	from \eqref{eq3:DEtoIEthirdlim1v1} and \eqref{eq3:DEtoIEthirdlim1v2}.
+
+	Since we proved that $K^+\in \mathcal S(\mathbb R)$ in Section \ref{sec1:AsympK}
+	and therefore in $L^1(\mathbb R)$, limit \eqref{eq3:secondlims2} is an 
+	immediate consequence of Definition \ref{dfn4:DEsoln}(ii) which states
+	that $M^+ \in L^\infty(\mathbb R)$.
+
+	Lastly, to complete the proof that $M^+$ satisfies Definition \ref{dfn4:IEsoln}, 
+	we now verify limit \eqref{eq3:secondlims2}. To do so, observe that 
+	it suf{}fices by the Taylor expansion of $1-e^{2i\varepsilon}$ 
+	to verify the (slightly) simpler limit
+	\begin{align}\label{eq3:simpler}
+	 	\lim_{\varepsilon \searrow 0} 
+				\varepsilon \mathcal F^{-1}
+					\left[ 
+						\frac{e^{-2\xi}}{p(\xi-i\varepsilon)} (\wh{M^+-1})(\xi) 
+					\right](x)
+			= 0,
+	\end{align} 
+
+	We use Proposition 
+	\ref{prop3:BndryRelProp} and Definition \ref{dfn4:DEsoln}(v) to rewrite
+	\eqref{eq3:simpler} as 
+	\begin{align}
+		% &\lim_{\varepsilon \searrow 0} 
+		% 		\varepsilon \, \mathcal F^{-1}
+		% 			\left[ 
+		% 				\frac{e^{-2\xi}}{p(\xi-i\varepsilon)} (\wh{M^+-1})(\xi) 
+		% 			\right](x) \\
+		% &\qquad\qquad= \lim_{\varepsilon \searrow 0} 
+		&\lim_{\varepsilon \searrow 0} 
+				\varepsilon \, \mathcal F^{-1}
+					\left[ 
+						\frac{1}{p(\xi-i\varepsilon)} (\wh{M^--1})(\xi) 
+					\right](x)
+					\\
+		&\qquad\qquad= \lim_{\varepsilon \searrow 0} 
+				\varepsilon \, \mathcal F^{-1}
+					\left[ 
+						\frac{1}{p(\xi-i\varepsilon)} (\wh{M_c^--1})(\xi) 
+					\right](x) 
+				\nonumber \\
+		&\qquad\qquad\quad+ \lim_{\varepsilon \searrow 0} 
+				\varepsilon \, \mathcal F^{-1}
+					\left[ 
+						\frac{1}{p(\xi-i\varepsilon)} (\wh{M_s^-})(\xi) 
+					\right](x)
+				\nonumber
+	\end{align}
+	An analogous argument to the one employed to verify \eqref{eq3:secondlims1} 
+	shows
+	\[
+		\lim_{\varepsilon \searrow 0} 
+				\varepsilon \, \mathcal F^{-1}
+					\left[ 
+						\frac{1}{p(\xi-i\varepsilon)} (\wh{M_c^--1})(\xi) 
+					\right](x) 
+			= 0.
+	\]
+	%%========================================
+	%% Begin thievery from Prof. Perry's notes
+	%% Rewrite this section later.
+	%%========================================
+	To analyze the second right-hand term, we again appeal to the representation 
+	\eqref{eq3:GLeps}. The ``pole terms'' in \eqref{eq3:GLeps} give
+	two terms which can be estimated by
+	\[
+		\varepsilon \int_{-\infty}^x e^{-\varepsilon(x-x')} |M_s^-(x')| \, \mathrm{d}x'
+	\]
+	which is $\mathcal O\left(\varepsilon^{1/2}\right)$ by the Schwartz inequality. 
+	To control the integrals involving $K^\pm$, we again use the $L^2$ 
+	bound on $M_s^-$ to show that the integrals 
+	\[
+		\int_{\mathbb R} |K_\pm(x-x')| |M_s^-(x')| \, \mathrm{d}x
+	\]
+	converge, and hence the corresponding terms are 
+	$\mathcal O\left(\varepsilon\right)$.
+\end{proof}
+
+We now finish our proof that Jost solutions solve the associated integral 
+equation by considering the case where $\lambda = 0$.
+
+\begin{lma}\label{lma4:DEtoIE2}
+	Let $\lambda =0$ and suppose $M$ is a Jost solution in accordance 
+	with Definition \ref{dfn4:DEsoln}. Then $M$ is a solution for 
+	\ref{eq4:MPluseq} as specified in Definition \ref{dfn4:IEsoln}.
+\end{lma}
+\begin{proof}
+	As in the proof of Lemma \ref{lma4:DEtoIE1}, we begin with the distribution 
+	identity $p(\xi;\lambda) \widehat{M^+} = \widehat{u\,M^+}$, which may be rewritten as
+	\[ 
+		p(\xi,\lambda) \widehat{M^+-1} = \widehat{u\,M^+},
+	\]
+	since $p(0;\lambda)=0$. Mimicking our proof of Lemma \ref{lma4:DEtoIE1}, we write
+	\[ 
+		p(\xi-i\varepsilon) \widehat{M^+-1} 
+			= \left[ p(\xi-i\varepsilon) - p(\xi) \right] \widehat{M^+-1} 
+				+ \widehat{u\,M^+},
+	\]
+	where here and in what follows we write $p(\xi)$ for $p(\xi; \lambda = 0)$ 
+	since $\lambda = 0$ is fixed throughout. Dividing we get
+	\begin{equation}
+		\label{Jost.half.pre-int}
+		\widehat{M^+-1} 
+			= \frac{p(\xi-i\varepsilon) - p(\xi)}{p(\xi-i\varepsilon)} 
+					\widehat{M^+-1} 
+				+ \frac{\widehat{u\,M^+}}{p(\xi-i\varepsilon)}.
+	\end{equation}
+	We wish to show that, on taking inverse Fourier transforms and taking 
+	$\varepsilon \searrow 0$, we obtain
+	\[
+		M^+(x)-1 = G_L*(u\,M^+).
+	\]
+	Recalling the definition the approximate Green's function
+	\[
+		G_L^\varepsilon(x) 
+			= \frac{1}{2\pi} \int \frac{e^{ix\xi}}{p(\xi-i\varepsilon)} \, \mathrm{d}\xi
+	\]
+	from Equation \ref{eq4:approxGF} in the proof of Lemma \ref{lma4:DEtoIE1}, 
+	we note that
+	\begin{equation}
+		\label{GL.eps}
+		 G_L^\varepsilon(x) 
+		 	= 
+		 		i \left(\frac{2}{3} + i x \right)
+		 		e^{-\varepsilon x} \chi_L(x) 
+		 		+ e^{-\pi|x|} k(x),
+	\end{equation}
+	where $k(x)$ is as defined in Remark \ref{rmk1:littlek}.
+
+	Thus the inverse Fourier transform of the second right-hand term in 
+	\eqref{Jost.half.pre-int} is given by
+	\begin{align*}
+	\mathcal F^{-1} \left( \frac{\widehat{uM}}{p(\xi-i\varepsilon)} \right)(x)
+		&=
+			i
+			\int_{-\infty}^x 
+				\left( \frac{2}{3} + i (x-x') \right) 
+				e^{-\varepsilon(x-x')} u(x') M(x') \, \mathrm{d}x' \\
+		&\quad + \int_{\mathbb R} e^{-\pi|x-x'|} k(x-x')  u(x') M(x') \, \mathrm{d}x'.
+	\end{align*}
+	It follows by dominated convergence that this expression approaches
+	$G_L*(uM)(x)$ pointwise as $\varepsilon \searrow 0$ as 
+	$u\in L^{2,4}(\mathbb R)$ implies 
+	$u \in L^{1,1}(\mathbb R) \cap L^2(\mathbb R)$. 
+
+	It remains to show that the first term vanishes pointwise as 
+	$\varepsilon \searrow 0$. We write
+	\begin{align*}
+		\mathcal F^{-1} 
+				\left( 
+					\frac{p(\xi-i\varepsilon) - p(\xi)}
+						{p(\xi-i\varepsilon)} \widehat{M^+-1} 
+				\right)
+			&=	i\varepsilon G_L^\varepsilon * (M^+ -1) \\
+			&\quad- 
+				\frac{1}{2} \left(e^{2i\varepsilon}-1 \right) 
+				G_L^\varepsilon*(M^- - 1)
+	\end{align*}
+	where we used $\widehat{M^-} = e^{-2\xi} \widehat{M^+}$. The goal is to use
+	the asymptotic behavior of $M^+$ and $M^-$ as $x \to -\infty$ to show that 
+	these terms vanish as $\varepsilon \searrow 0$. Due to the linear growth 
+	of the Green's function we need a more stringent rate of decay for 
+	$M^+-1$ and $M^- - 1$ as $x \to -\infty$ to control convolution with the pole 
+	term in $G_L^\varepsilon$.  
+
+	First we consider 
+	\begin{align*}
+		i\varepsilon \, G_L^\varepsilon*(M^+ - 1) (x) 
+			&=	
+				-\varepsilon 
+				\int_{-\infty}^x 
+					\left( \frac{2}{3} + i(x-x') \right) 
+					e^{-\varepsilon x} \left(M^+(x') - 1\right) 
+				\, \mathrm{d}x' \\
+			&\quad 	
+				+ i\varepsilon \int e^{-\pi|x-x'|} k(x-x') \big(M^+(x')-1\big) \, \mathrm{d}x'
+	\end{align*}
+	We use equation \eqref{GL.eps} and asymptotic condition (a) from 
+	property \ref{itm:asymp} of Definition \ref{dfn4:DEsoln}.
+	The second right-hand integral is bounded by $\varepsilon$ times
+	\[
+		\int_{\mathbb R} \inn{x-x'}^{-2} |k(x-x')| \inn{x'} \, \mathrm{d}x' 
+			\lesssim
+				\inn{x} 
+				\int_{\mathbb R} 
+					\inn{x-x'}^{-1} |k(x-x')| \,dx'
+			\lesssim \inn{x} \nm{k}_{L^2}
+	\]
+	and so goes to zero pointwise as $\varepsilon \searrow 0$. 
+	Let $H(x) = \inn{x}\big(M^+(x)-1\big)$. The first right-hand integral is 
+	bounded by 
+	\begin{align*}
+	\varepsilon 
+		\int_{-\infty}^x 
+			\inn{x-x'} e^{-\varepsilon (x-x')} \inn{x'}^{-1}   
+			\left|H(x') \right| 
+		\, \mathrm{d}x'  
+		&\lesssim 
+			\varepsilon 
+			\int_{-\infty}^x 
+				e^{-\varepsilon (x-x')} \left| H(x') \right| 
+			\, \mathrm{d}x'
+			\\
+		&=	\int_0^{\infty} e^{-\Xi} \left| H(x-\Xi/\varepsilon) \right| \, \mathrm{d}\Xi
+	\end{align*}
+	which goes to $0$ as $\varepsilon \searrow 0$ by dominated convergence since
+	$\lim_{x \to -\infty} H(x) = 0$, where we used the substitution 
+	$\Xi = \varepsilon(x-x')$ in the above integral.
+
+	We seek to carry out an analogous estimate for the term involving $M^-$.
+	We will use equation \eqref{GL.eps} and asymptotic condition (b) from 
+	property \ref{itm:asymp} of Definition \ref{dfn4:DEsoln}. Since 
+	$e^{2i\varepsilon}-1$ is of order $\varepsilon$, it suffices to show that
+	$\varepsilon \left| G_L^\varepsilon*(M^- -1) (x) \right| = o(1)$
+	as $\varepsilon \searrow 0$, where we use the ``little oh'' notation
+	$f = o(g)$ to indicate that $\lim{y\to a} \frac{f(y)}{g(y)} = 0$ (in this 
+	case $y=\varepsilon$ and $a = 0$).
+	We have
+	\begin{align*}
+		\varepsilon \left| (G_L^\varepsilon * (M_1))(x) \right|
+			&\lesssim	
+				\varepsilon 
+				\int_{-\infty}^x 
+					\inn{x-x'} e^{-\varepsilon x'} \inn{x'}^{-1-\upsilon} 
+				\, \mathrm{d}x'
+				\\
+			&\lesssim  
+				\int_{-\infty}^x 
+					\varepsilon e^{-\varepsilon(x-x')} \inn{x'}^{-\upsilon} 
+				\, \mathrm{d}x'	
+				\\
+			&=	
+				\int_0{\infty}
+					e^{-\Xi} \inn{x-\Xi/\varepsilon}^{-\upsilon} 
+				\, \mathrm{d}\Xi
+	\end{align*}
+	which goes to zero as $\varepsilon \searrow 0$ by dominated convergence 
+	{\color{red}(we leave the second term, involving $k(x-x')$, as an exercise to the 
+	reader!)}.
+
+	Finally
+	\begin{align*}
+		\varepsilon \left| (G_L^\varepsilon (M_2))(x) \right|
+			&\lesssim 
+				\varepsilon 
+				\int_{-\infty}^x 
+					e^{-\varepsilon (x-x')} \inn{x-x'} 
+					\inn{x'}^{-1-\upsilon} g(x') 
+				\, \mathrm{d}x'
+		\end{align*}
+	{\color{red}(again we bound only the dominant term and leave the other as 
+	an exercise)} where $g \in L^2$. By the Cauchy-Schwarz inequality and the 
+	fact that $\inn{x-x'} \inn{x'}^{-1}$ is bounded for $x' < x < 0$ we again 
+	get an $\varepsilon^{\frac{1}{2}}$ estimate which suffices for the purpose. 
+
+	We conclude that, for $u \in L^{1,2+\upsilon} \cap L^{2,2} \supset X$, 
+	the Jost solution $M$ the satisfying asymptotic conditions \ref{itm:asymp}
+	from Definition \ref{dfn4:DEsoln} solves the corresponding integral equation.
+\end{proof}
+
+
+\end{document}

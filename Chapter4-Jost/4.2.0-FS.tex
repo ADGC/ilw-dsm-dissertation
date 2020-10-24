@@ -1,0 +1,311 @@
+%%================================
+%% Section 4.1.0: Functional Setup (Temporary Title)
+%%================================
+
+\documentclass[../dissertation.tex]{subfiles}
+
+\begin{document}
+% \section{Functional Setup (Temporary Title)}\label{sec3:FS}
+
+In order to prove the equivalence of the Jost solutions and solutions to the 
+integral equations \eqref{eq4:JostIE}, we need to define what doing so actually
+means. To that end, we respectively define explicitly what a Jost solution is 
+(Definition \ref{dfn4:DEsoln}) or what it means for a function to solve the 
+linear spectral problem reformulated as integral equations equations (Definition 
+\ref{dfn4:IEsoln}).
+
+\begin{rmk}\label{rmk3:wlog}
+	In this chapter we prove that the Jost solution $M_1$ 
+	solves \eqref{eq0:JostIE} and \textit{vise versa} in the sense
+	of Definitions \ref{dfn4:DEsoln} and \ref{dfn4:IEsoln} and note
+	that the proofs of the analogous results for $M_e$, $N_1$ and $N_e$
+	are similar. Definitions \ref{dfn4:DEsoln} and \ref{dfn4:IEsoln}
+	are written accordingly, and, throughout this section, we write $M$ 
+	\text{en lieu} of $M_1$. 
+\end{rmk}
+
+Unless stated otherwise, in the remainder of this section we take 
+$u \in B_X(0, c_0)$ where $c_0$ is chosen according to Proposition 
+\ref{prop4:exist} to ensure that the integral equations \eqref{eq4:JostIE}
+are uniquely solvable. For 
+$M^+ \in L^\infty(\mathbb R)$,
+$u \in X$ implies $uM \in L^2(\mathbb R)$ and the solution map $u\mapsto M$
+for \eqref{eq0:JostIE} is continuous from $L^2$ to $L^\infty$.
+
+\begin{defn}[Analytic Weak Jost Solution]\label{dfn4:DEsoln}
+	Fix $\lambda \in \mathbb R$. We say that a function $M$ analytic on the strip
+	$$\mathcal S_1 = \{ z \in \mathbb C ~:~ 0 < \im z < 2 \}$$ with respective
+	lower and upper boundary values $M^+$, $M^-$ solves the linear spectral problem
+	\begin{align} \label{eq4:LinSpecProb}
+		L_1(M)(x) 
+			:= \frac{1}{i} \frac{\partial M^+}{\partial x}(x)
+				- \zeta \big(M^+(x) - M^-(x)\big)
+			= u(x) M^+(x)
+	\end{align}
+	with $M^+(x) \to 1$ as $x\to -\infty$ if 
+	\begin{itemize}
+		\item[\namedlabel{itm:asymp}{(i)}] $M$ satisfies the following asymptotic conditions:
+			\begin{itemize}
+				\item[(a)] \textbf{Lower boundary value asymptotic condition:}\\
+					$\lim_{x\to-\infty} \inn{x} \left(M^+(x) -1\right)=0$
+				\item[(b)] \textbf{Upper boundary value asymptotic condition:}\\
+					There exist $M_1$, $M_2$ so that 
+					\[
+						M^-(x) -1 = M_1(x) + M_2(x), 
+					\]
+					where 
+					\[
+						\inn{x}^{1+\upsilon} | M_1(x) | \lesssim 1
+					\]
+					as $x\to -\infty$ and 
+					\[
+						\inn{\dotarg}^\tau M_2 \in L^2(\mathbb R)
+					\]
+					for any $\upsilon \in \left(0, \frac{1}{2}\right)$ and $\tau \in [0,1)$.
+			\end{itemize} 
+		\item[\namedlabel{itm:space}{(ii)}] $M^+ \in \inn{\dotarg} L^\infty(\mathbb R)$. 
+			If $\lambda \ne 0$, then $M^+ \in L^\infty(\mathbb R)$.
+		\item[\namedlabel{itm:cont}{(iii)}] $M$ is continuous in $0 \leq \im z \leq 2-\varepsilon$
+			for any $0 < \varepsilon < 2$.
+		\item[\namedlabel{itm:decomp}{(iv)}] There is a decomposition $M(z) = M_c(z) + M_s(z)$ for 
+			$0 < \im  z < 2$ so that 
+			\begin{itemize}
+				\item[(a)] $M_c$ extends to a continuous function on the closure
+					$\ol{\mathcal S}_1$ of $\mathcal S_1$ with 
+					\[
+						\mathop{\lim_{x\to-\infty}}_{x\in \mathbb R} M_c(x+2i) = 1	
+					\]
+				\item[(b)] The estimates
+					\[
+						\|M_s(\dotarg+iy)\|_{L^\infty} \leq (2-y)^{-1/2}, \qquad
+						\sup_{0\leq y < 2} \|M_s(\dotarg+iy)\|_{L^2} < \infty
+					\]
+					hold. Moreover, $M_s$ has an $L^2$ boundary value 
+					$M_s^-(x):= \lim_{\varepsilon \searrow 0} M_s\big(\dotarg+i(2-\varepsilon)\big)$
+					on $\im z = 2$ with $M_s(x+iy) \to M_s^-(x)$ for almost every
+					$x$.
+			\end{itemize}
+		\item[\namedlabel{itm:jost}{(v)}] Defining $M^-(x) = M_c(x+2i) + M_s(x+2i)$, the dif{}ferential equation
+			\eqref{eq4:LinSpecProb} holds in the weak sense, testing against 
+			$\phi \in C_0^\infty(\mathbb R)$.
+	\end{itemize}
+\end{defn}
+
+
+
+\begin{defn}[Associated Integral Equation Solution]\label{dfn4:IEsoln}
+	Fix $\lambda \in \mathbb R$ and $u\in X$. A function 
+	$M^+(x; \lambda, u) \in \inn{\dotarg} L_x^\infty(\mathbb R)$ 
+	solves the integral form of the linear spectral problem if the identity
+	\begin{align}\label{eq4:MPluseq}
+		M^+(x) = 1 + G_L^+*(uM^+)(x)
+	\end{align}
+	holds for almost every $x\in \mathbb R$.
+\end{defn}
+
+As discussed following the statement of Theorem \ref{thm3:main_result}, 
+In breaking up $M$ into $M_c$ and $M_s$ in Definition \ref{dfn4:DEsoln}, we 
+are decomposing $M$ into a piece which has a continuous upper boundary value and a
+piece which exists only in an $L^2$ sense. The inspiration for this decomposition
+stems from the similar way we can decompose $G_\star$ ($\star = L \text{, or } R$)
+hinted at in Theorem \ref{thm3:main_result}.
+% given its particular relevance to 
+% our work in this section, we restate the discussion Theorem \ref{thm3:main_result} 
+% precedes as the following proposition
+
+% \begin{prop}\label{prop3:Gdecomp}
+% 	Let $u \in X$ and $M^+ \in \inn{\dotarg} L^\infty(\mathbb R)$ be a function which 
+% 	satisfies the integral equation $M^+ = 1 + G_L^+*(uM^+)$. Then $M^+$ has an 
+% 	analytic extension $M$ to the complex strip $\mathcal S_1$. Further, $M$ 
+% 	has a decomposition $M(z) = 
+% \end{prop}
+ 
+% In breaking up $M$ into $M_c$ and $M_r$ in Definition \ref{dfn4:DEsoln}, we 
+% are decomposing $M$ into a piece which has a continuous upper boundary value and a
+% piece which exists only in an $L^2$ sense. The inspiration for this decomposition
+% stems from the similar decomposition for $G_L$ hinted at in Chapter \ref{cptr03:xContin}
+% and explicitly stated below in Proposition \ref{prop3:Gdecomp}.
+
+% \begin{prop}\label{prop3:Gdecomp}
+% 	Let $p \in (1, \infty)$, $\zeta \in (0, 1/2)\cup(1/2, \infty)$, and suppose 
+% 	that $f \in L^p(\mathbb R)$. Then the limit
+% 	\[
+% 		\lim_{\varepsilon \searrow 0} G_L\big(\dotarg + i(2-\varepsilon)\big) * f(x)
+% 			= T_c^- f(x) + T_s^- f(x)	
+% 	\]
+% 	holds pointwise \textit{a.e.}, where
+% 	\begin{align*}
+% 		T_c^- f(x) 
+% 			&=	i \, \alpha(\lambda) \int_{-\infty}^x f(x')\, \mathrm{d}x' 
+% 				+ i\, \beta(\lambda) \,e^{i\lambda x} \, e^{-2\lambda} 
+% 					\int_{-\infty}^x e^{i\lambda x'} f(x')\, \mathrm{d}x' 
+% 				- R(\dotarg, 2)*f(x)
+% 	\end{align*}
+% 	and
+% 	\begin{align*}
+% 		T_s^- f(x)
+% 			&= - Ef(x) + \frac{1}{2} f(x).
+% 	\end{align*}
+% \end{prop}
+
+In Section \ref{subsec4:IEtoDE}, we use the following property of functions analytic
+on the complex strip $\mathcal S_1$. 
+\begin{prop}\label{prop3:BndryRelProp}
+	Suppose $F$ is analytic in the open strip $\mathcal S_1$ and that 
+	$|F(x+iy)| \lesssim (2-y)^{-1/2}$ for $y \in [0,2)$. Suppose further that 
+	$F=F_1+F_2$ where
+	\begin{itemize}
+		\item[(i)] $F_1$ is bounded and continuous on the closure $\ol{\mathcal S}_1$,
+			and
+		\item[(ii)] for any $\varepsilon \in (0, 2)$, $F_2$ is bounded and continuous
+			on $\mathbb R \times [0, 2-\varepsilon)$, the estimate
+			\[
+				\sup_{0< y< 2} \|F_2(\dotarg + iy)\|_{L^2} < \infty
+			\]
+			holds, and there is a function $F_2(\dotarg + 2i)$ so that 
+			$F(\dotarg + iy) \to F_2(\dotarg + 2i)$ in $L^2(\mathbb R)$
+			as $y\nearrow 2$. 
+	\end{itemize}
+	Denote by $F^+$ the boundary value $F_1(x+ i0) + F_2( x + i0)$ and by 
+	$F^-$ the boundary value $F_1\big(x + (2i-0i)\big) + F_2\big(x + (2i-0i)\big)$, 
+	where $2i-0i$ is the implied limit $(2-\varepsilon)i$ as $\varepsilon \searrow0$.
+	Then, as distributions in $\mathcal D'(\mathbb R)$,
+	\[
+		\big(\mathcal F F^+\big)(\xi) = e^{2\xi} \big(\mathcal F F^-\big)(\xi).
+	\]
+\end{prop}
+\begin{proof}
+	Let $\gamma$ denote the contour shown in red in Figure \ref{fig3:BndryRelCont}, where
+	$R>0$ and $0< \varepsilon < 1$. 
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+		[
+			scale=1.4,
+			cont/.style={
+				thick,
+				red, 
+				decoration={markings, mark=at position .55 with \arrow{stealth}[arrowhead=5mm]},
+				postaction={decorate}
+			}
+		]
+			\def\R{3}
+			\def\cwidth{2}
+			\def\eps{0.5}
+			\def\xbuffer{0.5}
+			\def\ybuffer{0.5}
+			\def\xMin{-\R-\xbuffer}
+			\def\xMax{\R+\xbuffer}
+			\def\yMax{\cwidth+\ybuffer}
+			\def\yMin{{0-\ybuffer}}
+			\def\tickLength{0.1}
+			%% Axes
+			\draw[->, very thick] (\xMin, 0) -- (\xMax, 0) node[right] {$\re z$};
+			\draw[->, very thick] (0, \yMin) -- (0, \yMax) node[above] {$\im z$};
+
+			\draw[thick, dashed] (\xMin,\cwidth) -- (\xMax, \cwidth) node[right] {$\im z$};
+
+			%% Draw Contour
+			\coordinate (LB) at (-\R, \eps);
+			\coordinate (RB) at (\R, \eps);
+			\coordinate (RT) at (\R, {\cwidth - \eps});
+			\coordinate (LT) at (-\R, {\cwidth - \eps});
+
+			\draw[cont] (LB) -- (RB);
+			\draw[cont] (RB) -- (RT);
+			\draw[cont] (RT) -- (LT);
+			\draw[cont] (LT) -- (LB);
+			
+
+			% \node[left] at (LB) {$\im z = \varepsilon$};
+			% \node[left] at (LT) {$\im z = 2 - \varepsilon$};
+
+
+			%% Draw Re axis tick marks
+			\draw[very thick] (-\R, \tickLength) -- (-\R, -\tickLength) 
+				node[below] {$-R$};
+			\draw[very thick] (\R, \tickLength) -- (\R, -\tickLength) 
+				node[below] {$R$};
+
+			%% Draw Im axis tick marks
+			\draw[very thick] (\tickLength, {\eps}) -- (-\tickLength, \eps) 
+				node[below left] {$\im z = \varepsilon$};
+			\draw[very thick] (\tickLength, {\cwidth - \eps}) -- (-\tickLength, {\cwidth - \eps})
+				node[above left] {$\im z = 2 - \varepsilon$};
+
+		\end{tikzpicture}
+		\caption{Contour of integration for proof of Proposition \ref{prop3:BndryRelProp}}
+		\label{fig3:BndryRelCont}
+	\end{figure}
+	Since $F(z)$ is analytic in the interior 
+	of the strip $\mathcal S_1$, the integral of $e^{-i\xi x} F(z)$ around the contour 
+	$\gamma$ is zero for all appropriate $R$ and $\varepsilon$. Thus, taking 
+	$\varepsilon\searrow 0$ for a fixed $R>0$ yields
+	\begin{align}\label{eq3:BndryPropIs}
+		I_1 - I_3 = I_4 - I_2,
+	\end{align}
+	where 
+	\begin{align*}
+		I_1 &:= \int_{-R}^R e^{-i \xi x} F^+(x) \, \mathrm{d}x \\
+		I_2 &:= i \int_0^2 e^{-i\xi R} e^{-t\xi} F(R+it) \, \mathrm{d}t \\
+		I_3 &:= e^{2\xi} \int_{-R}^R e^{-i\xi x} F^-(x) \, \mathrm{d}x \\
+		I_4 &:= i \int_0^2 e^{i\xi R} e^{-t\xi} F(-R+it) \, \mathrm{d}t
+	\end{align*}
+	correspond to the four straight segments of $\gamma$. We claim $I_2$ and $I_4$
+	converge to zero as distributions as $R \to \infty$. 
+	Indeed, for $\phi(\xi) \in C_0^\infty(\mathbb R)$,
+	\begin{align*}
+		\int_{\mathbb R} \phi(\xi) I_2(\xi) \, \mathrm{d}\xi
+			&= i \int_0^2 \left(\int_{\mathbb R} \phi(\xi) e^{-i\xi R} e^{-t\xi} \, \mathrm{d}\xi\right) F(R+it) \, \mathrm{d}t
+	\end{align*}
+	Since $\phi$ is compactly supported, using integration by parts on the interior integral above yields
+	\[
+		\int_{\mathbb R} \phi(\xi) e^{-i\xi R} e^{-t\xi} \, \mathrm{d}\xi
+			= \frac{1}{iR} 
+				\int_{\mathbb R} 
+					e^{i\xi R} 
+					\big(
+						\phi'(\xi) \, e^{-t\xi} - t \,\phi(\xi)\, e^{-t\xi}
+					\big)
+				\,d\xi,
+	\]
+	which implies 
+	\begin{align}\label{eq3:BndryPropInnerIntBnd}
+		\left| \int_{\mathbb R} \phi(\xi) I_2(\xi) \, \mathrm{d}\xi \right|
+			&\leq \frac{1}{R}
+				\int_{\mathbb R} 
+					e^{-t\xi}
+					\big(
+						|\phi'(\xi)| + 2|\phi(\xi)
+					\big)
+				\,d\xi	
+	\end{align}
+	Using the hypothesis $|F(x+iy)| \lesssim (2-y)^{-1/2}$ in conjunction with estimate
+	\eqref{eq3:BndryPropInnerIntBnd} allows us to conclude that the integral of $I_2$ with 
+	$\phi$ is bounded (up to a positive constant) by the integral
+	\begin{align}
+		\frac{1}{R} \int_0^2 (2-R)^{-1/2} \int_{\mathbb R} e^{i\xi R} 
+					\big(
+						\phi'(\xi) \, e^{-t\xi} - t \,\phi(\xi)\, e^{-t\xi}
+					\big)
+				\,d\xi,
+	\end{align}
+	which vanishes in the limit $R\to \infty$ due to the compact support of $\phi$.
+	The same argument with $R$ replaced by $-R$ also shows $I_4$ also vanishes 
+	(as a distribution) in the $R\to\infty$ limit. It therefore follows
+	from \eqref{eq3:BndryPropIs} that 
+	\begin{align*}
+		\int_{\mathbb R} 
+			\phi(\xi) \, 
+			\Big[ 
+				\big(\mathcal F F^+\big)(\xi) - e^{2\xi}\big(\mathcal F F^-\big)(\xi) 
+			\Big]
+			\, \mathrm{d}\xi
+		&= \lim_{R\to\infty} \int_{\mathbb R} (I_1-I_3) \, \phi(\xi) \, \mathrm{d}\xi
+		=0
+	\end{align*}
+	as claimed.
+\end{proof}
+
+
+\end{document}

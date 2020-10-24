@@ -1,0 +1,176 @@
+%%=================================
+%% Section 1.04: Asymptotics of K^+
+%%=================================
+\documentclass[../dissertation.tex]{subfiles}
+\def\rest{\text{rest}}
+
+\begin{document}
+
+\section{Asymptotics of $K^+$}\label{sec1:AsympK}
+A cursory inspection of the integrand of $G_\star^+$ ($\star = L \text{, or }R$) 
+indicates that $G_\star^+$ behavior
+dif{}fers wildly for $x \in \mathbb R$ near zero, and $|x| > c$, where $c>0$ is any
+fixed constant. While $1/p(\xi)$ decays roughly exponentially as $\xi \to -\infty$, 
+the fact that $1/p(\xi)$ decays as $1/\xi$ for $\xi \gg 1$ means the oscillatory term 
+$e^{ix\xi}$ in the integrand of $G_\star^+$ is imperative for the contour 
+integral in $G_\star^+$ of $e^{ix\xi} / p(\xi)$ to even have a chance for convergence.
+In this section we study the ``nice'' case of $|x|>1$ and show that not only does 
+the integral in $G_\star^+$ converge in this scenario, it is rapidly decaying (as long 
+as $x$ stays away from zero). In the Section \ref{sec1:KSingularity}, we study
+the behavior of $G_\star^+$ for $x$ near zero and show $G_\star^+$ has at worst a log 
+type singularity at $x=0$. Taken together, the results from this section 
+combined with the results from Section \ref{sec1:KSingularity} constitute a 
+proof of Theorem \ref{thm1:krep} from the introduction of this chapter. 
+
+Key to the analysis in both this section and Section \ref{sec1:KSingularity}
+are the representation formulas \eqref{eq1:GFrep} proven in Section 
+\ref{sec1:GreensFunctions}. In particular, \eqref{eq1:GFrep} allows us
+to reduce our analyses to a thorough study of $K^+$
+
+To understand the properties of $K^+$, we study the convergence of the integral
+\begin{align*}
+	\int\limits_{\Sigma_{\sign(x)}} \frac{e^{ix\xi}}{p(\xi)} \, \mathrm{d}\xi,
+\end{align*}
+where $\Sigma_{\sign(x)} := \mathbb R + i \sign(x) \pi$.
+Let $\Sigma\big(R,~\sign(x)\big)$ denote the contour $(-R, R) + i \sign(x) \pi$. Recall 
+that $p(\xi)$ can be written as 
+\[
+	p(\xi) = \xi - \zeta(\lambda)\( 1 - e^{-2\xi} \),
+\] 
+which implies $p'(\xi) = 1 - 2 \zeta(\lambda) \, e^{-2\xi}$. In which case
+\begin{align*}
+	\int\limits_{\Sigma\big(R,~\sign(x)\big)} \frac{e^{ix\xi}}{p(\xi)} \, \mathrm{d}\xi
+		&=  \left.\frac{e^{ix\xi}}{p(\xi)}\right|_{-R + i \sign(x)\pi}^{R + i \sign(x)\pi}
+			- \frac{1}{ix} \int\limits_{\Sigma\big(R,~\sign(x)\big)} e^{ix\xi} \, 
+			\frac{p'(\xi)}{\big(p(\xi)\big)^2} \, \mathrm{d}\xi.
+\end{align*}
+Now 
+\begin{align*}
+	p'(t \pm i \pi) 
+		= 1 - 2 \zeta(\lambda) e^{-2t} e^{\mp 2 \pi i}
+		= 1 - 2 \zeta(\lambda) e^{-2t} 
+		= p'(t), \qquad t\in \RR.
+\end{align*}
+Further
+\[
+	\zeta(t \pm i \pi ) - \zeta(\lambda)
+		= \frac{t}{1 - e^{-2t}} - \zeta(\lambda) \pm \frac{i\pi}{1 - e^{-2t}}
+		= \zeta(t) - \zeta(\lambda) \pm \frac{i\pi}{1 - e^{-2t}}, \qquad t\in \RR,
+\]
+which implies
+\begin{align} \label{eq1:shiftedP}
+	p(t \pm i \pi)
+		&= \big(\zeta(t \pm i \pi) - \zeta(\lambda) \big)\( 1- e^{-2t} \) \\
+		&= \big(\zeta(t) - \zeta(\lambda)\big)\(1 - e^{-2t}\) \pm i\pi
+		= p(t) \pm i \pi. \nonumber
+\end{align}
+Combining the two calculations above, we see that
+\begin{align*}
+	\frac{1}{ix} \int\limits_{\Sigma\big(R,~\sign(x)\big)} e^{ix\xi} \, 
+			\frac{p'(\xi)}{\big(p(\xi)\big)^2} \, \mathrm{d}\xi
+		= \frac{e^{-|x|\pi}}{ix} \int_{-R}^R e^{ixt} 
+			\frac{p'(t)}
+			{\big( p(t) + i \sign(x) \pi \big)^2} \, \mathrm{d}t.
+\end{align*}	
+Thus, 
+\[
+	\lim_{R\to\infty} \frac{1}{\left|p\big(\pm R + i \sign(x)\pi\big)\right|}=0
+\]
+and, formally,
+\begin{align} \label{eq1:RemainderIntegralBnd}
+	\left| \int\limits_{\Sigma_{\sign(x)}} \frac{e^{ix\xi}}{p(\xi)} \, \mathrm{d}\xi \right|
+		\leq \frac{e^{-|x|\pi}}{|x|} \int_{\RR} 
+			\frac{\left| p'(t) \right|}{p(t)^2 + \pi^2} \, \mathrm{d}t,
+\end{align}
+where we proceed to establish the convergence of the integral on the right-hand
+side of \eqref{eq1:RemainderIntegralBnd}. Note that $p'(t) = 0$ only when
+$t = \frac{1}{4} \ln\big( \zeta(\lambda) \big)$. Further, given 
+$p''(t) = 4\zeta(\lambda)\,e^{-2t} > 0$ for all real $t$, 
+\[
+	|p'(t)| =
+		\begin{cases}
+			-p'(t), & t < t_0 \\
+			p'(t), & t \geq t_0,
+		\end{cases}
+\]
+where $t_0:= \frac{1}{4} \ln\big( \zeta(\lambda) \big)$. Given this fact, we now proceed
+to evaluate the integral on the right-hand side of \eqref{eq1:RemainderIntegralBnd}
+through $u$-substitution by setting $u = p(t)$. Observe that
+\begin{align}
+	\int \frac{p'(t)}{p(t)^2 + \pi^2} \, \mathrm{d}t
+		= \int \frac{1}{u^2 + \pi^2}
+		= \frac{1}{\pi} \arctan\( \frac{u}{\pi} \) + C
+		= \frac{1}{\pi} \arctan\( \frac{p(t)}{\pi} \) + C.
+\end{align}
+So, for $R > |t_0|$, 
+\[
+	\int_{-R}^{t_0} \frac{|p'(t)|}{p(t)^2 + \pi^2}\,dt
+		= - \int_{-R}^{t_0} \frac{p'(t)}{p(t)^2 + \pi^2}
+		= -\frac{1}{\pi} \left[ \arctan\(\frac{p(t_0)}{\pi}\) 
+			- \arctan\(\frac{p(-R)}{\pi}\)\right],
+\]
+and
+\[
+	\int_{t_0}^R \frac{|p'(t)|}{p(t)^2 + \pi^2}\,dt
+		= \frac{1}{\pi} \left[\arctan\(\frac{p(R)}{\pi}\) 
+			- \arctan\(\frac{p(t_0)}{\pi}\)\right].
+\]
+Now
+\[
+	\lim_{R\to \infty} p(\pm R) 
+		= \lim_{R\to \infty} \left[ \pm R - \zeta(\lambda) \( 1 - e^{\mp 2R} \) \right]
+		= \infty,
+\]
+which implies that
+\begin{align*}
+	\lim_{R\to \infty} \int_{-R}^R \frac{|p'(t)|}{p(t)^2 + \pi^2}\,dt
+		&= \lim_{R\to\infty} \(\int_{-R}^{t_0} \frac{|p'(t)|}{p(t)^2 + \pi^2}\,dt
+			+ \int_{t_0}^{R} \frac{|p'(t)|}{p(t)^2 + \pi^2}\,dt \)\\
+		&= \frac{1}{\pi}\left[ \lim_{R\to\infty} \arctan\(\frac{p(R)}{\pi}\) 
+				+\lim_{R\to\infty} \arctan\(\frac{p(-R)}{\pi}\) \right. \\
+		&\qquad\quad- \left. 2 \arctan\(\frac{p(t_0)}{\pi}\) \right] \\
+		&= 1 - \frac{2}{\pi} \arctan\( \frac{p(t_0)}{\pi} \)
+\end{align*}
+
+Since
+\[
+	p(t_0) 
+		= \frac{1}{4} \ln\zeta(\lambda) - \zeta(\lambda) 
+			+ \big(\zeta(\lambda) \big)^{\frac{1}{2}},
+\]
+$p(t_0) \to - \infty$ as $\lambda \to \pm \infty$, and 
+\[
+	\lim_{\lambda\to\pm\infty} \int_\RR \frac{|p'(t)|}{p(t)^2 + \pi^2}\,dt = 2.
+\]
+Putting everything together, we see that
+\begin{align}\label{eq1:Kasymp}
+	K^+(x; \lambda) = \mc O\left( \frac{e^{-|x| \pi}}{|x|} \right)
+\end{align}
+for $|x| \geq 1$.
+% \begin{align}\label{eq1:FinalGffromula}
+% 	G_L^+(x, \lambda, 1) =
+% 		\begin{cases}
+% 			i \frac{1 - e^{2\lambda}}{2\lambda\,e^{2\lambda} - e^{2\lambda}+1} 
+% 				+ i \frac{1 - e^{2\lambda}}{2\lambda - e^{2\lambda}+1} e^{ix\lambda}
+% 				+ \mc O\( \frac{e^{-|x| \pi}}{|x|} \), & x > 1 \\ 
+% 			~\\
+% 			\mc O\( \frac{e^{-|x| \pi}}{|x|} \), & x < -1,
+% 		\end{cases}
+% \end{align}
+% where the $\mc O\( \frac{e^{-|x| \pi}}{|x|} \)$ terms are uniformly bounded in 
+% $\lambda$.
+
+% Finally, since
+% \[
+% \begin{array}{ccc}
+% 	\ds \lim_{\lambda\to-\infty} \frac{1 - e^{2\lambda}}{2 \lambda e^{2\lambda} - e^{2\lambda}+1} = 1, 
+% 	&\qquad&
+% 	\ds \lim_{\lambda\to\infty} \frac{1 - e^{2\lambda}}{2 \lambda e^{2\lambda} - e^{2\lambda}+1} = 0, \\
+% 	\ds \lim_{\lambda\to-\infty} \frac{1 - e^{2\lambda}}{2 \lambda - e^{2\lambda}+1} = 0, 
+% 	&\qquad& 
+% 	\ds \lim_{\lambda\to\infty} \frac{1 - e^{2\lambda}}{2 \lambda - e^{2\lambda}+1} = 1,
+% \end{array}
+% \]
+% we see from \eqref{eq1:Gffraw} that $|G_L^+(x; \lambda)|$ is uniformly bounded in $\lambda$.
+
+\end{document}

@@ -1,0 +1,176 @@
+%%=================================================
+%% Section 0.01: Introduction to Inverse Scattering
+%%=================================================
+
+\documentclass[../dissertation.tex]{subfiles}
+
+\begin{document}
+\section{Introduction to Inverse Scattering}\label{sec0:IST}
+
+First introduced in the late 1960's and early 1970's as a technique for studying 
+the Korteweg-de Vries (KdV) equation, the inverse scattering method has since 
+been adapted to find solutions to a number of other non-linear dispersive 
+equations\textemdash{}equations whose solutions model dispersive wave 
+phenomenon. Since non-linear dispersive equations arise naturally in many fields 
+of science and engineering as a means to model the behavior of many important 
+phenomenon, understanding non-linear dispersive equations is a very active 
+area of research. 
+% Unfortunately, non-linear dispersive
+% equations\textemdash{}particularly, partial dif{}ferential and dif{}feo-integral 
+% equations\textemdash{}have proven especially dif{}ficult objects to study. 
+The inverse scattering method has been very successful in solving certain types 
+of non-linear dispersive equations.
+
+The structure of the inverse scattering method can be thought of as a model 
+for how problem solving often works. When confronted with a dif{}ficult problem
+about which very little is know, it is often helpful to find a way to relate
+that problem to another problem which you know how to solve. So, by solving 
+the related problem and connecting its solution back to the original problem, 
+you can find a solution for the original problem. This process is essentially
+how the inverse scattering method works. 
+
+For us in this dissertation, solving a non-linear dispersive equation means 
+finding a mathematically rigorous procedure by which if someone tells you what 
+a non-linear wave described by a particular non-linear dispersive equation looks 
+like initially, you can determine how that wave looks in the future. We use the 
+term ``initial data'' to refer to the initial state of a wave described by a 
+given non-linear dispersive equation and the term ``solution'' to refer to 
+a formula which provides a description for what the initial data looks like 
+for each relevant time $t$.
+As mathematicians, our goal in solving a 
+non-linear dispersive equation is to not only describe a map (\textit{i.e.} 
+procedure or function) which takes as input initial data for that non-linear 
+dispersive equation and returns as output the corresponding description for how 
+that initial data evolves in time, but to also understand this map deeply enough 
+to be able to guarantee\textemdash{}at least under certain 
+conditions\textemdash{}this map actually works. Such a map is often 
+referred to as a solution map, as it provides the solution corresponding a given
+initial data (\textit{i.e.} a solution map maps initial data to solutions). 
+
+In the inverse scattering method, 
+we use certain properties briefly described below of given non-linear dispersive 
+equation to construct a map $\mathscr D$, called the ``direct 
+scattering map,'' which maps arbitrary 
+initial data of 
+the equation to the initial data's 
+so-called ``scattering data'' describing certain physical properties of the 
+initial data. Using properties of the direct scattering map, we have tools to determine 
+how the scattering data changes in time. As demonstrated below in Figure 
+\ref{fig:IST}, by also constructing a second map $\mathcal I$, called the 
+``inverse scattering map''
+which serves as the inverse for the direct scattering map \textemdash{}\textit{i.e.} maps 
+scattering data to its corresponding initial data\textemdash{}we can then find 
+a solution to a non-linear dispersive equation by applying the inverse scattering map to 
+the time dependent representation of the scattering data.
+
+\begin{figure}[h!]
+	\centering
+    \begin{tikzpicture}
+        \def\xspace{4.5}
+        \def\yspace{1.5}
+        \node (A) at ({-\xspace},{\yspace}) {
+            $
+                \begin{pmatrix}
+                    \text{Initial data}\\
+                    \text{$u_0(x) = u(x, t=0)$}    
+                \end{pmatrix}
+            $
+        };
+        
+        \node (B) at ({\xspace},{\yspace}) {
+            $
+                \begin{pmatrix}
+                    \text{Scattering data} \\
+                    \text{$r(\lambda, t=0)$}    
+                \end{pmatrix}
+            $
+        };
+
+        \node (C) at ({-\xspace}, {-\yspace}) 
+            {$u(x, t)=\mathscr{I}\big( r(\lambda, t)\big)$};
+
+        \node (D) at ({\xspace}, {-\yspace}) {$r(\lambda, t)$};
+
+        \node (text) at (0,0) {Time Evolution};
+
+        \path[-stealth]
+            (A) edge node[above] {Direct Scattering Map $\mathscr D$} (B)
+            % (B) edge node[right] {Time evolution} (D)
+            (B) edge node[right] {} (D)
+            (D) edge node[below] {Inverse Scattering Map $\mathscr{I}$} (C);
+
+        \path[-stealth, dashed] 
+            (A) edge (C);
+    \end{tikzpicture}
+    \caption{Diagram of the Inverse Scattering Method}
+    \label{fig:IST}
+\end{figure}
+
+The combination of the direct scattering map and its corresponding inverse 
+scattering map is called an 
+Inverse Scattering Transform, or IST for short. As such, using the Inverse 
+Scattering Method to solve a given non-linear dispersive equation is often 
+referred to as solving that non-linear dispersive equation by its Inverse 
+Scattering Transform. Readers familiar with the method of solving linear partial 
+dif{}ferential equations by the Fourier Transform may recognize the Inverse 
+Scattering Method as an analogous method for solving non-linear dispersive 
+equations. However, an IST dif{}fers from the Fourier Transform in one very 
+key way: while the Fourier Transform can be defined in a single set way that 
+does not depend on the linear equation one wishes to solve, the definition for 
+an IST depends \textit{entirely} on the non-linear dispersive equation one hopes 
+to solve using the Inverse Scattering Method. For this reason, the crux of 
+solving a non-linear dispersive equation using the Inverse Scattering Method 
+lies in the construction of that particular dispersive equation's 
+corresponding IST, and proving that that IST is both well-defined and 
+bi-Lipschitz continuous\textemdash{}\textit{i.e.} both the direct scattering map
+and the inverse scattering map for a given IST are Lipschitz 
+continuous.\footnote{Informally, Lipschitz continuity is essentially the requirement
+that the distance between two outputs of a given function or map is directly 
+proportional to the distance between their corresponding inputs. Mathematically,
+we say that for any two spaces $Y$ and $Z$, a map $f : Y \to Z$ is Lipschitz 
+continuous if there exists some constant $C>0$ so that 
+$\nm{f(y_1) - f(y_2)}_Z \leq C \nm{y_1 - y_2}_Y$ for every $y_1, y_2 \in Y$.}
+Bi-Lipschitz continuity is desired as a property of an IST as it helps to ensure 
+the solution map\textemdash{}\textit{i.e.} map from initial data to the 
+corresponding solution\textemdash{}is continuous in initial data, and hence, 
+in the language of the theory of partial differential equations, well-posed.
+In other words, proving that an IST for a particular dispersive wave is 
+Lipschitz continuous ensures that changing a given initial data slightly 
+results in a similarly small change in the solution. 
+
+
+One can create an IST for a given dispersive equation if the equation
+has what is called a ``\textit{Lax representation}'' of the equation. A Lax 
+representation for a dispersive equation is 
+a pair of time dependent operators $L$, $B$ parametrized by a 
+function $u(x,t)$ which satisfy the identity
+\begin{align}\label{eq0:compatibility}
+    \frac{d}{dt} L = BL - LB
+\end{align}
+if and only if $u$ solves the given equation. In the literature, such $L$ and $B$ 
+are sometimes refered to as a ``\textit{Lax pair}.''
+Whenever $L$, $B$ satisfy 
+\eqref{eq0:compatibility}, one can show that the spectrum of $L$ is time invariant.
+As such, \eqref{eq0:compatibility} further implies
+\begin{align}\label{eq0:timeprop}
+    \left\{
+        \begin{aligned}
+             \kappa(t) &= \kappa(0) \\
+             \frac{\partial}{\partial t}\psi &= B \psi
+        \end{aligned}
+    \right.
+\end{align}
+for all $\kappa$, $\Psi$ satisfying $L\psi = \kappa \psi$, and the given 
+equation is said to be an isospectral flow for the linear spectral problem
+$L\psi = \kappa \psi$. The linear spectral 
+problem can be therefore solved at arbitrary time $t$ by first solving it 
+for an initial time $t_0$ (typically $t_0 = 0$) and using \eqref{eq0:timeprop}
+to propagate in time. The model, then, for solving an equation by the Inverse
+Scattering Method is to construct the direct scattering map by solving linear
+spectral problem $L\Psi = \kappa \Psi$ for time $t_0$, and then use the operator
+$B$ to propagate the scattering data in time. By constructing an inverse 
+to the direct scattering map (\textit{i.e.} the corresponding inverse scattering
+map), one can then recover a solution to the original dispersive equation 
+from the time evolved scattering data.
+
+\end{document}

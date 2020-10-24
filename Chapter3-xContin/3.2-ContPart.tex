@@ -1,0 +1,174 @@
+%%==================================
+%% Section 3.2: The Continuous Limit
+%%==================================
+
+\documentclass[../dissertation.tex]{subfiles}
+
+
+\begin{document}
+\section{The Continuous Limit}\label{sec3:ContPart}
+
+
+With a little work, it is straightforward to observe that $\rho$ decays exponentially 
+as $|\xi| \to \infty$. So, since $\rho$ is also bounded, the exponential decay of $\rho$
+means that $\rho$ is certainly in $L^1(\mathbb R)$ and thus 
+$\wc \rho \in L^\infty(\mathbb R)$. While the singularity of $\rho$ at $\xi = 0$ means 
+that it is very unlikely $\rho$ is $L^1$, the exponential factor $e^{-\pi|\dotarg|}$ 
+in $\mathfrak C(\dotarg, y)$, where 
+$2\pi \, \mathfrak C(x, y) = e^{\pi|x|} e^{-i\sign(x)\, \pi\, y} \, \rho(x)$ does make 
+$\mathfrak C$ an 
+$L^1$ function for all $y \in [0, 2]$. As such, proving the $L^p$ convergence
+of $\mathfrak C(\dotarg, y) * f$ to $\mathfrak C(\dotarg, 2) * f$ as $y\nearrow 2$ boils 
+down to using 
+just two tools: \cite[Theorem 1.2.10]{Grafakos}\footnote{\label{note1}See the appendix
+titled \hyperref[app:HA]{``Harmonic Analysis Results.''}}
+% \ref{app:HA}} 
+and the Dominated Convergence
+Theorem. Proving the pointwise (\textit{a.e.}) convergence of this limit comprises
+using uniform (in $y$) estimates on $\mathfrak C$ and a density argument. 
+We do all of this in the proof of the following result.
+
+\begin{thm}\label{thm2:GoodStuff}
+	For $f \in L^p(\mathbb R)$ with $1<p<\infty$, the limit 
+	\begin{align}\label{eq2:GoodLim}
+		\lim_{y\nearrow2} \big(\mathfrak C(\dotarg, y)*f)(x) 
+			= 	\big(\mathfrak C(\dotarg, 2)*f)(x) 
+	\end{align}
+	holds both as a pointwise \textit{a.e.} limit and as an $L^p$ limit. 
+\end{thm}
+\begin{proof}
+	Recall that
+	\begin{align*}
+		\mathfrak C(x,y)
+			&:= \frac{1}{2\pi} e^{-\pi|x|} \, e^{- \sign(x) \, i \pi y }
+				\int_{\mathbb R} e^{ix \xi} \rho\big(\xi, y, \sign(x)\big) \, \mathrm{d}\xi \\
+			&= \frac{1}{2\pi} e^{-\pi|x|} \, e^{- \sign(x) \, i \pi y }
+				\rho\big(x, y , \sign(x)\big)
+	\end{align*}
+	and
+	\begin{align*}
+		\rho\big(\xi, y, \sign(x); \lambda\big)
+			:= 	
+				\begin{cases}
+					\dfrac{e^{-y\xi}}{p(\xi; \lambda) + \sign(x) i\pi}, & \xi > 0\\
+					\\
+					\dfrac{1}{\lambda} \dfrac{\big(\lambda- \xi - \sign(x) \, i\pi \big)e^{(2-y)\xi} }
+							{p(\xi; \lambda) + \sign(x) \, i\pi},
+						&	\xi < 0.
+				\end{cases}
+	\end{align*}
+	As such, for each $x \in \mathbb R$,
+	\begin{align}\label{eq2:GoodLp}
+		&2 \pi |\mathfrak C(x, y) - \mathfrak C(x, 2)| \\
+			&\qquad\leq e^{-\pi|x|} \Big|e^{-\sign(x) \, i \pi y} - e^{-\sign(x) \, 2 i \pi} \Big|
+				\int_{\mathbb R} \big| \rho\big(\xi, y, \sign(x)\big)\big|\, \mathrm{d}\xi \nonumber \\
+			&\qquad\quad + e^{\pi|x|} e^{-\sign(x) \, 2 i \pi} 
+				\int_{\mathbb R}
+					\Big| 
+						\rho\big(\xi, y, \sign(x)\big) - \rho\big(\xi, 2, \sign(x)\big)
+					\Big|
+				\, \mathrm{d}\xi \nonumber 
+	\end{align}
+	Now 
+	\begin{align*}
+		\big|\rho\big(\xi, y, \sign(x); \lambda\big)\big|
+			&=
+				\begin{cases}
+					\big(p(\xi)^2 + \pi^2\big)^{-\frac{1}{2}} \, e^{-y\xi}, & \xi > 0 \\
+					\frac{1}{\lambda} 
+						\left( 
+							\frac{(\lambda-\xi)^2 + \pi^2}{p(\xi)^2 + \pi^2} 
+						\right)^{\frac{1}{2}} \,
+						e^{(2-y)\xi},
+						& \xi < 0
+				\end{cases}
+	\end{align*}
+	Hence $\frac{\partial}{\partial y}|r| < 0$ for $\xi > 0$ and 
+	$\frac{\partial}{\partial y}|r| > 0$ for $\xi < 0$, which implies
+	\begin{align*}
+		&\big|\rho\big(\xi, y, \sign(x); \lambda\big)\big| \\
+			&\qquad\qquad \leq \big|\rho\big(\xi, y=1, \sign(x); \lambda\big)\big| \chi_{\mathbb R^+}
+			+ \big|\rho\big(\xi, y=2, \sign(x); \lambda\big)\big| \chi_{\mathbb R^-}
+				\in L^1(\mathbb R),
+	\end{align*}
+	as $\big|\rho\big(\xi, y=1, \sign(x); \lambda\big)\big| \chi_{\mathbb R^+}$ decays according to
+	$O\big(e^{-\xi}\big)$ as $\xi \to +\infty$ and 
+	$\big|\rho\big(\xi, y=2, \sign(x); \lambda\big)\big| \chi_{\mathbb R^-}$ decays according to 
+	$O\big(e^{-2\xi}\big)$ as $\xi \to -\infty$.
+	Thus,
+	\[
+		\int_{\mathbb R} \big| \rho\big(\xi, y, \sign(x)\big)\big|\, \mathrm{d}\xi \leq C
+	\]
+	where $C>0$ is some constant independent of $y$, and DCT $\implies$
+	\[
+		\int_{\mathbb R}
+			\Big| 
+				\rho\big(\xi, y, \sign(x)\big) - \rho\big(\xi, 2, \sign(x)\big)
+			\Big|
+		\, \mathrm{d}\xi 
+		\to 0
+	\]
+	as $y\nearrow 2$, which, by \eqref{eq2:GoodLp}, means 
+	$|\mathfrak C(x,y) - \mathfrak C(x,2)| \to 0$ 
+	as $y\nearrow2$ for each fixed $x \in \mathbb R$. 
+	Moreover, since $e^{-\pi|x|} \rho(x)$ is dominated by an $L^1$ function that 
+	is independent of $y$, the Dominated Convergence Theorem further implies
+	\[
+		\|\mathfrak C(x,y) - \mathfrak C(x,2)\|_{L^1} \to 0
+	\]
+	as $y\nearrow 2$. Thus, by 
+	\cite[Theorem 1.2.10]{Grafakos}
+	\begin{align}
+		\left\|\big(\mathfrak C(\dotarg, y) - \mathfrak C(\dotarg, 2)\big)*f\right\|_{L^p}
+			\leq \|\mathfrak C(\dotarg, y) - \mathfrak C(\dotarg, 2)\|_{L^1} \|f\|_{L^p}
+	\end{align}
+	which implies the limit 
+	\eqref{eq2:GoodLim} holds as an $L^p$ limit.
+
+	For pointwise limit, first take $h\in L^1(\mathbb R) \cap L^\infty(\mathbb R)$. Then
+	\begin{align*}
+		\big| \big( \mathfrak C(\dotarg, y) - \mathfrak C(\dotarg, 2) \big) * h \big| 
+			\leq \|h\|_{L^\infty} \|\mathfrak C(\dotarg, y) - \mathfrak C(\dotarg, 2)\|_{L^1} \to 0,
+	\end{align*}
+	by our previous work. 
+
+	We use a density argument to finish this proof. For $f \in L^p(\mathbb R)$ with 
+	$p\geq 1$, we may approximate $f$ 
+	by a bounded function $g \in L^p(\mathbb R) \cap L^\infty(\mathbb R)$ so 
+	that 
+	\[
+		\| f - g \|_{L^p} < r^p,
+	\]
+	where $0 < r \ll 1$ is some arbitrarily small number. By Chebyshev's
+	inequality and \cite[Theorem 1.2.10]{Grafakos}, 
+	\begin{align}\label{eq:2.02-Cheby}
+		&m\Big( 
+			\big\{ 
+				x \in \mathbb R 
+				\,:\, 
+				\big(\mathfrak C(\dotarg, y) - \mathfrak C(\dotarg, 2)\big)*(f-g)(x) > r  
+			\big\}  
+		\Big) \\
+		&\qquad\qquad\leq 
+			\frac{1}{r^p} 
+			\left\|\big(\mathfrak C(\dotarg, y)- \mathfrak C(\dotarg, 2)\big)*(f-g) \right\|_{L^p}
+			\nonumber\\
+		&\qquad\qquad\leq 
+			\left\|\mathfrak C(\dotarg, y)- \mathfrak C(\dotarg, 2) \right\|_{L^1},
+			\nonumber
+	\end{align}
+	where $m(\dotarg)$\label{sym:lebesguemeasure} denotes the Lebesgue measure on $\mathbb R$.
+	Given
+	\begin{align*}
+		&\big|\big(\mathfrak C(\dotarg, y)- \mathfrak C(\dotarg, 2)\big)*f(x) \big| \\
+			&\qquad\qquad\leq 
+				\big|\big(\mathfrak C(\dotarg, y)- \mathfrak C(\dotarg, 2)\big)*(f-g)(x)\big|
+				+\big|\big(\mathfrak C(\dotarg, y)- \mathfrak C(\dotarg, 2)\big)*g(x) \big|,
+	\end{align*}	
+	pointwise \textit{a.e.} convergence follows, as \eqref{eq:2.02-Cheby} implies
+	$\big(\mathfrak C(\dotarg, y)- \mathfrak C(\dotarg, 2)\big)*(f-g)(x)$ converges pointwise
+	\textit{a.e.} to zero.
+\end{proof}
+
+
+\end{document}

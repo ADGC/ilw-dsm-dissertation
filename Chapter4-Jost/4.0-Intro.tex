@@ -1,0 +1,218 @@
+%%==========================
+%% Chapter 4.0: Introduction
+%%==========================
+
+\documentclass[../dissertation.tex]{subfiles}
+
+\begin{document}
+\setcounter{section}{-1}
+\section{Introduction}\label{sec4.0:Intro}
+
+Following our deep dive into the properties of the Green's functions, let us take
+a brief respite to see where we are in the process of understanding the direct
+map for the Intermediate Long Wave equation Inverse Scattering Transform. In Section
+\ref{sec0:DM} we introduced the notion of a Jost Solution, which we now repeat for
+reference: 
+\begin{defn}[Jost solutions]\label{defn4:jost}
+	Recall the linear spectral problem 
+	\begin{align}\label{eq4:SpecProb}
+		L_\delta (\Psi) 
+			:= \frac{1}{i} \frac{\partial}{\partial x} \Psi^+ 
+				- \zeta \left(\Psi^+ - \Psi^-\right) = u \Psi^+,
+	\end{align}
+	The Jost solutions $M_1$, $M_e$, $N_1$, $N_e$ are solutions to the linear 
+	spectral problem \eqref{eq4:SpecProb} whose lower boundary values
+	$M_1^+$, $M_e^+$, $N_1^+$, $N_e^+$ as defined in \eqref{eq0:bndryvaluedefn}
+	obey the following asymptotic conditions
+	\begin{subequations}\label{eq4:JostDEasymp}
+		\begin{align}
+			\lim_{x\to -\infty} 
+					\inn{x} 
+					\left( 
+						M_1^+(x; \lambda, \delta) - 1 
+					\right)
+				&= \lim_{x\to \infty} 
+						\inn{x} 
+						\left( 
+							N_1^+(x; \lambda, \delta) - 1
+						\right)
+				= 0 \\
+			\lim_{x\to -\infty} 
+					\inn{x} \left( 
+						M_e^+(x; \lambda, \delta) - e^{i\lambda x}
+					\right)
+				&= \lim_{x\to \infty} 
+						\inn{x} 
+						\left( 
+							N_e^+(x; \lambda, \delta) - e^{i\lambda x}
+						\right)
+				= 0
+		\end{align}.
+	\end{subequations}
+
+	Additionally, we require the upper boundary values $M_{(\dotarg)}^-$, $N_{(\dotarg)}^-$
+	(where $(\dotarg)$ represents either the subscript $1$ or $e$) of 
+	$M_{(\dotarg)}$, $N_{(\dotarg)}$ to have a decomposition 
+	\begin{align*}
+		M_1^- - 1 &= M_1^{(1)} + M_1^{(2)} \qquad &\text{and}& \qquad
+		&N_1^- - 1 &= N_1^{(1)} + N_1^{(2)} \\
+		M_e^- - e^{i\lambda x}\,e^{-2\delta\lambda} &= M_e^{(1)} + M_e^{(2)} \qquad &\text{and}& \qquad
+		&N_e^- - e^{i\lambda x}\,e^{-2\delta\lambda} &= N_e^{(1)} + N_e^{(2)} \\
+	\end{align*}
+	satisfying 
+	\begin{align*}
+		\inn{x}^{1+\upsilon} \left|M_{(\dotarg)}^{(1)}(x)\right| \lesssim 1 
+			\quad (\text{for } x \ll -1), \qquad 
+		\inn{x}^{1+\upsilon} \left|N_{(\dotarg)}^{(1)}(x)\right| \lesssim 1
+			\quad (\text{for } x \gg 1),
+	\end{align*}
+	and
+	\begin{align*}
+		\inn{\dotarg}^\tau M_{(\dotarg)}^{(2)}, 
+			~\inn{\dotarg}^\tau N_{(\dotarg)}^{(2)} \in L^2(\mathbb R)
+	\end{align*}
+	for any $\upsilon \in \left(0,\frac{1}{2}\right)$ and $\tau \in [0,1)$.
+\end{defn}
+
+The direct scattering map 
+$\mathscr D$ maps $u$ to the reflection coef{}ficient 
+$r(\lambda) := b(\lambda) / a(\lambda)$ where $a$ and $b$ are determined by 
+the following formulas involving the boundary value $M_1^+$ of the Jost solution
+$M_1$
+\begin{subequations}
+	\label{eq3:ScatData}
+	\begin{align}
+		\label{eq3:ScatDataA}
+		a(\lambda) 
+			&= 1 + i \alpha(\lambda) 
+				\int_{\mathbb R} 
+					u(x) \, M_1^+(x;\lambda, \delta, u) 
+				\, \mathrm{d}x \\
+		\label{eq3:ScatDataB}
+		b(\lambda)
+			&= i \beta(\lambda) 
+				\int_{\mathbb R} 
+					e^{-i\lambda x} \, u(x) \, M_1^+(x; \lambda, \delta, u)
+				\, \mathrm{d}x,
+	\end{align}
+\end{subequations}
+where we have written the Jost solutions as functions of $u$ in order to 
+explicitly highlight the dependence of the Jost solutions on the eigenfunction $u$.
+The goal of this chapter is to both prove that $\mathscr D$ is well-defined and
+Lipschitz continuous for $|\lambda| > 1$.
+
+As we see from \eqref{eq3:ScatData}, proving that $\mathscr D$ is well defined 
+requires the Jost solutions to exist and be unique. Further, in order to prove 
+that $\mathscr D$ is Lipschitz continuous, we need to establish that 
+the four maps from $u$ to each of the four Jost solutions $M_1$, $M_e$, $N_1$, 
+and $N_e$ are themselves Lipschitz as maps from $B_X(0, c_0)$ to 
+$\inn{\dotarg}L^\infty(\mathbb R)$. As is common practice in the inverse 
+scattering world, to prove these desired results we seek to reformulate 
+\eqref{eq4:SpecProb} with asymptotic conditions \eqref{eq4:JostDEasymp} as a set 
+of integral equations that are easier to analyze. This approach is relevant in 
+our case given the limited theory about partial dif{}ferential equations 
+involving functions analytic in a complex strip and the functions' lower and 
+upper boundary values along the corresponding boundary values of the strip.
+
+Following our analysis of $G_L$ and $G_R$ in Chapters \ref{cptr01:GF} and
+\ref{cptr03:xContin} we are almost now in a position to prove (under the right hypotheses) 
+the equivalence of the Jost solutions and solutions to the following integral
+equations
+\begin{subequations}
+	\label{eq4:JostIE}
+	\begin{align}
+		\label{eq4:JostIEleft}
+		\begin{pmatrix}
+			M_1^+(x; \zeta, \delta) \\
+			M_e^+(x; \zeta, \delta)
+		\end{pmatrix}
+			&= 
+				\begin{pmatrix}
+					1 \\
+					e^{i\lambda x} 
+				\end{pmatrix}
+				+ \int_{\mathbb R} G_L(x - x'; \zeta, \delta) 
+					u(x')
+					\begin{pmatrix}
+						M_1^+(x'; \zeta, \delta) \\
+						M_e^+(x'; \zeta, \delta) 
+					\end{pmatrix}
+					\, \mathrm{d}x' \\[0.3\baselineskip]
+		\label{eq4:JostIEright}
+		\begin{pmatrix}
+			N_1^+(x; \zeta, \delta) \\
+			N_e^+(x; \zeta, \delta)
+		\end{pmatrix}
+			&= 
+				\begin{pmatrix}
+					1 \\
+					e^{i\lambda x} 
+				\end{pmatrix}
+				+ \int_{\mathbb R} G_R(x - x'; \zeta, \delta) 
+					u(x')
+					\begin{pmatrix}
+						N_1^+(x'; \zeta, \lambda) \\
+						N_e^+(x'; \zeta, \lambda) 
+					\end{pmatrix}
+					\, \mathrm{d}x'.
+	\end{align}
+\end{subequations}
+In Section \ref{sec4:equiv} we prove this equivalence.
+We begin by presenting the framework we use to prove this equivalence, 
+followed by proving in Subsection \ref{subsec4:DEtoIE} that Jost solutions solve the 
+corresponding integral equations \eqref{eq4:JostIE}. We prove solutions to 
+\eqref{eq4:JostIE} are Jost solutions in the following subsection, Section 
+\ref{subsec4:IEtoDE}.
+However, for reasons that are made obvious in 
+Section \ref{sec4:equiv}, prior to proving 
+the equivalence of Jost solutions and solutions to \eqref{eq4:JostIE}, we do need 
+several results about both the existence of solutions of solutions to \eqref{eq4:JostIE}
+and the continuity of maps from $u$ to \eqref{eq4:JostIE} solutions. For this reason, 
+we begin this chapter by studying the \eqref{eq4:JostIE} solutions in Section 
+\ref{sec4:Exist}, and note that because we prove in Section \ref{sec4:equiv} the
+equivalence of Jost solutions and the solutions to the integral equations \eqref{eq4:JostIE},
+the results proven in Section \ref{sec4:Exist} about the existence and uniqueness 
+\eqref{eq4:JostIE} solutions applies to Jost solutions.
+
+The final section of this chapter, Section \ref{sec4:DM}, is the 
+\textit{rasion d'\^etre} of this dissertation, in that after 
+\pageref{lastpagePenultimateSection} pages of diligent mathematical exploration, 
+we arrive at our study of the ILW direct scattering map. We begin Section 
+\ref{sec4:DM} by verifying the so-called ``scattering equations'' which are
+instrumental in the formulation of the ILW inverse scattering map. We then prove 
+that as a map from $B_X(0, c_0)$ to $L_\lambda^\infty(\mathbb R)$ the direct 
+scattering map $\mathscr D$ is well-defined (Theorem \ref{thm4:Dwelldefined}), 
+where  $B_X(0, c_0)$ in the space $X$ of radius $c_0$ and $c_0$ is chosen 
+according to our work in Section \ref{sec4:Exist} to ensure the existence of the
+Jost solutions. In the remainder of Section \ref{sec4:DM}, we turn our attention
+towards understanding the Lipschitz continuity properties of $\mathscr D$. Specifically,
+we prove that as a map from $B_X(0, c_0)$ to 
+$L_\lambda^\infty\big((-\infty,k]\cap[k, \infty) \big)$, the direct scattering map 
+$\mathscr D$ is Lipschitz continous for all $k>0$ (Theorem \ref{thm4:DlipR}). As
+an almost immediate consequence of our proof of Theorem \ref{thm4:DlipR}, we 
+also prove Corollary \ref{cor4:Lip}, which holds that for every 
+$u \in B_X(0,c_0)$ with the property that 
+\[
+	\int_{\mathbb R} u \, M_1^+(x; \lambda = 0) \, \mathrm{d}x \ne 0,
+\]
+there is a neighborhood $\mathcal N(u)$ in $B_X(0, c_0)$ about $u$ for which 
+the map $\mathscr D: \mathcal N(u) \to L^\infty_\lambda(\mathbb R)$ is 
+Lipschitz continuous. 
+
+
+
+
+While we have not yet found a proof that $\mathscr D$ is Lipschitz continuous 
+uniformly in the parameter $\lambda$ for all real $\lambda$ (which is necessary 
+as the scattering data are functions of $\lambda$), we do discuss the regimes 
+under which we are currently able to prove that $\mathscr D$ is Lipschitz 
+continuous. 
+
+A final remark as we set of{}f on the ultimate leg of our mathematical 
+peregrination within this dissertation: 
+given the $\delta$-dilation property satisfied by both $G_L$ and $G_R$, throughout 
+the remainder of this Chapter, we again take $\delta = 1$ noting that the more general 
+case of $\delta>0$ arbitrary follows from this dilation property and the results
+contained within this chapter. 
+
+\end{document}

@@ -1,0 +1,189 @@
+%%==========================
+%% Section 2.0: Introduction
+%%==========================
+\documentclass[../dissertation.tex]{subfiles}
+
+\begin{document}
+\setcounter{section}{-1}
+\section{Introduction}\label{sec2:Intro}
+
+One of the consequences of \eqref{eq1:PoleColapseResidue} along with 
+\eqref{eq0:GFs} is that $G_\star^+(x; \lambda)$ ($\star = L \text{, or } R$)
+grows linearly as a function of $x \in \mathbb R$ when $\lambda = 0$. This fact
+aligns with intuition, since the two simple poles $\xi = 0$ and $\xi=\lambda$ 
+of $1/p$ coalesce into a single double pole as $\lambda \to 0$. 
+Since $r$ is a function of $\lambda$, in order to prove the direct scattering 
+map $\mathcal D: u \mapsto r$ is well-defined and Lipschitz continuous, we 
+need estimates on the solutions to the integral equations 
+\eqref{eq0:JostIE}\textemdash{}and hence estimates on the Green's 
+functions\textemdash{}which are uniform in $\lambda$. This will allow us
+to obtain similarly uniform estimates on the scattering data derived from 
+the Jost solutions. 
+% That the 
+% reflection coefficient $r$ is a function of $\lambda$ means proving the direct 
+% map $\mathscr D: u \mapsto r$ is even well-defined\textemdash{}let alone 
+% Lipschitz continuous\textemdash{}often requires to obtain estimates that are 
+% independent of $\lambda$. 
+Given the linear growth of $G_\star^+$ as 
+$\lambda \to 0$, in order to obtain $\lambda$-independent estimates while 
+studying the mapping properties of $G_\star^+$, we commonly work over polynomially 
+weighted $L^p$ ($1\leq p \leq \infty$) weighted spaces defined in definitions 
+\ref{defn2:Lps} and \ref{defn2:wLp}. In order to avoid introducing poles when
+weighting by the reciprical of a polynomial, we introduce the notation 
+$\inn{x} := \sqrt{1+x^2}$ to represent a linear weight.
+
+\begin{defn}[$L^{p, s}$]\label{defn2:Lps}
+	For $1< p < \infty$ and $s\in (-\infty, \infty)$, we define $L^{p, s}(\mathbb R)$ 
+	to be the space of all 
+	measurable 
+	functions $f$ with the property that 
+	$\inn{\dotarg}^s f \in L^p(\mathbb R)$, and associate with $L^{p, s}(\mathbb R)$
+	the norm $\| \dotarg \|_{L^{p,s}}$ given by 
+	\[
+		\|f\|_{L^{p,s}} := \left(\int_{\mathbb R} \inn{x}^{sp} |f(x)|^p \right)^{1/p}.
+	\]
+	for each $f \in L^{p, s}(\mathbb R)$.
+\end{defn}
+
+\begin{rmk}
+	In accordance with the notation used in \cite{Grafakos}, we use 
+	$L^{p, \infty}$ to denote the space $weak$-$L^p$. The space $L^{p, \infty}$
+	should be thought of completely seperately from $L^{p,s}$ and should not be 
+	considered as a limit (in $s$) of $L^{p,s}$ spaces. For a definition of 
+	$L^{p, \infty}$, please see the appendix titled \hyperref[app:HA]{``Harmonic 
+	Analysis Results.''}
+\end{rmk}
+
+\begin{defn}[$\inn{\dotarg}^s L^p$]\label{defn2:wLp}
+	Let $1 < p \leq \infty$. Then we use the notation 
+	$\inn{\dotarg}^s L^p(\mathbb R)$
+	to indicate the collection of measurable functions $f$ with 
+	$\inn{\dotarg}^{-s} f \in L^p(\mathbb)$. Specifically, 
+	\[
+		\inn{\dotarg}^s L^p(\mathbb R) 
+			:= \big\{ \inn{\dotarg}^s f ~:~ f \in L^p(\mathbb R) \big\}.
+	\]
+	The norm $\| \dotarg \|_{\inn{\dotarg}L^p}$ on the space 
+	$\inn{\dotarg}L^p(\mathbb R)$ is defined by 
+	$\| f \|_{\inn{\dotarg}L^p}:= \| \inn{\dotarg}^{-p} f \|_{L^p}$.
+\end{defn}
+
+\begin{rmk}
+	Since we commonly work in the space $\inn{\dotarg} L^\infty(\mathbb R)$, 
+	it is worth highlighting the fact that $\inn{\dotarg} L^\infty(\mathbb R)$
+	is the collection of all measurable functions $f$ for which
+	$\inn{\dotarg} f$ is essentially bounded. That is,
+	\[
+		\| f \|_{\inn{\dotarg} L^\infty} 
+			= \esssup_{x\in \mathbb R} | \inn{x}^{-1} f(x) |
+	\]
+	is finite for all $f \in \inn{\dotarg} L^\infty(\mathbb R)$.
+\end{rmk}
+
+\begin{rmk}
+	In cases involving functions of multiple variables or parameters, we 
+	sometimes use a subscript in conjunction with function space notation 
+	to avoid confusion. For example, $f \in L_\xi^p(\mathbb R)$ indicates 
+	that the function $f$ is $L^p$ integrable with respect to the variable
+	$\xi$. 
+\end{rmk}
+
+In addition to considering the mapping properties of $G_\star^+$, we also 
+consider in this chapter the related operators $T_{\star, \lambda, u}$
+(commonly denoted as $T_{\star}$ or $T_{\star, \lambda}$, for short) given by 
+\begin{align}\label{eqn2:Tdefn}
+	T_{\star, \lambda, u} f(x) 
+		:= \big[ G_\star^+(\dotarg; \lambda) \big] * (u\,f)(x),
+			\qquad \big( \star = L \text{, or } R \big)
+\end{align}
+as the integral equations \eqref{eq0:JostIE} can be reformulated as
+\begin{subequations}
+	\label{eq2:JostIEreform}
+	\begin{align}
+		\label{eq2:JostIEleftReform}
+		\begin{pmatrix}
+			1 \\
+			e^{i\lambda x} 
+		\end{pmatrix}
+			&= (I - T_{L, \lambda, u})
+				\begin{pmatrix}
+					M_1^+(x; \lambda, \delta) \\
+					M_e^+(x; \lambda, \delta)
+				\end{pmatrix} \\[0.3\baselineskip]
+		\label{eq2:JostIErightReform}
+		\begin{pmatrix}
+			1 \\
+			e^{i\lambda x} 
+		\end{pmatrix}
+			&= (I - T_{R, \lambda, u})
+				\begin{pmatrix}
+					N_1^+(x; \lambda, \delta) \\
+					N_e^+(x; \lambda, \delta)
+				\end{pmatrix} 
+\end{align}
+\end{subequations}
+
+In considering a space of potentials $u$, we need to compensate 
+for the logarithmic singularity of $G_\star^+$ at $x = 0$ as well as the linear
+growth (in $x$) of $G_\star^+$. In particular, the linear growth of the sum of 
+the residue terms of $G_\star^+$ for $\lambda = 0$ forces us to allow 
+solutions to \eqref{eq2:JostIEreform} which grow at most linearly (\textit{i.e.}
+are $\inn{\dotarg}L^\infty$.) As we see in Proposition \ref{prop2:Tbnd}, requiring
+$\inn{\dotarg}^2 u$ is $L^1$ \textit{and} also requiring that the convolution
+of $\inn{\dotarg} u$ with $\log^+\left(\frac{1}{|x|}\right)$ be essentially bounded 
+ensures that $T_{\star, \lambda}$ is a bounded operator on 
+$\inn{\dotarg}L^\infty(\mathbb R)$ for all real $\lambda$. However, in order
+to ensure that solutions to \eqref{eq2:JostIEreform} satisfy the asymptotic 
+conditions imposed on the Jost solutions\textemdash{}necessary to prove the 
+equivalence of the Jost solutions and solutions to 
+\eqref{eq2:JostIEreform}\textemdash{}we need $u$ to satisfy the even stronger
+decay condition that $\inn{\dotarg}^3 u$ is $L^1$. Please see Section 
+\ref{sec4:equiv} for why such strong decay is needed.
+
+In proving the equivalence of Jost solutions and solutions to the 
+integral equations \ref{eq2:JostIEreform} in Section \ref{sec4:equiv}, 
+we also need the upper boundary values of solutions to the integral equations
+\ref{eq0:JostIE} to exist in an $L^2$ sense. For reasons that become 
+apparent in Sections \ref{sec3:CauchyTrans} and \ref{sec3:BndE}, doing so 
+also requires $u$ to be $L^2$ integrable. Keeping our entire list
+of desired properties for $u$ in mind, we select the space $X$ of potentials
+$u$ as follows:
+
+\begin{defn}\label{defn2:X}
+	Denote by $X$ the space of all measurable functions $u$ for which
+	\[
+		\|u\|_X 
+			:= \nm{\inn{\dotarg}^4 u}_{L^2}
+	\]
+	is finite. That is, $X = \inn{\dotarg}^{-4} L^2(\mathbb R) 
+	= L^{2,4}(\mathbb R)$.
+\end{defn}
+
+\begin{rmk}\label{rmk2:PostX}
+	To see that $u \in X$ actually has all of the required properties, 
+	we first note that by the Cauchy-Schwarz inequality, 
+	\begin{align*}
+		\nm{ \inn{\dotarg}^3 u }_{L^1}
+			= \inn{\inn{\dotarg}^{-1}, \, \inn{\dotarg}^4 \, u }_{L^2}
+			= \nm{\inn{\dotarg}^{-1}}_{L^2}
+				\nm{\inn{\dotarg}^{4} \, u}_{L^2}
+			< \infty,
+	\end{align*}
+	where we use $\inn{\dotarg, \dotarg }_{L^2}$ to denote the $L^2$ inner
+	product. Hence, $u \in X$ implies $u \in L^{1,2}(\mathbb R)$. A similar
+	use of the Cauchy-Schwarz inequality also shows that the convolution 
+	of $\log^+\left(\frac{1}{|x|}\right)$ with $\inn{\dotarg} u$ is bounded
+	by $4 \|u\|_X$ for all $x \in \mathbb R$. 
+\end{rmk}
+
+
+
+We explore in Section \ref{sec2:bndness} the boundedness and asymptotic 
+properties of $G_\star^+$ and $T_\star$ needed to that the direct scattering 
+map
+$\mathscr D$ is both well-defined and Lipschitz continuous. In Section
+\ref{sec2:diff} we continue our exploration of the mapping properties
+of both $G_\star$ and $T_\star$ by considering their continuity and 
+differentiability in $\lambda$, which we use while verifying the 
+Lipschitz continuity of $\mathscr D$.
+\end{document}

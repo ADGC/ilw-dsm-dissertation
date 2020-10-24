@@ -1,0 +1,959 @@
+%%======================================================
+%% Section 3.03: Exponentially Weighted Cauchy Transform
+%%======================================================
+
+\documentclass[../dissertation.tex]{subfiles}
+
+
+\begin{document}
+\section{Exponential Cauchy Transform}\label{sec3:CauchyTrans}
+
+As mentioned at the end of Section \ref{sec3:Analyticity}, the crux of proving 
+Theorem \ref{thm3:main_result} involves analyzing the behavior of the 
+$\mathcal E_{(2-y)} f(x)$ terms in \eqref{eq3:ILW.(Gz*f).simp}, which we 
+write here as
+\begin{align*}
+	\left( \mathcal E_\varepsilon f \right)(x) 
+		&:=  \frac{e^{-i \pi (2-\varepsilon)}}{2 \pi i} 
+			\int_{-\infty}^x 
+				\frac{e^{-\pi|x-x'|}}{(x-x') - i\varepsilon} f(x') 
+			\, \mathrm{d}x' \\
+		&\quad + \frac{e^{i \pi (2-\varepsilon)}}{2 \pi i} 
+			\int_x^{\infty} 
+				\frac{e^{-\pi|x-x'|} }{(x-x') - i\varepsilon} f(x') 
+			\, \mathrm{d}x',
+\end{align*}
+for $\varepsilon = 2-y$. The exponential coef{}ficient in front of each integral 
+in the above definition of $\mathcal E_{\varepsilon}f(x)$ add undesirable 
+complexity to analyzing $\mathcal E_{\varepsilon}f(x)$.\label{sym:expCauchy} As 
+such, we introduce the exponentially weighted Cauchy Transform $E_\varepsilon$ 
+defined by
+\begin{align*}
+	\left( E_\varepsilon f\right)(x)
+ 		&:= \frac{1}{2\pi i} \int_{\mathbb R} 
+ 				\frac{e^{-\pi|x-x'|}}{(x - x') - i \ve} f(x') 
+ 			\,dx' \\
+ 		&= \frac{1}{2\pi i} \int_{\mathbb R} 
+ 				e^{-\pi|x-x'|} \frac{(x-x'+i\varepsilon)}{(x - x')^2 - \ve^2} f(x') 
+ 			\,dx'
+\end{align*}
+In Lemma \ref{lma2:ImElim}, we establish that $\mathcal E_\varepsilon$ and $E_\varepsilon$
+share the same pointwise \textit{i.e.} and $L^p$ limits (as $\varepsilon \searrow 0$).
+In the remainder of this section we therefore focus our attention on the exponentially 
+weighted Cauchy transform $E_\varepsilon$. In particular, we prove the following theorem:
+\begin{thm}\label{thm2:CTLimit}
+	For $f \in L^p(\mathbb R)$ with $1<p<\infty$, the limit 
+	\[
+		\lim_{\varepsilon\searrow 0} E_\varepsilon f(x) = Ef(x) - \frac{1}{2} f(x)
+	\]
+	holds both as a pointwise \textit{a.e.} limit and as an $L^p$ limit. 
+\end{thm}
+In the process of proving Theorem \ref{thm2:CTLimit}, we assume that the exponentially
+weighted Hilbert transform 
+$E$ is a bounded linear operator on $L^p(\mathbb R)$\textemdash{}a fact that we
+later prove in Section \ref{sec3:BndE}. The boundedness of $E$ in conjunction with 
+Theorem \ref{sec3:CauchyTrans}, Theorem \ref{thm2:GoodStuff} and equation 
+\eqref{eq3:GLminus} verify the existence and boundedness of the $L^p$ 
+operators $G_\star^-$.
+
+\begin{lma}\label{lma2:ImElim}
+	For $f \in L^p(\mathbb R)$, the limit
+	\begin{align}\label{eq2:ImElimlma1}
+		\big(E_\varepsilon - \mathcal E_\varepsilon\big) f(x) \to 0
+	\end{align}
+	holds pointwise $a.e.$ and in $L^p$ for $p \geq 1$.
+\end{lma}
+\begin{proof}
+	We begin by proving the $L^p$ convergence. With that goal in mind, we 
+	rewrite $\left(E_\varepsilon - \mc E_\varepsilon\right)(f)(x)$ as
+	\begin{align}\label{eq:Ediff}
+		2 \pi i \big(E_\varepsilon - \mc E_\varepsilon\big)\big(f(x)\big)
+			&= \left( 1 - e^{-i \pi (2-\varepsilon)}\right) 
+				\int_{-\infty}^x 
+					\frac{e^{-\pi|x-x'|} }{(x-x') - i\varepsilon} f(x') 
+				\, \mathrm{d}x' \\
+			&\quad+
+				\left( 1 - e^{i \pi (2-\varepsilon)} \right) 
+				\int_{x}^\infty 
+					\frac{e^{-\pi|x-x'|} }{(x-x') - i\varepsilon} f(x') 
+				\, \mathrm{d}x' \nonumber \\
+			&= \left(  \left( 1 - e^{-i \pi (2-\varepsilon)}\right) 
+				\frac{e^{-\pi|\dotarg|}}{(\dotarg) - i\varepsilon} \chi_{\mathbb R^+} \right)  * f 
+				\nonumber \\ 
+			&\quad+ \left(  \left( 1 - e^{i \pi (2-\varepsilon)}\right) 
+				\frac{e^{-\pi|\dotarg|}}{(\dotarg) - i\varepsilon} \chi_{\mathbb R^-} \right)  * f,
+				\nonumber
+	\end{align}
+	where $\chi_{R^\pm}$ respectively denote the characteristic functions for the 
+	negative and positive real half-lines, and use Theorem 1.2.10 from \cite{Grafakos},
+	which states that the $L^p$ operator norm of a convolution operator is 
+	less than or equal to the $L^1$ norm of its kernel. Indeed,
+	\begin{align*}
+		\left\| 
+			\frac{e^{-\pi|\dotarg|}}{(\dotarg) - i\varepsilon} \chi_{\mathbb R^-} 
+		\right\|_{L^1(\mathbb R)}
+			&\leq \int_{-\infty}^{-1} e^{-\pi |x|} \, \mathrm{d}x 
+				+ \int_{-1}^0 \frac{1}{\sqrt{x^2 + \varepsilon^2}} \, \mathrm{d}x \\
+			&\leq \frac{1-e^{-\pi}}{\pi} 
+				+ \log\left[ x + \sqrt{x^2 + \varepsilon^2} \right]_{-1}^0 \\
+			&= \frac{1-e^{-\pi}}{\pi} 
+				+ \log(\varepsilon) - \log\left(\sqrt{1+\varepsilon^2}-1\right),
+	\end{align*}
+	from which it follows that 
+	\begin{align}\label{eq:LeftL1ELim}
+		\left\| \left( 1 - e^{i \pi (2-\varepsilon)}\right) 
+			\frac{e^{-\pi|\dotarg|}}{(\dotarg) - i\varepsilon} \chi_{\mathbb R^-} 
+		\right\|_{L^1(\mathbb R)}
+			\to 0, 
+			\qquad \text{as } \varepsilon \to 0. 
+	\end{align}
+	A similar argument shows that 
+	\begin{align}\label{eq:RightL1ELim}
+		\left\| \left( 1 - e^{-i \pi (2-\varepsilon)}\right) 
+			\frac{e^{-\pi|\dotarg|}}{(\dotarg) - i\varepsilon} \chi_{\mathbb R^+} 
+		\right\|_{L^1(\mathbb R)}
+			\to 0, 
+			\qquad \text{as } \varepsilon \to 0. 
+	\end{align}
+	Thus, it follows from \cite[Theorem 1.2.10]{Grafakos} and 
+	Equations \eqref{eq:LeftL1ELim} and \eqref{eq:RightL1ELim},
+	\eqref{eq:Ediff} that
+	\begin{align*}
+		\left\|\big(E_\varepsilon-\mc E_\varepsilon\big) f \right\|_{L^p(\mathbb R)}
+			\leq \frac{1}{2\pi} 
+					\left\|E_\varepsilon-\mc E_\varepsilon\right\|_{L^1(\mathbb R)}
+					\|f\|_{L^p(\mathbb R)}
+			\to 0
+	\end{align*}
+	as $\varepsilon \to 0$, where $E_\varepsilon-\mc E_\varepsilon$ on the right-hand
+	side of the above inequality is used to denote the kernel of the convolution
+	operator $E_\varepsilon-\mc E_\varepsilon$.
+
+
+	To prove pointwise $a.e.$ convergence, we prove the result for bounded 
+	functions and use Chebyshev's inequality to extend by density. Let 
+	$h \in L^p(\mathbb R) \cap L^\infty(\mathbb R)$, for $p \geq 1$ Using Euler's 
+	formula, 
+	it is easy to see that
+	\begin{align*}
+		2 \pi i \big( E_\varepsilon - \mathcal E_\varepsilon \big) h(x)
+			&= \big[ 1 -  \cos\big(\pi(2-\ve)\big) \big] 
+					\int_{\mathbb R} \frac{e^{-\pi|x-x'|}}{(x - x') - i \ve} h(x') \,dx' \\
+			&\quad +i \sin\big(\pi(2-\varepsilon)\big) 
+				\int_{-\infty}^x 
+					\frac{e^{-\pi|x-x'|} }{(x-x') - i\varepsilon} h(x') 
+				\, \mathrm{d}x' \\
+			&\quad - i \sin\big(\pi(2-\varepsilon)\big)
+				\int_x^{\infty} 
+					\frac{e^{-\pi|x-x'|} }{(x-x') - i\varepsilon} h(x') 
+				\, \mathrm{d}x'.
+	\end{align*}
+	Now, 
+	\begin{align*}
+		&\left| \sin\big(\pi(2-\varepsilon)\big) 
+					\int_{-\infty}^x 
+						\frac{e^{-\pi|x-x'|} }{(x-x') - i\varepsilon} h(x') 
+					\, \mathrm{d}x' \right| \\
+			&\qquad= \left| \sin\big(\pi(2-\varepsilon)\big) 
+					\left(\int_\infty^{x-1} + \int_{x-1}^x \right)
+						\frac{e^{-\pi|x-x'|} }{(x-x') - i\varepsilon} h(x') 
+					\, \mathrm{d}x' \right| \\
+			&\qquad\leq \left| \sin\big(\pi(2-\varepsilon)\big) \right|
+				\left(
+					C + C \int_{x-1}^x \frac{dx'}{\sqrt{(x-x')^2 + \varepsilon^2}}
+				\right) \\
+			&\qquad\leq \left| \sin\big(\pi(2-\varepsilon)\big) \right|
+				\left(
+					C + C \log\left| \varepsilon \right|
+					+ C \log\left| -1 + \sqrt{1^2 + \varepsilon^2}  \right|
+				\right)
+	\end{align*}
+	and
+	\begin{align*}
+		&\left| \sin\big(\pi(2-\varepsilon)\big) 
+					\int^\infty_x 
+						\frac{e^{-\pi|x-x'|} }{(x-x') - i\varepsilon} h(x') 
+					\, \mathrm{d}x' \right| \\
+			&\qquad\leq \left| \sin\big(\pi(2-\varepsilon)\big) \right|
+				\left(
+					C + C \log\left| 1 + \sqrt{1^2 + \varepsilon^2}  \right|
+					+ C \log\left| \varepsilon \right|
+				\right),
+	\end{align*}
+	where the constants above depend only on the $L^\infty$ norm of $h$. It 
+	therefore follows from an application of L'H\^opital's rule that
+	\begin{align*}
+		\lim_{\ve \to 0} 
+		\left| \big[ 1 -  \cos\big(\pi(2-\ve)\big) \big] 
+			\int_{\mathbb R} 
+				\frac{e^{-\pi|x-x'|}}{(x - x') - i \ve} h(x') 
+			\,dx'
+		\right| 
+			&= 0 \\
+		\lim_{\ve \to 0} 
+		\left| 
+			\sin\big(\pi(2-\varepsilon)\big) 
+			\int_{-\infty}^x 
+				\frac{e^{-\pi|x-x'|} }{(x-x') - i\varepsilon} h(x') 
+			\, \mathrm{d}x' 
+		\right| 
+			&= 0\\
+		\lim_{\ve \to 0}\left| \sin\big(\pi(2-\varepsilon)\big) 
+					\int^\infty_x 
+						\frac{e^{-\pi|x-x'|} }{(x-x') - i\varepsilon} h(x') 
+					\, \mathrm{d}x' \right|
+			&=0,
+	\end{align*}
+	which implies
+	\[
+		\lim_{\varepsilon\to0} 
+				\big( E_\varepsilon - \mc E_\varepsilon) h(x)
+			= 0,
+	\]
+	for every $h \in  L^p(\mathbb R) \cap L^\infty(\mathbb R)$ ($p\geq 1$)
+	and $x \in \mathbb R$. The result therefore follows from a density
+	argument analogous to the one given at the end of the proof for
+	Theorem \ref{thm2:GoodStuff}.
+	% Lastly, for $f \in L^p(\mathbb R)$ with $p\geq 1$, we may approximate $f$ 
+	% by a bounded function $g \in L^p(\mathbb R) \cap L^\infty(\mathbb R)$ so 
+	% that 
+	% \[
+	% 	\| f - g \|_{L^p} < r^p,
+	% \]
+	% where $0 < r \ll 1$ is some arbitrarily small number. By Chebyshev's
+	% inequality and \cite[Theorem 1.2.10]{Grafakos}, 
+	% \begin{align}\label{eq:2.02-Cheby}
+	% 	m\Big( 
+	% 		\big\{ 
+	% 			x \in \mathbb R 
+	% 			\,:\, 
+	% 			\big(E_\varepsilon-\mc E_\varepsilon\big)(f-g)(x) > r  
+	% 		\big\}  
+	% 	\Big)
+	% 	&\leq 
+	% 		\frac{1}{r^p} 
+	% 		\left\|\big(E_\varepsilon-\mc E_\varepsilon\big)(f-g) \right\|_{L^p}
+	% 		\\
+	% 	&\leq 
+	% 		\left\|E_\varepsilon-\mc E_\varepsilon \right\|_{L^1},
+	% 		\nonumber
+	% \end{align}
+	% where $m(\dotarg)$ denotes the Lebesgue measure on $\mathbb R$.
+	% Given
+	% \begin{align*}
+	% 	\big|\big(E_\varepsilon-\mc E_\varepsilon\big)(f)(x) \big|
+	% 		\leq 
+	% 			\big|\big(E_\varepsilon-\mc E_\varepsilon\big)(f-g)(x)\big|
+	% 			+\big|\big(E_\varepsilon-\mc E_\varepsilon\big)(g)(x) \big|,
+	% \end{align*}	
+	% pointwise $a.e.$ convergence follows, as \eqref{eq:2.02-Cheby} implies
+	% $\big(E_\varepsilon-\mc E_\varepsilon\big)(f-g)(x)$ converges pointwise
+	% $a.e.$ to zero. 
+\end{proof}
+
+
+The first piece to proving Theorem \ref{sec3:CauchyTrans} is establishing that it
+holds for suf{}ficiently ``nice'' functions. We do this next in Lemma 
+\ref{lma:ptwise-Lim}.
+
+\begin{lma}
+	\label{lma:ptwise-Lim} 
+	Let $f \in \mathscr S(\mathbb R)$ and use $E$ to denote
+	the operator given by
+	\[
+		Ef(x) =\frac{1}{2\pi i} \pv \int_{\mathbb R} \frac{f(x') e^{-\pi|x - x'|}}{x-x'}\,dx'.
+	\]
+	Then, for each $x \in \mathbb R$ the following pointwise limit holds
+	\[
+		\lim_{\varepsilon\to 0} E_\varepsilon f(x) = Ef(x) - \frac{1}{2} f(x).
+	\]
+% \[
+%     \lim_{\varepsilon\to 0} \frac{1}{2\pi i} 
+%             \int_{\mathbb R} \frac{e^{-\pi|x - x'|}}{x-x'-i\varepsilon} f(x') \,dx'
+%         = \frac{1}{2\pi i} \pv \int_{\mathbb R} \frac{e^{-\pi|x - x'|}}{x-x'} f(x') \,dx'
+%             + \frac{1}{2} f(x).
+% \] 
+\end{lma}
+\begin{proof}
+    We follow Terence Tao's proof of the Plemelj formulae \cite{Tao}. 
+    As in Tao's proof, we use translation invariance to take $x = 0$ and reduce the proof 
+    to showing
+    \begin{align*} %\label{eq:ptwLma-1}
+        \lim_{\varepsilon\to 0} \frac{1}{2\pi i} 
+            \int_{\mathbb R} \frac{f(x') e^{-\pi|x'|}}{-x'-i\varepsilon}\,dx'    
+            + \frac{1}{2} f(0) 
+            - \frac{1}{2\pi i} \int_{|x'|>\varepsilon} \frac{f(x') e^{-\pi|x'|}}{-x'}\,dx' = 0
+    \end{align*}
+    By multiplying by $2 \pi i$ and introducing the change of variables $x' = \varepsilon w$, we
+    further reduce the proof to showing
+    \begin{align} \label{eq:ptwLma-1}
+        \lim_{\varepsilon\to 0} \int_{\mathbb R} f(\varepsilon w) e^{-\pi\varepsilon|w|}
+            \left( \frac{1}{-w-i}  - \frac{\chi_{|w| > 1}}{-w}\right)  \,dw
+            - \pi i f(0) = 0,
+    \end{align}
+    where $\chi_{|w|>1}$ denotes the characteristic function on the set $|w|>1$.
+    As Tao notes, direct computation yields
+    \[
+        \int_{\mathbb R} \left( \frac{1}{-w-i}  - \frac{\chi_{|w| > 1}}{-w}\right)  \,dw
+            = \pi i.
+    \]
+    Thus, \eqref{eq:ptwLma-1} can be rewritten as
+    \begin{align}\label{eq:ptwLma-2}
+        \lim_{\varepsilon\to 0} 
+        	\int_{\mathbb R} 
+        		\left(
+        			f(\varepsilon w) e^{-\pi \varepsilon|w|} + f(0)
+        		\right)
+            	\left( 
+            		\frac{1}{-w-i}  - \frac{\chi_{|w| > 1}}{-w}
+            	\right)  
+            \,dw
+             = 0.
+    \end{align}
+    Since \eqref{eq:ptwLma-2} holds by Dominated Convergence, the result follows.
+\end{proof}
+
+\begin{rmk}
+	$E$ is a bounded operator on $L^p(\mathbb R)$ for $1 < p < \infty$\textemdash{}which 
+	is something 
+	we show in subsection \ref{sec3:BndE} after discussing the pointwise and $L^p$ 
+	convergence of $E_\varepsilon$. 
+\end{rmk}
+
+Taking our lead from Lemma \ref{lma:ptwise-Lim}, we decompose $E_\varepsilon$ as  
+\begin{align} \label{eq:EepsRealIm}
+	(E_\varepsilon f)(x) 
+		= (\mathpzc E_\varepsilon * f)(x) 
+			- \frac{1}{2}(\mathpzc P_\varepsilon*f)(x),
+\end{align}
+where 
+\[  \label{sym:badCauchy}
+	\mathpzc E_\varepsilon(y) 
+		:= \frac{1}{2\pi i} \frac{y}{y^2 + \varepsilon^2} e^{-\pi|y|}, 
+	\qquad \text{and} \qquad
+	\mathpzc P_\varepsilon(y) 
+		:= \frac{1}{\pi} \frac{\varepsilon}{y^2 + \varepsilon^2} e^{-\pi|y|}.
+\]
+We define the truncated exponentially weighted Hilbert transform 
+$E^{(\varepsilon)}$\label{sym:truncExpHil} by 
+\[
+	\left( E^{(\varepsilon)} f \right)(x) 
+		:= \frac{1}{2\pi i} \int_{|y|\geq \varepsilon} \frac{e^{-\pi|y|}}{y} f(x - y) \, \mathrm{d}y,
+\]
+and note that by definition
+\[
+	(Ef)(x) 
+		:= \lim_{\varepsilon \searrow 0} \left( E^{(\varepsilon)} f \right)(x)
+\]
+for $f \in \mathscr S(\mathbb R)$. 
+
+\begin{rmk}
+	Before continuing, it is worth taking a brief respite to consider our strategy for the 
+	analysis which follows. In \eqref{eq:EepsRealIm}, we break $E_\varepsilon$ into its
+	(ef{}fective) real and imaginary parts $\mathpzc E_{\varepsilon}$ and 
+	$\mathpzc P_\varepsilon$
+	(which should both be thought of as convolution operators), respectively, and show 
+	they respectively converge both $a.e.$ and in $L^p$ to the exponentially waited 
+	Hilbert transform and the identity operator. Doing the former involves first showing 
+	that the convolution operator $\mathpzc E_{\varepsilon}$ and the truncated 
+	exponentially weighted Hilbert transform $E^{(\varepsilon)}$ (when applied to an $L^p$ 
+	function) share the same pointwise $a.e.$ and $L^p$ limits (see Theorem 
+	\ref{thm:TruncEepsEquivLim}. We then show that pointwise $a.e.$ and $L^p$ 
+	limits $E^{(\varepsilon)}f \to Ef$ are actually well defined for general $L^p$ 
+	functions $f$.
+\end{rmk}
+
+Since $\mathpzc P_\varepsilon$ is essentially the Poisson kernel with an exponential weight, it 
+is the easier of the two operators to understand. As such, we first turn our attention 
+to understanding its pointwise $a.e.$ and $L^p$ limits.
+
+\begin{thm}\label{thm:2.02-poisson}
+	The limit $\mathpzc P_\varepsilon * f \to f$ ($\varepsilon \searrow 0$) converges 
+	pointwise $a.e.$ and in $L^p$ for $f \in L^p(\mathbb R)$, $p \geq 1$. 
+\end{thm}
+\begin{proof}
+	Let $P_\varepsilon(y) = \frac{1}{\pi} \frac{\varepsilon}{y^2 + \varepsilon^2}$
+	denote the Poisson kernel. Since the family $P_\varepsilon$ is an approximate
+	identity, to prove Theorem \ref{thm:2.02-poisson} it suf{}fices by 
+	\cite[Theorem 1.2.19]{Grafakos} to consider the pointwise $a.e.$ and $L^p$ 
+	limits of $\big(P_\varepsilon - \mathpzc P_\varepsilon \big) * f$.]
+
+	Since, 
+	\[
+		P_\varepsilon - \mathpzc P_\varepsilon 
+			= \frac{1}{\pi}\frac{\varepsilon}{y^2+\varepsilon^2}
+				\left(1-e^{-\pi|y|}\right)
+	\]
+	is radially symmetric and non-negative, to compute the $L^1$ norm of 
+	$P_\varepsilon - \mathpzc P_\varepsilon$, it suf{}fices to integrate 
+	$P_\varepsilon - \mathpzc P_\varepsilon$ on the half-line $(0, \infty)$. 
+	Using integration by parts, we find
+	\begin{align*}
+		\int_0^\infty (P_\varepsilon - \mathpzc P_\varepsilon) \, \mathrm{d}y
+			&= \left.
+					\frac{1}{\pi}
+					\big(1-e^{-\pi}\big)\arctan\left(\frac{y}{\varepsilon}\right)
+				\right|_0^\infty
+				- \int_0^\infty \arctan\left(\frac{y}{\varepsilon}\right) e^{-\pi y}\,dy.
+	\end{align*}
+	Hence, by Dominated Convergence, 
+	\begin{align*}
+		\lim_{\varepsilon\to0}
+			 	\int_0^\infty (P_\varepsilon - \mathpzc P_\varepsilon) \, \mathrm{d}y
+			 &= 0, 
+	\end{align*}
+	which implies $\left\| P_\varepsilon - \mathpzc P_\varepsilon \right\|_{L^1}
+	\to 0$ as $\varepsilon \searrow 0$. As such, an argument analogous to the one 
+	in the proof of Lemma \ref{lma2:ImElim} allows us to complete this proof. 
+\end{proof}
+
+
+Following the method employed in the proofs of 
+\cite[Theorem 4.1.12, Theorem 5.1.5]{Grafakos} to study the Hilbert 
+transform, we show that $E^{(\varepsilon)}$ converges $a.e.$ and in $L^p$ to
+$E$ and $\mathpzc E_\varepsilon * f - E^{(\varepsilon)}(f) \to 0$ $a.e.$ and in $L^p$.
+In doing so, we use \cite[Theorem 1.2.21]{Grafakos} and \cite[Corollary 2.1.19]{Grafakos}, 
+whose statements can be found in the \hyperref[app:HA]{Harmonic Analysis Results} 
+appendix.
+
+\begin{thm} \label{thm:TruncEepsEquivLim}
+	Let $1 < p < \infty$. For any $f \in L^p(\mathbb R)$, we have 
+	\[
+		\mathpzc E_\varepsilon * f - E^{(\varepsilon)}(f) \to 0
+	\]
+	in $L^p$ and almost everywhere as $\varepsilon \to 0$. 
+\end{thm}
+\begin{proof}
+	Let
+	\[
+		Q_\varepsilon(y) = e^{-\pi|y|} \, \varepsilon^{-1} \psi(y/\varepsilon),
+	\]
+	where 
+	\[
+		\psi(t) =
+			\begin{cases}
+				\dfrac{t}{t^2 + 1} - \dfrac{1}{t}, & |t| \geq 1 \\ \\
+				\dfrac{t}{t^2 + 1},                & |t| < 1 1.   
+			\end{cases}
+	\]
+	As noted in \cite{Grafakos}, the function $\psi$ has integral zero with 
+	a radially decreasing majorant $\Psi$ given by 
+	\[
+		\Psi(t) =
+			\begin{cases}
+				\dfrac{t}{t^2 + 1}, & |t| \geq 1 \\ \\
+				1,                  & |t| < 1.   
+			\end{cases}	
+	\]
+	Moreover, since the calculation
+	\begin{align*}
+		\varepsilon^{-1} \psi\left(\frac{y}{\varepsilon}\right)
+			= \varepsilon^{-1}
+				\left(
+					\frac{\frac{y}{\varepsilon}}
+						{\left(\frac{y}{\varepsilon}\right)^2+1^2}
+					- \varepsilon\frac{\chi_{|y|\geq \varepsilon}}{y}
+				\right)
+			= \frac{y}{y^2+\varepsilon^2} - \frac{\chi_{|y|\geq \varepsilon}}{y}
+	\end{align*}
+	implies 
+	\[
+		\mathpzc E_\varepsilon * f - E^{(\varepsilon)}(f) 
+			= \frac{1}{2\pi i}\,Q_\varepsilon * f,
+	\]
+	the result follows from Theorem \cite[Theorem 1.2.21]{Grafakos} and Corollary 
+	\cite[Corollary 2.1.19]{Grafakos} (with $c = 0$).
+\end{proof}
+
+To prove the $L^p$ and pointwise $a.e.$ convergence of the convolution operator 
+$\mathpzc E_\varepsilon$ to the exponentially weighted Hilbert transform $E$, 
+it remains to show that $E^{(\varepsilon)}$ converges to $E$. We do so 
+in Theorem \ref{thm:truncEtoE}. However, we must first establish the Cotlar
+type inequality in Lemma \ref{lma:Cotlar} for the maximal operator
+$E^*:= \left( E^{(\varepsilon)} \right)^*$\label{sym:maxCauchyT} associated with 
+the with exponential Cauchy transform $\left\{ E^{(\varepsilon)}\right\}$, as we 
+use this result in the proof
+of Theorem \ref{thm:truncEtoE}.
+
+% that $E$ 
+% is a bounded operator on $L^p$ (Theorem \ref{thm:EbndOp} in Subsection 
+% \ref{sec3:BndE}) and verify the Cotlar
+% type inequality in Lemma \ref{lma:Cotlar} for the maximal operator
+% $E^*:= \left( E^{(\varepsilon)} \right)^*$ associated with the with operator
+% family $\left\{ E^{(\varepsilon)}\right\}$, as we use both results in the proof
+% of Theorem \ref{thm:truncEtoE}.
+
+
+
+
+
+\begin{lma}[Cotlar Type Inequality]
+	\label{lma:Cotlar}
+	Let $E^*$ given by
+	\[
+		E^*f(x)
+				:= \left( E^{(\varepsilon)} \right)^* f(x)
+				:= \sup_{\varepsilon>0} \left\{\left|E^{(\varepsilon)} f(x)\right|\right\}.
+	\]
+	denote the maximal operator associated with the operator family 
+	$\left\{ E^{(\varepsilon)}\right\}$. If $f \in \mathscr S(\mathbb R)$, then 
+	\begin{align} \label{eq:Cotlar}
+		E^* f(x) \leq M E f(x) + C M f(x),
+	\end{align}
+	where $C$ is independent of $f$ and $M$\label{sym:hardy} denotes the 
+	Hardy-Littlewood maximal operator
+	defined by 
+	\[
+        M f(x) 
+        	= \sup_{r > 0} 
+        		\left\{ 
+        			\frac{1}{B(0, r)} \int_{B(0, r)} |f(x - x')| \, \mathrm{d}x' 
+        		\right\}.
+    \]	
+\end{lma}
+
+
+% \begin{lma}[Cotlar Type Inequality]
+% 	\label{lma:Cotlar}
+% 	Let $E^*$ given by
+% 	\[
+% 		E^*f(x)
+% 				:= \( E_{\varepsilon} \)^* f(x)
+% 				:= \sup_{\varepsilon>0} \left\{\left|E_{\varepsilon} f(x)\right|\right\}.
+% 	\]
+% 	denote the maximal operator associated with the operator family $\{ E_\varepsilon\}$.
+% 	If $f \in \mathscr S(\mathbb R)$, then 
+% 	\[
+% 		E^* f(x) \leq M E f(x) + C M f(x),
+% 	\]
+% 	where $C$ is independent of $f$ and $M$ denotes the Hardy-Littlewood maximal operator
+% 	defined by 
+% 	\[
+%         M f(x) 
+%         	= \sup_{r > 0} 
+%         		\left\{ 
+%         			\frac{1}{B(0, r)} \int_{B(0, r)} |f(x - x')| \, \mathrm{d}x' 
+%         		\right\}.
+%     \]	
+% \end{lma}
+
+In our proof of Lemma \ref{lma:Cotlar} we the standard analysis result shown in Proposition \ref{prop:Cotlar}.
+
+\begin{prop}\label{prop:Cotlar}
+    Suppose $f \in L^1_{\text{loc}}(\mathbb R^n)$. If $\phi : \mathbb R^n \to \mathbb R$ is nonnegative, 
+    radial, radially decreasing, and integrable, then
+    \begin{align}\label{eq:2.02-cotprop}
+    	\sup_{\varepsilon > 0} \left\{ \left| \phi_\varepsilon * f(x) \right| \right\} 
+            \leq \| \phi \|_1 M f(x), 
+    \end{align}
+    where $\phi_\varepsilon(x) := \frac{1}{\varepsilon} \phi\left( \frac{x}{\varepsilon} \right)$.
+\end{prop}
+\begin{proof}[Proof of Proposition \ref{prop:Cotlar}]
+	We first show \eqref{eq:2.02-cotprop} holds for simple functions, then extend 
+	\eqref{eq:2.02-cotprop} to arbitrary functions $\phi$ satisfying the the hypotheses 
+	of Proposition \ref{prop:Cotlar} by density using the Monotone Convergence Theorem.
+\end{proof}
+
+We are now ready to prove Lemma \ref{lma:Cotlar}:
+
+\begin{proof}[Proof of Lemma \ref{lma:Cotlar}]
+    It suf{}fices to show 
+    \[
+        |E^{(\varepsilon)} f(x)| \leq M E f(x) + C M f(x)
+    \]
+    for every $\varepsilon > 0$. Choose $\phi \in \mathscr S(\mathbb R)$ satisfying the 
+    hypotheses of Proposition \ref{prop:Cotlar} so that $\| \phi\|_1 = 1$ and 
+    $\text{supp} \, \phi = \left(-\frac{1}{2}, \frac{1}{2} \right)$. We decompose 
+    $\chi_{\{|\dotarg| > \varepsilon\}} \, \frac{e^{-\pi |\dotarg|}}{(\dotarg)}$ (the integrand 
+    of the truncated exponentially weighted Hilbert transform) as
+    \begin{align}\label{eq:1-Cotlar}
+    	\chi_{\{|\dotarg| > \varepsilon\}} \, \frac{e^{-\pi |\dotarg|}}{(\dotarg)}
+    		= E \phi_\varepsilon +
+            	\left( 
+            		 \frac{e^{-\pi |\dotarg|}}{(\dotarg)} \, \chi_{\{|\dotarg| > \varepsilon\}}
+            			- E \phi_\varepsilon 
+        	   	\right).
+    \end{align}
+    Thus, by taking the convolution of both sides of \eqref{eq:1-Cotlar} with $f$, we find
+    \begin{align}\label{eq:2-Cotlar}
+        |E^{(\varepsilon)} f(x)|
+            \leq \frac{1}{2\pi} | (E\phi_\varepsilon)*f(x)| 
+                + \frac{1}{2\pi} 
+                	\left| 
+                		\frac{e^{-\pi |\dotarg|}}{(\dotarg)} \, \chi_{\{|\dotarg| > \varepsilon\}}
+                			- E\phi_\varepsilon 
+                	\right|*|f|(x).
+    \end{align}
+    Note that by using two applications of Fubini's Theorem in conjunction with two 
+    applications of Dominated Convergence, one can show
+    $(E\phi_\varepsilon)*f(x) = \phi_\varepsilon * (Ef)(x)$. As such, we therefore 
+    see from Proposition \ref{prop:Cotlar} that first term on the right-hand side 
+    of \eqref{eq:2-Cotlar} satisfies
+    \[
+        \frac{1}{2 \pi} | (E\phi_\varepsilon)*f(x)| \leq M E f(x).
+    \]
+
+    As we consider the second term in the right-hand side of \eqref{eq:2-Cotlar}, we initially 
+    take $\varepsilon = 1$ and examine the case $|\dotarg| <1$ and $|\dotarg| \geq 1$ separately. 
+    Assume $|w| \geq 1$ and observe that
+    \begin{align*}
+        \left| 
+        	 \frac{e^{-\pi | w |}}{ w }  - E\phi(w)
+        \right|
+            &= 
+            	\left| 
+            		\frac{e^{-\pi | w |}}{ w }
+             		   - \int_{-\frac{1}{2}}^{\frac{1}{2}} \phi(x')\frac{e^{-\pi|w-x'|}}{w-x'} \, \mathrm{d}x' 
+             	\right| \\
+            &\leq 
+            	\int_{-\frac{1}{2}}^{\frac{1}{2}} \phi(x') 
+	                \left| 
+	                	\frac{e^{-\pi | w |}}{ w }
+	                		- \frac{e^{-\pi|w-x'|}}{w-x'} 
+	                \right| 
+                \, \mathrm{d}x'.
+    \end{align*}
+    Since $x' \in \mathop{\text{supp}} \phi$ only when $|x'| \leq \frac{1}{2}$, we have
+    \begin{align*}
+        \left| e^{-\pi|w|} (w - x') - e^{-\pi|w-x'|}(w) \right|
+            \leq 2 |w| g(w) + e^{-\pi |w|} |x'|,
+    \end{align*}
+    where
+    \[
+        g(w)
+            = \begin{cases}
+                e^{-\pi \left|w + \frac{1}{2}\right|}, & w \geq 0 \\
+                e^{-\pi \left|w - \frac{1}{2}\right|}, & w < 0.
+            \end{cases}
+    \]
+    Hence
+    \[
+        \left| \frac{e^{-\pi|w|}}{w} - \frac{e^{-\pi|w-x'|}}{w-x'} \right|
+            \leq \frac{2|w|\, g(w) + e^{-\pi |w|}|x'|}{|w| \, |w - x'|}.
+    \]
+    Further,
+    \[
+        \frac{|w|}{|w - x'|}
+            \leq \frac{|w|}{\left|w - \frac{1}{2}\text{sign}(w)\right|}
+            \leq 2,
+    \]
+    which implies 
+    \[
+        \frac{1}{|w||w-x'|}
+            \leq \frac{2}{w^2},
+    \]
+    and
+    \[
+        \left| \frac{e^{-\pi|w|}}{w} - \frac{e^{-\pi|w-x'|}}{w-x'} \right|
+            \leq 
+            	\left( 
+            		\frac{4|w| g(w)}{w^2} + \frac{2 e^{-\pi|w|} |x'|}{w^2} 
+            	\right).
+    \]
+    As such,
+    \[
+        \left| \frac{e^{-\pi|w|}}{w - i \varepsilon} - E\phi_\varepsilon(w) \right|
+        	\leq 
+        		\int_{-\frac{1}{2}}^{\frac{1}{2}} 
+        			\phi(x') 
+        			\left(
+        				\frac{4|w|g(w)}{w^2} + \frac{2 e^{-\pi|w|} |x'|}{w^2}
+        			\right)
+        		\, \mathrm{d}x'
+            \leq \frac{4|w|g(u) + e^{-\pi|w|}}{w^2}
+            \leq \frac{C}{w^2},
+    \]
+    for $|w| \geq 1$.
+
+    On the other hand, for $|w| < 1$, 
+    \begin{align*}
+        \left| \frac{e^{-\pi|w|}}{w} \, \chi_{|w| > 1} - E \phi(w) \right|
+        	&= \big| - E \phi(w) \big| \\
+            &=
+                \left| 
+                    \pv \int_{-\frac{1}{2}}^{\frac{1}{2}} 
+                        \frac{\phi(w-x')}{x'} e^{-\pi|x'|} 
+                  \, \mathrm{d}x'
+                 \right| \\
+            &= 
+                \left| 
+                    \pv \int_{-\frac{1}{2}}^{\frac{1}{2}} 
+                        \frac{\phi(w-x') -\phi(w)}{x'} e^{-\pi|x'|} 
+                    \, \mathrm{d}x' 
+                \right| \\
+            &\leq C \| \phi' \|_{L^\infty} \\
+            &=C,
+    \end{align*}
+    as
+    \[
+        \pv \int_{-\frac{1}{2}}^{\frac{1}{2}} 
+            \frac{\phi(w)}{x'} e^{-\pi|x'|}
+        \, \mathrm{d}x
+        = 0.
+    \]
+    Combining the two cases, it follows from Proposition \ref{prop:Cotlar}
+    \begin{align}\label{eq:3-Cotlar}
+        \left| \frac{e^{-\pi|\dotarg|}}{(\dotarg)} - E \phi \right|*|f|(x)
+            \leq C Mf(x).
+    \end{align}
+    
+    Finally, to verify that \eqref{eq:3-Cotlar} holds for arbitrary $\varepsilon$ 
+    $(0 < \varepsilon < 1)$, we use a dilation argument. Define $h$ and $g$ by 
+    \[
+        h(w, \varepsilon) := \left| \frac{e^{-\pi |w|}}{w} \, \chi_{|w|>\varepsilon} 
+    	   	- E \phi_\varepsilon(w) \right|,
+        \qquad \text{and} \qquad
+        g(w) 
+        	:=  
+        		\left| \frac{e^{-\pi |w|}}{w}\right|  \, \chi_{|w|>1}  
+        			+ \left| E \phi(w) \right|.
+    \]
+    Then 
+    \[
+        g_\varepsilon(w) 
+          = \frac{1}{\varepsilon} g\left(\frac{w}{\varepsilon}\right)
+          = \left| \frac{e^{-\pi |w/\varepsilon|}}{w} \right| \, \chi_{|w|>\varepsilon} 
+          	+ \left| E \phi_\varepsilon(w) \right|.
+    \]
+    For $f \in \mathscr S(\mathbb R)$ and $f^\varepsilon(x):= f(\varepsilon x)$,
+    \begin{align*}
+        g*f^\varepsilon\left(\varepsilon^{-1} x \right)
+            &= \int_{\mathbb R} 
+            		f(\varepsilon y) \, g\left( \varepsilon^{-1} x - y \right) 
+            	\, \mathrm{d}y \\
+            &= \int_{\mathbb R} 
+            		f(y) \varepsilon^{-1} 
+            			g\left( \varepsilon^{-1} x - \varepsilon^{-1} y \right) 
+            	\, \mathrm{d}y \\
+            &= g_\varepsilon * f(x), \\
+        \intertext{and}
+        M f^\varepsilon(x)
+            &= \sup \frac{1}{|B(0, r)|} 
+            	\int_{B(0, r)} |f(\varepsilon x - \varepsilon y)| \, \mathrm{d}y \\
+            &= \sup \frac{1}{|B(0, \varepsilon r)|} 
+            	\int_{B(0, \varepsilon r)} |f(\varepsilon x - \varepsilon y)| \, \mathrm{d}y \\
+            &= M f(\varepsilon x).
+    \end{align*}
+    Hence, by \eqref{eq:3-Cotlar}
+    \begin{align*}
+        h(\dotarg, \varepsilon) * |f|(x) 
+            \leq g_\varepsilon * |f|(x) 
+            = g*|f^{\varepsilon}|(\varepsilon^{-1} x) 
+            \leq C M f^{\varepsilon}(\varepsilon^{-1} x)
+            =C M f(x),
+    \end{align*}
+    from which the result follows.
+\end{proof}
+
+% \begin{proof}[Proof of Lemma \ref{lma:Cotlar}]
+%     It suf{}fices to show 
+%     \[
+%         |E_{\varepsilon} f(x)| \leq M E f(x) + C M f(x)
+%     \]
+%     for every $\varepsilon > 0$. Choose $\phi \in \mathscr S(\mathbb R)$ satisfying the hypotheses of 
+%     Proposition \ref{prop:Cotlar} so that $\| \phi\|_1 = 1$ and 
+%     $\text{supp} \, \phi = \left(-\frac{1}{2}, \frac{1}{2} \right)$. We decompose 
+%     $\frac{e^{-\pi|\dotarg|}}{(\dotarg) - i \varepsilon}$ as 
+%     \begin{align}\label{eq:1-Cotlar}
+%         \frac{e^{-\pi|\dotarg|}}{(\dotarg) - i \varepsilon}
+%             = E \phi_\varepsilon + 
+%             	\left( 
+%             		\frac{e^{-\pi|\dotarg|}}{(\dotarg) - i \varepsilon} 
+%             			- E \phi_\varepsilon 
+%         	   	\right).
+%     \end{align}
+%     Thus, by taking the convolution of both sides of \eqref{eq:1-Cotlar} with $f$, we find
+%     \begin{align}\label{eq:2-Cotlar}
+%         |E_{\varepsilon} f(x)|
+%             \leq \frac{1}{2\pi} | (E\phi_\varepsilon)*f(x)| 
+%                 + \frac{1}{2\pi} 
+%                 	\left| 
+%                 		\frac{e^{-\pi|\dotarg|}}{(\dotarg) - i \varepsilon} - E\phi_\varepsilon 
+%                 	\right|*|f|(x).
+%     \end{align}
+%     Given $(E\phi_\varepsilon)*f(x) = \phi_\varepsilon * (Ef)(x)$, we see from Proposition \ref{prop:Cotlar}
+%     that first term on the right-hand side of \eqref{eq:2-Cotlar} satisfies
+%     \[
+%         \frac{1}{2 \pi} | (E\phi_\varepsilon)*f(x)| \leq M E f(x).
+%     \]
+
+%     As we consider the second term in the right-hand side of \eqref{eq:2-Cotlar}, we initially 
+%     take $\varepsilon = 1$ and examine the case $|\dotarg| <1$ and $|\dotarg| \geq 1$ separately. 
+%     Assume $|w| \geq 1$ and observe that
+%     \begin{align*}
+%         \left| \frac{e^{-\pi|w|}}{w - i} - E\phi(w) \right|
+%             &= \left| \frac{e^{-\pi|w|}}{w - i} 
+%                 - \int_{-\frac{1}{2}}^{\frac{1}{2}} \phi(x')\frac{e^{-\pi|w-x'|}}{w-x'} \, \mathrm{d}x' \right| \\
+%             &\leq \int_{-\frac{1}{2}}^{\frac{1}{2}} \phi(x') 
+%                 \left| \frac{e^{-\pi|w|}}{w - i} - \frac{e^{-\pi|w-x'|}}{w-x'} \right| \, \mathrm{d}x'.
+%     \end{align*}
+%     Since $x' \in \mathop{\text{supp}} \phi$ only when $|x'| \leq \frac{1}{2}$, we have
+%     \begin{align*}
+%         \left| e^{-\pi|w|} (w - x') - e^{-\pi|w-x'|}(w - i) \right|
+%             \leq 2 |w| g(w) + e^{-\pi |w|} |x'| + g(w),
+%     \end{align*}
+%     where
+%     \[
+%         g(w)
+%             = \begin{cases}
+%                 e^{-\pi \left|w + \frac{1}{2}\right|}, & w \geq 0 \\
+%                 e^{-\pi \left|w - \frac{1}{2}\right|}, & w < 0.
+%             \end{cases}
+%     \]
+%     Hence
+%     \[
+%         \left| \frac{e^{-\pi|w|}}{w - i} - \frac{e^{-\pi|w-x'|}}{w-x'} \right|
+%             \leq \frac{\big(2|u|+1\big) g(w) + e^{-\pi |w|}|x'|}{|w - i| \, |w - x'|}.
+%     \]
+%     Further,
+%     \[
+%         \frac{|w - i|}{|w - x'|}
+%             \leq \frac{|w| + 1}{\left|w - \frac{1}{2}\text{sign}(w)\right|}
+%             \leq 4,
+%     \]
+%     which implies 
+%     \[
+%         \frac{1}{|w - i||w-x'|}
+%             \leq \frac{2}{|w - i|^2}
+%             = \frac{4}{w^2 + 1},
+%     \]
+%     and
+%     \[
+%         \left| \frac{e^{-\pi|w|}}{w - i} - \frac{e^{-\pi|w-x'|}}{w-x'} \right|
+%             \leq 4 \left( \frac{(2|w| + 1)g(w)}{w^2 + 1} + \frac{e^{-\pi|w|} |x'|}{w^2+1} \right).
+%     \]
+%     As such,
+%     \[
+%         \left| \frac{e^{-\pi|w|}}{w - i \varepsilon} - E\phi_\varepsilon(w) \right|
+%             \leq \frac{4(2|w|+ 1) g(u) + e^{-\pi|w|}}{w^2+1}
+%             \leq \frac{C}{w^2+1},
+%     \]
+%     for $|w| \geq 1$.
+
+%     On the other hand, for $|w| < 1$, 
+%     \begin{align*}
+%         \left| \frac{e^{-\pi|w|}}{w - i} - E \phi(w) \right|
+%             &\leq \left| \frac{e^{-\pi|w|}}{w - i \varepsilon} \right|
+%                 + 
+%                     \left| 
+%                         \pv \int_{-\frac{1}{2}}^{\frac{1}{2}} 
+%                             \frac{\phi(w-x')}{x'} e^{-\pi|x'|} 
+%                       \, \mathrm{d}x'
+%                      \right| \\
+%             &= \left| \frac{e^{-\pi|w|}}{w - i \varepsilon} \right|
+%                 + 
+%                     \left| 
+%                         \pv \int_{-\frac{1}{2}}^{\frac{1}{2}} 
+%                             \frac{\phi(w-x') -\phi(w)}{x'} e^{-\pi|x'|} 
+%                         \, \mathrm{d}x' 
+%                     \right| \\
+%             &\leq C + C \| \phi' \|_{L^\infty} \\
+%             &=C,
+%     \end{align*}
+%     as
+%     \[
+%         \pv \int_{-\frac{1}{2}}^{\frac{1}{2}} 
+%             \frac{\phi(w)}{x'} e^{-\pi|x'|}
+%         \, \mathrm{d}x
+%         = 0
+%     \]
+%     Combining the two cases, it follows from Proposition \ref{prop:Cotlar}
+%     \begin{align}\label{eq:3-Cotlar}
+%         \left| \frac{e^{-\pi|\dotarg|}}{(\dotarg) - i} - E \phi \right|*|f|(x)
+%             \leq \frac{C}{(\dotarg)^2+1}*|f|(x) \leq C Mf(x).
+%     \end{align}
+    
+%     Finally, to verify that \eqref{eq:3-Cotlar} holds for arbitrary $\varepsilon$ 
+%     $(0 < \varepsilon < 1)$, we use a dilation argument. Define $h$ and $g$ by 
+%     \[
+%         h(w, \varepsilon) := \left| \frac{e^{-\pi |w|}}{w - i \varepsilon} 
+%     	   	- E \phi_\varepsilon(w) \right|,
+%         \qquad \text{and} \qquad
+%         g(w) :=  \left| \frac{e^{-\pi |w|}}{w - i}\right| + \left| E \phi(w) \right|.
+%     \]
+%     Then 
+%     \[
+%         g_\varepsilon(w) 
+%           = \frac{1}{\varepsilon} g\left(\frac{w}{\varepsilon}\right)
+%           = \left| \frac{e^{-\pi |w/\varepsilon|}}{w - i \varepsilon}\right| 
+%           	+ \left|\phi_\varepsilon * W(u) \right|.
+%     \]
+%     For $f \in \mathscr S(\mathbb R)$ and $f^\varepsilon(x):= f(\varepsilon x)$,
+%     \begin{align*}
+%         g*f^\varepsilon\left(\varepsilon^{-1} x \right)
+%             &= \int_{\mathbb R} 
+%             		f(\varepsilon y) \, g\left( \varepsilon^{-1} x - y \right) 
+%             	\, \mathrm{d}y \\
+%             &= \int_{\mathbb R} 
+%             		f(y) \varepsilon^{-1} 
+%             			g\left( \varepsilon^{-1} x - \varepsilon^{-1} y \right) 
+%             	\, \mathrm{d}y \\
+%             &= g_\varepsilon * f(x), \\
+%         \intertext{and}
+%         M f^\varepsilon(x)
+%             &= \sup \frac{1}{|B(0, r)|} 
+%             	\int_{B(0, r)} |f(\varepsilon x - \varepsilon y)| \, \mathrm{d}y \\
+%             &= \sup \frac{1}{|B(0, \varepsilon r)|} 
+%             	\int_{B(0, \varepsilon r)} |f(\varepsilon x - \varepsilon y)| \, \mathrm{d}y \\
+%             &= M f(\varepsilon x).
+%     \end{align*}
+%     Hence, by \eqref{eq:3-Cotlar}
+%     \begin{align*}
+%         h(\dotarg, \varepsilon) * |f|(x) 
+%             \leq g_\varepsilon * |f|(x) 
+%             = g*f^{\varepsilon}(\varepsilon^{-1} x) 
+%             \leq C M f^{\varepsilon}(\varepsilon^{-1} x)
+%             =C M f(x),
+%     \end{align*}
+%     from which the result follows.
+% \end{proof}
+
+
+One final tool we need to prove Theorem \ref{thm:truncEtoE} is Theorem 2.1.14 from 
+\cite{Grafakos}, which we present without proof below in Theorem \ref{thm:Graf2.1.14}
+
+\begin{thm}[Theorem 2.1.14 from \cite{Grafakos}]\label{thm:Graf2.1.14}
+	Let $(X, \mu)$ and $(Y, \nu)$ be measure spaces and let $0 < p, q < \infty$.
+	Suppose for every $\varepsilon > 0$, $T_\varepsilon$ is a linear operator defined 
+	on $L^P(X, \nu)$ with values in the set  of measurable functions on $Y$, and $D$ 
+	is a dense subspace of $L^p(X)$. Define a sublinear operator
+	\[
+		T^*(f)(x) := \sup_{\varepsilon>0} \left| T_\varepsilon(f)(x) \right|.
+	\]
+	Suppose that for some $B>0$ and all $f \in L^p(X)$ we have
+	\[
+		\| T^*(f) \|_{L^{q, \infty}} \leq B \|f\|_{L^p}
+	\]
+	and that for all $f \in D$
+	\begin{align}\label{eq:Graf2.1.14-1}
+		\lim_{\varepsilon\to0} T_\varepsilon(f) = T(f)
+	\end{align}
+	exists and is finite $\nu$-$a.e.$ (and defines a linear operator on $D$).
+	Then for all functions $f$ in $L^p(X)$ the limit \eqref{eq:Graf2.1.14-1}
+	exists and is finite $\nu$-$a.e.$, and defines a linear operator $T$
+	on $L^p(X)$ (uniquely extending $T$ defined on $D$) that satisfies
+	\[
+		\| T(f) \|_{L^{q, \infty}} \leq B \|f\|_{L^p}.
+	\]
+\end{thm}
+
+\begin{thm}\label{thm:truncEtoE}
+	For all $p$ ($1 < p < \infty$) there exists a constant $C_p$ depending
+	only on $p$ such that
+	\begin{align} \label{eq:E*bnd}
+		\left\| E^* f \right\|_{L^p} \leq C_p \|f\|_{L^p}, 
+		\qquad \forall f \in L^p(\mathbb R).
+	\end{align}
+	Moreover, for all $f \in L^p(\mathbb R)$, $E^{(\varepsilon)} f$ converges to 
+	$Ef$ pointwise $a.e.$ and in $L^p$.
+\end{thm}
+\begin{proof}
+	Inequality \eqref{eq:E*bnd} is an immediate consequence of Lemma \ref{lma:Cotlar},
+	Theorem \ref{thm:EbndOp} from Subsection \ref{sec3:BndE}, of the fact that 
+	convergence holds for Schwartz class 
+	functions, and of Theorem \ref{thm:Graf2.1.14}. The $L^p$ convergences follows 
+	from the almost every pointwise convergence and the dominated convergence 
+	theorem combined with the Cotlar inequality \eqref{eq:Cotlar}.
+\end{proof}
+
+\end{document}

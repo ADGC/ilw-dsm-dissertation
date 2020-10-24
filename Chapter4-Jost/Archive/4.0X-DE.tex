@@ -1,0 +1,271 @@
+%%================================
+%% Section 3.2: Equivalence of the Integral Equation and the Spectral Problem
+%%================================
+
+\documentclass[../dissertation.tex]{subfiles}
+
+\begin{document}
+\section{Equivalence of the Integral Equation and the Spectral Problem}\label{sec3.2:DE}
+\subsection{Integral Equation to Differential Equation}
+Let $M_1$, $M_e$, $N_1$, $N_e$ denote solutions to \eqref{eq:3.01-JostIE}. Given 
+the decay properties \eqref{ILW.GL.vanish} and \eqref{ILW.GR.vanish} of $G_L^+$ 
+and $G_R^+$ as convolution operators these four solutions automatically satisfy
+the respective asymptotic conditions prescribed in \eqref{eq:3.01-JostDEasymp}.
+Moreover, in showing that these four solutions also satisfy the linear spectral 
+problem, it also suffices to show that 
+\begin{align}\label{eq:3.2_main_result}
+	\frac{1}{i}\frac{\partial}{\partial x}
+		\( G_\star^+ * f \) = f + \zeta(G_\star^+ - G_\star^-)*f,
+\end{align}
+for $f$ in the same function space as $uM_1$, $uM_e$, $uN_1$, $uN_e$, where
+$G_\star$ is again used as a placeholder for $G_L$, $G_R$. To do so, we show
+\eqref{eq:3.2_main_result} holds for $f\in C_0^\infty(\mathbb R)$ 
+(Lemma \ref{lma:3.2_ie_compact}), then then extend by density using the fact
+that $G_\star^+$ and $G_\star^-$ are bounded operators on $L^p$ 
+(Lemma \ref{lma:3.2_ie_extend}). 
+
+\begin{lma}\label{lma:3.2_ie_compact}
+	The equation \eqref{eq:3.2_main_result} holds for $f \in C_0^\infty(\mathbb R)$.
+\end{lma}
+\begin{proof}
+	We first claim that 
+	\begin{align}
+		(G_\star^+ * f)(x) 
+			= \frac{1}{2\pi} 
+				\int_{\Gamma_\star} 
+					\frac{e^{ix\xi}}{\xi-\zeta(1-e^{-2\xi})}\wh{f}(\xi)
+				\,d\xi,
+	\end{align}
+	where $\Gamma_\star$ is a substitute for the respective contours of integration 
+	$\Gamma_L$ and $\Gamma_R$ associated with the Green's functions $G_L$, $G_R$. 
+	Indeed, for $N>0$, if we let $\Gamma^{(N)}_\star$ denote the compact contour 
+	$\Gamma_\star \cap \{ z \in \mathbb C ~:~ \re z \leq N \}$ then we may
+	use Fubini's Theorem to compute
+	\begin{align*}
+		\frac{1}{2\pi} 
+				\int_{\Gamma_\star} 
+					\frac{e^{ix\xi}}{\xi-\zeta(1-e^{-2\xi})}\wh{f}(\xi)
+				\,d\xi
+			&= \lim_{N\to\infty} \frac{1}{2\pi} 
+				\int_{\Gamma_\star^{(N)}} 
+					\frac{e^{ix\xi}}{\xi-\zeta(1-e^{-2\xi})}\wh{f}(\xi)
+				\,d\xi \\
+			&= \lim_{N\to\infty} \frac{1}{2\pi} 
+				\int_{\Gamma_\star^{(N)}} 
+					\frac{e^{ix\xi}}{\xi-\zeta(1-e^{-2\xi})}
+					\int_{\mathbb R} e^{-i x' \xi} f(x') \, \mathrm{d}x'
+				\,d\xi \\
+			&= \lim_{N\to\infty} \frac{1}{2\pi} 
+				\int_{\mathbb R}
+					f(x')
+					\int_{\Gamma_\star^{(N)}} 
+						 \frac{e^{i(x-x')\xi}}{\xi-\zeta(1-e^{-2\xi})}
+				\,d\xi \, \mathrm{d}x' \\
+			&= (G_\star^+ * f)(x),
+	\end{align*}
+	The third line in the above computation is justified by the fact that
+	$\Gamma_\star^{(N)}$ is compact and $f$ is compactly supported, and 
+	on the fourth line we use dominated convergence in conjunction with
+	the bounds \eqref{eq:1.04-Kbnd} and \eqref{eq:FinalGffromula} for the 
+	Green's functions. 
+
+	Further, using a similar argument as the one given above, we also find
+	\begin{align}
+		(G_\star^- * f)(x)
+			&= \lim_{N\to\infty} \frac{1}{2\pi} 
+				\int_{\Gamma_\star^{(N)}} 
+					\frac{e^{i(x+2i)\xi}}{\xi-\zeta(1-e^{-2\xi})}\wh{f}(\xi)
+				\,d\xi \nonumber \\
+			&= \frac{1}{2\pi} 
+				\int_{\Gamma_\star} 
+					\frac{e^{i(x+2i)\xi}}{\xi-\zeta(1-e^{-2\xi})}\wh{f}(\xi)
+				\,d\xi,
+	\end{align}
+	as $f\in C_0^\infty(\mathbb R)$ implies $\wh f$ is rapidly decaying.
+
+	Since $\wh f$ rapidly decays, we are allowed to pass a derivative (in $x$) through
+	the integral in $(G_\star^+ * f)(x)$ to compute 
+	\begin{align*}
+		\frac{1}{i} \frac{\partial}{\partial x} (G_\star^+ * f)(x)
+			&= \frac{1}{2\pi} \int_{\Gamma_\star} 
+					e^{i x \xi} \frac{\xi}{\xi - \zeta(1-e^{-2\xi})} \wh f(\xi)
+				\, \mathrm{d}\xi \\
+			&= \frac{1}{2\pi} \int_{\Gamma_\star} 
+					e^{i x \xi} 
+					\left[
+						1+\frac{\xi(1-e^{-2\xi})}{\xi - \zeta(1-e^{-2\xi})}
+					\right] 
+					\wh f(\xi)
+				\, \mathrm{d}\xi \\
+			&= f(x) 
+				+ \zeta 
+					\int_{\Gamma_\star}
+						\left[
+							\frac{1}{\xi-\zeta(1-e^{-2\xi})} - \frac{e^{-2\xi}}{\xi-\zeta(1-e^{-2\xi})}
+						\right]
+						\wh f(\xi)
+					\, \mathrm{d}\xi \\
+			&= f + \zeta(G_\star^+ - G_\star^-)*f(x),
+	\end{align*}
+	as claimed. 
+\end{proof}
+
+
+\begin{lma}\label{lma:3.2_ie_extend}
+	Suppose that $(1+|\dotarg|^2 + \log_+(1/|\dotarg|)) f\in L^p(\mathbb R)$ for $1< p < \infty$. 
+	The function $G_L* f$ has a weak derivative in $L^\infty + L^p$ and the identity 
+\end{lma}
+
+\subsection{Differential Equation to Integral Equation}
+
+
+\subsection{Formal Computation of IE $\to$ DE}
+\begin{align}\label{eqn:3.02-SpecProb}
+	\frac{1}{i} \frac{\partial}{\partial x} \Psi^+ - \zeta (\Psi^+ - \Psi^-) = u \Psi^+
+\end{align}
+
+{\color{red}Formal} justification $\ldots$
+
+Let $f:=uM_1^+$
+\begin{align*}
+	\frac{1}{i} \frac{\partial}{\partial x} (G_L^+ * f)(x)
+		&= \frac{\partial}{\partial x} \frac{1}{2\pi}
+			\mathop{\int}_{\mathbb R} 
+				\mathop{\int}_{{\Gamma_L}} 
+					\frac{e^{i \xi(x-x')}}{\xi-\zeta(1-e^{-2\xi})} f(x')
+				\, \mathrm{d}\xi
+			\, \mathrm{d}x' \\
+		&= \frac{1}{2\pi}
+			\mathop{\int}_{\mathbb R} 
+				\mathop{\int}_{{\Gamma_L}} 
+					\xi \frac{e^{i \xi(x-x')}}{\xi-\zeta(1-e^{-2\xi})} f(x')
+				\, \mathrm{d}\xi
+			\, \mathrm{d}x \qquad (\text{\color{red}Not valid})\\
+		&= \frac{1}{2\pi}
+			\mathop{\int}_{{\Gamma_L}} 
+				\mathop{\int}_{\mathbb R} 
+					\xi \frac{e^{i \xi(x-x')}}{\xi-\zeta(1-e^{-2\xi})} f(x')
+				\, \mathrm{d}x'
+			\, \mathrm{d}\xi \qquad (\text{\color{red}Fubini/Tonelli})\\
+		&= \mathop{\int}_{{\Gamma_L}} 
+				\left[
+					\frac{\xi}{\xi-\zeta(1-e^{-2\xi})}
+					\left(
+						\frac{1}{2\pi}
+						\mathop{\int}_{\mathbb R} 
+							f(x')e^{i\xi(x-x')}
+						\, \mathrm{d}x'
+					\right)
+				\right]
+			\, \mathrm{d}\xi \\
+		&= \mathop{\int}_{{\Gamma_L}} 
+				\left[
+					\frac{\xi}{\xi-\zeta(1-e^{-2\xi})}
+					e^{i\xi x}
+					\left(
+						\frac{1}{2\pi}
+						\mathop{\int}_{\mathbb R} 
+							f(x')e^{-i\xi x'}
+						\, \mathrm{d}x'
+					\right)
+				\right]
+			\, \mathrm{d}\xi \\
+		&= \mathop{\int}_{{\Gamma_L}} 
+				\left[
+					\frac{\xi}{\xi-\zeta(1-e^{-2\xi})}
+				\right]
+				e^{i\xi x} \hat f(\xi)
+			\, \mathrm{d}\xi \\
+\end{align*}
+
+Partial fracion decomposition on $\displaystyle \frac{\xi}{\xi-\zeta(1-e^{-2\xi})}$:
+\begin{align*}
+	\frac{\xi}{\xi-\zeta(1-e^{-2\xi})}
+		= \frac{\xi - \zeta(1-e^{-2\xi})}{\xi-\zeta(1-e^{-2\xi})} 
+			+ \frac{\zeta(1-e^{-2\xi})}{\xi-\zeta(1-e^{-2\xi})} 
+		= 1 + \frac{\zeta(1-e^{-2\xi})}{\xi-\zeta(1-e^{-2\xi})}
+\end{align*}
+
+Hence, 
+\begin{align*}
+	\frac{1}{i} \frac{\partial}{\partial x} (G_L^+ * f)(x)
+		&=\mathop{\int}_{{\Gamma_L}} 
+				\left[
+					\frac{\xi}{\xi-\zeta(1-e^{-2\xi})}
+				\right]
+				e^{i\xi x} \hat f(\xi)
+			\, \mathrm{d}\xi \\
+		&=\mathop{\int}_{{\Gamma_L}} 
+				\left[
+					1 + \frac{\zeta(1-e^{-2\xi})}{\xi-\zeta(1-e^{-2\xi})}
+				\right]
+				e^{i\xi x} \hat f(\xi)
+			\, \mathrm{d}\xi \\
+		&=f(x) +
+			\zeta 
+			\mathop{\int}_{{\Gamma_L}} 
+				\frac{\zeta(1-e^{-2\xi})}{\xi-\zeta(1-e^{-2\xi})} e^{i\xi x} \hat f(\xi)
+			\, \mathrm{d}\xi \\
+		&= f(x) + 
+			\frac{\zeta}{2\pi}
+			\left[
+				\mathop{\int}_{\mathbb R}
+					\mathop{\int}_{{\Gamma_L}} 
+						\frac{e^{i\xi(x-x')}}{\xi-\zeta(1-e^{-2\xi})} f(x') 
+					\, \mathrm{d}\xi
+				\, \mathrm{d}x' \right.\\
+		&\qquad -
+				\left.
+				\mathop{\int}_{\mathbb R}
+					\mathop{\int}_{{\Gamma_L}} 
+						\frac{e^{i\xi(x-x')}e^{-2\xi}}{\xi-\zeta(1-e^{-2\xi})} f(x') 
+					\, \mathrm{d}\xi
+				\, \mathrm{d}x'
+			\right] \qquad (\text{\color{red} Fubini/Tonelli})\\
+		&= f(x) + \zeta[G_L^+*f(x)-G_L^-*f(x)] \\
+		&= uM_1^+ + \zeta(M_1^+ - M_1^1)
+\end{align*}
+
+Since there doesn't appear to be a way to justify the step above marked as 
+({\color{red}Not valid}) using DCT, we may need to resort to proving that 
+the $M_?$ and $N_?$ integral solutions are weak solutions to the 
+linear spectral problem. Doing so means showing that the weak derivative of 
+$G_L^+$ (taken as a convolution operator) is
+\[
+	i \big[\zeta(G_L^+ - G_L^-) + \delta_0],
+\]
+where $\delta_0$ denotes the Diract delta function. 
+
+\subsection{Differential Equation to Integral Equation}
+
+\begin{lma}
+	For $f \in ??$ the limit $\lim_{x\to-\infty} G_L^-*f(x) = 0$ holds.
+\end{lma}
+\begin{proof}
+	By definition,
+	\[
+		G_L^-* f(x) = \lim_{y\nearrow 2} \big(G_L^+(\dotarg+iy)*f\big)(x).
+	\]
+	Recall from \eqref{eq:ILW.(Gz*f)} that $G_L*f$ can be written as 
+	\[
+		G_L*f(x + iy) 
+			= \big(G_L^+(\dotarg+iy)*f\big)(x) 
+			= \text{Good stuff} - \mc E_\varepsilon f(x),
+	\]
+	where $\varepsilon = 2 - y$. Moreover, since
+	\[
+		\lim_{\varepsilon \searrow 0} \mc E_{\varepsilon}f(x)
+			= \lim_{\varepsilon\searrow0} E_{\varepsilon}f(x)
+			= Ef(x)-\frac{1}{2}f(x),
+	\]
+	by Lemma \ref{lma:ImElim}, Lemma \ref{lma:ptwise-Lim}, and Theorem ??, 
+	to show that $\lim_{x\to-\infty} G_L^-*f(x)=0$, it suffices to show
+	$\lim_{x\to-\infty} Ef(x) = 0$. Since $E$ is a tempered distribution
+	(Lemma \ref{lma:FMultE }), $Ef \in L^2(\mathbb R)$ whenever $f$ is 
+	Schwarz class. As such, if $f\in \mc S$, then $\lim_{x\to-\infty}Ef(x)=0$.
+	At this point, all that remains to do is use the fact that $E:L^p \to L^p$
+	is bounded to prove a density argument. 
+\end{proof}
+
+
+\end{document}

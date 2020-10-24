@@ -1,0 +1,506 @@
+%%=======================================
+%% Section 1.05: Singularity near $x = 0$
+%%=======================================
+\documentclass[../dissertation.tex]{subfiles}
+\def\rest{\text{rest}}
+
+\begin{document}
+
+\section{Green's Function Singularity near $x=0$} \label{sec1:KSingularity}
+As we continue our analysis of $K^+$, recall that our ultimate goal for this 
+section is to finish the proof of Theorem \ref{thm1:krep}. To determine the 
+properties of $G_\star^+$ ($\star = L \text{, or }R$) near $x$, it suf{}fices 
+to analyze the integrability of $K^+$ for small $|x|$. The discussion that 
+follows within this section is based on the unpublished notes of Prof. 
+Allen Wu. 
+
+We take without
+loss of generality $0 < x < 1$ and consider the integral 
+\[
+	K_\zeta(x) 
+		:= \int_{\mathbb R} 
+				\frac{e^{ix \xi}}{\xi - \zeta\left(1-e^{-2\xi}\right)+i\pi}
+			\, \mathrm{d}\xi
+\]
+for the three cases $0< \zeta < \zeta_0$, $\zeta_0 \leq  \zeta \leq \zeta_1$ and 
+$\zeta > \zeta_1$, where $\zeta_0> 1$ is chosen suf{}ficiently small, and 
+$\zeta_1 \gg 1$ is chosen suf{}ficiently large. In each of these three cases, we perform
+a dyadic decomposition on $K_\zeta(x)$ so that
+\begin{align}
+	K_\zeta(x) = \sum_q K_q(x),
+\end{align}
+where 
+\[
+	K_q(x) 
+		:= \int_{\mathbb R} 
+				\frac{e^{ix\xi} \chi\left( 2^{-q} x \xi\right)}
+					{\xi - \zeta\left(1-e^{-2\xi}\right)+i\pi}
+			\, \mathrm{d}\xi.
+\]
+and $\chi$ is an even, smooth function with compact support near $|\xi| =1$ so that
+$\displaystyle \sum_q \chi(2^{-q} \xi) = 1$ for $\xi \ne 0$.
+
+The main result of our analyses is summarized in Theorem \ref{thm:1.04-smallx}. Though, 
+the three major cases in the proof of Theorem \ref{thm:1.04-smallx} are shown in the 
+proofs of Lemmas \ref{lma:1.04-smallz} through \ref{lma:1.04-largez}.
+
+
+\begin{thm}%[Main summarizing result]
+	\label{thm:1.04-smallx}
+	Suppose $|x| < 1$. Then 
+	\begin{align} \label{eq:1.04-Kbnd}
+		\left| K_\zeta(x) \right| \leq C + C \big|\log |x| \big|
+	\end{align}
+	for all $\zeta > 0$. 
+\end{thm}
+\begin{proof}
+	Since analogous results to Lemmas \ref{lma:1.04-smallz} through \ref{lma:1.04-medz}
+	also hold for $-1< x < 0$, Theorem \ref{thm:1.04-smallx} is an immediate consequence
+	of these three lemmas.
+\end{proof}
+
+\begin{lma}%[Small $\zeta$ result]
+	\label{lma:1.04-smallz}
+	For $\zeta_0 := \zeta(\lambda_0)$ and $\lambda_0$ chosen suf{}ficiently small that
+	\[
+		1 - \frac{\lambda}{\lambda+1}\frac{e^{-2}e^{-2\lambda}-1}{e^{-2\lambda}-1} 
+			> \frac{1}{2}
+	\]
+	and
+	\[
+		1 - \frac{\lambda}{\lambda - 1} \frac{e^2 e^{-2\lambda} -1}{e^{-2\lambda}-1}
+			<-1
+	\]
+	whenever $\lambda < \lambda_0$, the bound \eqref{eq:1.04-Kbnd} holds
+	for all $0 < \zeta < \zeta_0$ and $0 < x < 1$. 
+\end{lma}
+\begin{proof}
+	Notice that $\chi\left( 2^{-q} x \xi\right)$ is non-zero only for 
+	$\left|2^{-q} x \xi\right| \approx 1$. Thus, for $2^{-q} x \xi \in \supp \chi$,
+	$|\xi| \approx 2^{q}/x$. For a given $\zeta = \zeta(\lambda)$ and $x$, there are at most
+	five values of $q$ for which 
+	\[
+		\frac{1}{2} < \frac{|\xi|}{|\lambda|} < 2 
+		\qquad \text{and} \qquad |\xi| \approx \frac{2^{q}}{x}
+	\]
+	We first estimate $K_q$ for these values of $q$ as follows. 
+
+	Observe that $\displaystyle \frac{1-e^{-2\xi}}{\xi}$ is a positive, decreasing function.
+	If $\xi > \lambda +1$, then
+	\[
+		\frac{\xi - \zeta\left(1-e^{-2\xi}\right)}{\xi}
+			= 1 - \frac{\lambda}{\xi} \frac{1 - e^{-2\xi}}{1- e^{-2\lambda}} 
+			> 1 - \frac{\lambda}{\lambda+1}\frac{e^{-2}e^{-2\lambda}-1}{e^{-2\lambda}-1} 
+			> \frac{1}{2}.
+	\]
+	It follows that 
+	\begin{align} \label{eq:1.04-smallz-1}
+		\left| \xi - \zeta\left(1 - e^{-2\xi}\right) \right| > \frac{1}{2}|\xi|
+	\end{align}
+	when $\xi > \lambda +1$. 
+
+	On the other hand, if $\xi < \lambda -1$, 
+	\begin{align} \label{eq:1.04-smallz-2}
+		\frac{\xi - \zeta\left(1-e^{-2\xi}\right)}{\xi}
+			= 1 - \frac{\lambda}{\xi} \frac{1 - e^{-2\xi}}{1- e^{-2\lambda}} 
+			< 1 - \frac{\lambda}{\lambda - 1} \frac{e^2 e^{-2\lambda} -1}{e^{-2\lambda}-1}
+			<-1.
+	\end{align}
+	
+	Thus, it follows from \eqref{eq:1.04-smallz-1} and \eqref{eq:1.04-smallz-2} that
+	\[
+		\left| \xi - \zeta\left(1 - e^{-2\xi}\right) \right| > \frac{1}{2}|\xi|
+	\]
+	when $|\xi - \lambda| > 1$. Thus
+	\begin{align}
+		\left| K_q(x) \right|
+			\leq C + C 
+				\int_{|\xi - \lambda| > 1} 
+					\frac{\chi(2^{-q} x \xi)}{|\xi| + \pi} 
+				\, \mathrm{d}\xi
+			\leq C + C 
+				\int_{\mathbb R} 
+					\frac{\chi(2^{-q} x \xi)}{|\xi| + \pi}
+				\, \mathrm{d}\xi
+			\leq C.
+	\end{align}
+
+	For the remainder of this proof, we assume $\displaystyle |\xi| < \frac{1}{2} |\lambda|$, 
+	or $|\xi| > 2 |\lambda|$. In particular, we have $|\xi - \lambda| > 1$ and
+	$\displaystyle \left|\xi - \zeta\left(1 - e^{-2\xi}\right)\right| > \frac{1}{2}|\xi|$.
+
+	Next, we focus all all those $q$'s satisfying $2^{q} \lesssim x$. For such $q$'s,
+	\begin{align}
+		\left| K_q(x) \right| 
+			\leq \int_{\mathbb R} \frac{\chi\left(2^{-q} x \xi\right)}{\pi} \, \mathrm{d}\xi
+			\leq C 2^q x.
+	\end{align}
+	The sum of these terms are bounded by 
+	\[
+		\sum_{2^q \leq x} C 2^q / x \leq C.
+	\]
+
+	We now focus on all those $q$'s satisfying $x \lesssim 2^q \lesssim 1$. For such $q$'s,
+	\begin{align}
+		\left| K_q(x) \right| 
+			\leq C \int_{\mathbb R} \frac{\chi\left(2^{-q} x \xi\right)}{|\xi|} \, \mathrm{d}\xi
+			\leq C.
+	\end{align}
+	The sum of these terms gives 
+	\begin{align}
+		C \sum_{x \lesssim 2^q \lesssim 1} 1 
+			\leq C |\log x|.
+	\end{align}
+
+	Lastly, we consider the $K_q$ terms for which $q \gtrsim 1$. For these values of $q$, 
+	we integrate by parts and ignore a factor of $i$ to get
+	\begin{align*}
+		K_q(x)
+			&= K_{1q}(x) + K_{2q}(x) \\
+			&= 2^{-q} 
+				\int_{\mathbb R} 
+					\frac{e^{i x \xi}}{\xi - \zeta(1 - e^{-2\xi}) + i\pi} \chi'(2^{-q}x\xi)
+				\, \mathrm{d}\xi \\
+			&\quad +
+				\int_{\mathbb R}
+					\frac{1}{x} e^{ix\xi} \chi\left(2^{-q} x \xi\right)
+						\left[ \frac{1}{\xi - \zeta(1 - e^{-2\xi}) + i\pi} \right]'
+					\, \mathrm{d}\xi.
+	\end{align*}
+	Observe that
+	\begin{align}\label{eq:1.04-smallz-7}
+		|K_{1q}(x)|
+			\leq C 2^{-q} \int_{\mathbb R} \frac{|\chi'(2^{-q}x\xi)|}{|\xi|} \, \mathrm{d}\xi
+			\leq 2 2^{-q}.
+	\end{align}
+
+	We can compute $K_{2p}$ and write it as
+	\begin{align}\label{eq:1.04-smallz-8}
+		2^{-q} 
+		\int_{\mathbb R} 
+			\chi\left( 2^{-q} x \xi \right)
+			\frac{1}{\left[\xi - \zeta\left(1-e^{-2\xi}\right) + i \pi \right]^2}
+			\frac{1}{x}
+		\, \mathrm{d}\xi
+	\end{align}
+	Using the condition $2^{-q} x |\xi| \approx 1$ whenever $2^{-q} x \xi \in \supp \chi$, 
+	we bound \eqref{eq:1.04-smallz-8} by 
+	\begin{align}\label{eq:1.04-smallz-9}
+		2^{-q} 
+		\int_{\mathbb R} \chi\left( 2^{-q} x \xi \right) 
+			\left|
+				\frac{\xi(1 - 2 \zeta e^{-2\xi})} {\left[\xi - \zeta\left(1-e^{-2\xi}\right) + i \pi \right]^2}
+			\right|
+		\, \mathrm{d}\xi
+	\end{align}
+	Let us first assume $\displaystyle |\xi| < \frac{1}{2}|\lambda|$. In this case, we obviously have 
+	$|\xi - \lambda| > 1$ and 
+	$\displaystyle \left| \xi - \zeta\left(1-e^{-2\xi}\right) \right| \geq \frac{1}{2}$. 
+	Furthermore, we claim that $\left|\zeta e^{-2\xi}\right| \leq C$. In fact, for 
+	$s = \xi - \lambda/2 > 0$, we have
+	\begin{align*}
+		\left| \zeta e^{-2\xi} \right|
+			&\leq C + \left| \zeta\left(1 - e^{-2\xi}\right) \right|
+			&\leq C 
+				\left| 
+					\frac{\lambda}
+						{1-e^{-2\lambda}}\left(1 - e^{-2(\lambda/2+s}\right) 
+				\right|
+			&\leq C + C\left|\lambda e^{\lambda} e^{-2s}\right|
+			\leq C.
+	\end{align*}
+
+	Since $\lambda < \lambda_0$ is suf{}ficiently negative, \eqref{eq:1.04-smallz-9}
+	is bounded by 
+	\begin{align}\label{eq:1.04-smallz-10}
+		C 2^{-q} 
+		\int_{\mathbb R} 
+			\chi\left(2^{-q} x \xi\right) \left|\frac{\xi}{\xi^2}\right| 
+		\,d\xi
+		\leq 2^{-q}.
+	\end{align}
+
+	Finally, we assume $|\xi| > 2 |\lambda|$. The part of $\xi$ that is positive is obviously
+	bounded by $C2^{-q}$. We focus on the part of $\xi$ such that $\xi < 2 \lambda$. Since for 
+	this part $\xi - \lambda < -1$, with the similar estimates above, we claim that
+	\begin{align}
+		-\zeta (1 - e^{-2\xi}) > -2 \xi.
+	\end{align}
+	We further claim that 
+	\begin{align*}
+		\left| \frac{\xi}{\zeta(1-e^{-2\xi})} \right|
+			\leq \frac{C}{|\xi|}.
+	\end{align*}
+	In fact, for $s = 2 \lambda - \xi > 0$, we have
+	\begin{align*}
+		\left| \frac{\xi}{\zeta(1-e^{-2\xi})} \right|
+			&\leq \left| 
+					\frac{1-e^{-2\lambda}}{\lambda}
+					\frac{(2\lambda-s)^2}{1 - e^{-2(2\lambda-s)}}
+				\right| \\
+			&\leq C \left|
+					e^{2\lambda} e^{-2s} \left( 4\lambda - 4s + \frac{s^2}{\lambda} \right)
+				\right| \\
+			&\leq C.
+	\end{align*}
+	Again, remembering that $\lambda < \lambda_0$ is suf{}ficiently negative, 
+	with the estimates
+	above we see that \eqref{eq:1.04-smallz-9} is bounded by 
+	\begin{align*}
+		C 2^{-q} 
+		\int_{\mathbb R} 
+			\chi\left( 2^{-q} x \xi \right) 
+			\frac{|\xi\left(1-2\zeta e^{-2\xi}\right)}{\left|\zeta\left(1-e^{-2\xi}\right)\right|^2}
+		\, \mathrm{d}\xi
+			&\leq C 2^{-q} 
+				\int_{\mathbb R} 
+					\chi\left( 2^{-q} x \xi \right) \frac{1}{|\xi|} 
+				\, \mathrm{d}\xi \\
+			&\leq C 2^{-q}.
+	\end{align*}
+	In summary, we have $|K_q(x)| \leq C 2^{-q}$ for $2^{q} \gtrsim 1$ whose
+	the sum gives $\displaystyle \sum_{2^q \gtrsim 1} C 2^{-q}$. Combining
+	all the above estimates, we get the desired result.
+\end{proof}
+
+
+
+\begin{lma}%[Large $\zeta$ result]
+	\label{lma:1.04-largez}
+	Let $\xi_0 > 1$ be suf{}ficiently large that
+	\[
+		\frac{1}{2} 
+			< \frac{1-e^{-2\xi}-2 \xi e^{-2\xi}}{\left(1-e^{-2\xi}\right)^2} 
+			< 2
+	\]
+	for $\xi > \xi_0$ and let $\l_1 > \xi_0$. Then, the estimate
+	\eqref{eq:1.04-Kbnd} holds for all for all $0 < x < 1$ and 
+	$\zeta > \zeta_1 := \zeta(\lambda_1)$.
+\end{lma}
+\begin{proof}
+	By the mean value theorem,
+	\begin{align}\label{eq:1.04-14}
+		\frac{\xi}{1-e^{-2\xi}} - \frac{\lambda}{1-e^{-2\lambda}}
+			= \left. 
+					\frac{1- e^{-2\xi} - 2 \xi e^{-2\xi}}{\big(1-e^{-2\xi}\big)^2}
+				\right|_{\xi = \theta}.
+	\end{align}
+	Here $\theta$ is between $\xi$ and $\lambda$. Let $\chi_{\xi_0+}(\xi)$ be a smooth
+	cutof{}f function that is 1 for $\xi > \xi_0 +1$ and 0 for $\xi \leq \xi_0$, with 
+	gradient bounded by 2. We write
+	\begin{align*}
+		K_{\zeta}(x)
+			&= K_{1\zeta}(x) + K_{2\zeta}(x) \\
+			&:= \int_{\mathbb R}
+					\frac{e^{ix\xi}\big(1 - \xi_{\xi_0+}(\xi) \big)}
+						{\xi - \zeta\big( 1 - e^{-2\xi} \big) + i\pi}
+				\, \mathrm{d}\xi
+				+
+				\int_{\mathbb R}
+					\frac{e^{ix\xi}\big(\xi_{\xi_0+}(\xi)}
+						{\xi - \zeta\big( 1 - e^{-2\xi} \big) + i\pi}
+				\, \mathrm{d}\xi
+	\end{align*}
+	Take some $\lambda_1 > \xi_0$ and estimate $K_{1\zeta}$ by 
+	\begin{align*}
+		|K_{1\zeta}(\xi)|
+			&\leq C + 
+				\int_{-\infty}^{-1} 
+					\frac{1}{\big(e^{-2\xi}-1\big)\left(\zeta-\frac{\xi}{1-e^{-2\xi}}\right)}
+				\, \mathrm{d}\xi \\
+			&\leq C + 
+				\frac{1}{\zeta(\lambda_1) - \zeta(-1)}
+				\int_{-\infty}^{-1} 
+					\frac{1}{e^{-2\xi}-1}
+				\, \mathrm{d}\xi.
+	\end{align*}
+	To estimate $K_{2\zeta}$, we take a dyadic decomposition
+	\begin{align*}
+		K_{1\zeta}(\xi)
+			= \sum_q K_q(x) 
+			= \sum_q 
+				\int_{\mathbb R}
+					\frac{e^{ix\xi}\chi_{\xi_0+}(\xi)}
+						{\xi -\zeta\big(1-e^{-2\xi}\big)+i\pi}
+					\chi\big(e^{-q} x (\xi - \lambda)\big)
+				\, \mathrm{d}\xi.
+	\end{align*}
+	for $2^q \gtrsim x$, $|K_q(x)| \leq C2^q/x$. These terms sum to $C$. For 
+	$x \lesssim 2^q \lesssim 1$, we notice that since $\xi, \lambda \geq \xi_0$,
+	\begin{align*}
+		\left| \xi - \zeta\big(1-e^{-2\xi}\big) \right|
+			= 
+				\left| 
+					\big(1-e^{-2\xi}\big) 
+					\left( 
+						\frac{\xi}{1-e^{-2\xi}} - \frac{\lambda}{1-e^{-2\lambda}}
+					\right)  
+				\right|
+			\approx \big|\xi-\lambda\big|.
+	\end{align*}
+	Thus 
+	\begin{align*}
+		|K_q(x)| 
+			\leq C\int_{\mathbb R}
+					\frac{1}{|\xi - \lambda|}
+					\chi\big(2^{-q} x(\xi - \lambda)\big)
+				\, \mathrm{d}\xi
+			\leq C,
+	\end{align*}
+	which implies 
+	\[
+		\sum_{x \lesssim 2^q \lesssim 1} |K_q(x)| \leq C |\log x|.
+	\]
+	For $2^q \gtrsim 1$, we integrate $K_p$ by parts to obtain
+	\begin{align}
+		&\int_{\mathbb R} 
+			e^{ix\xi}
+			\frac{\chi\big(2^{-q} x( \xi - \lambda) \big)}
+				{\xi-\zeta\big(1-e^{-2\xi}\big)+i \pi}
+			\frac{\chi_{\xi_0+}(\xi)'}{x} \, \mathrm{d}\xi
+		\,d\xi \label{eq: Gp part 1}\\
+		&\quad + 2^{-q}
+			\int_{\mathbb R} 
+				\frac{e^{ix\xi}\chi_{\xi_0+}}
+					{\xi-\zeta\big(1-e^{-2\xi}\big)+i \pi}
+				\frac{\chi_{\xi_0+}'(\xi)}{x} \, \mathrm{d}\xi 
+				\chi'\big( 2^{-q} x(\xi - \lambda) \big)
+			\, \mathrm{d}\xi \label{eq: Gp part 2} \\
+		&\quad - \int_{\mathbb R}
+				e^{ix\xi} \chi_{\xi_0+}(\xi)
+				\frac{1-2\zeta e^{-2\xi}}
+					{\big(\xi-\zeta\big(1-e^{-2\xi}\big)+i\pi\big)^2}
+				\frac{\chi\big(2^{-q} x(\xi - \lambda))} {x}
+			\, \mathrm{d}\xi \label{eq: Gp part 3}
+	\end{align}
+
+	Noticing the condition $\frac1x\approx 2^{-q}|\xi-\lambda|$, \eqref{eq: Gp part 1} 
+	is bounded by
+	\begin{align*}
+		C2^{-q}
+		\int_{\mathbb R} 
+			\frac{|\xi-\lambda|}{|\xi-\lambda|}|\chi'_{\xi_0+}(\xi)|
+		\,d\xi
+		\le C2^{-q}.		
+	\end{align*}
+	\eqref{eq: Gp part 2} is bounded by
+	\begin{align*}
+		C2^{-q}
+		\int_{\mathbb R} 
+			\frac{|\chi'(2^{-q}x(\xi-\lambda))|}{|\xi-\lambda|}
+		\, \mathrm{d}\xi
+		\le C2^{-q}.	
+	\end{align*}
+	\eqref{eq: Gp part 3} is bounded by
+	\begin{align}
+		&C2^{-q}
+			\int_{\mathbb R} 
+				\chi_{\xi_0+}(\xi)
+				\frac{|1-2\zeta e^{-2\xi}|}{|\xi-\lambda|}\chi(2^{-q}x(\xi-\lambda))
+			\, \mathrm{d}\xi 
+			\notag\\
+	 	&\qquad\le C2^{-q}
+	 		\int_{\mathbb R} 
+	 			\frac{\chi(2^{-q}x(\xi-\lambda))}{|\xi-\lambda|}
+	 		\, \mathrm{d}\xi 
+	 		+ C2^{-q}
+	 		\int_0^\infty
+	 			\frac{\lambda e^{-2\lambda} e^{-2(\xi-\lambda)}}
+	 				{|\xi-\lambda|}
+	 			\chi(2^{-q}x(\xi-\lambda))
+	 		\, \mathrm{d}\xi
+	 		\notag\\
+		&\qquad\le 
+			C2^{-q}
+			+C2^{-q} \lambda e^{-2\lambda}
+			\int_{-2^{-q}x\lambda}^\infty 
+				\frac{e^{-\xi 2^{q+1}/x}}{|\xi|}\chi(\xi)
+			\, \mathrm{d}\xi
+			\notag\\
+		&\qquad\le 
+			C2^{-q}
+			+C2^{-q}\lambda e^{-2\lambda}
+			\int_{-2^{-q}x\lambda}^0\
+				\frac{e^{-\xi 2^{q+1}/x}}{|\xi|}\chi(\xi)
+			\, \mathrm{d}\xi
+			\label{eq: Gp 4}
+	\end{align}
+	Let's say $\chi$ is supported between $\frac12$ and $2$, then the integral in 
+	\eqref{eq: Gp 4} is nonzero only when $2^{-q}x\lambda \ge \frac12$. If 
+	$\frac12\le 2^{-q}x\lambda\le 2$, the integral in \eqref{eq: Gp 4} is bounded by
+	\begin{align*}
+		C 
+		\int_{-2^{-q}x\lambda}^0 
+			e^{-\xi 2^{q+1}/x}\,
+		d\xi
+		\le 
+		C2^{-(q+1)}xe^{2\lambda}.	
+	\end{align*}
+	Thus \eqref{eq: Gp 4} is bounded by
+	\begin{align*}
+		C2^{-q}+C2^{-q}\lambda 2^{-(q+1)}x\le C2^{-q}.	
+	\end{align*}
+	If $2^{-q}x\lambda \ge 2$, the integral in \eqref{eq: Gp 4} is bounded by
+	\begin{align*}
+		C\int_{-2}^0 e^{-\xi 2^{q+1}/x}~d\xi\le C2^{-(q+1)}x e^{2\dotarg 2^{q+1}/x}.
+	\end{align*}
+	Thus \eqref{eq: Gp 4} is bounded by
+	\begin{align*}
+		C2^{-q}
+		+C2^{-q} 
+			\frac{\lambda e^{-2\lambda}}
+				{(2^{q+1}/x)e^{-2\dotarg 2^{q+1}/x}}
+		\le C2^{-q}.		
+	\end{align*}
+	The last step above follows from the condition $2^{q+1}/x\le \lambda$, and the fact 
+	that $\lambda e^{-2\lambda}$ is decreasing for $\lambda>\frac12$.
+
+	Therefore, the sum $\displaystyle \sum_{2^q\gtrsim 1}|K_q(x)|\le C$. As a consequence, 
+	\[
+		\left|K_\zeta(x)\right|
+			\le C+C|\log x|
+	\] 
+	for all $\zeta>\zeta_1$, and $0<x<1$.
+\end{proof}
+
+
+\begin{lma}%[Medium $\zeta$ result]
+	\label{lma:1.04-medz}
+	Inequality \eqref{eq:1.04-Kbnd} holds for every $\zeta$ between 
+	$\zeta_0$ and $\zeta_1$, where $\zeta_0$ and $\zeta_1$ are as respectively
+	defined in the statements of Lemmas \ref{lma:1.04-smallz} and \ref{lma:1.04-largez}.
+\end{lma}
+\begin{proof}
+	Now that we have the uniform estimates on $G_\zeta$ for 
+	$\zeta < \zeta_0 = \zeta(\lambda_0)$ and $\zeta > \zeta_1 = \zeta(\lambda_1)$, 
+	we can fill the gap $\zeta_0 < \zeta < \zeta_1$. We take the dyadic sum
+	\begin{align}
+		\sum_q K_q(x) 
+			= \sum_q 
+				\int_{\mathbb R} 
+					\frac{
+						e^{ix\xi}\chi\left(2^{-q}x\xi\right)
+						\big(1-\chi_{\lambda_0 \lambda_1}(\xi)\big)
+					}
+					{\xi - \zeta\left(1-e^{-2\xi}\right) + i \pi}
+				\, \mathrm{d}\xi.
+	\end{align}
+	Notice we have cut of{}f a piece from $\lambda_0-1$ to $2\zeta_1$ by the 
+	cutof{}f function 
+	$\chi_{\lambda_0\lambda_1}(\xi)$. Of course, the piece that's cut of{}f is uniformly 
+	bounded. Observe that for $\xi<\lambda_0-1$ and $\zeta>\zeta_0$, 
+	\begin{align*}
+		\left|\xi-\zeta\left(1-e^{-2\xi}\right)\right|
+			= \left|\left(1-e^{-2\xi}\right)\big(\zeta(\xi)-\zeta\big)\right|
+			\ge Ce^{-2\xi},
+	\end{align*}
+	while for $\xi>2\zeta_1$ and $\zeta<\zeta_1$,
+	\begin{align*}
+		\big|\xi-\zeta\big(1-e^{-2\xi}\big)\big| 
+			\approx |\xi|, \quad 2\zeta e^{-2\xi}<\frac12.
+	\end{align*}
+	A similar argument as above gives the uniform estimates.
+\end{proof}
+
+
+\end{document}

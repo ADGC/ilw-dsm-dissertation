@@ -1,0 +1,303 @@
+%%==============================================
+%% Section 3.01: Analytic Extension to the Strip
+%%==============================================
+
+\documentclass[../dissertation.tex]{subfiles}
+
+
+\begin{document}
+\section{Analytic Extension to the Strip}\label{sec3:Analyticity}
+
+%%
+%% The following was taken directly (with a modification of the notation) 
+%% from from Prof. Perry's section of the kpw1.tex file
+%% 
+% We wish to show that $M_1^+$ is the lower boundary value of a function analytic in the 
+% strip $\{ z \in \CC ~:~ 0 < \im z < 2\}$ which satisfies the spectral problem 
+% \eqref{eq0:SpecProb}. For the moment we fix $\lambda$ and supress the $\lambda$ dependence of 
+% $M_1$ and $G_L$ for brevity. As a candidate for the analytic continuation we consider the 
+% function ($z=x+iy$)
+% \begin{equation}
+% 	\label{eq2:ILW.M.ac}
+% 	M_1(z) = 1 + \int_{-\infty}^\infty G_L(x-x'+iy) u(x') M_1(x') \, \mathrm{d}x'.
+% \end{equation}
+% for $0<y<2$. 
+A natural candidate for the analytic extension of $G_\star$ to the open strip 
+$\mathcal S_1 = \{ z \in \mathbb C ~:~ 0 < \im z < 2\}$ is
+\begin{equation}
+	\label{eq3:ILW.GFz}
+	G_\star(x+iy) 
+		:= \frac{1}{2\pi} 
+			\int_{\Gamma_\star} e^{ix\xi} 
+				\frac{e^{-y\xi}}{\xi - \zeta\left(1-e^{-2\xi}\right)} 
+			\, \mathrm{d}\xi,
+		\qquad (\star = L \text{, or } R)
+\end{equation}
+which is a convergent integral for $0<y<2$ owing to the new factor $e^{-y\xi}$. 
+A straightforward argument with the dominated convergence theorem shows that 
+$G_\star(z)$ is continuous on the open strip $\mathcal S_1$. It then follows from 
+Morera's theorem and \eqref{eq3:ILW.GFz} that $G_\star(z)$ is analytic in $z$.
+
+Next we consider convolution of $G_\star(\dotarg+iy)$ with $L^1$ functions. Since the integral 
+\eqref{eq3:ILW.GFz} is absolutely convergent for $y$ in compact subintervals of $(0,2)$, it 
+follows that for any $f \in L^1(\RR)$, $G_\star(\dotarg+iy)* f$  obeys the uniform
+in $\lambda$ bound 
+\[
+	\left\|G_\star(\dotarg+iy; \lambda)* f\right\|_{\inn{\dotarg}L^\infty} 
+		\lesssim_{\, y} \left\|f\right\|_{L^1}
+\] 
+where the implied constant has the same uniformity. Another application of Morera's 
+theorem shows that, for any $f \in C_0^\infty(\RR)$, the convolution $G_\star(\dotarg+iy)*f$ 
+defines an analytic function of $z$ in $\mathcal S_1$. Finally let 
+$f \in L^1(\mathbb R) \cap L^p(\mathbb R)$ for some 
+$p \in (1,2]$, and let $\{ f_n \}_{n \in \NN}$ be a sequence from $C_0^\infty(\mathbb R)$ 
+converging to $f$ in $L^1 \cap L^p$. Then $\left(G_\star(\dotarg+iy)*f_n\right)(x)$ converges 
+uniformly to $\left(G_\star(\dotarg+iy)*f\right)(x)$ on compact subsets of $\mathcal S_1$, 
+so $G_\star(\dotarg+iy)*f$ is also analytic in $\mathcal S_1$. 
+% This shows that $M(z)$ as defined by \eqref{eq2:ILW.M.ac} defines an 
+% analytic function on $S$. 
+
+It remains to show that $G_\star$ as a convolution operator has an upper boundary 
+value $G_\star^-$ and to obtain an ef{}fective formula for $G_\star^-$. Using the 
+``boxcar'' contour in Figure \ref{fig1:GammaContour} again we can compute
+\begin{subequations}
+	\label{eq3:ILW.GFz.rep}
+	\begin{align}
+		\label{eq3:ILW.GLz.rep}
+		G_L(x+ iy; \lambda)
+			&= 
+				K(x+iy; \lambda) 
+				+ i \big[
+						\alpha(\lambda) + \beta(\lambda) e^{i\lambda x}e^{-\lambda y} 
+					\big] \chi_L(x) \\
+			&= 
+				K(x+iy; \lambda) + \mathpzc R_L(x+iy; \lambda) 
+				\nonumber \\
+		G_R(x+ iy; \lambda)
+			&= 
+				K(x+iy; \lambda) 
+				- i \big[
+						\alpha(\lambda) + \beta(\lambda) e^{i\lambda x}e^{-\lambda y} 
+					\big] \chi_R(x) \\
+			&= 
+				K(x+iy; \lambda) - \mathpzc R_R(x+iy; \lambda) 
+				\nonumber
+	% G_L(x+iy; \lambda) =
+	% 	\begin{cases}
+	% 		-K(x+iy; \lambda),								
+	% 			&	x<0 \\
+	% 		i \left(
+	% 			\alpha(\lambda) + \beta(\lambda) e^{i\lam x}e^{-y\lam} 
+	% 		\right)
+	% 		- K(x+iy; \lambda), 
+	% 			& x>0	\\
+	% 	\end{cases}
+\end{align}
+\end{subequations}
+Here
+\begin{equation}
+	\label{eq3:ILW.K.z}
+	K(x + iy; \lambda) 
+				:= \frac{e^{-\pi|x|} \exp\big(- i \pi y \sign(x)  \big)}{2\pi} 
+					\int_{\mathbb R} e^{i x \xi} 
+						\frac{e^{-y\xi}}{p(\xi; \lambda) + i \pi \sign(x)}
+					\, \mathrm{d}\xi
+\end{equation}
+is defined by a convergent integral for $y \in (0,2)$, so that $K(x+iy)$ is actually 
+a bounded continuous function. We can now study boundary values for the convolution of 
+$G_L(\dotarg+iy)$ with a function on the line as $y \nearrow 2$.  Note that
+\[
+	K(x + iy; \lambda)
+		= \frac{1}{2 \pi} \int\limits_{\Sigma_{\sign(x)}} \frac{e^{i(x + iy) \xi}}{p(\xi)} \, \mathrm{d}\xi,
+\]
+where $\Sigma_{\sign(x)}$ is the contour defined at the beginning of Subsection \ref{sec1:AsympK},
+as 
+\[
+	i(x + iy)\big(\xi + i \pi \sign(x) \big)
+		= \big( i x \xi - y \xi\big) 
+			+ \big( -\pi x \sign(x) - i \pi y \sign(x) \big).
+\]
+
+%%
+%% End verbatum stealing from Prof. Perry's notes. 
+%% Begin partial thievery of Prof. Perry's notes.
+In our analysis of this limit, we first claim that for any $f \in L^1 \cap L^p$ 
+($1 < p \leq 2$), we can rewrite the convolutions $G_\star*f$ as 
+\begin{subequations}
+	\label{eq3:ILW.(GFz*f)}
+	\begin{align}
+		\label{eq3:ILW.(GLz*f)}
+		\big(G_L(\dotarg + iy)*f\big)(x) 
+			&= i\alpha(\lambda) \int_{-\infty}^x f(x') \, \mathrm{d}x' \\
+		    &\quad + i\beta(\lambda) \, e^{i\lam x}e^{-\lam y} 
+		    		\int_{-\infty}^x e^{-i\lam x'} f(x')\, \mathrm{d}x' 
+		    	\nonumber \\
+		    &\quad +\int_{\mathbb R} \mathfrak C(x-x',y) f(x') \, \mathrm{d}x' 
+				\nonumber \\
+			&\quad + \frac{e^{-i \pi y}}{2 \pi i} 
+				\int_{-\infty}^x e^{-\pi|x-x'|} \frac{1}{(x-x') - i(2-y)} f(x') \, \mathrm{d}x'
+				\nonumber  \\
+			&\quad + \frac{e^{i \pi y}}{2 \pi i} 
+				\int_x^{\infty} e^{-\pi|x-x'|} \frac{1}{(x-x') - i(2-y)} f(x') \, \mathrm{d}x'
+				\nonumber \\[0.5\baselineskip]
+		\label{eq3:ILW.(GLz*f)}
+		\big(G_R(\dotarg + iy)*f\big)(x) 
+			&= i\alpha(\lambda) \int_{-\infty}^x f(x') \, \mathrm{d}x' \\
+		    &\quad + i\beta(\lambda) \, e^{i\lam x}e^{-\lam y} 
+		    		\int_{-\infty}^x e^{-i\lam x'} f(x')\, \mathrm{d}x' 
+		    	\nonumber \\
+		    &\quad +\int_{\mathbb R} \mathfrak C(x-x',y) f(x') \, \mathrm{d}x' 
+				\nonumber \\
+			&\quad + \frac{e^{-i \pi y}}{2 \pi i} 
+				\int_{-\infty}^x e^{-\pi|x-x'|} \frac{1}{(x-x') - i(2-y)} f(x') \, \mathrm{d}x'
+				\nonumber  \\
+			&\quad + \frac{e^{i \pi y}}{2 \pi i} 
+				\int_x^{\infty} e^{-\pi|x-x'|} \frac{1}{(x-x') - i(2-y)} f(x') \, \mathrm{d}x'
+				\nonumber
+	\end{align}
+\end{subequations}
+where $\mathfrak C$ is as defined in equations \eqref{eq3:GFcont} and \eqref{eq0:smallR} above.
+Indeed, one can see directly from \eqref{eq3:ILW.GFz.rep} 
+\begin{align*}
+	\big(G_L(\dotarg + iy)*f\big)(x) 
+		&= \big(K(\dotarg + iy) * f\big)(x) + \mathpzc R_L(\dotarg + iy) * f \\
+	\big(G_R(\dotarg + iy)*f\big)(x) 
+		&= \big(K(\dotarg + iy) * f\big)(x) + \mathpzc R_R(\dotarg + iy) * f.
+\end{align*}
+Further, since 
+\begin{align*}
+	\big(K(\dotarg + iy) * f\big)(x)
+		&= 
+			\frac{e^{-i \pi y}}{2 \pi i} 
+				\int_{-\infty}^x 
+					\left(
+						e^{-\pi |x - x'|} 
+						\int_{\mathbb R}
+							e^{ix\xi} \frac{e^{-y\xi}}{p(\xi;\lambda) + i\pi}
+						\, \mathrm{d}\xi
+					\right)
+				f(x')
+				\, \mathrm{d}x' \\
+		&\quad+
+			\frac{e^{i \pi y}}{2 \pi i} 
+				\int_x^{\infty}
+					\left(
+						e^{-\pi |x - x'|} 
+						\int_{\mathbb R}
+							e^{ix\xi} \frac{e^{-y\xi}}{p(\xi;\lambda) - i\pi}
+						\, \mathrm{d}\xi
+					\right)
+				f(x')
+				\, \mathrm{d}x' \\
+\end{align*}
+the identity
+\begin{align}\label{eq3:RanId}
+	\frac{e^{-y \xi}}{p(\xi , \lambda) \pm i \pi} 
+		= \frac{1}{\zeta(\lambda)} e^{(2-y)\xi} \chi_{\mathbb R^-}(\xi) 
+			+ \rho \big(\xi, y, \pm 1; \lambda\big),
+\end{align}
+where $\chi_{\mathbb R^-}$ denotes the characteristic function of $(-\infty, 0)$, along with the
+Fourier identity
+\[
+	\int_{\mathbb R} 
+		e^{i x \xi} \frac{1}{\zeta(\lambda)} e^{(2-y)\xi} \chi_{\mathbb R^-}(\xi)
+	\, \mathrm{d}\xi
+	= 
+		\frac{1}{ix + (2-y)}
+\]
+imply equations \eqref{eq3:ILW.(GFz*f)} hold. 
+
+
+To verify identity \eqref{eq3:RanId} note that 
+\begin{align*}
+	\zeta 
+		&= \big(-\zeta + \zeta \, e^{-2\xi} + \zeta) e^{2\xi} \\
+		&= 
+			\big[
+				\xi - \zeta\big(1-e^{-2\xi}\big) 
+				\pm i \pi - \xi \mp i \pi 
+			\big]
+			e^{2\xi},
+\end{align*}
+which implies 
+\begin{align*}
+	&\frac{1}{\zeta} e^{(2-y)\xi} 
+			+ \frac{1}{\zeta}
+				\frac{
+					\big(\zeta - \xi \mp i\pi\big)e^{(2-y)\xi}
+				}
+				{\xi-\zeta(1-e^{2\xi}) \pm i \pi}  \\
+	&\qquad= 
+		\frac{1}{\zeta} 
+		\Big\{
+			\big[
+				\xi - \zeta\big(1-e^{-2\xi}\big) 
+				\pm i \pi - \xi \mp i \pi 
+			\big]
+			e^{2\xi}
+		\Big\}
+		\frac{e^{-y\xi}}{p(\xi; \lambda) \pm i \pi} \\
+	&\qquad= \frac{e^{-y\xi}}{p(\xi; \lambda) \pm i \pi},
+\end{align*}
+as claimed.
+
+
+By introducing the notation\label{sym:almostExpCauchy}
+\begin{align*}
+	\left( \mathcal E_\varepsilon f \right)(x) 
+		&:=  \frac{e^{-i \pi (2-\varepsilon)}}{2 \pi i} 
+			\int_{-\infty}^x 
+				\frac{e^{-\pi|x-x'|}}{(x-x') - i\varepsilon} f(x') 
+			\, \mathrm{d}x' \\
+		&\quad + \frac{e^{i \pi (2-\varepsilon)}}{2 \pi i} 
+			\int_x^{\infty} 
+				\frac{e^{-\pi|x-x'|} }{(x-x') - i\varepsilon} f(x') 
+			\, \mathrm{d}x',
+\end{align*}
+equation \eqref{eq3:ILW.(GFz*f)} can be rewritten more simply as 
+\begin{subequations}
+	\label{eq3:ILW.(Gz*f).simp}
+	\begin{align}
+		\label{eq3:ILW.(GLz*f).simp}
+		\big(G_L(\dotarg + iy)*f\big)(x) 
+			&= \big[\mathfrak C(\dotarg, y) + \mathpzc R_L(\dotarg+iy)\big] * f(x) 
+				+ \mathcal E_{(2-y)} f(x)
+			\\
+		\label{eq3:ILW.(GRz*f).simp}
+		\big(G_R(\dotarg + iy)*f\big)(x) 
+			&= \big[\mathfrak C(\dotarg, y) - \mathpzc R_R(\dotarg+iy) \big] * f(x) 
+				+ \mathcal E_{(2-y)} f(x)
+	\end{align}
+\end{subequations}
+Since the integrands of the residue terms
+\begin{align*}
+	\mathpzc R_L(\dotarg+iy)*f(x)
+		&= i\alpha \int_{-\infty}^x f(x') \, \mathrm{d}x' 
+		       + i\beta(\lambda) \, e^{\lambda(ix - y)}
+		    		\int_{-\infty}^x e^{-i\lam x'} f(x')\, \mathrm{d}x' \\
+	\mathpzc R_R(\dotarg+iy)*f(x)
+		&=  i\alpha \int_{-\infty}^x f(x') \, \mathrm{d}x' 
+		       + i\beta(\lambda) \, e^{\lambda(ix - y)}
+		    		\int_x^{\infty} e^{-i\lam x'} f(x')\, \mathrm{d}x' 
+\end{align*}
+in \eqref{eq3:ILW.(Gz*f).simp} do not involve $y$, they are certainly well behaved 
+under the limit $y \nearrow 2$. Further, the purpose of decomposing the convolution
+operator $G_L$ as shown in \eqref{eq3:ILW.(Gz*f).simp} is to isolate the singularity that 
+results under the limit $y \nearrow 2$. Indeed, a cursory inspection of the
+convolution operator $\mathfrak C$ leads one to believe that it is well behaved under 
+this limit, which 
+is something we discuss further in Section \ref{sec3:ContPart}.
+
+The $\mathcal E_{(2-y)} f(x)$ terms in \eqref{eq3:ILW.(Gz*f).simp} captures the singular 
+portion of $K$ under the $y\nearrow 2$ limit. Understanding the behavior of these terms 
+under this limit involves much more delicate analysis and is the subject of Sections 
+\ref{sec3:CauchyTrans} and \ref{sec3:BndE}. 
+
+\begin{rmk}
+	That $\mathpzc R_\star$ grows linearly for $\lambda = 0$ is the single reason
+	why we can only guarantee the limit \eqref{eq3:lim} converges as an $L^p$ limit 
+	for functions with sufficient decay (\textit{i.e.} $L^{p,1}$) and not for all
+	$L^p$ functions when $\lambda = 0$.
+\end{rmk}
+
+\end{document}

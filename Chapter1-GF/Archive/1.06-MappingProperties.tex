@@ -1,0 +1,81 @@
+%%==========================================
+%% Section 1.06: Mapping Properties of G_L^+
+%%==========================================
+\documentclass[../dissertation.tex]{subfiles}
+\def\rest{\text{rest}}
+
+\begin{document}
+
+\section{Mapping Properties of $G_L^+$ and $G_R^+$}\label{sec1:MappingProps}
+
+%%
+%% The following was taken directly (with a modification of the notation) 
+%% from from Prof. Perry's section of the kpw1.tex file
+%% 
+With Theorems \ref{thm1:GFRep} and \ref{thm1:krep}, we now have the necessary
+tools to turn our attention to proving the mapping property \eqref{eq1:introMappingProp}
+claimed in this chapter's introduction. From our previous work in Section 
+\ref{sec1:GreensFunctions}, we have
+\begin{align}
+	G_L^+(x; \lambda, \delta) 
+		= 
+			\begin{cases}
+				K^+(x; \lambda, \delta), & x < 0 \\
+				K^+(x; \lambda, \delta)
+				i \alpha(\lambda; \delta)  
+					+ i \beta(\lambda; \delta) e^{i \lambda \, x}, 
+					& x > 0
+			\end{cases}
+\end{align}
+where 
+\begin{align*}
+	K^+(x; \lambda, \delta) 
+			:= \frac{e^{-\pi |x|}}{2\pi} 
+				\int_{\mathbb R} e^{i x \xi} 
+					\frac{1}{p(\xi; \lambda, \delta) + i \pi \sign(x)}
+				\, \mathrm{d}\xi.
+\end{align*}
+Although the integral for $K^+$ is conditionally convergent, it avoids zeros of the symbol 
+$p$, and may be understood through the $L^q$ theory of the Fourier transform, since the 
+integrand belongs to $L^q$ for any $q>1$.  Moreover, if $K_h^+(x) = K^+(x+h)$, it follows 
+from the Hausdorff-Young inequality and dominated convergence that 
+$\lim_{h \to 0} \norm[L^{q'}]{K_h^+ - K^+} =0$ for any $q \in (1,2]$. As a consequence,
+the convolution
+\begin{align}
+	\label{ILW.GL*f}
+	G_L^+ * f(x,\lambda) 	
+		&=	\int_{\mathbb R} G_L^+(x-x',\lambda) f(x') \, \mathrm{d}x' 	\\
+		&=	i \alpha (\lambda) \int_{-\infty}^x f(x') \, \mathrm{d}x' 
+			+ i \beta(\lambda) e^{i\lam x} \int_{-\infty}^x f(x') \, \mathrm{d}x'
+			\nonumber \\
+		&\quad 	- \int_{-\infty}^x K^+(x-x',\lambda) f	(x') \, \mathrm{d}x' \nonumber\\
+		&\quad	- \int_x^\infty K^+(x-x',\lambda) f(x') \, \mathrm{d}x'\nonumber
+\end{align}
+defines a bounded continuous function for any $f \in L^1(\RR) \cap L^p(\RR)$ for any $p \in (1,2]$ with
+\begin{equation}
+	\label{ILW.GL.bd}
+	\norm[L^\infty(\mathbb R)]{G_L^+*f} \lesssim \norm[L^1 \cap L^p]{f}.
+\end{equation}
+For $f \in C_0^\infty(\mathbb R)$, it is easy to see that
+$\lim_{x \to -\infty} G_L^+ * f(x;\lambda) = 0$. It now follows from a density 
+argument and \eqref{ILW.GL.bd} that if $p \in (1,2]$, then
+\begin{equation}
+	\label{ILW.GL.vanish}
+	\lim_{x \to -\infty} \left(G_L^+*f\right)(x) = 0
+\end{equation}
+for any $f \in L^1(\RR) \cap L^p(\RR)$. A similar analysis shows that 
+\begin{equation}
+	\label{ILW.GR.vanish}
+	\lim_{x \to +\infty} \left(G_R^+*f\right)(x) =0
+\end{equation}
+for any such $f$.
+
+
+{\color{red}Move definition of space $X$ to here.}
+
+\begin{prop}
+	
+\end{prop}
+
+
+\end{document}

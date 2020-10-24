@@ -1,0 +1,1260 @@
+%%========================================
+%% Section 4.3: The Direct Scattering Map
+%%========================================
+
+
+\documentclass[../dissertation.tex]{subfiles}
+
+\begin{document}
+\section{The Direct Scattering Map}\label{sec4:DM}
+
+We now have the tools we need to prove that the direct scattering map is well-defined
+as a map from $B_X(0, c_0)$ to $L^\infty(\mathbb R)$ and Lipschitz continuous 
+as a map from $B_X(0, c_0)$ to $L^\infty\big(\mathbb R \sm (-k,k)\mathbb)$ 
+(for any $k > 0$). As a warm-up exercise, we first verify in
+Proposition \ref{prop4:SD} the validity of the scattering equations first 
+presented (without proof) in \cite{Kodama1982}, which are key to the 
+construction of the inverse scattering map for the ILW. Following Proposition 
+\ref{prop4:SD}, we turn our attention to proving that the direct scattering map 
+is well-defined (Lemma \ref{lma4:rBnd} and Theorem \ref{thm4:Dwelldefined}), and
+wrap up this dissertation with results on the Lipschitz continuity of the direct
+scattering map (Theorem \ref{prop4:exist} and Corollary \ref{cor4:Lip}).
+
+
+\begin{prop}[Scattering Equations]\label{prop4:SD}
+	Suppose that $u$ satisfies the hypotheses of Proposition \ref{prop4:exist}.
+	Let
+	\begin{subequations}
+		\label{eq4:SD}
+		\begin{align}
+			% \label{eq4:SDa}
+			a(\lambda)
+				&:= 1 + i \alpha(\lambda) \,
+					\int_{\mathbb R} u(x) \, M_1^+(x; \lambda, u) \, \mathrm{d}x \\
+			% \label{eq4:SDb}
+			b(\lambda)
+				&= i \beta(\lambda) \, 
+					\int_{\mathbb R} e^{-ix\lambda} \, u(x) \, M_1^+(x; \lambda, u) \, \mathrm{d}x
+		\end{align}
+	\end{subequations}
+	\vspace{-\baselineskip}
+	\begin{subequations}
+		\label{eq4:SDbrev}
+		\begin{align}
+			% \label{eq4:SDa}
+			\breve{a}(\lambda)
+				&:= 1 + \alpha(\lambda)
+					\int_{\mathbb R} u(x) \, N_1(x; \lambda, u) \, \mathrm{d}x \\
+			% \label{eq4:SDb}
+			\breve{b}(\lambda)
+				&= i \beta(\lambda) 
+					\int_{\mathbb R} e^{-ix\lambda} \, u(x) \, N_1(x; \lambda, u) \, \mathrm{d}x
+		\end{align}
+	\end{subequations}
+	For $\lambda \in \mathbb R \sm \{0\}$, 
+	\begin{align}
+		M_1 (x; \lambda)
+			&= a(\lambda) \, N_1(x; \lambda) + b(\lambda) \, N_e(x; \lambda) 
+			\label{eq3:M1N} \\
+		N_1 (x; \lambda)
+			&= \breve{a}(\lambda) \, M_1(x; \lambda) 
+				+ \breve{b}(\lambda) \, M_e(x; \lambda)
+			\label{eq3:N1M}
+	\end{align}
+\end{prop}
+\begin{proof}
+	\lsidenote{Add reference to paper}
+	An immediate consequence of formulas \eqref{eq1:GFrep} is the jump 
+	relation\footnote{This jump relation can also be proven by taking a contour 
+	around the real axis. For details, please see 
+	\hyperref[app:JumpRelation]{Appendix 3: Jump Relation}.}
+	\begin{align}\label{eq4:GFjump}
+		G_L^+ - G_R^+ = i \alpha(\lambda) + i \beta(\lambda) e^{i \lambda x}.
+	\end{align}
+	Under the jump relation \eqref{eq4:GFjump}, the integral equation 
+	\eqref{eq4:JostIEleft} for $M_1^+$ becomes
+	\begin{align}\label{eq4:altM1}
+		M_1^+(x; \lambda) 
+			&= 1 + \int_{\mathbb R} G_L^+(x-x'; \lambda) u(x') M_1^+(x')\,dx' \\
+			&= 1 
+				+ \int_{\mathbb R} 
+					\big(
+						i \alpha(\lambda) 
+						+ i \beta(\lambda) \, e^{i \lambda (x-x')}
+					\big)
+					u(x') M_1^+(x') 
+				\, \mathrm{d}x \nonumber \\
+			&= \left(
+					1 
+					+ i \alpha(\lambda) 
+						\int_{\mathbb R} u(x')M_1^+(x'; \lambda)\,dx 
+				\right)  
+				\nonumber \\
+			&\qquad+ i \beta(\lambda) \, e^{i\lambda x} 
+					\int_{\mathbb R} e^{-i\lambda x'} (x')M_1^+(x'; \lambda)\,dx 
+				\nonumber \\
+			&\qquad+ \int_{\mathbb R} G_R^+(x-x'; \lambda) u(x') M_1^+(x')\,dx'
+				\nonumber \\
+			&= a(\lambda) + b(\lambda) \,e^{i\lambda x} 
+				+ G_R^+(\dotarg; \lambda) * \big[uM_1^+(\dotarg; \lambda)\big].
+				\nonumber
+	\end{align}
+	Recalling from Proposition \ref{prop2:Tasymp} that 
+	$\lim_{x\to\infty} G_R^+*uM_1^+(x) = 0$, we see that $M_1^+$ satisfies the 
+	asymptotic condition
+	\begin{align} \label{eq4:asympM}
+		\lim_{x\to+\infty} 
+			\big|M_1^+(x; \lambda) - a(\lambda) - b(\lambda)e^{i\lambda x}\big|
+			= 0.
+	\end{align}
+
+	The simple computation
+	\begin{align*}
+		G_R^+ * \big[ u(a\,N_1 + b\, N_e)\big]
+			&= a \, G_R^+ *(u\, N_1) + b \, G_R^+ *(u\, N_e) \\
+			&= a(N_1 - 1) + b(N_e - e^{i\lambda x}) \\
+			&= a\, N_1 + b \, N_e - a - b\, e^{i\lambda x}
+	\end{align*}
+	shows that $a\, N_1 + b \, N_e$ is a solution to \eqref{eq4:altM1}. Further, 
+	since $a\, N_1 + b \, N_e$ also satisfies \eqref{eq4:asympM} as
+	$\lim_{x\to+\infty} |N_1-1| = \lim_{x\to+\infty} |N_e - e^{ix\lambda}| = 0$,
+	equation \eqref{eq3:M1N} follows from the uniqueness of Jost solutions. 
+	Equation \eqref{eq3:N1M} is verified analogously.
+\end{proof}
+
+While perhaps not immediately apparent, the significance of the following lemma, 
+Lemma \ref{lma4:rBnd}, is that it allows us to conclude 
+that the reflection coefficient $r(\lambda) = b(\lambda)/a(\lambda)$ is bounded 
+in $\lambda.$ That is, 
+$r \in L_\lambda^\infty(\mathbb R)$, which is the final piece we need to prove 
+that the ILW direct scattering map \label{sym:DM}
+$\mathscr D: B_X(0, c_0) \ni u \mapsto r \in L_\lambda^\infty(\mathbb R)$ is 
+well-defined. 
+
+%%==============
+%% Allen's Lemma 
+%%==============
+\begin{lma}\label{lma4:rBnd}
+	For $\lambda \ne 0$, the functions $a$ and $b$ defined in Proposition \ref{prop4:SD} satisfy
+	the equation 
+	\begin{align}\label{eq4:rbnd}
+		\big| a(\lambda) \big|^2
+			= 1 + \frac{2\zeta(-\lambda) - 1}{1 - 2 \zeta(\lambda)} 
+				\big| b(\lambda) \big|^2.
+	\end{align}
+\end{lma}
+The following proof is taken from the unpublished notes of Professor Allen Wu.
+% {\color{red} I thank Prof. Allen Wu from the University of Oklahoma for the following clever 
+% proof of Lemma \ref{lma4:rBnd}.}
+\begin{proof}
+	In this proof, we use the identity 
+	\begin{align*}
+		\inn{G_L^+(\dotarg; \lambda)*f, \, g}
+			&= \inn{f, \, G_L^+(\dotarg; \lambda)*g} \\
+			&\quad+ i\alpha(\lambda) \inn{f,1}\inn{1,g}
+				+ i\beta(\lambda) \inn{f, \, e^{i(\dotarg)\lambda}}
+					\inn{e^{i(\dotarg)\lambda}, \, g}
+	\end{align*}
+	which follows from Proposition \ref{prop1:DiaConj} identity (ii) and
+	the jump relation \eqref{eq4:GFjump} as 
+	\begin{align*}
+		\ol{G_L^+(x; \lambda)}
+			= G_R^+(-x; \lambda)
+			= G_L^+(-x; \lambda) - i \alpha(\lambda) - i \beta(\lambda) \, e^{-i\lambda x}.
+	\end{align*}
+
+	Using $M_1^+ = 1 + G_L^+ (\dotarg; \lambda) * u M_1$ we compute
+	\begin{align*}
+		\inn{M_1^+, \, uM_1^+}
+			&= \inn{1 + G_L^+ (\dotarg; \lambda) * u M_1^+, \, uM_1^+} \\
+			&= \inn{1, \, uM_1^+} + \inn{uM_1^+, \, G_L^+ (\dotarg; \lambda) * u M_1^+} \\
+			&\quad+ i \alpha(\lambda) |\inn{uM_1^+,\,1}|^2 
+				+ i \beta(\lambda) |\inn{uM_1^+,\,e^{i(\dotarg)\lambda}}|^2 \\
+			&=  \inn{1, \, uM_1^+} + \inn{uM_1^+, \, M_1^+ - 1} \\
+			&\quad+ i \alpha(\lambda) |\inn{uM_1^+,\,1}|^2 
+				+ i \beta(\lambda) |\inn{uM_1^+,\,e^{i(\dotarg)\lambda}}|^2
+	\end{align*}
+	Since $u$ is real, we have $\inn{M_1^+, \, u M_1^+} = \inn{uM_1^+, \, M_1^+}$ and
+	\begin{align*}
+		0 = 
+			\ol{\inn{uM_1^+, \, 1}} - \inn{uM_1^+, \, 1}
+			+ i \alpha(\lambda) \left|\inn{uM_1^+, \, 1} \right|^2
+			+ i \beta(\lambda) \left|\inn{uM_1^+, \, e^{i(\dotarg)\lambda}} \right|^2.
+	\end{align*}
+	Identity \ref{eq4:rbnd} then follows, as 
+	$\inn{uM_1^+, \,1} = \frac{1}{i} \frac{a-1}{\alpha(\lambda)}$, 
+	$\inn{uM_1^+, \, e^{i(\dotarg)\lambda}} = \frac{1}{i} \frac{b}{\beta(\lambda)}$, 
+	$\alpha(\lambda) = \frac{1}{1-2\zeta(\lambda)}$, and $\beta(\lambda) = \frac{1}{1-2\zeta(-\lambda)}$.
+\end{proof}
+
+While Lemma \ref{lma4:rBnd} holds only for $\lambda \ne 0$, we can nonetheless use 
+Lemma \ref{lma4:rBnd} to show that the $r$ remains bounded near $\lambda = 0$ and is 
+therefore at least essentially bounded and hence in $L_\lambda^\infty$. 
+
+% In proving that $r$ remains essentially bounded in a neighborhood of $\lambda = 0$,
+% we use the property that $M_1^+$ has a linear expansion centered at $\lambda =0$, 
+% as stated in Lemma \ref{lma4:Mtexpansion}.
+
+
+
+
+\begin{thm}\label{thm4:Dwelldefined}
+	Let $r(\lambda) := b(\lambda) / a(\lambda)$. The direct scattering map
+	$\mathscr D$ given by 
+	\begin{align*}
+		\begin{array}{rcl}
+			\mathscr D: B_X(0, c_0) &\to& L_\lambda^\infty(\mathbb R)  \\
+			            u           &\mapsto& r
+		\end{array}
+	\end{align*}
+	is well-defined.
+\end{thm}
+\begin{proof}
+	Since $M_1^+$ and $N_1^+$ exist and are unique for each $u \in B_X(0, c_0)$, the 
+	map $u \mapsto r$ is well-defined as a function. Moreover, it is easy to check 
+	that $\frac{1-2\zeta(\lambda)}{2\zeta(-\lambda)-1}$ is both positive and uniformly
+	bounded in $\lambda$ for all real $\lambda \ne 0$, which means that \eqref{eq4:rbnd} and Lemma 
+	\ref{lma4:rBnd} implies both that $|a(\lambda)| \geq 1$ for all 
+	$\lambda \ne 0$ and, as a consequence
+	\[
+		\left| \frac{b(\lambda)}{a(\lambda)} \right|^2
+			= 
+				\frac{1-2\zeta(\lambda)}{2\zeta(-\lambda)-1} 
+				\left[
+					1 - \left|\frac{1}{a(\lambda)}\right|^2 
+				\right].
+	\]
+	Since $|a(\lambda)| \to \infty$ as $\lambda \to 0$ and a simple computation shows that
+	\[
+		\lim_{\lambda \to 0} \frac{1-2\zeta(\lambda)}{2\zeta(-\lambda)-1} 
+			= 1,
+	\]
+	$r = b/a$ is at least essentially bounded near $\lambda = 0$. Moreover, 
+	since
+	\begin{align}
+		\label{eq4:rNegLamLimit}
+		\lim_{\lambda\to-\infty}\frac{1-2\zeta(\lambda)}{2\zeta(-\lambda)-1}
+			= 0,
+	\end{align}
+	we need only prove $r(\lambda)$ stays bounded for large \textit{positive} 
+	$\lambda$. Indeed, a straight forward computation shows
+	\begin{align}\label{eq4:reslimits}
+		\lim_{\lambda\to+\infty} |\beta(\lambda)| = 1,
+		\qquad \text{and} \qquad
+		\lim_{\lambda\to+\infty} \alpha(\lambda) = 0.
+	\end{align}
+	Recalling that
+	\begin{align*}
+		a(\lambda)
+				&:= 1 + i \alpha(\lambda) \,
+					\int_{\mathbb R} u(x) \, M_1^+(x; \lambda, u) \, \mathrm{d}x \\
+			b(\lambda)
+				&= i \beta(\lambda) \, 
+					\int_{\mathbb R} 
+						e^{-ix\lambda} \, u(x) \, M_1^+(x; \lambda, u) 
+					\, \mathrm{d}x,
+	\end{align*}
+	we see that
+	\[
+		\left|\frac{b(\lambda)}{a(\lambda)}\right|
+			\lesssim \nm{u\,M_1^+(\dotarg; \lambda)}_{L^1}
+			\leq 
+				\nm{M_1^+(\dotarg; \lambda)}_{\inn{\dotarg}L^\infty} 
+				\nm{u}_{L^{1,1}}
+	\]
+	for $\lambda \gg 1$. Given $M_1^+ = \left(1 - T_{L, \lambda, u} \right)^{-1} 1$
+	and the operator $T_{L, \lambda, u}$ is bounded uniformly in 
+	$\lambda$\textemdash{}in fact, 
+	$\nm{T_{L, \lambda, u}}_{\inn{\dotarg}L^\infty\toitself}
+	<\frac{1}{2}$\textemdash{}we conclude by Neumann series that 
+	$\nm{M_1^+(\dotarg; \lambda)}_{\inn{\dotarg}L^\infty}$ is also uniformly 
+	bounded in $\lambda$. The result therefore follows.
+\end{proof}
+
+While, we do not yet have a proof that the ILW direct
+scattering map is Lipschitz as a map from $B_X(0, c_0)$ into 
+$L_\lambda^\infty$, we are able to prove that it is Lipschitz in 
+more restrictive regimes.  
+
+
+%%===================
+%% Lipschitz Theorems
+%%===================
+\begin{thm}\label{thm4:DlipR}
+	For $c_0>0$ from Proposition \ref{prop4:exist} and for all fixed 
+	$k > 0$, the ILW direct scattering map 
+	\[
+		\mathscr D: B_X(0, c_0) \ni u \mapsto r \in
+			L_\lambda^\infty\big((-\infty,-k]\cup[k,\infty)\big)
+	\] 
+	is Lipschitz continuous with Lipschitz constant depending on $k$. 
+\end{thm}
+\begin{proof}
+	Let $u_1, u_2 \in B_X(0, c_0)$ be arbitrary and respectively denote by 
+	$r_1 = b_1 / a_1$, $r_2 = b_2 / a_2$ the corresponding ILW direct scattering
+	map $\mathscr D$ outputs. Since $|a_1(\lambda)| \geq 1$ for all $\lambda \in \mathbb R$
+	by Lemma \ref{lma4:rBnd}, we find 
+	\begin{align}\label{eq4:DlipPnT}
+		\left| \frac{b_1}{a_1} - \frac{b_2}{a_2} \right|
+			&\leq \left|\frac{b_1}{a_1} - \frac{b_2}{a_1}\right|
+				+ \left|\frac{b_2}{a_1} - \frac{b_2}{a_2}\right| \\
+			&= \frac{1}{|a_1|} |b_1 - b_2| 
+				+ \frac{1}{|a_1|} 
+					\left|\frac{b_2}{a_2}\right| 
+					\left| a_1 - a_2 \right|.
+					\nonumber
+	\end{align}
+	Proposition \ref{prop4:uMcont} implies the map $u \mapsto uM_1^+$ is Lipschitz as a map
+	into $L^1_x$. As such, 
+	\begin{align}\label{eq4:DlipB}
+		\frac{1}{|a_1|} |b_1 - b_2| 
+			&= \frac{|\beta(\lambda)|}{|a_1(\lambda)|}
+				\left|
+					\int_{\mathbb R} 
+						e^{ix\lambda} 
+						\big(
+							u_1(x) \, M_1^+( x; \lambda, u_1) 
+								- u_2(x) \, M_1^+( x; \lambda, u_2) 
+						\big)
+					\, \mathrm{d}x
+				\right| \\
+			&\leq 
+				\frac{|\beta(\lambda)|}{|a_1(\lambda)|} 
+				\nm{
+					u_1\, M_1^+(\dotarg; \lambda, u_1) 
+					- u_2\, M_1^+(\dotarg; \lambda, u_2)
+				}_{L^1} 
+				\nonumber \\
+			&\lesssim 
+				\frac{|\beta(\lambda)|}{|a_1(\lambda)|}
+				\nm{u_1 - u_2}_X,
+				\nonumber 
+	\end{align}
+	where the implied constant is uniform in $\lambda$. Similarly,
+	\begin{align}\label{eq4:DlipA}
+		|a_1 - a_2|
+			& \leq 
+				|\alpha(\lambda)|
+				\nm{
+					u_1 \, M_1^+(\dotarg; \lambda, u_1) 
+					- u_2 \, M_1^+(\dotarg; \lambda, u_2)
+				}_{L^1} 
+				\\
+			&\lesssim |\alpha(\lambda)| \nm{u_1 - u_2}_X,
+				\nonumber
+	\end{align}
+	where the implied constant is again uniform in $\lambda$.
+	Now, the proof of Theorem \ref{thm4:Dwelldefined} implies 
+	that the term
+	\[
+		\frac{1}{|a_1|} \left| \frac{b_2}{a_2} \right| |a_1 - a_2|
+	\]
+	is bounded for $|\lambda| > 0$. Through direct computation,
+	it is straightforward to show 
+	\begin{align*}
+		\lim_{\lambda \to -\infty} |\alpha(\lambda)| 
+			= \lim_{\lambda \to +\infty} |\beta(\lambda)| 
+			= 1, 
+			\\
+		\lim_{\lambda \to +\infty} |\alpha(\lambda)| 
+			= \lim_{\lambda \to -\infty} |\beta(\lambda)| 
+			= 0,  
+	\end{align*}
+	which implies $|\alpha(\lambda)|$ and $|\beta(\lambda)|$ are bounded for 
+	$|\lambda| \gg 1$. Further, since $\alpha$ and $\beta$ have exactly one 
+	singularity, namely $\lambda = 0$, we conclude by estimates 
+	\eqref{eq4:DlipPnT} through \eqref{eq4:DlipA} that
+	\begin{align}\label{eq4:DlipFinal}
+		\nm{r_1 - r_2}_{L_\lambda^\infty}
+			\lesssim_k \|u_1 - u_2\|_X
+	\end{align}
+	as $|a_1| \geq 1$ for $\lambda \ne 0$, where the implied constant depends 
+	on $k$ but is otherwise independent of $\lambda$.
+\end{proof}
+
+\begin{rmk}\label{rmk4:Lip}
+	The difficulty in extending Theorem \ref{thm4:DlipR} to all values of real 
+	$\lambda$ is due to the possibility of the implied constant in 
+	\eqref{eq4:DlipFinal} ``blowing-up'' as $k\to 0$\textemdash{}especially when 
+	either $\int_{\mathbb R} u_1 \, M_1^+(x; \lambda = 0, u_1) \, \mathrm{d}x$ or 
+	$\int_{\mathbb R} u_2 \, M_1^+(x; \lambda = 0, u_2) \, \mathrm{d}x$ are zero. To see 
+	why this is so, note that 
+	\[
+		\frac{\alpha(\lambda)}{a(\lambda)}
+			= \frac{\alpha(\lambda)}
+				{
+					1 
+						+ \alpha(\lambda) 
+							\int_{\mathbb R} 
+								u \, M_1^+(x; \lambda) 
+							\, \mathrm{d}x
+				}
+			=\frac{1}
+				{
+					\frac{1}{\alpha(\lambda)} 
+						+ \int_{\mathbb R} u \, M_1^+(x; \lambda) \, \mathrm{d}x,
+				}
+	\]
+	and
+	\[
+		\frac{\beta(\lambda)}{a(\lambda)}
+			= \frac{\beta(\lambda)}
+				{
+					1 
+						+ \alpha(\lambda) 
+							\int_{\mathbb R} 
+								u \, M_1^+(x; \lambda) 
+							\, \mathrm{d}x
+				}
+			=\frac{1}
+				{
+					\frac{1}{\beta(\lambda)} 
+						+ \frac{\alpha(\lambda)}{\beta(\lambda)}
+							\int_{\mathbb R} 
+								u \, M_1^+(x; \lambda) 
+							\, \mathrm{d}x.
+				}
+	\]
+	which means 
+	\[
+		\frac{\alpha(\lambda)}{a(\lambda)},~\frac{\beta(\lambda)}{a(\lambda)}
+			\sim \mathcal O
+				\left(
+					\frac{1}
+						{
+							\int_{\mathbb R} 
+								u \, M_1^+(x; \lambda) 
+							\, \mathrm{d}x
+						}
+				\right)
+	\]
+	for $|\lambda| \ll 1$, as 
+	$\lim_{\lambda\to0} \alpha(\lambda) / \beta(\lambda) = 1$.
+	Thus, if either $\int_{\mathbb R} u_1 \, M_1^+(x; \lambda = 0, u_1) \, \mathrm{d}x$ or 
+	$\int_{\mathbb R} u_2 \, M_1^+(x; \lambda = 0, u_2) \, \mathrm{d}x$ are zero, then the 
+	approach in the proof of Theorem \ref{thm4:DlipR} fails miserably for 
+	$|\lambda|$ that is not controlled below.
+\end{rmk}
+
+In light of Remark \ref{rmk4:Lip}, we obtain the following easy ``extension''
+of Theorem \ref{thm4:DlipR}, which emphasizes the challenge in actually extending
+Theorem \ref{thm4:DlipR} to all real values of $\lambda$. 
+
+\begin{cor}\label{cor4:Lip}
+	For every $u \in B_X(0, c_0)$ with the property that
+	\[
+		\int_{\mathbb R} u\,M_1^+(x; \lambda = 0, u) \, \mathrm{d}x \ne 0,
+	\]
+	there is a neighborhood $\mathcal N(u)$ in $B_X(0, c_0)$ about $u$ 
+	for which the map $\mathscr D : \mathcal N(u) \mapsto 
+	L_\lambda^\infty(\mathbb R)$ is Lipschitz continuous. 
+\end{cor}
+\begin{proof}
+	Fix $\varepsilon > 0$ so that 
+	$\left| \int_{\mathbb R} u\,M_1^+(x; \lambda = 0, u) \, \mathrm{d}x \right| > 2\varepsilon$
+	Using the Lipschitz continuity of the map 
+	$B_X(0, c_0) \ni w(x) \to  w(x)\, M_1^+(x; \lambda, w)
+	\in L_x^1(\mathbb R)$, we may choose $\mathcal N_\varepsilon(u)$ so that 
+	every $w$ in $\mathcal N(u)$ satisfies 
+	\[
+		\left| \int_{\mathbb R} w(x)\, M_1^+(x; \lambda=0, w)\,dx \right|
+			\geq \varepsilon.
+	\]
+	Then, Corollary \ref{cor4:Lip} follows from the proof of Theorem 
+	\ref{thm4:DlipR}, Remark \ref{rmk4:Lip}, and the Dominated Convergence
+	Theorem.
+\end{proof}
+% \begin{proof}
+% 	We prove this result using the following steps:
+% 	\begin{itemize}
+% 		\item[\textbf{Step 1:}] Prove 
+% 			$B_X(0, c_0) \ni u \mapsto u M_1^+(\dotarg; \lambda, u) \in 
+% 			L^1(\mathbb R)$ is Lipschitz with Lipchitz constant uniform in 
+% 			$\lambda \in \mathbb R$.
+% 		\item[\textbf{Step 2:}] Prove result for $|\lambda| \gg 0$.
+% 		\item[\textbf{Step 3:}] For some fixed $k>0$, and $|\lambda|\ll 1$
+% 			prove result for
+% 			case at least one of 
+% 			$\left|\int u_1\,M_1^+(\dotarg; \lambda, u_1)\right|$, 
+% 			$\left|\int u_2\,M_1^+(\dotarg; \lambda, u_2)\right|$,
+% 			is bounded below by $k$
+% 		\item[\textbf{Step 4:}] Prove result for case 
+% 			$\left|\int u_1\,M_1^+(\dotarg; \lambda, u_1)\right|=0$
+% 			$\left( \text{or}~ 
+% 				\left|\int u_2\,M_1^+(\dotarg; \lambda, u_2)\right|=0
+% 			\right)$
+% 			and $u$ Schwartz class.
+% 		\item[\textbf{Step 5:}] Use density argument to generalize result from 
+% 			\textbf{Step 3} to arbitrary $u \in B_X(0, c_0)$.
+% 			{\color{red} (Not sure if this step is possible)}
+% 		\item[\textbf{Step 6:}] Wrap up
+% 	\end{itemize}
+
+% 	\noi\textbf{Steps 1 \& 2:} Let $u_1, u_2 \in B_X(0, c_0)$ be 
+% 	arbitrary, and denote by $r_1 = b_1 / a_1$, $r_2 = b_1 / a_1$
+% 	the corresponding images under the direct scattering map.
+% 	Since 
+% 	\[
+% 		\frac{2\zeta(-\lambda) - 1}{1- 2\zeta(\lambda)} \geq 0
+% 	\]
+% 	for all $\lambda \in \mathbb R$, one consequence of \eqref{eq4:rbnd}
+% 	is that $|a(\lambda)| \geq 1$. As such,
+% 	\begin{align*}
+% 		\left| \frac{b_1}{a_1} - \frac{b_2}{a_2} \right|
+% 			&\leq \left|\frac{b_1}{a_1} - \frac{b_2}{a_1}\right|
+% 				+ \left|\frac{b_2}{a_1} - \frac{b_2}{a_2}\right| \\
+% 			&= \frac{1}{|a_1|} |b_1 - b_2| 
+% 				+ \frac{1}{|a_1|} 
+% 					\left|\frac{b_2}{a_2}\right| 
+% 					\left| a_1 - a_2 \right|
+% 	\end{align*}
+% 	where
+% 	\begin{align*}
+% 		\frac{1}{|a_1|} |b_1 - b_2| 
+% 			&= \frac{|\beta(\lambda)|}{|a_1(\lambda)|}
+% 				\left|
+% 					\int_{\mathbb R} 
+% 						e^{ix\lambda} 
+% 						\big(
+% 							u_1(x) \, M_1^+( x; \lambda, u_1) 
+% 								- u_2(x) \, M_1^+( x; \lambda, u_2) 
+% 						\big)
+% 					\, \mathrm{d}x
+% 				\right|,
+% 	\end{align*}
+% 	and 
+% 	\begin{align*}
+% 		&\big| 
+% 			u_1 \, M_1^+( \dotarg; \lambda, u_1) 
+% 				- u_2 \, M_1^+( \dotarg; \lambda, u_2) 
+% 		\big| \\
+% 			&\qquad\leq \big| M_1^+( \dotarg; \lambda, u_1) \big| |u_1 - u_2|
+% 				+ |u_2| 
+% 					\big| 
+% 						M_1^+( \dotarg; \lambda, u_1) - M_1^+( \dotarg; \lambda, u_2) 
+% 					\big|
+% 	\end{align*}
+
+% 	Since the map $B_X(0, c_0) \ni u \mapsto M_1^+ \in \inn{\dotarg} L^\infty$ 
+% 	is Lipschitz
+% 	(uniformly in $\lambda$) by Proposition \ref{prop3:Lip}, 
+% 	\[
+% 		\big\| M_1^+( \dotarg; \lambda, u_1) \big\|_{\inn{x}L^\infty(\mathbb R)}
+% 			=\big\| M_1^+( \dotarg; \lambda, u_1) - 0 \big\|_{\inn{x}L^\infty(\mathbb R)}
+% 			\lesssim \|u_1 - 0\|_{X}
+% 			< c_0
+% 	\]
+% 	where the implied constant is the Lipschitz constant for the map 
+% 	$u \mapsto M_1^+$. We then have
+% 	\begin{align*}
+% 		&\left|
+% 			\int_{\mathbb R} 
+% 				e^{ix\lambda} 
+% 				\big(
+% 					u_1(x) \, M_1^+( \dotarg; \lambda, u_1) 
+% 						- u_2(x) \, M_1^+( \dotarg; \lambda, u_2) 
+% 				\big)
+% 			\, \mathrm{d}x
+% 		\right| \\
+% 		&\qquad\leq 
+% 			\int_{\mathbb R} 
+% 				\big| 
+% 					u_1(x) \, M_1^+( x; \lambda, u_1) 
+% 						- u_2(x) \, M_1^+( x; \lambda, u_1) 
+% 				\big| 
+% 			\, \mathrm{d}x \\
+% 		&\qquad\quad+
+% 			\int_{\mathbb R} 
+% 				\big|
+% 					u_2(x) \, M_1^+( x; \lambda, u_1)  
+% 						- u_2(x) \,  M_1^+( x; \lambda, u_2) 
+% 				\big|
+% 			\, \mathrm{d}x \\
+% 		&\qquad\leq \int_{\mathbb R} 
+% 				\left(\inn{x}^{-1}\big|M_1^+( x; \lambda, u_1)\big|\right)
+% 				\big( \inn{x}^2
+% 				\big| 
+% 					u_1(x) - u_2(x)
+% 				\big| 
+% 				\big)
+% 			\, \mathrm{d}x \\
+% 		&\qquad\quad+
+% 			\int_{\mathbb R} 
+% 				\left(
+% 					\inn{x}^{-1}
+% 					\big|
+% 						 M_1^+( x; \lambda, u_1)  
+% 							-  M_1^+( x; \lambda, u_2) 
+% 					\big|
+% 				\right)
+% 				\big( \inn{x}^2 u_2(x) \big)
+% 			\, \mathrm{d}x \\
+% 		&\qquad\leq 
+% 			\|M_1^+( \dotarg; \lambda, u_1) \|_{\inn{x} L^\infty}
+% 			\left\|(u_1 - u_2)\inn{\dotarg}^2\right\|_{L^1} \\
+% 		&\qquad\quad
+% 			+ \left\|u_2\inn{\dotarg}^2\right\|_{L^1}
+% 				\|
+% 					M_1^+( \dotarg; \lambda, u_1)
+% 					- M_1^+( \dotarg; \lambda, u_2)
+% 				\|_{\inn{x} L^\infty} \\
+% 		&\qquad\lesssim  \| u_1 - u_2 \|_X,
+% 	\end{align*}
+% 	where the implied constant is independent of $\zeta$ and $u$.
+% 	{\color{red} Prove $B_X(0, c_0) \ni u \mapsto uM_1^+ \in L^1$ is Lipschitz 
+% 	as separate prop (or lemma) to simplify above calculation.}
+% 	Since $|a(\lambda; u)| \geq 1$, the above calculation shows that the term
+% 	$\frac{1}{|a_1|}|b_1 - b_2|$ is controlled for $\lambda$ away from zero.
+% 	Since $\frac{|\beta(\lambda)|}{|a_1(\lambda)|} \sim 
+% 	\frac{1}{ \int u_1 \, M_1^+( \dotarg; \, u_1) }$ for $|\lambda|$ small,
+% 	for small $|\lambda|$ we may assume without loss of generality 
+% 	(as per \textbf{Step 3}) that $\left|\int u_1 M(\dotarg; u_1) \right| \geq k$
+% 	allowing us to control $\frac{1}{|a_1|}\|b_1 - b_2\|_{L^\infty}$ 
+% 	uniformly in $\lambda$ (for the case of \textbf{Step 3}) by 
+% 	$\frac{1}{k} \| u_1 - u_2 \|_X$.
+
+% 	Equation \eqref{eq4:rbnd} implies that 
+% 	\[
+% 		\left| \frac{b_2(\lambda)}{a_2(\lambda)} \right|
+% 			= \sqrt{ 
+% 					\frac{1-2\zeta(\lambda)}{2 \zeta(-\lambda) - 1} 
+% 					\left(
+% 						1 - \frac{1}{|a_2 (\lambda)|^2}
+% 					\right)
+% 				}	
+% 	\]
+% 	We make the following observations
+% 	\begin{align*}
+% 		\frac{1-2\zeta(\lambda)}{2 \zeta(-\lambda) - 1} \geq 0 
+% 			\qquad \forall \lambda \in \mathbb R \setminus \{0\}
+% 	\end{align*}
+% 	\begin{align*}
+% 		\lim_{\lambda \to 0}	\frac{1-2\zeta(\lambda)}{2 \zeta(-\lambda) - 1} = 1
+% 	\end{align*}
+% 	\begin{align*}
+% 		\lim_{\lambda \to -\infty} \frac{1-2\zeta(\lambda)}{2 \zeta(-\lambda) - 1} = 0
+% 	\end{align*}
+% 	\begin{align*}
+% 		\lim_{\lambda \to +\infty} \frac{1-2\zeta(\lambda)}{2 \zeta(-\lambda) - 1} = \infty
+% 	\end{align*}
+% 	\begin{align*}
+% 		\lim_{\lambda \to +\infty} \alpha(\lambda)
+% 			 \sqrt{ \frac{1-2\zeta(\lambda)}{2 \zeta(-\lambda) - 1}} = 0
+% 	\end{align*}
+% 	\begin{align*}
+% 		\lim_{\lambda \to 0} \frac{|\alpha(\lambda)|}{|a_1(\lambda)|}
+% 			= \frac{1}{| \int u_1 M_1^+(u_1) |}
+% 	\end{align*}
+% 	Since the map $B_X(0, c_0)\ni u \to uM \in L^1(\mathbb R)$,
+% 	is Lipschitz with Lipschitz constant uniform in $\lambda$, 
+% 	\[
+% 		|a_1 - a_2|
+% 			\leq |\alpha(\lambda)| 
+% 				\int_{\mathbb R} 
+% 					\big| 
+% 						u_1 M_1^+(x; \lambda, u_1) - u_2 M_1^+(x; \lambda, u_2)
+% 					\big|
+% 				\, \mathrm{d}x
+% 			\lesssim |\alpha(\lambda)| \| u_1 - u_2 \|_X.
+% 	\]
+% 	The above observations allow us to control the 
+% 	$\frac{1}{|a_1|}\frac{|b_2|}{|a_2|} |a_1 - a_2|$ term by 
+% 	$\frac{1}{\int u_1 M(\dotarg; u_1)} \| u_1 - u_2 \|_X$ (for small $|\lambda|$)
+% 	or $\| u_1 - u_2 \|_X$ for $|\lambda|$ away from zero.
+
+% 	\textbf{Step 4:}
+% \end{proof}
+
+The following lemma, Lemma \ref{lma4:Mtexpansion}, was developed as part of an, as 
+yet, unsuccessful bid to 
+extend Theorem \ref{thm4:DlipR} to all real $r$. We include this lemma here in the 
+hopes that it may eventually be useful in completing the proof that the ILW 
+direct scattering map is Lipschitz continuous. 
+
+\begin{lma}\label{lma4:Mtexpansion}
+	For $u \in X\cap \inn{x}^{-5} L_x^\infty(\mathbb R)$, the Jost solution 
+	boundary value
+	$M_1^+$ has the following $\inn{x}^4L_x^\infty(\mathbb R)$
+	linear approximation in $\lambda$ centered at $\lambda = 0$
+	\begin{align}
+		M_1^+(x; \lambda, u) 
+			= M^{(0)}(x; u) + \lambda \, M^{(1)}(x; u) + o(\lambda),
+	\end{align}
+	where $M^{(0)}(x; u) = M_1^+(x; \lambda = 0, u)$ and
+	$M^{(1)}$ is $(\partial M_1^+ / \partial \lambda)(x; 0)$
+\end{lma}
+\begin{proof}
+	It suf{}fices to prove that $M_1^+$ has an $\inn{x}^4L^\infty(\mathbb R)$ 
+	derivative in $\lambda$ at $\lambda = 0$. To do so, we 
+	define $M_h$ as the dif{}ference quotient
+	\[
+		M_h(\lambda; x) :=
+			\frac{M_1^+(x; \lambda +h) - M_1^+(x; \lambda)}{h}.
+	\]
+	In order to simplify notation, throughout the rest of this proof,
+	we denote $G_L^+$ by $G$, $M_1^+$ by $M$, and suppress $x$ dependency.
+	That is, $G(\lambda):= G_L^+(x; \lambda)$ and $M(\lambda):=M_1^+(x; \lambda)$.
+	Please note that while not explicitly indicated by the notation in this
+	proof, all convolutions are with respect to the variable $x$.
+
+	By linearity of convolution operators 
+	% \begin{align*}
+	% 	M_h(\lambda; x)
+	% 		&= 
+	% 			\frac{
+	% 				G_L^+(\dotarg; \lambda+h)
+	% 					* \big[u\,M_1^+(\dotarg, \lambda+h)\big](x)
+	% 				-G_L^+(\dotarg; \lambda)
+	% 					* \big[u\,M_1^+(\dotarg, \lambda)\big](x)
+	% 			}
+	% 			{h} \\[.1\baselineskip]
+	% 		&= 
+	% 			\frac{1}{h}
+	% 			\Big\{
+	% 				\big[
+	% 					G_L^+(\dotarg; \lambda+h) - G_L^+(\dotarg; \lambda)
+	% 				\big]
+	% 					* \big[u\,M_1^+(\dotarg, \lambda+h)\big](x) \\
+	% 		&\qquad
+	% 				- G_L^+(\dotarg; \lambda) 
+	% 					* 
+	% 						\big[
+	% 							u
+	% 							\big(
+	% 								M_1^+(\dotarg; \lambda+h)
+	% 								-M_1^+(\dotarg; \lambda)
+	% 							\big)
+	% 						\big](x)
+	% 			\Big\} \\
+	% 		&= 
+	% 			\left(
+	% 				\frac{G_L^+(\dotarg; \lambda+h)-G_L^+(\dotarg; \lambda+h)}{h}
+	% 			\right)
+	% 				* \big[u\,M_1^+(\dotarg, \lambda+h)\big](x)
+	% 			- G_L^+(\dotarg; \lambda) 
+	% 				* \big[ u \, M_h(\lambda; \dotarg) \big](x)
+	% \end{align*}
+	\begin{align*}
+		M_h(\lambda; x)
+			&= 
+				\frac{
+					G(\lambda+h)* \big[u\,M(\lambda+h)\big]
+					-G(\lambda) * \big[u\,M(\lambda)\big]
+				}
+				{h} \\[.1\baselineskip]
+			&= 
+				\frac{
+					\big[
+						G(\lambda+h) - G(\lambda)
+					\big]
+						* \big[u\,M(\lambda+h)\big]
+			% &\qquad
+					- G(\lambda) 
+						* 
+							\big\{
+								u
+								\big[
+									M(\lambda+h)
+									-M(\lambda)
+								\big]
+							\big\}
+				}
+				{h} \\
+			&= 
+				\left(
+					\frac{G(\lambda+h)-G(\lambda)}{h}
+				\right)
+					* \big[u\,M(\lambda+h)\big]
+				- G(\lambda) 
+					* \big[ u \, M_h(\lambda) \big]
+	\end{align*}
+	Define $G_h$ to be the dif{}ference quotient 
+	$G_h = \frac{1}{h}\big[G(\lambda+h) - G(\lambda)\big]$ and let 
+	$T_\lambda$ denote the operator given by $T_\lambda f = G(\lambda)*(u\,f)$.
+	Since, as we see in the proof of Proposition \ref{prop4:exist}, $I + T_\lambda$
+	is invertible, the following formula for $M_h$ follows from the above 
+	computation:
+	\begin{align}\label{eq3:Mh}
+		M_h(\lambda) := (I + T_\lambda)^{-1} \big(G_h * u\, M(\lambda+h)\big).
+	\end{align}
+	Given the continuity of $(I + T_\lambda)^{-1}$, equation \eqref{eq3:Mh}
+	implies that $M_1^+$ is dif{}ferentiable in $\lambda$ ($\lambda \in \mathbb R$)
+	if and only if the limit 
+	\[
+		\lim_{h\to0} G_h * u\, M(\lambda+h)
+	\]
+	holds pointwise for each $x \in \mathbb R$. 
+
+	Since a natural candidate for the limit of $G_h * u\, M(\lambda+h)$
+	as $h\to 0$ is $\left(\frac{\partial}{\partial \lambda}G\right) * (uM)$,
+	note that
+	\begin{align}
+		&G_h*\big(uM(\lambda+h)\big) 
+				- \left(\frac{\partial}{\partial \lambda}G\right) 
+					* \big(uM(\lambda)\big) \\
+			&\qquad=
+				\left(G_h - \frac{\partial}{\partial \lambda}G\right)
+						* \big(uM(\lambda +h)\big)
+					+ \left(\frac{\partial}{\partial \lambda}G\right)
+						* u \big(M(\lambda+h) - M(\lambda)\big).
+				\nonumber
+	\end{align}
+	
+	By Technical Lemma \ref{tlma2:1}, 
+	\begin{align*}
+		\left\|
+			\left(G_h - \frac{\partial}{\partial \lambda}G\right)
+			* \big( uM(\lambda+h)\big)
+		\right\|_{\inn{x}^4L_x^\infty}
+			&\leq 
+				\left\|
+					G_h - \frac{\partial}{\partial \lambda}G
+				\right\|_{\inn{x}^4 L_x^1}
+				\left\|
+					\inn{\dotarg}^4
+					u\,M(\lambda+h)
+				\right\|_{L_x^\infty}.
+	\end{align*}
+	% Recalling the inequality
+	% \begin{align*}
+	% 	\frac{\inn{x'}}{\inn{x-x'}\inn{x}} \leq 1,
+	% \end{align*}
+	% we find
+	% \begin{align*}
+	% 	&\left\|
+	% 		\left(G_h - \frac{\partial}{\partial \lambda}G\right)
+	% 		* \big( uM(\lambda+h)\big)
+	% 	\right\|_{\inn{x}^4L_x^\infty} \\
+	% 		&\qquad= 
+	% 			\sup_{x\in \mathbb R} \inn{x}^{-4} 
+	% 			\int_{\mathbb R}
+	% 				\left|
+	% 					\left[G_h - \frac{\partial}{\partial \lambda}G\right](x')
+	% 					\big[u\,M(\lambda + h)\big](x-x')
+	% 				\right|
+	% 			\, \mathrm{d}x' \nonumber \\
+	% 		&\qquad=
+	% 			\sup_{x\in \mathbb R}
+	% 			\int_{\mathbb R}
+	% 				\left|
+	% 					\left\{
+	% 						\inn{x'}^{-4}
+	% 						\left[G_h - \frac{\partial}{\partial \lambda}G\right](x')
+	% 					\right\}
+	% 					\left(
+	% 						\frac{\inn{x'}}{\inn{x}\inn{x-x'}}
+	% 					\right)^4
+	% 				\right|
+	% 			\nonumber \\
+	% 		&\qquad\qquad\times
+	% 			\left|
+	% 			\big[ \inn{\dotarg}^4 u M(\lambda +h) \big](x-x')
+	% 			\right|
+	% 			\, \mathrm{d}x' \nonumber \\
+	% 		&\qquad\leq
+	% 			\left\|
+	% 				\left[
+	% 					\inn{\dotarg}^{-4} 
+	% 					\left(G_h - \frac{\partial}{\partial\lambda}G\right)
+	% 				\right] 
+	% 				*
+	% 				\left[
+	% 					\inn{\dotarg}^4
+	% 					u\, M(\lambda + h)
+	% 				\right]
+	% 			\right\|_{L^\infty}
+	% 			\nonumber \\
+	% 		&\qquad\leq
+	% 			\left\|
+	% 				G_h - \frac{\partial}{\partial \lambda}G
+	% 			\right\|_{\inn{x}^4 L_x^1}
+	% 			\left\|
+	% 				\inn{\dotarg}^4
+	% 				u\,M(\lambda+h)
+	% 			\right\|_{L_x^\infty} \nonumber
+	% \end{align*}
+	Hence
+	\begin{align} \label{eq3:??}
+		\lim_{h\to\infty} 
+				\left\|
+					\left(G_h - \frac{\partial}{\partial \lambda}G\right)
+					* \big( uM(\lambda+h)\big)
+				\right\|_{\inn{x}^4 L_x^\infty} 
+			= 0,
+	\end{align}
+	as 
+	\begin{align*}
+		\left\|
+			\inn{\dotarg}^4
+			u\,M(\lambda+h)
+		\right\|_{L_x^\infty}
+		=
+			\esssup_{x\in\mathbb R} \big(\inn{x}^{-1} M\big) \big(\inn{x}^5 u\big)
+		\leq \|M\|_{\inn{x}L_x^\infty} \|u\|_{\inn{x}^{-5}L_x^\infty}.
+	\end{align*}
+
+	Similarly, 
+	\begin{align*}
+		&
+			\left\|
+				\left(\frac{\partial}{\partial \lambda} G\right)
+				*
+				u\big(M(\lambda+h) - M(\lambda)\big)
+			\right\|_{\inn{x}^4 L_x^\infty} \\
+		&\qquad\leq
+			\left\|
+				\frac{\partial}{\partial \lambda} G
+			\right\|_{\inn{x}^4 L^1}
+			\left\|	
+				\inn{\dotarg}^4 u 
+				\big[
+					M(\lambda + h) - M(\lambda)
+				\big]
+			\right\|_{L_x^\infty} 
+			\nonumber \\
+		&\qquad\leq
+			\left\|
+				\frac{\partial}{\partial \lambda} G
+			\right\|_{\inn{x}^4 L^1}
+			\|u\|_{\inn{x}^{-5} L_x^\infty}
+			\|M(\lambda+h) - M(\lambda)\|_{\inn{x}L_x^\infty}
+			\nonumber
+	\end{align*}
+	Hence, by Lemma \ref{lma4:Mlamcont}, we also find
+	\begin{align}
+		\lim_{h\to\infty}
+			\left\|
+				\left(\frac{\partial}{\partial \lambda} G\right)
+				*
+				u\big(M(\lambda+h) - M(\lambda)\big)
+			\right\|_{\inn{x}^4 L_x^\infty} 
+			=0.
+	\end{align}
+	{\color{red} finish this by explaining what these limits imply 
+	for pointwise (in $x$) limits.}
+\end{proof}
+
+
+
+
+% {\color{red} What follows are informal notes to myself. Will turn this into 
+% proper prose later}.
+
+
+% First, note that as $\lambda \to 0$ ($\zeta \to 1/2$), the two first order poles
+% $1/p$ collapse to a single second order pole. As this happens, sum of the residues 
+% (from $\xi =0$ and $\xi = \lambda$) become $\mathcal O(x)$. As such, in order to 
+% obtain uniform (in $\lambda$) estimates needed proving both existence / uniqueness 
+% of Jost solutions and Lipschitz continuity of the map $u \mapsto b/r$, we use assume 
+% $u \in X$, where
+% \[
+% 	\|u\|_X := \| \inn{\dotarg}^2 \, u(\dotarg) \|_{L^1}
+% 					+ \esssup_{x\in \mathbb R} 
+% 						\left[
+% 							\int_{|x-x'|\leq 1}
+% 								\log\left(\frac{1}{|x-x'|}\right)
+% 								\inn{x'} | u(x') | 
+% 							\, \mathrm{d}x'
+% 						\right]
+% \]
+% and
+% \[
+% 	\|f\|_{L^{1,2}}:= \left(\int_{\mathbb R} \inn{x}^{sp} |f(x)|^p \right)^{1/p},
+% \]
+% and
+% \[
+% 	\inn{x}:= \big(1 + |x|^2\big)^{1/2}.
+% \]
+
+% In what follows, we first need to show  that the map $u\mapsto r = b/a$ is well
+% defined, which involves first showing that the Jost IE admit unique solutions 
+% in $\inn{x} L^\infty(\mathbb R)$ for $u$ with $\|u\|_X < c_0$ for some small 
+% (and fixed) constant $c_0>0$, and then showing that 
+% $r \in \inn{x}L^\infty(\mathbb R)$ whenever 
+% $u \in B_X(0, c_0):= \left\{ f \in X ~:~ \|f\|_X < c_0 \right\}$.
+
+% After showing that $B_X(0, c_0) \ni u \mapsto r \in \inn{x}L^\infty(\mathbb R)$
+% is well defined, we need to show that it is also Lipschitz. This is accomplished
+% in the following stages:
+% \begin{itemize}
+% 	\item[A. ] Prove Lipschitz for $|\lambda| \geq k$, where $k >0$ is some fixed 
+% 		constant
+% 		\begin{itemize}
+% 			\item[1. ] Prove $B_X(0, c_0) \ni u \mapsto M_1^+(\dotarg; \zeta, u) \in 
+% 				\inn{x}L^\infty(\mathbb R)$ is Lipschitz with Lipschitz constant uniform
+% 				in $\zeta$ ({\color{red} this proof is in the ilw.pdf})
+% 			\item[2. ] Prove $B_X(0, c_0) \ni u \mapsto u M_1^+(\dotarg; \zeta, u) 
+% 				\in L^1(\mathbb R)$ is also Lipschitz with Lipschitz constant uniform in 
+% 				$\zeta$
+% 			\item[3. ] Prove
+% 			\item[4. ] Prove $\frac{|\beta(\zeta)|}{|a(\zeta)|}$ is bounded in $\zeta$ near
+% 				$\zeta = \frac{1}{2}$ (\textit{i.e.} $\lambda = 0$)
+% 			\item[5. ] {\color{red} complete this list $\ldots$}
+% 		\end{itemize}
+% 	\item[B. ] Prove Lipschitz for $0 < |\lambda| < k$, where $k >0$ is some 
+% 		fixed constant
+% 		\begin{itemize}
+% 			\item[6. ] {\color{red} complete this list $\ldots$}
+% 		\end{itemize}
+% \end{itemize}
+
+% For reference, $M_1^+ = 1+ G*(uM_1^+)$ and $a$, $b$ are defined as follows:
+
+% \begin{align*}
+%  	a(\lambda) 
+%  		&= 1 +  i \alpha(\lambda) 
+%  			\int_{\mathbb R}
+%  				 u(x) M_1^+(x; \lambda) 
+%  			\, \mathrm{d}x \\
+%  	b(\lambda) 
+%  		&= i \beta(\lambda) 
+%  			\int_{\mathbb R}
+%  				e^{i \lambda x} u(x) M_1^+(x; \lambda) 
+%  			\, \mathrm{d}x,
+% \end{align*}
+% where
+% \begin{align*}
+% 	\alpha(\lambda)
+% 		= \frac{1}{1 - 2 \zeta(\lambda)}
+% 		= \frac{1 - e^{2\lambda}}{2\lambda e^{2\lambda} + 1 - e^{2\lambda}},
+% \end{align*}
+% and
+% \begin{align*}
+% 	\beta(\lambda)
+% 		= \frac{1}{1-2 \zeta^*}
+% 		= \frac{1-e^{2\lambda}}{1+2\lambda-e^{2\lambda}}
+% \end{align*}
+
+
+% Assuming that the well-definedness of the map $u\mapsto r$ is established 
+% (in fact, this is actually done in the ILW paper), then the 
+% steps for proving that $u\mapsto r$ is Lipschitz is based on the following two
+% ``put and takes''
+% \begin{align*}
+% 	\left| \frac{b_1}{a_1} - \frac{b_2}{a_2} \right|
+% 		&\leq \left|\frac{b_1}{a_1} - \frac{b_2}{a_1}\right|
+% 			+ \left|\frac{b_2}{a_1} - \frac{b_2}{a_2}\right| \\
+% 		&= \frac{1}{|a_1|} |b_1 - b_2| 
+% 			+ \frac{1}{|a_1|} 
+% 				\left|\frac{b_2}{a_2}\right| 
+% 				\left| a_1 - a_2 \right|
+% \end{align*}
+% where
+% \begin{align*}
+% 	\frac{1}{|a_1|} |b_1 - b_2| 
+% 		&= \frac{|\beta(\lambda)|}{|a_1(\lambda)|}
+% 			\left|
+% 				\int_{\mathbb R} 
+% 					e^{ix\lambda} 
+% 					\big(
+% 						u_1(x) \, M_1^+( x; \lambda, u_1) 
+% 							- u_2(x) \, M_1^+( x; \lambda, u_2) 
+% 					\big)
+% 				\, \mathrm{d}x
+% 			\right|
+% \end{align*}
+% and 
+% \begin{align*}
+% 	&\big| 
+% 		u_1 \, M_1^+( \dotarg; \lambda, u_1) 
+% 			- u_2 \, M_1^+( \dotarg; \lambda, u_2) 
+% 	\big| \\
+% 		&\qquad\leq \big| M_1^+( \dotarg; \lambda, u_1) \big| |u_1 - u_2|
+% 			+ |u_2| 
+% 				\big| 
+% 					M_1^+( \dotarg; \lambda, u_1) - M_1^+( \dotarg; \lambda, u_2) 
+% 				\big|
+% \end{align*}
+
+% Assuming that we've accomplished task (1) above, then 
+% \[
+% 	\big\| M_1^+( \dotarg; \lambda, u_1) \big\|_{L^\infty(\mathbb R)}
+% 		\lesssim c_0,
+% \]
+% where the implied constant is the Lipschitz constant for the map 
+% $u \mapsto M_1^+$. We then have
+% \begin{align*}
+% 	&\left|
+% 		\int_{\mathbb R} 
+% 			e^{ix\lambda} 
+% 			\big(
+% 				u_1(x) \, M_1^+( \dotarg; \lambda, u_1) 
+% 					- u_2(x) \, M_1^+( \dotarg; \lambda, u_2) 
+% 			\big)
+% 		\, \mathrm{d}x
+% 	\right| \\
+% 	&\qquad\leq 
+% 		\int_{\mathbb R} 
+% 			\big| 
+% 				u_1(x) \, M_1^+( x; \lambda, u_1) 
+% 					- u_2(x) \, M_1^+( x; \lambda, u_1) 
+% 			\big| 
+% 		\, \mathrm{d}x \\
+% 	&\qquad\quad+
+% 		\int_{\mathbb R} 
+% 			\big|
+% 				u_2(x) \, M_1^+( x; \lambda, u_1)  
+% 					- u_2(x) \,  M_1^+( x; \lambda, u_2) 
+% 			\big|
+% 		\, \mathrm{d}x \\
+% 	&\qquad\lesssim c_0 \, \| u_1 - u_2\|_X 
+% 		+ \| u_2 \|_X \, 
+% 			\big\|
+% 				M_1^+( \dotarg; \lambda, u_1) - \, M_1^+( \dotarg; \lambda, u_2) 
+% 			\big\|_{L^\infty} \\
+% 	&\qquad\lesssim c_0 \, \| u_1 - u_2\|_X 
+% 		+ c_0 \, \, \| u_1 - u_2\|_X \\
+% 	&\qquad\lesssim  \| u_1 - u_2 \|_X,
+% \end{align*}
+% where the implied constant is independent of $\zeta$ and $u$. Note that the
+% second line is justified by the fact that
+% \[
+% 	\int_{\mathbb R} |u_2| \, \mathrm{d}x
+% 		= \int_{\mathbb R} \inn{x} |u_2| \inn{x}^{-1} \, \mathrm{d}x
+% 		\leq \| \inn{\dotarg} u_2 \|_{L^2} 
+% 			\left\| \inn{\dotarg}^{-1} \right\|_{L^2}
+% 		\lesssim \| u_2 \|_X.
+% \]
+% In essence, the above calculation shows that the map
+% $B_X(x, c_0) \ni u \mapsto u M_1^+(\dotarg; u) \in L^1$ is Lipschitz.
+% Since $|a(\lambda; u)| \geq 1$, the above calculation shows that 
+% the term $\frac{1}{|a_1|}|b_1 - b_2|$ is controlled for $\lambda$ 
+% away from zero. However, since $\frac{|\beta(\lambda)|}{|a_1(\lambda)|} \sim 
+% \frac{1}{ \int u_1 \, M_1^+( \dotarg; \, u_1) }$ for $|\lambda|$ small, 
+% we will need to be a little 
+% cleverer. We will return to the small $|\lambda|$ singularity issue later. 
+
+% Recall from the 3 June 2019 entry of Allen's worklog (page 27) that 
+% \[
+% 	|a(\lambda)|^2 
+% 		= 1 
+% 			+ \frac{2 \zeta(-\lambda) - 1}{1-2\zeta(\lambda)}
+% 				|b(\lambda)|^2
+% \]
+% which implies
+% \[
+% 	\left| \frac{b_2(\lambda)}{a_2(\lambda)} \right|
+% 		= \sqrt{ 
+% 				\frac{1-2\zeta(\lambda)}{2 \zeta(-\lambda) - 1} 
+% 				\left(
+% 					1 - \frac{1}{|a_2 (\lambda)|^2}
+% 				\right)
+% 			}	
+% \]
+% We make the following observations
+% \begin{align*}
+% 	\frac{1-2\zeta(\lambda)}{2 \zeta(-\lambda) - 1} \geq 0 
+% 		\qquad \forall \lambda \in \mathbb R \setminus \{0\}
+% \end{align*}
+% \begin{align*}
+% 	\lim_{\lambda \to 0}	\frac{1-2\zeta(\lambda)}{2 \zeta(-\lambda) - 1} = 1
+% \end{align*}
+% \begin{align*}
+% 	\lim_{\lambda \to -\infty} \frac{1-2\zeta(\lambda)}{2 \zeta(-\lambda) - 1} = 0
+% \end{align*}
+% \begin{align*}
+% 	\lim_{\lambda \to +\infty} \frac{1-2\zeta(\lambda)}{2 \zeta(-\lambda) - 1} = \infty
+% \end{align*}
+% \begin{align*}
+% 	\lim_{\lambda \to +\infty} \alpha(\lambda)
+% 		 \sqrt{ \frac{1-2\zeta(\lambda)}{2 \zeta(-\lambda) - 1}} = 0
+% \end{align*}
+% \begin{align*}
+% 	\lim_{\lambda \to 0} \frac{|\alpha(\lambda)|}{|a_1(\lambda)|}
+% 		= \frac{1}{| \int u_1 M_1^+(u_1) |}
+% \end{align*}
+
+% {\color{red}
+% 	\begin{rmk}
+% 		Obviously, if $\int u_1 M_1^+(u_1) = \int u_2 M_1^+(u_2) = 0$, 
+% 		this approach won't work. However, if only one of the two 
+% 		integrals equals zero, then the approach can still be addapted 
+% 		as appropriate.
+% 	\end{rmk}
+% }
+% Since the map $B_X(0, c_0) \to L^1(\mathbb R)$, $u \mapsto uM$ 
+% is Lipschitz, 
+% \[
+% 	|a_1 - a_2|
+% 		\leq |\alpha(\lambda)| 
+% 			\int_{\mathbb R} 
+% 				\big| 
+% 					u_1 M_1^+(x; \lambda, u_1) - u_2 M_1^+(x; \lambda, u_2)
+% 				\big|
+% 			\, \mathrm{d}x
+% 		\lesssim |\alpha(\lambda)| \| u_1 - u_2 \|_X.
+% \]
+% For $\lambda$ away from zero, the above observations alow us to control the 
+% $\frac{1}{|a_1|}\frac{|b_2|}{|a_2|} |a_1 - a_2|$ term by $\| u_1 - u_2 \|_X$ times 
+% a constant that depends only on $k$, where we assume $|\lambda| \geq k$.
+
+
+% {\color{red}
+% 	\begin{rmk}
+% 		Given that this approach is essentially giving us that $\|r_1 - r_2\|$ is
+% 		bounded (modulo a constant) by $1/(\int u_1 M_1^+(u_1)) \|u_1 - u_2\|$, our
+% 		next approach to this problem should be to fix some constant $k_1$ and consider 
+% 		the case where modulus of at least one of the integrals $\int u_1 M_1^+(u_1)$
+% 		or $\int u_2 M_1^+(u_2))$ is bounded below by $k_1$ separately from the case where
+% 		both such integrals are bounded above by $k_1$. 
+% 	\end{rmk}
+% }
+
+% % While technically the direct scattering map takes $u$ to the refection coef{}ficient $r = b/a$, 
+% % the purpose of these notes, we will think about the direct scattering map as $u \mapsto b$,
+% % where
+% % \begin{align*}
+% %  	a(\lambda) 
+% %  		&= 1 +  i \alpha(\lambda) 
+% %  			\int_{-\infty}^x 
+% %  				e^{-i \lambda x'} u(x) M_1^+(x'; \lambda) 
+% %  			\, \mathrm{d}x' \\
+% %  	b(\lambda) 
+% %  		&= i \beta(\lambda) 
+% %  			\int_{-\infty}^x 
+% %  				e^{-i \lambda x'} u(x) M_1^+(x'; \lambda) 
+% %  			\, \mathrm{d}x'.
+% % \end{align*}
+% % Under this perspective, to show Lipschitz continuity, we want to show
+% % that 
+% % \[
+% % 	\| b_1 - b_2 \|_{\L^\infty} \lesssim \| u_1 - u_2 \|.
+% % \]
+% % To do so, first note that there are two maps at play\textemdash{}namely, 
+% % $u\mapsto ^+(\dotarg; \lambda, u)$ and $M_1^+(\dotarg; \lambda, u) \mapsto b(\lambda)$. 
+% % In particular, 
+% % \begin{align*}
+% % 	\| b_1 - b_2 \|		
+% % 		&\leq \nm{
+% % 				\beta(\lambda)
+% % 				\int_{\mathbb R} 
+% % 					e^{ix \lambda} 
+% % 					\big(u_1(x) - u_2(x)\big) M_1^+(x; \lambda, u_1)
+% % 				\, \mathrm{d}x
+% % 			} \\
+% % 		&\qquad + \nm{
+% % 				\beta(\lambda)
+% % 				\int_{\mathbb R} 
+% % 					e^{ix \lambda} u_2(x)
+% % 					\big(M_1^+(x; \lambda, u_1) - M_1^+(x; \lambda, u_2)\big) 
+% % 				\, \mathrm{d}x
+% % 			}
+% % \end{align*}
+% % \begin{rmk}
+% % 	{\color{red}
+% % 	While $\beta(\lambda)$ blows up (in both directions) as $\lambda$ approaches 
+% % 	zero,
+% % 	\[
+% % 		\lim_{\lambda\to 0} \beta(\lambda) e^{i x \lambda} = 0
+% % 	\]
+% % 	We should be able to use this to show that the integrals 
+% % 	$\int \beta(\lambda) e^{ix\lambda} \ldots \, \mathrm{d}x$ are well defined and 
+% % 	bounded even as $\lambda \to 0$. 
+% % 	}
+% % \end{rmk}
+
+% % The first step is to show that the map $u \mapsto r$ is well-defined. That means showing
+% % both the existence and uniqueness of $M_1^+(\dotarg; \lambda, u)$.
+
+
+\end{document}

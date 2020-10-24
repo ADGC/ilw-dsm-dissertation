@@ -1,0 +1,458 @@
+%%========================================================
+%% Section 0.02: Overview of the ILW Direct Scattering Map
+%%========================================================
+
+\documentclass[../dissertation.tex]{subfiles}
+
+\begin{document}
+\section{Overview of the ILW Direct Scattering Map}\label{sec0:DM}
+
+While there are a series of papers from the late 1970's and early 1980's 
+culminating in a paper by Y. Kodama, M.J. Ablowitz and J. Satsuma 
+\cite{Kodama1982} and a subsequent paper by P.M. Santini, M.J. Ablowitz and A.S. 
+Fokas \cite{Santini1984} which formally describe the Inverse Scattering 
+Transform (IST) for the ILW, little research has been done to place the Inverse 
+Scattering Method for the ILW equation on a rigorous mathematical footing. 
+At the time of writing this dissertation, the author found no results in the 
+literature showing that the IST for the ILW equation is actually well-defined
+or bi-Lipschitz continuous\textemdash{}even for small data.
+
+As described in Section \ref{sec0:IST}, using the Inverse
+Scattering Method to solve the ILW entails constructing 
+an invertible, bi-Lipschitz
+continuous map from initial data to the corresponding scattering data in such 
+a way that linearizes the flow\textemdash{}\textit{i.e.} the time dependence 
+of the output of this map applied to initial data is determined by a linear 
+dif{}ferential equation. The ``forward
+direction'' of this map which takes initial data to scattering data is referred to 
+as the ``direct scattering map,'' and its inverse
+is referred to as the ``inverse scattering map.'' This distinction is made as the process for 
+constructing the direct scattering map for a given equation is often very dif{}ferent from
+the process for constructing the corresponding inverse scattering map. As previously mentioned,
+the combination of this direct scattering map with the corresponding inverse 
+scattering map and the linear differential equation used to propagate the scattering data in 
+time is called an Inverse Scattering Transform for the ILW.
+
+What allows us to construct an IST for the ILW
+is
+fact that the ILW is an isospectral flow for the linear spectral problem
+\begin{align}\label{eq0:SpecProb}
+	L_\delta (\Psi) 
+		:= \frac{1}{i} \frac{\partial}{\partial x} \Psi^+ 
+			- \zeta \left(\Psi^+ - \Psi^-\right) = u \Psi^+,
+\end{align}
+which is a part of the Lax pair\footnote{Please see the appendix titled
+\hyperref[app:Lax]{\textit{Lax Representation}} for a comparison of 
+\eqref{eq0:Lax} with the ILW Lax pair typically given in the literature.}
+\begin{subequations}\label{eq0:Lax}
+	\begin{align}
+		\frac{1}{i} \frac{\partial}{\partial x} \Psi^+ 
+				- \zeta \left(\Psi^+ - \Psi^-\right)
+			 &= u \Psi^+ 
+			 \label{eq0:LaxX} \\
+		\frac{1}{i} \frac{\bd}{\bd t} \Psi^\pm + 2 i 
+				\( \zeta-\frac{1}{2\delta} \) + \Psi_{xx}
+			&= \left[ \pm i u_x  - T u_x + \eta  \right] \Psi^\pm,
+			\label{eq0:LaxT}
+\end{align}
+\end{subequations}
+where $\Psi$ is a function analytic in the complex strip\label{sym:Sdelta} 
+\[
+	\mathcal S_\delta := \{ z \in \mathbb C \, : \, 0 < \im z < 2 \delta\}
+\]
+with respective lower and upper boundary values\label{sym:bndries}
+\begin{align}\label{eq0:bndryvaluedefn}
+	\Psi^+(x):= \lim_{y \searrow 0} \Psi(x + i y), \qquad 
+	\text{and}\qquad
+	\Psi^-(x):= \lim_{y \nearrow 2\delta} \Psi(x + i y),
+\end{align}
+where we use the superscript notation $f^\pm$ throughout this dissertation to 
+indicate lower and upper boundary values as shown above of functions $f$ 
+analytic on the complex strip $\mathcal S_\delta$.
+The spectral parameter $\zeta \in (0, \infty)$\label{sym:zeta} is itself parametrized by a second spectral 
+parameter $\lambda \in \mathbb R$\label{sym:lambda} as 
+\[
+	\zeta(\lambda; \delta) := \frac{\lambda}{1 - e^{-2 \delta \lambda}},
+\]
+where we use the notation $f(\dotarg; t_1, \ldots, t_n):=f_{t_1, \ldots, t_n}$ to denote a 
+family of functions ``indexed'' in a (possibly) uncountable sense by $t_1, \ldots, t_n$. 
+The output of direct scattering map $\mathscr D$ for the ILW is determined by the 
+lower boundary values
+$M_1^+$, $M_e^+$, $N_1^+$, $N_e^+$ of eigenfunctions $M_1$, $M_e$, $N_1$, $N_e$
+of $L_\delta$ which satisfy the asymptotic conditions given in \eqref{eq0:JostDEasymp}.
+Such eigenfunctions are referred to in the literature as ``Jost solutions,'' and, given their
+importance in the construction of the direct scattering map $\mathscr D$, we explicitly
+define Jost solutions as follows:
+\begin{defn}[Jost solutions]\label{defn0:jost}
+	The Jost solutions $M_1$, $M_e$, $N_1$, $N_e$ are solutions to the linear 
+	spectral problem \eqref{eq0:SpecProb} whose lower boundary values
+	$M_1^+$, $M_e^+$, $N_1^+$, $N_e^+$ as defined in \eqref{eq0:bndryvaluedefn}
+	obey the following asymptotic conditions
+	\begin{subequations}\label{eq0:JostDEasymp}
+		\begin{align}
+			\lim_{x\to -\infty} 
+					\inn{x} 
+					\left( 
+						M_1^+(x; \lambda, \delta) - 1 
+					\right)
+				&= \lim_{x\to \infty} 
+						\inn{x} 
+						\left( 
+							N_1^+(x; \lambda, \delta) - 1
+						\right)
+				= 0 \\
+			\lim_{x\to -\infty} 
+					\inn{x} \left( 
+						M_e^+(x; \lambda, \delta) - e^{i\lambda x}
+					\right)
+				&= \lim_{x\to \infty} 
+						\inn{x} 
+						\left( 
+							N_e^+(x; \lambda, \delta) - e^{i\lambda x}
+						\right)
+				= 0,
+		\end{align}
+	\end{subequations}
+	where we use the notation $\inn{x}:=\sqrt{1+|x|^2}$\label{sym:xbracket} to 
+	indicate a linear weight.
+
+	Additionally, we require the upper boundary values $M_{(\dotarg)}^-$, $N_{(\dotarg)}^-$
+	(where $(\dotarg)$ represents either the subscript $1$ or $e$) of 
+	$M_{(\dotarg)}$, $N_{(\dotarg)}$ to have a decomposition 
+	\begin{align*}
+		M_1^- - 1 &= M_1^{(1)} + M_1^{(2)} \qquad &\text{and}& \qquad
+		&N_1^- - 1 &= N_1^{(1)} + N_1^{(2)} \\
+		M_e^- - e^{i\lambda x}\,e^{-2\delta\lambda} &= M_e^{(1)} + M_e^{(2)} \qquad &\text{and}& \qquad
+		&N_e^- - e^{i\lambda x}\,e^{-2\delta\lambda} &= N_e^{(1)} + N_e^{(2)} \\
+	\end{align*}
+	satisfying 
+	\begin{align*}
+		\inn{x}^{1+\upsilon} \left|M_{(\dotarg)}^{(1)}(x)\right| \lesssim 1 
+			\quad (\text{for } x \ll -1), \qquad 
+		\inn{x}^{1+\upsilon} \left|N_{(\dotarg)}^{(1)}(x)\right| \lesssim 1
+			\quad (\text{for } x \gg 1),
+	\end{align*}
+	and
+	\begin{align*}
+		\inn{\dotarg}^\tau M_{(\dotarg)}^{(2)}, 
+			~\inn{\dotarg}^\tau N_{(\dotarg)}^{(2)} \in L^2(\mathbb R)
+	\end{align*}
+	for any $\upsilon \in \left(0,\frac{1}{2}\right)$ and $\tau \in [0,1)$, where we 
+	use the notation  $a\lesssim b$ to indicate $a \leq C \, b$ for some constant $C>0$.
+	\label{sym:lesssim}
+	% \begin{subequations}\label{eq0:JostDEasymp}
+	% 	\begin{align}
+	% 		\left\{
+	% 			\begin{aligned}
+	% 				&\lim_{x\to -\infty}	M_1^+(x; \lambda, \delta) - 1
+	% 					= \lim_{x\to \infty} N_1^+(x; \lambda, \delta) - 1
+	% 					= 0 \\
+	% 				&\lim_{x\to -\infty} \big( M_e^+(x; \lambda, \delta) - e^{i\lambda x}\big)
+	% 					= \lim_{x\to \infty} \big( N_e^+(x; \lambda, \delta) - e^{i\lambda x}\big)
+	% 					= 0
+	% 			\end{aligned}
+	% 		\right.
+	% 		\qquad (\lambda \ne 0)
+	% 	\end{align}
+	% 	and
+	% 	\begin{align}
+	% 		\left\{
+	% 			\begin{aligned}
+	% 				&\lim_{x\to -\infty}
+	% 						\inn{x}^{-1} \big(M_1^+(x; \lambda, \delta) - 1\big)
+	% 						\\
+	% 				&\qquad\qquad= \lim_{x\to \infty} \inn{x}^{-1} 
+	% 						\big(N_1^+(x; \lambda, \delta) - 1\big)
+	% 					= 0 \\
+	% 				&\lim_{x\to -\infty}\inn{x}^{-1} 
+	% 						\big( M_e^+(x; \lambda, \delta) - e^{i\lambda x}\big)
+	% 						\\
+	% 					&\qquad\qquad= \lim_{x\to \infty}\inn{x}^{-1} 
+	% 						\big( N_e^+(x; \lambda, \delta) - e^{i\lambda x}\big)
+	% 					= 0
+	% 			\end{aligned}
+	% 		\right.
+	% 		\qquad (\lambda = 0)
+	% 	\end{align}
+	% \end{subequations}
+\end{defn}
+
+For a given 
+$u(x)$, the corresponding output $r = \mathscr D u$ of direct scattering map is
+given by $r(\lambda; \delta) = b(\lambda;\delta) / a(\lambda; \delta)$, where
+\begin{align*}
+	b(\lambda)
+		&:= 
+			\frac{i}{1-2\delta\zeta(-\lambda)} 
+			\int_{\mathbb R} e^{-i\lambda x} 
+				u(x) \, M_1^+(x; \lambda,\delta) 
+			\, \mathrm{d}x
+			\\
+	a(\lambda)
+		&:=
+			1 
+			+ \frac{i}{1-2\delta \zeta(\lambda)}
+				\int_{\mathbb R} 
+					u(x) \, M_1^+(x; \lambda,\delta) 
+				\, \mathrm{d}x.
+\end{align*}
+In this dissertation, we prove the following result:
+\begin{thm}\label{thm0:MainResult}
+	For sufficiently small $c_0 > 0$ the map
+	\begin{align*}
+		\mathscr D : B_X(0, c_0) &\to L^\infty(\mathbb R) \\
+		                       u &\mapsto r
+	\end{align*}
+	is well-defined for all real $\lambda$, where 
+	$X$ denotes the space $\inn{\dotarg}^{-4} L^2(\mathbb R)$, and 
+	$B_X(0, c_0)$ \label{sym:ball} 
+	is the ball in the 
+	space $X$ about zero with radius $c_0$.\footnote{See Theorem \ref{thm4:Dwelldefined}
+	in Section \ref{sec4:DM} of Chapter \ref{cptr04:DM}.}
+	Further, $\mathscr D$ is 
+	Lipschitz continuous as a map from $B_X(0, c_0)$ to 
+	$L^\infty\big((-\infty, k]\cup[k, \infty)\big)$ for each fixed 
+	$k>0$.\footnote{See Theorem \ref{thm4:DlipR} in Section \ref{sec4:DM} of Chapter 
+	\ref{cptr04:DM}.}
+\end{thm}
+
+A crucial first step to showing that $\mathscr D$ is well-defined is showing that 
+for each given $u \in B_X$ the corresponding Jost solutions both exist and are 
+unique. To do so, one uses 
+the (formal) Green's Functions $G_L$ and $G_R$, given by 
+\begin{subequations}
+	\label{eq0:GFs}
+	\begin{align}
+		\label{eq0:GFL}
+		G_L(z; \lambda, \delta) 
+			&= 
+				\lim_{\varepsilon \searrow 0} 
+				\frac{1}{2\pi} 
+				\int\limits_{\mathbb R - i\varepsilon} 
+					\frac{e^{iz\xi}}
+						{\xi -  \zeta(\lambda) \left(1- e^{-2 \delta \xi}\right) } 
+				\, \mathrm{d}\xi, 
+				\qquad \left(z\in \overline{\mathcal{S}}_\delta \right)\\
+		\intertext{and}
+		\label{eq0:GFR}
+		G_R(z; \lambda, \delta) 
+			&= 
+				\lim_{\varepsilon \searrow 0} 
+				\frac{1}{2\pi} 
+				\int\limits_{\mathbb R + i\varepsilon} 
+					\frac{e^{iz\xi}}
+						{\xi -  \zeta(\lambda) \left(1- e^{-2 \delta \xi}\right) } 
+				\, \mathrm{d}\xi,
+				\qquad \left(z\in \overline{\mathcal{S}}_\delta \right)
+	\end{align}
+\end{subequations}
+to rewrite \eqref{eq0:SpecProb} with asymptotic conditions \eqref{eq0:JostDEasymp} 
+as the integral equations
+\begin{subequations}
+	\label{eq0:JostIE}
+	\begin{align}
+		\label{eq0:JostIEleft}
+		\begin{pmatrix}
+			M_1^+(x; \lambda, \delta) \\
+			M_e^+(x; \lambda, \delta)
+		\end{pmatrix}
+			&= 
+				\begin{pmatrix}
+					1 \\
+					e^{i\lambda x} 
+				\end{pmatrix}
+				+ \int_{\mathbb R} G_L^+(x - x'; \lambda, \delta) 
+					u(x')
+					\begin{pmatrix}
+						M_1^+(x'; \lambda, \delta) \\
+						M_e^+(x'; \lambda, \delta) 
+					\end{pmatrix}
+					\, \mathrm{d}x' \\[0.3\baselineskip]
+		\label{eq0:JostIEright}
+		\begin{pmatrix}
+			N_1^+(x; \lambda, \delta) \\
+			N_e^+(x; \lambda, \delta)
+		\end{pmatrix}
+			&= 
+				\begin{pmatrix}
+					1 \\
+					e^{i\lambda x} 
+				\end{pmatrix}
+				+ \int_{\mathbb R} G_R^+(x - x'; \lambda, \delta) 
+					u(x')
+					\begin{pmatrix}
+						N_1^+(x'; \lambda, \lambda) \\
+						N_e^+(x'; \lambda, \lambda) 
+					\end{pmatrix}
+					\, \mathrm{d}x',
+	\end{align}
+\end{subequations}
+where we again use the ``$+$'' superscript to indicate the lower boundary
+values of functions analytic in the complex strip $\mathcal S_\delta$.
+
+Formally, assuming that the solutions to equations \eqref{eq0:JostIE} 
+have analytic extensions to the strip $\mathcal S_\delta$ with upper
+boundary values
+$M_1^-$, $M_e^-$, $N_1^-$, and $N_e^-$, one can show through a simply 
+heuristic computation that solutions to the integral equations \eqref{eq0:JostIE} 
+should satisfy the spectral problem \eqref{eq0:SpecProb} with asymptotic 
+conditions \eqref{eq0:JostDEasymp}. However, as discussed in Section 
+\ref{sec1:RootsOfP},the integrand of $G_L$ and $G_R$ has exactly two poles 
+along the real line as shown in \textemdash{}namely $\xi = 0$ and 
+$\xi = \lambda$\textemdash{}and countably many poles in the complex plane. 
+Worse, the Fourier symbol $p(\xi)$ of $G_L$, $G_R$ does not belong to any
+standard symbol class due to its radically different asymptotic behavior 
+as $\xi \to -\infty$, and $\xi \to +\infty$, respectively. As such,
+it is hardly obvious that $G_L$ and $G_R$ are even remotely well 
+defined as convolution operators. As such, before we can even begin to prove 
+that the direct scattering map $\mathscr D$ is well-defined, we require a 
+thorough understanding of the Green's functions $G_L$, $G_R$ as convolution 
+operators\textemdash{}indeed, such is the focus of Chapters \ref{cptr01:GF} 
+through \ref{cptr03:xContin} of this dissertation.
+
+We begin our study of the Green's functions $G_L$, $G_R$ in Chapter 
+\ref{cptr01:GF} by analyzing the properties of the lower boundary 
+values $G_L^+$, $G_R^+$ as functions.
+Using a combination of classical analysis and 
+and several dyadic decompositions, we show
+that the boundary values $G_L^+$ and $G_R^+$ can be represented as 
+\begin{align}\label{eq0:GFrep}
+	G_L^+(x; \lambda, \delta)
+		&= 
+			\begin{cases}
+				K^+(x; \lambda, \delta), &x < 0 \\
+				K^+(x; \lambda, \delta)
+				+ i \alpha(\lambda; \delta) 
+				+ i \beta(\lambda; \delta) \, e^{i \lambda \, x}, 
+				&x >0 
+			\end{cases}
+\end{align}
+where $G_L(z; \lambda, \delta) = \overline{G_R(-\re z +i\im z; \lambda, \delta)}$, 
+\begin{align*}
+	\alpha(\lambda; \delta) 
+		= \frac{1}{1-2\delta\lambda(\lambda)},
+	\qquad
+	\beta(\lambda; \delta) 
+		= \frac{1}{1 - 2\delta\lambda(-\lambda) e^{-2\delta\lambda}},
+\end{align*}
+and the function $K^+$ satisfies the properties
+\begin{itemize}
+	\item[(i)] $K^+(x) = \mathcal O \left( \frac{e^{-\pi|x|}}{x} \right)$ 
+		for $|x| \geq 1$, and
+	\item[(ii)] $|K(x)| \leq C + C \log\left(\frac{1}{|x|}\right)$ for $|x| < 1$.
+\end{itemize}
+
+Our study of the boundary values $G_L^+$, $G_R^+$ continues in Chapter 
+\ref{cptr02:GFmapping} as we use \ref{eq0:GFrep} to understand the mapping
+properties of $G_L^+$, $G_R^+$ as convolution operators. More specifically, 
+we study the operators $T_{L, \lambda, u}$, $T_{R, \lambda, u}$ given by
+\begin{align}
+	T_{L, \lambda, u} f:= G_L^+(\dotarg; \lambda, \delta)*(uf) 
+	\qquad \text{and} \qquad 
+	T_{R, \lambda, u} f:= G_R^+(\dotarg; \lambda, \delta)*(uf) 
+\end{align}
+and show that the are bounded operators acting the space 
+$\inn{\dotarg}L^\infty(\mathbb R)$ whose operator norms depend only 
+on the $\nm{u}_X$ and not on $\lambda$. We further show in Chapter 
+\ref{cptr02:GFmapping} that for every 
+$f \in \inn{\dotarg} L^\infty(\mathbb R)$
+and $u \in X$ the operators $T_{L, \lambda, u}$, $T_{R, \lambda, u}$
+satisfy the asymptotic behavior
+\begin{align*}
+	\lim_{x\to-\infty} T_{L, \lambda, u} f(x) 
+		= \lim_{x\to-\infty} T_{R, \lambda, u} f(x) 
+		= 0
+\end{align*}
+when real $\lambda \ne 0$, and 
+\begin{align*}
+	\lim_{x\to-\infty} \inn{x}^{-1} T_{L, \lambda, u} f(x) 
+		= \lim_{x\to-\infty} \inn{x}^{-1} T_{R, \lambda, u} f(x) 
+		= 0
+\end{align*}
+for every $\lambda \in \mathbb R$. That $T_{L, \lambda, u}$, 
+$T_{R, \lambda, u}$ satisfy the above limits is a property we use later to 
+prove solutions to the integral equations \eqref{eq0:JostIE} satisfy the 
+asymptotic conditions in \eqref{eq0:JostDEasymp}.
+
+The focus for our final chapter on the the Green's functions, Chapter 
+\ref{cptr03:xContin}, is analytically extending $G_L^+$, $G_R^+$ in 
+the variable $x$ to $G_L$ and 
+$G_R$ defined on the complex strip $\mathcal S_\delta$ and showing that $G_L$, $G_R$ 
+have upper boundary values $G_L^-$, $G_R^-$. Analytically extending $G_L^+$, 
+$G_R^+$ is important as it allows us to analytically extend the solutions 
+$M_1^+$, $M_e^+$, $N_1^+$, $N_e^+$ to the integral equations \ref{eq0:JostIE},
+which is a prerequisite to showing that solutions to the integral 
+equations \ref{eq0:JostIE} are Jost solutions. While, extending $G_L^+$, $G_R^+$
+(as convolution operators) to the open strip $\mathcal S_\delta$ is straight
+forward, showing the existence of the upper boundaries $G_L^-$, $G_R^-$ is 
+considerably more involved, as it involves working with a singular operator
+that is reminiscent of the Hilbert transform. In fact, nearly the entirety of
+Chapter \ref{cptr03:xContin} is devoted to proving the existence (in an $L^2$ 
+sense) of $G_L^-$ and $G_R^-$.
+
+Our analysis of the Green's functions in \ref{cptr01:GF} through 
+\ref{cptr03:xContin} allows us to finally prove in Section \ref{sec4:equiv}
+of Chapter \ref{cptr04:DM} the equivalence of Jost solutions and solutions to
+the integral equations \eqref{eq0:JostIE}. The big pay-off in proving this 
+equivalence is that it allows us to consider the Jost solutions as solutions
+to Volterra type integral equations instead of an ordinary differential 
+equation on a complex strip involving complex boundary values. Being able to do
+so is invaluable as the theory of Volterra type integral equations is far better 
+understood (at least by this author) than the theory of such complex ordinary 
+differential equations. Indeed, it is precisely by treating the Jost solutions 
+as solutions to integral equations \eqref{eq0:JostIE} that we are ultimately 
+able in Chapter \ref{cptr04:DM} to prove that $\mathscr D$ is well-defined and, 
+at least for real $\lambda$ values away from zero, $\mathscr D$ is also 
+Lipschitz continuous.
+\end{document}
+
+
+
+% {\color{red}
+% Using \eqref{eq0:GFrep}, we further show in Chapter \ref{cptr01:GF} that, when 
+% taken as a convolution operator, $G_L^+$ and $G_R^+$ are bounded and continuous 
+% operators on $L^1\cap L^p$ for $p \in (1, 2]$. This allows us 
+% to show in Chapter \ref{cptr03:xContin} that taken as convolution 
+% operators, $G_L$, $G_R$ are analytic in the open strip 
+% $\mathcal S_\delta = \{ z\in \mathbb C \,:\, 0 < z < 2\delta \}$.
+
+% Using techniques from harmonic analysis, we show in Chapter \ref{cptr03:xContin} the 
+% existence of the upper boundary values $G_L^-$, $G_R^-$, and study their mapping 
+% properties as convolution operators. Doing so is important as it allows us to 
+% then prove the equivalence between solutions of the dif{}ferential equation 
+% \eqref{eq0:SpecProb} satisfying 
+% asymptotic conditions \eqref{eq0:JostDEasymp} and solutions of the integral equations 
+% \eqref{eq0:JostIE}. Proving this equivalence allows us to use the integral equations
+% \eqref{eq0:JostIE} to prove the existence and uniqueness of solutions to the linear 
+% spectral problem \eqref{eq0:SpecProb} governed by asymptotic conditions 
+% \eqref{eq0:JostDEasymp}.
+% Further, by studying the asymptotics of the solutions to \eqref{eq0:JostIE}, we 
+% are then able to determine in Section \ref{sec3:IE} that the scattering is then given by the integral 
+% formulas
+% \reversemarginpar
+% \marginnote{\color{red} Need to prove $a$, $b$ continuous in $u$. 
+% Want to characterize $a$, $b$ and specify spaces for $a$, $b$.}
+% \begin{align*} 
+% 	a(\lambda)	
+% 		&=	1 + i \alpha(\lambda) 
+% 			\int_{-\infty}^x u(x') M_1^+(x',\lambda) \, \mathrm{d}x'	\\
+% 	\intertext{and}
+% 	b(\lambda)	
+% 		&=	i \beta(\lambda) 
+% 			\int_{-\infty}^x e^{-i\lambda x'} u(x') M_1^+(x',\lambda) \, \mathrm{d}x'.
+% \end{align*}
+% \sout{Since we are able to use the properties of $M_1^+$ to prove that the above integral
+% equations are uniquely solvable}, this completes the Direct Map of the ILW's 
+% Inverse Scattering Transform. 
+
+
+% The first step in constructing the inverse scattering map involves setting up and 
+% solving a Riemann-Hilbert problem (RHP) involving the scattering data. 
+% However, in order to construct the correct
+% RHP, we need to first understand the analytic (in $\lambda$) properties of the 
+% scattering data, which means also understanding the analytic (in $\lambda$) 
+% properties of the previously mentioned Jost solutions and Green's functions.  
+% While this dissertation focuses primarily on the Direct Map, a discussion
+% of the analytic properties of the scattering data is provided at the end of 
+% this disseration in {\color{red}?Chapter/Section? ??.??} as a staging point for 
+% future research into the ILW's Inverse Scattering Transform.}

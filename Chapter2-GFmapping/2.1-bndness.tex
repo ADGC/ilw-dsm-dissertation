@@ -1,0 +1,667 @@
+%%==========================
+%% Section 2.01: Boundedness as a Convolution Operator
+%%==========================
+\documentclass[../dissertation]{subfiles}
+
+
+\begin{document}
+
+\section{Boundedness as a Convolution Operator}\label{sec2:bndness}
+
+As a warm-up, we begin our study of the Green's functions mapping 
+properties by studying in Proposition \ref{prop2:pold} the 
+mapping properties of $G_L^+$, $G_R^+$ as convolution operators
+under the constraint $\lambda \ne 0$. 
+
+\begin{prop}\label{prop2:pold}
+	For each fixed $\lambda \in \mathbb R \sm \{0\}$, $G_\star^+$ 
+	($\star = L \text{, or } R$) are bounded as convolution operators
+	from $L^1(\mathbb R) \cap L^p$ ($1< p \leq 2$) with 
+	\[
+		\| G_\star^+ * f \|_{L^\infty} 
+			\lesssim_\lambda \|f \|_{L^1\cap L^p},
+	\]
+	where the implied constant depends on $\lambda$ when 
+	$|\lambda|< 1$. Further, 
+	\begin{align}
+		\lim_{x \to -\infty} \big(G_L^+ * f\big)(x) 
+			= \lim_{x \to +\infty} \big(G_R^+ * f\big)(x) 
+			= 0
+	\end{align}
+	whenever the spectral parameter $\lambda$ is both real and non-zero.
+\end{prop}
+\begin{proof}
+	%% The following was modified from Prof. Perry's kpw1.tex file
+	From our previous work in Section 
+	\ref{sec1:GreensFunctions} proving Theorem \ref{thm1:GFRep}, we have
+	\begin{align}
+		G_L^+(x; \lambda, \delta) 
+			= 
+				K^+(x; \lambda) 
+				+ 
+					\big[
+						i \alpha(\lambda) + i \beta(\lambda)\, e^{ix\lambda} 
+					\big] \chi_+(x)
+	\end{align}
+	and
+	\begin{align}
+		G_R^+(x; \lambda, \delta) 
+			= 
+				K^+(x; \lambda) 
+				- 
+					\big[
+						i \alpha(\lambda) + i \beta(\lambda)\, e^{ix\lambda} 
+					\big] \chi_-(x)
+	\end{align}
+	where 
+	\begin{align*}
+		K^+(x; \lambda) 
+				:= \frac{e^{-\pi |x|}}{2\pi} 
+					\int_{\mathbb R} e^{i x \xi} 
+						\frac{1}{p(\xi; \lambda) + i \pi \sign(x)}
+					\, \mathrm{d}\xi.
+	\end{align*}
+	and $\chi_-:= \chi_{(-\infty, 0)}$, $\chi_+:= \chi_{(0, \infty)}$ denote 
+	the respective characteristic functions on the open intervals 
+	$(-\infty, 0)$, $(0, \infty)$. 
+	Although the integral for $K^+$ is conditionally convergent, it avoids 
+	zeros of the symbol $p$, and may be understood through the $L^q$ theory 
+	of the Fourier transform, since the integrand belongs to $L^q$ for any 
+	$q>1$.  Moreover, it follows from the 
+	Hausdorf{}f-Young inequality and dominated convergence that 
+	$\lim_{h \to 0} \norm[L^{q'}]{K(\dotarg+h)^+ - K^+} =0$ for any $q \in (1,2]$. 
+	As a consequence, the convolutions
+	\begin{align}
+		\label{ILW.GL*f}
+		G_L^+(\dotarg; \lambda) * f(x) 	
+			&=	\int_{\mathbb R} G_L^+(x-x',\lambda) f(x') \, \mathrm{d}x' 	\\
+			&=	
+				\int_{-\infty}^x K^+(x-x',\lambda) f(x') \, \mathrm{d}x'
+				+\int_x^{\infty} K^+(x-x',\lambda) f(x') \, \mathrm{d}x'
+				\nonumber \\
+			&\quad 	+ i \alpha (\lambda) \int_{-\infty}^x f(x') \, \mathrm{d}x' 
+				+ i \beta(\lambda) e^{i\lam x} 
+						\int_{-\infty}^x e^{-i\lambda x'} f(x') \, \mathrm{d}x', 
+				\nonumber\\
+		\intertext{and}
+		\label{ILW.GR*f}
+		G_R^+(\dotarg; \lambda) * f(x) 
+			&= 
+				\int_{-\infty}^x K^+(x-x',\lambda) f(x') \, \mathrm{d}x'
+				+\int_x^{\infty} K^+(x-x',\lambda) f(x') \, \mathrm{d}x'
+				\\
+			&\quad- i \alpha (\lambda) \int_x^{\infty} f(x') \, \mathrm{d}x' 
+				- i \beta(\lambda) e^{i\lam x} 
+						\int_x^{\infty} e^{-i\lambda x'} f(x') \, \mathrm{d}x', 
+				\nonumber
+	\end{align}
+	define bounded continuous functions for any 
+	$f \in L^1(\mathbb R) \cap L^p(\mathbb R)$ for any $p \in (1,2]$ with
+	\begin{equation}
+		\label{ILW.GL.bd}
+		\norm[L^\infty(\mathbb R)]{G_\star^+*f} \lesssim_\lambda \norm[L^1 \cap L^p]{f}.
+	\end{equation}
+	For $f \in C_0^\infty(\mathbb R)$, it is easy to see that
+	\begin{align*}
+		\lim_{x\to-\infty} \alpha (\lambda) \int_{-\infty}^x f(x') \, \mathrm{d}x' 
+				+ \beta(\lambda) e^{i\lam x} 
+						\int_{-\infty}^x e^{-i\lambda x'} f(x') \, \mathrm{d}x'
+				= 0
+	\end{align*}
+	and 
+	\begin{align*}
+		\lim_{x\to\infty}
+				\alpha (\lambda) \int_x^{\infty} f(x') \, \mathrm{d}x' 
+				+  \beta(\lambda) e^{i\lam x} 
+						\int_x^{\infty} e^{-i\lambda x'} f(x') \, \mathrm{d}x'
+			= 0.
+	\end{align*}
+	Further, the Dominated Convergence Theorem implies 
+	\begin{align*}
+		\lim_{x\to \pm \infty} K^+*f(x) 
+			= \lim_{x\to \pm \infty} \int_{\mathbb R} K^+(x-x') f(x') \, \mathrm{d}x
+			= 0,
+	\end{align*}
+	as $|K^+(x') f(x-x')| \leq \|f\|_{L^\infty} |K^+(x)| \in L_x^1(\mathbb R)$,
+	and $K^+(x) = \mathcal O\left(e^{-|x|}\right)$ for $|x| \geq 1$. 
+
+	% $\lim_{x \to -\infty} G_L^+ * f(x;\lambda) = 0$. 
+
+
+	It now follows from a density 
+	argument and \eqref{ILW.GL.bd} that if $p \in (1,2]$, then
+	\begin{equation}
+		\label{ILW.GL.vanish}
+		\lim_{x \to -\infty} \left(G_L^+*f\right)(x) 
+			= \lim_{x \to +\infty} \left(G_R^+*f\right)(x) 
+			= 0
+	\end{equation}
+	for any $f \in L^1(\mathbb R) \cap L^p(\mathbb R)$.
+\end{proof}
+
+We now turn our focus towards the operators $T_{\star, \lambda, u}$
+($\star = L \text{, or } R$). In Proposition \ref{prop2:Tbnd} we prove that as 
+an operator on the space $\inn{\dotarg} L^\infty(\mathbb R)$, the operators 
+$T_{\star, \lambda, u}$ are uniformly bounded in $\lambda$, whose operator norms 
+depend only on the norm of their corresponding potential $u$. As a reminder, the 
+function space for potentials $u$ is 
+$X:=L^{2, 4}(\mathbb R) = \inn{\dotarg}^{-4} L^2(\mathbb R)$. Beginning in
+Proposition \ref{prop2:Tbnd}, we also introduce the notation 
+$Y\toitself$\label{sym:toitself} to
+denote a map from $Y$ into $Y$, and the notation 
+$\|\dotarg\|_{Y\to Z}$\label{sym:opnorm} to
+denote the implied operator norm for an operator which maps from $Y$ to $Z$.
+Thus, the notation $\|\dotarg\|_{\inn{\dotarg}L^\infty\toitself}$ used in 
+Equation \eqref{eq3:Tbndxbrac} of Proposition \ref{prop2:Tbnd} denotes the 
+operator norm for an operator which maps from the space 
+$\inn{\dotarg}L^\infty(\mathbb R)$ into itself.
+
+\begin{prop}\label{prop2:Tbnd}
+	Consider the operators $T_{\star,\lambda, u}$ 
+	($\star = L \text{, or }R$)
+	given by
+	\[
+		\big(T_{\star,\lambda, u} f\big)(x) 
+			:= \int_{\mathbb R} G_\star^+(x-x'; \lambda) \, u(x') f(x') \, \mathrm{d}x'.
+	\]
+	For every $u \in X$, operators \label{sym:mapsto}
+	$T_{\star, \lambda, u}: \inn{\dotarg} L^\infty(\mathbb R) 
+	\to \inn{\dotarg} L^\infty(\mathbb R)$ are bounded uniformly in $\lambda\in\mathbb R$ with
+	\begin{align}\label{eq3:Tbndxbrac}
+		\|T_{\star, \lambda, u}\|_{\inn{\dotarg} L^\infty \toitself} 
+			\lesssim \|u\|_X.
+	\end{align}
+\end{prop}
+\begin{proof}
+	To simplify notation, we write $T_\star$ instead of $T_{\star, \lambda, u}$
+	throughout this proof. We begin by noting that
+	\begin{align*}
+		|T_\star f(x)| 
+			&= 
+				\left| 
+					\int_{\mathbb R} 
+						G_\star^+(x-x'; \lambda) \big(u(x')\inn{x'}\big)
+						\big(\inn{x'}^{-1} f(x')\big)
+					\, \mathrm{d}x'
+				\right| \\
+			&\leq 
+				\|f\|_{\inn{\dotarg}L^\infty} 
+				\int_{\mathbb R}
+					\big|G_\star^+(x-x'; \lambda)\big|
+					\inn{x'} |u(x')|
+				\, \mathrm{d}x'.
+	\end{align*}
+	Hence
+	\begin{align}
+		\|T_\star\|_{\inn{\dotarg} L^\infty \toitself} 
+			&\leq \sup_{x\in \mathbb R} \inn{x}^{-1}
+				\int_{\mathbb R}
+					\big|G_\star^+(x-x'; \lambda)\big|
+					\inn{x'} |u(x')|
+				\, \mathrm{d}x'.
+	\end{align}
+	
+	Recall from Theorem \ref{thm1:GFRep} that
+	\begin{subequations}\label{eq3:Grep}
+		\begin{align}
+			G_L^+(x; \lambda) 
+				&= K^+(x; \lambda) + 
+				\big[i \alpha(\lambda) + i \beta(\lambda) e^{ix \lambda}\big]
+					 \chi_L(x) \\
+			G_R^+(x; \lambda)
+				&= K^+(x; \lambda) -
+				\big[i \alpha(\lambda) + i \beta(\lambda) e^{ix \lambda}\big]
+					 \chi_R(x)
+		\end{align}
+	\end{subequations}
+	where we define $\chi_L:=\chi_{\mathbb R^+}$,  $\chi_R:= \chi_{\mathbb R^-}$,
+	and $\chi_{\mathbb R^+}$, $\chi_{\mathbb R^-}$
+	respectively denote the characteristic functions on the intervals
+	$(0, \infty)$ and $(-\infty, 0)$.
+	According to Theorem \ref{thm1:krep}
+	\[
+		\lim_{\lambda \to 0} 
+			\alpha(\lambda) + \beta(\lambda) \, e^{ix\lambda}
+			= \frac{2}{3} + i x,
+	\]
+	which implies that for suf{}ficiently small $\varepsilon > 0$, 
+	\begin{align}\label{eq2:polesumbnd}
+		\big| \alpha(\lambda) + \beta(\lambda) \, e^{ix\lambda} \big|
+			&\lesssim_{\varepsilon}
+				\begin{cases}
+					1, & |\lambda| \geq \varepsilon \\
+					1 + |x|, & |\lambda| < \varepsilon
+				\end{cases}
+	\end{align}
+	Further, since Theorem \ref{thm1:krep} also states that 
+	\begin{align*}
+		|K^+(x-x'; \lambda)| \lesssim 1 + \log_+\left(\frac{1}{|x-x'|}\right) 
+	\end{align*}
+	we see from \eqref{eq3:Grep} that 
+	\begin{align}
+		|G_\star^+ (x - x'; \lambda)|
+			\lesssim 1 + |x-x'| + \log_+(1/|x-x'|)
+	\end{align}
+	where the implied constant is $\lambda$ independent. 
+
+	Thus, the operator norm of $T_\star$
+	is bounded by 
+	\begin{align}\label{eq3:Tbnd}
+		\sup_{x\in \mathbb R} \inn{x}^{-1}
+				\int_{\mathbb R}
+					\left[1 + |x-x'| + \log_+\left(\frac{1}{|x-x'|}\right)\right]
+					\inn{x'} |u(x')|
+				\, \mathrm{d}x'.
+	\end{align}
+	To estimate \eqref{eq3:Tbnd}, first note that 
+	since $\inn{x} \geq 1$ for $x\in \mathbb R$, we have $\inn{x'}\inn{x}^{-1} 
+	\leq \inn{x'}$. Further, 
+	\[
+		\inn{x}^{-1} |x - x'| 
+			= \frac{|x-x'|}{\inn{x}\inn{x'}}\inn{x}^2 
+			\lesssim \inn{x'}^2.
+	\]
+	and, lastly, $\inn{x}^{-1} \inn{x'} \lesssim 1$ whenever $|x-x'|\leq 1$. 
+	As such, 
+	\begin{align*}
+		\|T_\star\|_{\inn{\dotarg} L^\infty \toitself}
+			&\lesssim 
+				\int_{\mathbb R} \inn{x'} |u(x')| \, \mathrm{d}x' 
+				\\
+			&\qquad+ \esssup_{x\in \mathbb R} 
+				\int_{|x-x'|\leq 1} 
+					\log\left(\frac{1}{|x-x'|}\right)
+					|u(x')|
+				\, \mathrm{d}x' 
+				\\
+		&\lesssim \|u\|_X,
+	\end{align*}
+	by Remark \ref{rmk2:PostX}.
+\end{proof}
+
+If we don't need to worry about non-zero $\lambda$, then we can 
+improve Proposition 
+\ref{prop2:Tbnd} slightly by proving that $T_{\star,\lambda,u}$ 
+is actually a bounded operator on (unweighted) essentially bounded,
+measurable functions. We do this next in Proposition \ref{prop2:Tbndl}.
+
+
+\begin{prop}\label{prop2:Tbndl}
+	For real $\lambda \ne 0$ and $u \in X$, the operators 
+	$T_{\star,\lambda,u}$ ($\star = L\text{, or }R$) map from 
+	$L^\infty(\mathbb R)$ to $L^\infty(\mathbb R)$
+	with
+	\begin{align}
+		\|T_\star\|_{L^\infty \to L^\infty} 
+			\lesssim_\lambda \|u\|_X,
+	\end{align}
+	where the implied constant depends on $\lambda$.
+\end{prop}
+\begin{proof}
+	By repeating our work in the proof of Proposition 
+	\ref{prop2:Tbnd}, we obtain the following estimate
+	\begin{align} \label{eq2:TbndLinfty}
+		\| T_\star f \|_{L^\infty}
+			&\lesssim_{\lambda} \|\inn{x} u\|_{L^1} \|f\|_{\inn{x}L^\infty} \\
+			&\quad + \left[ 
+					\esssup_{x\in \mathbb R}  
+					\left(
+						\int_{|x-x'|\leq 1}
+							\log\left(\frac{1}{|x-x'|}\right)
+							\inn{x'}|u(x')| 
+						\, \mathrm{d}y
+					\right)
+				\right], \nonumber
+	\end{align}
+	which holds for $\lambda \in (-\infty,0) \cup (0, \infty)$. Since
+	$\left| \inn{x} \, u(x) \right| \leq \left| \inn{x}^2 \, u(x) \right|$,
+	we see that $\|\inn{x} u\|_{L^1} \leq \|u\|_X$. Hence, Proposition 
+	\ref{prop2:Tbndl} follows from \eqref{eq2:TbndLinfty}.
+\end{proof}
+
+
+\begin{prop}\label{prop2:Tasymp}
+	The operators $T_{\star, \lambda, u}$ satisfy the asymptotic conditions 
+	\begin{align}\label{eq2:Tasymp}
+		\lim_{x\to-\infty} \inn{x} T_{L, \lambda, u} f(x) 
+			= \lim_{x\to+\infty} \inn{x} T_{R, \lambda, u} f(x) 
+			= 0
+	\end{align}
+	for every real $\lambda$, $u\in X$ and $f\in \inn{\dotarg}L^\infty(\mathbb R)$. 
+	Alternatively stated, the limits
+	\[
+		\lim_{x\to-\infty} T_{L, \lambda, u} f(x), 
+		\qquad \text{and} \qquad 
+		\lim_{x\to+\infty} T_{R, \lambda, u} f(x) 
+	\]
+	converge to zero faster than $1/x$.
+\end{prop}
+\begin{proof}
+	We prove $T_L$ satisfies asymptotic conditions \eqref{eq2:Tasymp} noting 
+	that the corresponding proof for $T_R$ is similar. Since $G_L^+$ experiences
+	linear growth for $|x|\gg 1$ only when $\lambda = 0$ and is otherwise bounded
+	for large $|x|$, we consider the $\lambda = 0$ case first.
+
+	Recall from Remark \ref{rmk1:littlek} in Section \ref{sec1:Intro} that
+	the function $K^+(x; \lambda)$ can be written in the form
+	\begin{align}
+		K^+(x; \lambda) = e^{-\pi |x|}k(x; \lambda)
+	\end{align}
+	where $k(\dotarg; \lambda) \in L^2(\mathbb R)$ for all real $\lambda$, and 
+	$k$ is uniformly bounded in $\lambda$. Consequently, 
+	\begin{align*}
+		T_{L,0,u} f(x)
+			&= 
+				\int_{-\infty}^x 
+					\left(i \frac{2}{3} - (x-x')\right)
+					u(x') f(x') \, \mathrm{d}x' \\
+			&\quad+ \int_{\mathbb R} e^{-\pi|x-x'|} u(x') f(x')\, \mathrm{d}x',
+	\end{align*}
+	which implies
+	\begin{align*}
+		|T_{L,0,u} f(x)|
+			\lesssim I_1 + I_2,
+	\end{align*}
+	where
+	\begin{align*}
+		I_1(x) &:= \int_{\mathbb R} \inn{x-x'} |u(x')|\inn{x'}\, \mathrm{d}x' \\
+		I_2(x) &:= \int_{\mathbb R} \inn{x-x'}^{-2} |k(x-x')| |u(x')|\inn{x'}\, \mathrm{d}x',
+	\end{align*}
+	where we use the fact that $f\in \inn{\dotarg}L^\infty(\mathbb R)$ to estimate
+	$f \lesssim \inn{\dotarg}$ and note that that $e^{-\pi|x|} \lesssim \inn{x}^{-N}$
+	for all whole numbers $N$ (in $I_2$, we select $N=2$). 
+	
+	To bound $I_1$, we assume $x < 0$ and note that this implies $\inn{x'} \geq \inn{x}$
+	and $\inn{x'}^{-1} \leq \inn{x}^{-1}$
+	since the function $\inn{\dotarg}$ is strictly decreasing on the interval $(\infty,0)$.
+	Further, it is straightforward to show that $\inn{x-x'}\leq\inn{x} + \inn{x'} 
+	\leq 2\inn{x'}\lesssim \inn{x'}$. Hence
+	\begin{align*}
+		|I_1(x)| 
+			\lesssim 
+				\int_{-\infty}^x 
+					\left(\inn{x'}^2 \inn{x'}^{-3}\right) 
+					\left(\inn{x'}^3|u(x')|\right) 
+				\, \mathrm{d}x'
+			\lesssim
+				\inn{x}^{-1} 
+				\nm{\inn{\dotarg}^3 u}_{L^1}.
+	\end{align*}
+	Since the Dominated Convergence Theorem implies that the integral of
+	$\inn{\dotarg}^3 |u| \, \chi_{(-\infty, x)}$ goes to zero as $x\to-\infty$, 
+	we see that
+	\begin{align*}
+		\lim_{x\to-\infty} \inn{x} I_1(x) = 0.
+	\end{align*}
+	Similarly,
+	\begin{align}\label{eq2:I2}
+		|I_2(x)| 
+			&\lesssim
+				\inn{x}^{-2} 
+				\int_{-\infty}^x 
+					\frac{\inn{x}^2}{\inn{x-x'}^2 \inn{x'}^2}
+					|k(x-x')| \inn{x'}^2 |u(x')| 
+				\, \mathrm{d}x' 
+				\\
+			&\lesssim 
+				\inn{x}^{-2} \nm{k}_{L^2} \nm{u}_{L^{2,2}},
+				\nonumber
+	\end{align}
+	as 
+	\[
+		\frac{\inn{x}}{\inn{x-x'} \inn{x'}} \leq \frac{1}{\inn{x-x'}} \leq 1
+	\] 
+	when $x <0$ and $x' < x$. Estimate \eqref{eq2:I2} therefore implies
+	\[
+		\lim_{x\to -\infty} \inn{x} I_2(x)
+			= \lim_{x\to -\infty} \inn{x} I_1(x)
+			= 0,
+	\]
+	which in turn implies $T_{L,0,u} f(x)$ satifies the asymptotic
+	condition \eqref{eq2:Tasymp}
+
+	Since the sum of the residue terms in $G_L^+$ is bounded (in $x$)
+	for all fixed $\lambda \ne 0$, a slight modification of the above 
+	argument shows that $T_{L,\lambda, u}f(x)$ also satisfies 
+	\eqref{eq2:Tasymp} when $\lambda \ne 0$. 
+\end{proof}
+% \begin{prop}\label{prop2:Tasymp}
+% 	The limits 
+% 	\begin{align}\label{eq2:Tasymp}
+% 		\lim_{x\to-\infty} \inn{x}^{-1}T_{L, \lambda, u} f(x) 
+% 			= \lim_{x\to+\infty} \inn{x}^{-1} T_{R, \lambda, u} f(x) 
+% 			= 0
+% 	\end{align}
+% 	hold for every $\lambda \in \mathbb R$, $u \in X$ and 
+% 	$f \in \inn{\dotarg} L^\infty(\mathbb R)$. If $\lambda \ne 0$, 
+% 	then 
+% 	\begin{align}\label{eq2:Tasymp0}
+% 		\lim_{x\to-\infty} T_{L, \lambda, u} f(x) 
+% 			= \lim_{x\to+\infty} T_{R, \lambda, u} f(x) 
+% 			= 0
+% 	\end{align}
+% \end{prop}
+% \begin{proof}
+% 	Since the Dominated Convergence Theorem implies that
+% 	\begin{align*}
+% 		\lim_{|x| \to \infty} \big[K^+*(u\,f)\big](x) = 0
+% 	\end{align*}
+% 	for all real $\lambda$, the validity of this proposition depends on the 
+% 	impact of the Green's function pole terms ($\mathpzc R_\star$) on the limits 
+% 	\eqref{eq2:Tasymp} and \ref{eq2:Tasymp0}.
+% 	Now, for $\lambda \ne 0$, 
+% 	\begin{align*}
+% 		\frac{1}{i} \mathpzc R_L * uf
+% 			&= 
+% 				\alpha(\lambda) \int_{-\infty}^x u(x')\,f(x')\,dx'
+% 				+\beta(\lambda) e^{i\lambda x} 
+% 					\int_{-\infty}^x e^{-i\lambda x'}u(x')\,f(x')\,dx' \\
+% 		\intertext{and}
+% 		\frac{1}{i} \mathpzc R_R * uf
+% 			&= 
+% 				\alpha(\lambda) \int_x^{\infty} u(x')\,f(x')\,dx'
+% 				+\beta(\lambda) e^{i\lambda x} 
+% 					\int_x^{\infty} e^{-i\lambda x'}u(x')\,f(x')\,dx',
+% 	\end{align*}
+% 	from which it is easy to see that \eqref{eq2:Tasymp0} follows from 
+% 	the Dominated Convergence Theorem. On the other hand, for 
+% 	$\lambda = 0$, we have 
+% 	$\left|\mathpzc R_\star\right| \lesssim (1+|\dotarg|)\chi_\star$
+% 	and
+% 	\begin{align*}
+% 		\inn{x}^{-1}
+% 		\left|
+% 			\mathpzc R_\star * u\,f
+% 		\right|
+% 			&\lesssim
+% 				\inn{x}^{-1}
+% 				\int_{\mathbb R} 
+% 					\chi_\star(x-x')
+% 					\big(1+ |x-x'|\big)
+% 					u(x') \, f(x')
+% 				\, \mathrm{d}x' \\
+% 			&\leq
+% 				\nm{f}_{\inn{\cdot}L^\infty}
+% 				\int_{\mathbb R} 
+% 					\chi_\star(x-x')
+% 					\left(\frac{1+ |x-x'|}{\inn{x}\inn{x'}}\right)
+% 					\big[\inn{x'}^2 u(x')\big]
+% 				\, \mathrm{d}x' \\
+% 			&\lesssim
+% 				\nm{f}_{\inn{\cdot}L^\infty}
+% 				\int_{\mathbb R} 
+% 					\chi_\star(x-x')
+% 					\big[\inn{x'}^2 u(x')\big]
+% 				\, \mathrm{d}x',
+% 	\end{align*}
+% 	where we use the estimate $\frac{1+ |x-x'|}{\inn{x}\inn{x'}} \lesssim 1$ in the 
+% 	above computation. \eqref{eq2:Tasymp} therefore follows from the Dominated
+% 	Convergence Theorem.
+% 	% Now,
+% 	% \begin{align*}
+% 	% 	&\big[ 
+% 	% 			\alpha(\lambda) +\beta(\lambda) e^{i (\dotarg) \lambda}  
+% 	% 	\big] \chi_{(0, \infty)} * (u\,f) \\
+% 	% 	&\qquad=
+% 	% 		\big[\alpha(\lambda) + \beta(\lambda) \, e^{i \lambda x} \big]
+% 	% 		\int_{-\infty}^x e^{-i\lambda x'} \, u(x') \, f(x') \, \mathrm{d}x'.
+% 	% \end{align*}
+% 	% Since $\alpha(\lambda) + \beta(\lambda) \, e^{i \lambda x}$ grows 
+% 	% linearly in $x$ for small $|\lambda|$, it suffices to show the integral
+% 	% $\int_{-\infty}^x e^{-i\lambda x'} \, u(x') \, f(x') \, \mathrm{d}x'$ decays
+% 	% like $1/x^s$, for $s>1$, as $x\to-\infty$. To that end, for $x < 0$
+% 	% we find
+% 	% \begin{align*}
+% 	% 	\left| \int_{-\infty}^x e^{-i\lambda x'} \, u(x') \, f(x') \, \mathrm{d}x' \right|
+% 	% 		&\leq \int_{-\infty}^x  |u(x') \, f(x')| \, \mathrm{d}x' \\
+% 	% 		&\leq \|f\|_{\inn{\dotarg}L^\infty} 
+% 	% 			\int_{-\infty}^x \inn{x'}^{-1} \big[ \inn{x'}^2 u(x') \big]\, \mathrm{d}x'
+% 	% 			\\
+% 	% 		&\lesssim_f \inn{x}^{-1} \int_{-\infty}^x \inn{x'}^2 u(x') \, \mathrm{d}x',
+% 	% \end{align*}
+% 	% where we used the fact that $\inn{x'}\geq \inn{x}$ whenever $x' < x < 0$ in 
+% 	% the final line of the computation above. A similar computation also shows
+% 	% that
+% 	% \begin{align*}
+% 	% 	\left| \int_x^{\infty} e^{-i\lambda x'} \, u(x') \, f(x') \, \mathrm{d}x' \right|
+% 	% 		&\lesssim_f \inn{x}^{-1} \int_x^{\infty} \inn{x'}^2 u(x') \, \mathrm{d}x'
+% 	% \end{align*}
+% 	% for $x > 0$. Since
+% 	% \[
+% 	% 	\lim_{x\to-\infty} \int_{-\infty}^x \inn{x'}^2 u(x') \, \mathrm{d}x'
+% 	% 		= \lim_{x\to+\infty} \int_x^{\infty} \inn{x'}^2 u(x') \, \mathrm{d}x'
+% 	% 		= 0
+% 	% \]
+% 	% by the Dominated Convergence Theorem, the desired result therefore follows
+% 	% from the $\lambda$-invarient estimate
+% 	% $\left|\alpha(\lambda) + \beta(\lambda) e^{i\lambda x} \right| \inn{x}^{-1}
+% 	% \lesssim 1$.
+% \end{proof}
+
+% \begin{prop}\label{prop2:Tasymp}
+% 	The limits 
+% 	\begin{align}\label{eq2:Tasymp}
+% 		\lim_{x\to-\infty} \inn{x}^{-1} T_{L, \lambda, u} f(x) 
+% 			= \lim_{x\to+\infty} \inn{x}^{-1} T_{R, \lambda, u} f(x) 
+% 			= 0
+% 	\end{align}
+% 	hold for every $\lambda \in \mathbb R$, $u\in X$, and 
+% 	$f \in \inn{\dotarg} L^\infty(\mathbb R)$. Further, 
+% 	if $\lambda \ne 0$, then the stronger result 
+% 	\begin{align}\label{eq2:Tasymplnonzero}
+% 		\lim_{x\to-\infty} T_{L, \lambda, u} f(x) 
+% 			= \lim_{x\to+\infty} T_{R, \lambda, u} f(x) 
+% 			= 0
+% 	\end{align}
+% 	holds whenever $f \in L^\infty(\mathbb R)$ or 
+% 	$f \in \inn{\dotarg} L^\infty(\mathbb R)$
+% \end{prop}
+% \begin{proof}
+% 	Since the Dominated Convergence Theorem implies that
+% 	\begin{align*}
+% 		\lim_{|x| \to \infty} \big[K^+*(u\,f)\big](x) = 0,
+% 	\end{align*}
+% 	the validity of this proposition depends on the impact of the Green's function 
+% 	pole terms on the limits \eqref{eq2:Tasymp} and \eqref{eq2:Tasymplnonzero}.
+% 	In light of \eqref{eq2:polesumbnd}, we find
+% 	\begin{align*}
+% 		&\big[ 
+% 				\alpha(\lambda) +\beta(\lambda) e^{i (\dotarg) \lambda}  
+% 		\big] \chi_L * (u\,f) \\
+% 			&\qquad=
+% 				\int_{-\infty}^x
+% 					\big[\alpha(\lambda) + \beta(\lambda)e^{ix\lambda}]
+% 					e^{-i x' \lambda} \,
+% 					u(x') \, f(x') \,
+% 				dx' \\
+% 			&\qquad\lesssim
+% 				\inn{x}^{-1} 
+% 				\int_{-\infty}^x 
+% 					\Big(
+% 						\frac{1+|x-x'|}{(1+|x|)(1+|x'|)} 
+% 					\Big)
+% 					\Big(
+% 						(1+|x'|)^2 \, u(x')
+% 					\Big)
+% 					\Big(
+% 						(1+|x'|)^{-1} \, f(x')
+% 					\Big)
+% 				\, \mathrm{d}x \\
+% 			&\qquad\lesssim
+% 				\inn{x}^{-1} \| f \|_{\inn{\dotarg} L^\infty} 
+% 				\int_{-\infty}^x \inn{x'}^2 \,u(x') \, \mathrm{d}x,
+% 	\end{align*}
+% 	and, similarly, 
+% 	\begin{align*}
+% 		&\big[ 
+% 				\alpha(\lambda) +\beta(\lambda) e^{i (\dotarg) \lambda}  
+% 		\big] \chi_R * (u\,f) \\
+% 			&\qquad\lesssim
+% 				\inn{x}^{-1} \| f \|_{\inn{\dotarg} L^\infty} 
+% 				\int_x^{\infty} \inn{x'}^2 \,u(x') \, \mathrm{d}x.
+% 	\end{align*}
+% 	Since $\inn{x'}^2 \,u(x') \, \chi_{(-\infty, x)}$ is bounded by an $L^1$ 
+% 	function, the Dominated Convergence Theorem therefore implies 
+% 	\eqref{eq2:Tasymp} holds for every $\lambda \in \mathbb R$, $u \in X$, 
+% 	and $f \in \inn{\dotarg} L^\infty(\mathbb R)$. Limit \eqref{eq2:Tasymplnonzero}
+% 	follows from \eqref{eq2:polesumbnd} and the Dominated Convergence Thorem.
+% 	% From the proof of Proposition \ref{prop2:pold}, it is clear that 
+% 	% \[
+% 	% 	\lim_{x \to - \infty} T_L \, g(x) 
+% 	% 		= \lim_{x \to + \infty} T_R \, g(x)
+% 	% 		= 0
+% 	% \]
+% 	% whenever $g \in C_0^\infty(\mathbb R)$, as 
+% 	% $g \in C_0^\infty(\mathbb R)$ and $u \in X$ implies $u \, g$ is compactly 
+% 	% supported. Moreover, since $K^+*(ug)$ decays exponentially for $|x| \gg 1$
+% 	% we also have that 
+% 	% \[
+% 	% 	\lim_{x \to - \infty} \inn{x}^{-1} T_L \, g(x) 
+% 	% 		= \lim_{x \to + \infty} \inn{x}^{-1} T_R ,\ g(x)
+% 	% 		= 0.
+% 	% \]
+
+% 	% For $f \in \inn{\dotarg} L^\infty(\mathbb R)$, by density let 
+% 	% $f_n \in C_0^\infty(\mathbb R)$ be a sequence such that 
+% 	% $\lim_{n\to \infty} \| f - f_n \|_{\inn{\dotarg} L^\infty} = 0$. To verify
+% 	% $f$ satisfies \eqref{eq2:Tasymp}, let $\ve > 0$ be arbitrary, and use 
+% 	% the boundedness of $T_\star: \inn{\dotarg}L^\infty(\mathbb R) \toitself$ 
+% 	% to fix an integer $N > 0$ so that  
+% 	% \[
+% 	% 	\inn{x}^{-1} | T_{\star} f(x) - T_\star f_n(x) | < \varepsilon / 2
+% 	% \]
+% 	% for $x \in \mathbb R$ and every $n > N$. Take $n = N+1$ and
+% 	% choose $\delta \gg 1$ sufficiently large that 
+% 	% \[
+% 	% 	\inn{x}^{-1} |T_L f_n(x)|, ~ \inn{y}^{-1} |T_R f_n(y)| 
+% 	% 		< \varepsilon / 2.
+% 	% \]
+% 	% Then, 
+% 	% \begin{align*}
+% 	% 	\inn{x}^{-1} |T_L f(x) |
+% 	% 		\leq \inn{x}^{-1} | T_L f(x) - T_L f_n(x) |
+% 	% 				+ \inn{x}^{-1} | T_L f_n(x) |
+% 	% 		< \varepsilon,
+% 	% \end{align*}
+% 	% and
+% 	% \begin{align*}
+% 	% 	\inn{y}^{-1} |T_R f(y) |
+% 	% 		\leq \inn{y}^{-1} | T_R f(y) - T_R f_n(y) |
+% 	% 				+ \inn{y}^{-1} | T_R f_n(y) |
+% 	% 		< \varepsilon,
+% 	% \end{align*}
+% 	% for every $x < - \delta$ and $y > \delta$. Hence
+% 	% \begin{align}
+% 	% 	\lim_{x\to-\infty} \inn{x}^{-1} T_L f(x) 
+% 	% 		= \lim_{x\to+\infty} \inn{x}^{-1} T_R f(x) 
+% 	% 		= 0. 
+% 	% \end{align}
+% 	% {\color{red} Somehow use the fact that when $\lambda = 0$ the sum of the 
+% 	% residues grows linearly to argue above limit must imply the desired result.}
+% \end{proof}
+
+
+
+
+
+\end{document}

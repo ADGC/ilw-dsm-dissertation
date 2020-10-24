@@ -1,0 +1,309 @@
+%%========
+%% Algebra
+%%========
+\DeclareMathOperator{\ann}{Ann}
+\DeclareMathOperator{\chr}{char}
+\DeclareMathOperator{\GF}{GF}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Aut}{Aut}
+\newcommand{\nsg}{\triangleleft}
+\newcommand{\nsgeq}{\trianglelefteq}
+
+
+
+%%================
+%% Analysis Macros
+%%================
+\newcommand{\uc}{\rightrightarrows}
+\newcommand{\grad}{\nabla}
+\DeclareMathOperator{\diver}{div}
+\DeclareMathOperator{\gradient}{grad}
+\DeclareMathOperator{\curl}{curl}
+\newcommand*\laplace{\mathop{}\!\mathbin\bigtriangleup}
+\newcommand*\DAlambert{\mathop{}\!\mathbin\Box}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\pv}{p.v.}
+\DeclareMathOperator{\sign}{sign}
+\newcommand{\widesim}[2][1.5]{
+  \mathrel{\underset{#2}{\scalebox{#1}[1]{$\sim$}}}
+}
+% \DeclareMathOperator{\ae}{a.e.}
+% \renewcommand{\liminf}{\mathop{\underline{\lim}}}
+\def\Xint#1{\mathchoice
+   {\XXint\displaystyle\textstyle{#1}}%
+   {\XXint\textstyle\scriptstyle{#1}}%
+   {\XXint\scriptstyle\scriptscriptstyle{#1}}%
+   {\XXint\scriptscriptstyle\scriptscriptstyle{#1}}%
+   \!\int}
+\def\XXint#1#2#3{{\setbox0=\hbox{$#1{#2#3}{\int}$}
+     \vcenter{\hbox{$#2#3$}}\kern-.5\wd0}}
+\def\ddint{\Xint=}
+\def\dint{\Xint-}
+
+
+
+%%=======
+%% Arrows
+%%=======
+\newcommand{\rarr}{\rightarrow}
+\newcommand{\larr}{\leftarrow}
+\newcommand{\darr}{\downarrow}
+\newcommand{\uarr}{\uparrow}
+\newcommand{\ra}{\Rightarrow}
+\newcommand{\la}{\Leftarrow}
+
+
+
+
+
+%%=====================
+%% Combinatorics Macros
+%%=====================
+\def \bangle{ \atopwithdelims \langle \rangle}
+
+
+%%========================================
+%% Common Double Bar Symbols (i.e. Fields)
+%%========================================
+\newcommand{\bb}{\mathbb}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Rn}{{\mathbb{R}^n}}
+\newcommand{\Rm}{\mathbb{R}^m}
+\DeclareMathOperator{\RP}{\mathbb{R}P}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\Cn}{\mathbb{C}^n}
+\newcommand{\id}{\mathds{1}}
+
+
+
+%%=====================
+%% Common Greek Symbols
+%%=====================
+\newcommand{\al}{\alpha}
+\newcommand{\be}{\beta}
+\newcommand{\del}{\delta}
+\newcommand{\gam}{\gamma}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\ve}{\varepsilon}
+\newcommand{\lam}{\lambda}
+% \newcommand{\n}{\eta}
+\newcommand{\Lam}{\Lambda}
+% \renewcommand{\t}{\tau}
+% \newcommand{\p}{\rho}
+\newcommand{\sig}{\sigma}
+\newcommand{\om}{\omega}
+% \newcommand{\z}{\zeta}
+\newcommand{\vphi}{\varphi}
+\newcommand{\ze}{\zeta}
+
+
+
+
+
+
+%%=============================
+%% Common Set Theoretic Symbols
+%%=============================
+\newcommand{\se}{\subseteq}
+\newcommand{\su}{\subset}
+\newcommand{\csu}{\Subset}
+\newcommand{\bd}{\partial}
+\newcommand{\cl}{\overline}
+% \newcommand{\bs}{\backslash}
+\newcommand{\sm}{\backslash}
+\newcommand{\es}{\emptyset}
+\newcommand{\symdiff}{\bigtriangleup}
+\DeclareMathOperator{\supp}{supp}
+% \newcommand{\symdiff}{\triangle}
+
+
+
+
+
+
+%%================
+%% Complex Anaysis
+%%================
+\DeclareMathOperator{\Log}{Log}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\im}{Im}
+
+
+%%============
+%% Draft Tools
+%%============
+\def\pauseyn{1}
+\def\draft{0}
+\newcommand{\ifdraft}[1]
+{
+  \if\draft1
+    #1
+  \fi
+}
+
+\newcommand{\ifpause}
+{
+  \if\pauseyn1
+    \pause
+  \fi
+}
+
+
+
+%%============
+%% Fancy Fonts
+%%============
+% \DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+% \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+\newcommand{\mc}{\mathcal}
+\newcommand{\ms}{\mathscr}
+
+
+
+%%====================
+%% Functional Analysis
+%%====================
+\newcommand{\inn}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nm}[1]{\left\| #1 \right\|}
+\newcommand{\norm}[2][ ]{\left\Vert #2 \right\Vert_{#1}}
+\newcommand{\nmop}[1]{\nm{ #1}_{\text{op}} }
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\spec}{spec}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\ran}{ran}
+\DeclareMathOperator{\spn}{span}
+
+
+
+
+%%=========
+%% Geometry
+%%=========
+\newcommand{\arc}{\measuredangle}
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\diam}{diam}
+
+
+
+
+%%==========================
+%% Hyperbolic Trig Functions
+%%==========================
+\DeclareMathOperator{\csch}{csch}
+\DeclareMathOperator{\sech}{sech}
+
+
+
+
+%%======================
+%% Lebesgue Space Macros
+%%======================
+\newcommand{\lp}{{L^p}}
+\newcommand{\lh}{{L^2}}
+\newcommand{\lpu}{{L^p(U)}}
+\newcommand{\lpv}{{L^p(V)}}
+\newcommand{\lhu}{{L^2(U)}}
+\newcommand{\lhv}{{L^2(V)}}
+\newcommand{\lhr}{{L^2(\R)}}
+\newcommand{\lpr}{{L^p(\R)}}
+\newcommand{\lprn}{{L^p(\Rn)}}
+\newcommand{\lhuinn}[1]{\inn{#1}_{\lhu}}         % L^2 inner product on U
+\newcommand{\lhunm}[1]{\nm{#1}_{L^2(U)}}         % L^2 norm on U
+\newcommand{\lhrinn}[1]{\inn{#1}_{L^2(\R)}}      % L^2 inner product on \R
+\newcommand{\lhrnm}[1]{\nm{#1}_{L^2(\R)}}        % L^2 norm on \R
+\newcommand{\suprnm}[1]{\nm{#1}_{L^\infty(\R)}}  % Supremum norm
+\DeclareMathOperator*{\esssup}{ess\,sup}
+
+
+
+
+%%=================================
+%% Linear Algebra and Matrix Macros
+%%=================================
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\twovec}[2]{\begin{pmatrix} #1 \\ #2 \end{pmatrix}}
+\newcommand{\twomat}[4]
+{
+  \begin{pmatrix}
+    #1  & #2  \\
+    #3  & #4
+  \end{pmatrix}
+}
+\newcommand{\upmat}[1]
+{
+  \begin{pmatrix}
+    1 & {#1}  \\
+    0 & 1 
+  \end{pmatrix}
+}
+\newcommand{\lowmat}[1]
+{
+  \begin{pmatrix}
+    1 & 0   \\
+    {#1}  &   1 
+  \end{pmatrix}
+}
+\newcommand{\diagmat}[2]
+{
+  \begin{pmatrix}
+    #1    & 0   \\
+    0   & #2
+  \end{pmatrix}
+}
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+  \edef\arraystretch{#1}%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+\makeatother
+
+
+
+
+%%==============
+%% Number Theory
+%%==============
+\DeclareMathOperator{\lcm}{lcm}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+
+
+
+
+%%=====================
+%% Sobolev Space Macros
+%%=====================
+\newcommand{\hone}{ {H^1\(\R^1\)} }
+% \newcommand{\honen}{ {H^1\(\R^n\)} }
+\newcommand{\honenm}[1]{\nm{#1}_{\hone}}
+\newcommand{\honeinn}[1]{\inn{#1}_{\hone}}
+
+
+%%=========================
+%% Custom Formatting Macros
+%%=========================
+\newcommand{\dotarg}{\kern 0.5ex  \cdot \kern 0.5ex}
+\newcommand{\noi}{\noindent}
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\wh}[1]{\widehat{#1}}
+\newcommand{\wc}[1]{\widecheck{#1}}
+\newcommand{\ch}[1]{\check{#1}}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\ds}{\displaystyle}
+%\newcommand{\SquareShadowB}{\textifsymbol[ifgeo]{1}}
+%\renewcommand{\qedsymbol}{\SquareShadowB}
+% \renewcommand{\qedsymbol}{\SquareShadowBottomRight}
+\renewcommand{\(}{\left(}
+\renewcommand{\)}{\right)}

@@ -1,0 +1,274 @@
+%%========================================================
+%% Chapter 4.1: Existence and Continuity of Jost Solutions
+%%========================================================
+
+\documentclass[../dissertation.tex]{subfiles}
+
+\begin{document}
+\section{Existence and Continuity of Jost Solutions}\label{sec4:Exist}
+
+
+
+\begin{prop}[Existence and Uniqueness of Jost Solutions]\label{prop4:exist}
+	There is a $c_0 > 0$ so that for real valued measurable functions $u \in X$
+	with $\| u \|_X < c_0$ and any $\lambda \in \mathbb R$, integral equations 
+	\eqref{eq4:JostIE} are uniquely solvable in $\inn{\dotarg} L^\infty(\mathbb R)$.
+	If $\lambda \ne 0$ these solutions are essentially bounded 
+	(\textit{i.e.} $L^\infty$).
+\end{prop}
+\begin{proof}
+	\lsidenote{Reference unpublished ILW paper}
+	Consider the operators $T_{\star,\lambda, u}$ ($\star = L \text{, or } R$)
+	given by
+	\[
+		\big(T_{\star,\lambda, u} f\big)(x) 
+			:= \int_{\mathbb R} G_\star^+(x-x'; \lambda) \, u(x') f(x') \, \mathrm{d}x'.
+	\]
+	Unless necessary to avoid confusion, we write $T_\star$ instead of 
+	$T_{\star,\lambda,u}$. The integral equations \eqref{eq4:JostIE} can be 
+	written in terms of $T_\star$ as
+	\begin{subequations}
+		\label{eq4:JostIET}
+		\begin{align}
+			\label{eq4:JostIETM}
+			\begin{pmatrix}
+				1 \\ e^{ix\lambda}
+			\end{pmatrix}
+			&= 
+				(I - T_L) 
+				\begin{pmatrix}
+					M_1^+ \\
+					M_e^+
+				\end{pmatrix} \\
+			\label{eq4:JostIETN}
+			\begin{pmatrix}
+				1 \\ e^{ix\lambda}
+			\end{pmatrix}
+			&= 
+				(I - T_R) 
+				\begin{pmatrix}
+					N_1^+ \\
+					N_e^+
+				\end{pmatrix}
+		\end{align}
+	\end{subequations}
+
+	As such, our task is to invert the operators $(I - T_\star)$ on the 
+	appropriate spaces, which we do \text{via} Neumann series. Indeed, 
+	Proposition \ref{prop2:Tbnd} implies that we may choose $c_0>0$ independently 
+	of $\lambda \in \mathbb R$ so that 
+	\begin{align}\label{eq4:Tbnd}
+		\| T_\star \|_{\inn{\dotarg} L^\infty \toitself} < \frac{1}{2}
+	\end{align}
+	whenever $\| u\|_X < c_0$. Since the Jost solutions are the same as the 
+	solutions to \eqref{eq4:JostIET}, estimate \eqref{eq4:Tbnd} allows us to
+	conclude that the Jost solutions exist and are unique for 
+	$u \in B_X(0, c_0) := \{ u\in X ~:~ \|u\|_X < c_0 \}$.
+
+	Further, an analogous argument involving Proposition \ref{prop2:Tbndl} 
+	also allows us to conclude that the Jost solutions are essentially 
+	bounded for each fixed real $\lambda \ne 0$.
+\end{proof}
+
+\begin{lma}[Continuity in $u$]\label{lma4:cont}
+	Let $c_0 > 0$ be the same as in Proposition \ref{prop4:exist}. Denote by 
+	$M_1(x; \lambda, u), \ldots, N_e(x; \lambda, u)$ the Jost solutions
+	$M_1, \ldots, N_e$ corresponding to the potential $u$. Then the maps
+	\begin{align*}
+		u &\mapsto M_1^+(\dotarg; \lambda, u ), &
+		u &\mapsto M_e^+(\dotarg; \lambda, u ), \\ 
+		u &\mapsto N_1^+(\dotarg; \lambda, u ), & 
+		u &\mapsto N_e^+(\dotarg; \lambda, u ),
+	\end{align*}
+	from the open ball $B_X(0, c_0)$ into $\inn{\dotarg} L^\infty(\mathbb R)$ are 
+	Lipschitz continuous with Lipschitz constant uniform in 
+	$\lambda \in \mathbb R$.
+\end{lma}
+\begin{proof}
+	\lsidenote{Reference unpublish ILW paper}
+	We prove the Lipschitz continuity for the map $u \mapsto M_1^+$ and note 
+	that analogous arguments are suf{}ficient to prove continuity for the 
+	remaining maps.
+
+	By the second resolvent formula,
+	\begin{align}\label{eq3:resolv}
+		M_1^+(x; \lambda, u_1) - M_1^+(x; \lambda, u_2)
+			&= \left[ 
+					(1-T_{L, \lambda, u_1})^{-1} -  (1-T_{L,\lambda, u_2})^{-1}
+				\right] 1 \\
+			&= (1-T_{L, \lambda, u_1})^{-1} G_L^+(\dotarg; \lambda) * 
+				\big[(u_1 - u_2) \, M_1(\dotarg; \lambda, u_2) \big]
+				\nonumber
+	\end{align}
+	Thus, we see from \eqref{eq3:Tbndxbrac} that
+	\begin{align}
+		&\big\|
+			M_1^+(x; \lambda, u_1) - M_1^+(x; \lambda, u_2)
+		\big\|_{\inn{\dotarg} L^\infty} 
+				\nonumber\\
+		&\qquad\leq 
+			\big\|
+				\left(1 - T_{L,\lambda,u_1}\right)^{-1}
+			\big\|_{\inn{\dotarg} L^\infty\toitself}
+			\left\|T_{L, \lambda,u_1-u_2}\right\|_{\inn{\dotarg} L^\infty\toitself}
+			\|M_1(\dotarg; \lambda, u_2) \| \nonumber\\
+		&\qquad\lesssim \|u_1 - u_2\|_X,
+	\end{align}
+	as 
+	\begin{align*}
+		\big\|
+			\left(1 - T_{L,\lambda,u_1}\right)^{-1}
+		\big\|_{\inn{\dotarg} L^\infty\toitself}
+			\leq \sum_{n\geq 0} \frac{1}{2^n} = 2
+	\end{align*}
+	by Neumann series expansion. For $\lambda \ne 0$, the estimate
+	\begin{align*}
+		\big\|M_1^+(x; \lambda, u_1) - M_1^+(x; \lambda, u_2)\big\|_{L^\infty} 
+			\lesssim \|u_1 - u_2\|_X
+	\end{align*}
+	also follows from \eqref{eq3:resolv}.
+\end{proof}
+
+
+\begin{prop}\label{prop4:uMcont}
+	Let $c_0 > 0$ be the same as in Proposition \ref{prop4:exist}. Then
+	the maps
+	\begin{align*}
+		u &\mapsto u\, M_1^+(\dotarg; \lambda, u ), &
+		u &\mapsto u\, M_e^+(\dotarg; \lambda, u ), \\ 
+		u &\mapsto u\, N_1^+(\dotarg; \lambda, u ), & 
+		u &\mapsto u\, N_e^+(\dotarg; \lambda, u ),
+	\end{align*}
+	from the open ball $B_X(0, c_0)$ into $L^{1,1}(\mathbb R)$ are 
+	Lipschitz continuous with Lipschitz constant uniform in 
+	$\lambda \in \mathbb R$.
+\end{prop}
+\begin{proof}
+	As usual, we prove Proposition \ref{prop4:uMcont} for the map $u\mapsto u\, M_1^+$
+	and note similar arguments prove that the remaining maps are Lipschitz.
+
+	First note that $u\, M_1^+ \in L^{1,1}(\mathbb R)$ as 
+	\[
+		\|u\, M_1^+\|_{L^{1,1}}
+			= \big\| 
+					\left(\inn{\dotarg}^{-1} M_1^+\right) (\inn{\dotarg}^2 u) 
+				\big\|_{L^1} 
+			\leq \|M_1^+\|_{\inn{\dotarg}L^\infty} \|u\|_X.
+	\]
+	Choose any $u_1$, $u_2 \in B_X(0, c_0)$.
+	Since the map 
+	$B_X(0, c_0) \ni u \mapsto M_1^+ \in \inn{\dotarg} L^\infty(\mathbb R)$ 
+	is Lipschitz (uniformly in $\lambda$) by Lemma \ref{lma4:cont}, 
+	\[
+		\big\| M_1^+( \dotarg; \lambda, u_1) \big\|_{\inn{\dotarg}L^\infty}
+			= 
+				\big\| 
+					M_1^+( \dotarg; \lambda, u_1) - 0 
+				\big\|_{\inn{\dotarg}L^\infty}
+			\lesssim \|u_1 - 0\|_{X}
+			< c_0
+	\]
+	where the implied constant is the Lipschitz constant for the map 
+	$u \mapsto M_1^+$. We then have
+	\begin{align*}
+		&\big\| 
+			u_1\, M_1(\cdot; \lambda, u_1) - u_2\, M_1(\cdot; \lambda, u_2)
+		\big\|_{L^{1,1}} \\
+		&\qquad= 
+			\int_{\mathbb R} 
+				\inn{x}
+				\big| 
+					u_1(x) \, M_1^+( x; \lambda, u_1) 
+						- u_2(x) \, M_1^+( x; \lambda, u_1) 
+				\big| 
+			\, \mathrm{d}x \\
+		&\qquad\quad+
+			\int_{\mathbb R} 
+				\inn{x}
+				\big|
+					u_2(x) \, M_1^+( x; \lambda, u_1)  
+						- u_2(x) \,  M_1^+( x; \lambda, u_2) 
+				\big|
+			\, \mathrm{d}x \\
+		&\qquad\leq \int_{\mathbb R} 
+				\left(\inn{x}^{-1}\big|M_1^+( x; \lambda, u_1)\big|\right)
+				\big( \inn{x}^2
+				\big| 
+					u_1(x) - u_2(x)
+				\big| 
+				\big)
+			\, \mathrm{d}x \\
+		&\qquad\quad+
+			\int_{\mathbb R} 
+				\left(
+					\inn{x}^{-1}
+					\big|
+						 M_1^+( x; \lambda, u_1)  
+							-  M_1^+( x; \lambda, u_2) 
+					\big|
+				\right)
+				\big( \inn{x}^2 u_2(x) \big)
+			\, \mathrm{d}x \\
+		&\qquad\leq 
+			\|M_1^+( \dotarg; \lambda, u_1) \|_{\inn{\dotarg} L^\infty}
+			\left\|(u_1 - u_2)\inn{\dotarg}^2\right\|_{L^1} \\
+		&\qquad\quad
+			+ \left\|u_2\inn{\dotarg}^2\right\|_{L^1}
+				\|
+					M_1^+( \dotarg; \lambda, u_1)
+					- M_1^+( \dotarg; \lambda, u_2)
+				\|_{\inn{\dotarg} L^\infty} \\
+		&\qquad\lesssim  \| u_1 - u_2 \|_X,
+	\end{align*}
+	where the implied constant is independent of $\lambda$ and $u$.
+\end{proof}
+
+\begin{rmk}
+	Note that since $L^{1,1}(\mathbb R) \su L^1(\mathbb R)$, Proposition 
+	\ref{prop4:uMcont} also implies that the maps involved are also Lipschitz 
+	continuous, when considered as maps from $B_X(0, c_0)$ into $L^1(\mathbb R)$.
+\end{rmk}
+
+\begin{lma}\label{lma4:Mlamcont}
+	For fixed $x\in \mathbb R$, the Jost solution boundary value $M_1^+$ is continuous 
+	in $\lambda$.
+\end{lma}
+\begin{proof}
+	Define
+	\[
+		M_h:= M_1^+(\dotarg; \lambda +h) - M_1^+(\dotarg; \lambda),
+ 	\]
+ 	and denote by $T_\lambda$ the convolution operator given by 
+ 	\[
+ 		T_\lambda f := G_L^+(\dotarg; \lambda) * (u\, f).
+ 	\]
+ 	To show $M_1^+$ is continuous in $\lambda$, it suf{}fices to show 
+ 	$\|M_h\|_{\inn{x}L_x^\infty} \to 0$ as $h \to 0$.
+ 	Recalling that $M(\lambda) = 1+ T_\lambda M(\lambda)$, we see that 
+ 	\begin{align*}
+ 		M_h 
+ 			&= T_{\lambda+h}M(\lambda+h) - T_{\lambda} M(\lambda) \\
+ 			&= \big(T_{\lambda+h} - T_\lambda\big) M(\lambda+h) 
+ 				- T_\lambda M_h
+ 	\end{align*}
+ 	which implies that
+ 	\begin{align}
+ 		M_h 
+ 			= 
+ 				\big(1-T_{\lambda}\big)^{-1} 
+ 				\big(T_{\lambda+h} - T_\lambda\big) M(\lambda+h),
+ 	\end{align}
+ 	as $I - T_\lambda$ is invertible on $\inn{\dotarg}L^\infty(\mathbb R)$.
+ 	Since
+ 	\[
+ 		\left\|
+ 			\big(T_{\lambda+h} - T_\lambda\big)M(\lambda+h)
+ 		\right\|_{\inn{x}L_x^\infty}
+ 			\leq \|T_{\lambda+h} - T_\lambda\|_{\inn{x}L_x^\infty\toitself}
+ 					\|M(\lambda+h)\|_{\inn{x}L_x^\infty},
+ 	\]
+ 	the $\lambda$-continuity of $T_\lambda$ follows from the continuity of 
+ 	$\big(I - T_\lambda\big)^{-1}$ and Lemma \ref{prop2:Tlamcont}.
+\end{proof}
+
+\end{document}

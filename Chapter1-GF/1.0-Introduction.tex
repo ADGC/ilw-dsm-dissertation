@@ -1,0 +1,425 @@
+%%===========================
+%% Section 1.00: Introduction
+%%===========================
+
+\documentclass[../dissertation.tex]{subfiles}
+
+\begin{document}
+\setcounter{section}{-1}
+\section{Introduction}\label{sec1:Intro}
+
+Proving the direct scattering map $\mathscr D$ for the Inverse Scattering Transform
+of the Intermediate Long Wave equation is both well-defined and Lipschitz 
+continous hinges on our ability to reformulate the linear spectral problem 
+\eqref{eq0:SpecProb} with prescribed asyptotic conditions \eqref{eq0:JostDEasymp}
+as the integral equations \eqref{eq0:JostIE} and understand the behavior of 
+the solutions to \eqref{eq0:JostIE}. Both require a deep understanding of
+the properties of the Green's functions $G_L$ and $G_R$ defined in equation
+\eqref{eq0:GFs} of Section \ref{sec0:DM}. Indeed, this is the first of three
+chapters devoted solely to the study of $G_L$ and $G_R$.
+
+
+The focus of this chapter is to study the properties 
+of the lower boundary values $G_L^+$ and $G_R^+$ as functions on $\mathbb R$, 
+where the symbol $\mathbb R$ denotes the of all real numbers.\label{sym:Reals}
+In particular, we use a contour shift to derive the alternate formulas
+\eqref{eq1:GFrep} and \eqref{eq1:GRrep} for $G_L^+$ and $G_R^+$ from 
+Theorem \ref{thm1:GFRep} (Section \ref{sec1:GreensFunctions}), which
+we use to study the asymptotic properties of $G_L^+$, 
+$G_R^+$ (Section \ref{sec1:AsympK}) and the singularity both functions have 
+at $x=0$ (Section \ref{sec1:AsympK}). We continue our study of the Green's
+functions in Chapters \ref{cptr02:GFmapping} and \ref{cptr03:xContin} 
+where we use our analyses from this chapter 
+to first study mapping properties of $G_L^+$, $G_R^+$ as convolution operators 
+(Chapter \ref{cptr02:GFmapping}), and then to prove that $G_L^+$, $G_R^+$
+extend analytically in the variable $x$ to the complex strip $\mathcal S_\delta$
+(Chapter \ref{cptr03:xContin}).
+
+% with this 
+% chapter's main results summarized below in Theorem's \ref{thm1:GFRep} and 
+% \ref{thm1:krep}. This analysis is continuo
+
+% The focus of this chapter is to provide a heuristic motivation for our definitions
+% of $G_L$ and $G_R$ (Section \ref{sec1:Motivation}), and study the properties 
+% of the lower boundary values $G_L^+$ and $G_R^+$ as functions on $\mathbb R$ (Sections)
+
+% the Intermediate Long Wave equation 
+% Inverse Scattering Transform
+
+
+
+% In this chapter, we study the basic mapping properties of the lower boundary values $G_L^+$, $G_R^+$
+% for the Green's functions $G_L$ and $G_R$ introduced in equation \eqref{eq0:GFs} of Section 
+% \ref{sec0:DM}. In particular, we ultimately show in Section \ref{sec1:MappingProps} that
+% $G_L^+$ and $G_R^+$ taken as convolutions operators are bounded linear operators from 
+% $L^1(\mathbb R) \cap L^p(\mathbb R)$ to $L^\infty(\mathbb R)$, for $p \in (1, 2]$, which 
+% satisfy
+% \begin{align}\label{eq1:introMappingProp}
+% 	\lim_{x\to-\infty} \big(G_L^+ * f\big) (x) 
+% 		= \lim_{x\to+\infty} \big(G_R^+ * f\big) (x)
+% 		= 0
+% \end{align}
+% for $f \in L^1(\mathbb R) \cap L^p(\mathbb R)$. 
+
+% This result helps us to analyze the integral equations \eqref{eq0:JostIE} in Chpater 
+% \ref{cptr04:DM} and prove
+% that solutions to these equations satisfy the asymptotic conditions given in 
+% \eqref{eq0:JostDEasymp}.
+
+% Central to proving this result is the is the following representation theorem 
+% (Theorem \ref{thm1:GFRep}) derived in Section \ref{sec1:GreensFunctions} 
+% and Theorem \ref{thm1:krep}, which establishes some important bounds on $G_L^+$
+% and $G_R^+$. The proof for Theorem \ref{thm1:krep} is given in Sections 
+% \ref{sec1:AsympK} and \ref{sec1:KSingularity}.
+
+We summarize the primary results of this chapter below in Theorems
+\ref{thm1:GFRep} and \ref{thm1:krep}.
+
+\begin{thm}[Green's Function Representation]\label{thm1:GFRep}
+	The Green's functions given above in \eqref{eq0:GFs} can be 
+	written as
+	\begin{subequations}
+		\label{eq1:GFrepLong}
+		\begin{align}\label{eq1:GLrepLong}
+			G_L^+(x; \lambda, \delta)
+				=
+					\begin{cases}
+						K^+(x; \lambda, \delta) 
+							+ i
+							\big[ 
+								\alpha(\lambda; \delta) 
+								+ \beta(\lambda; \delta) e^{i\lambda x}
+							\big] \chi_L(x)
+							& \lambda \ne 0 \\
+						K^+(x; \lambda, \delta) 
+							+ i
+							\left[ 
+								\frac{2}{3} + i \frac{x}{\delta}
+							\right] \chi_L(x)
+							& \lambda = 0
+					\end{cases}
+		\end{align}
+		and
+		\begin{align}\label{eq1:GRrepLong}
+			G_R^+(x; \lambda, \delta)
+				=
+					\begin{cases}
+						K^+(x; \lambda, \delta) 
+							- i
+							\big[ 
+								\alpha(\lambda; \delta) 
+								+ \beta(\lambda; \delta) e^{i\lambda x}
+							\big] \chi_R(x)
+							& \lambda \ne 0 \\
+						K^+(x; \lambda, \delta) 
+							- i
+							\left[ 
+								\frac{2}{3} + i \frac{x}{\delta}
+							\right] \chi_R(x)
+							& \lambda = 0
+					\end{cases}
+		\end{align}
+	\end{subequations}
+	where $\chi_L := \chi_{(0, \infty)}$ and $\chi_R := \chi_{(-\infty, 0)}$ respectively
+	denote the characteristic functions on the intervals $(0, \infty)$ and $(-\infty, 0)$, 
+	\label{sym:chi}
+	\begin{align*}
+		\alpha(\lambda; \delta) 
+			&:= \frac{1}{1-2\delta\zeta}  
+			= \frac{1 - e^{2\delta\lambda}}
+				{2\delta\lambda e^{2\delta\lambda} + 1 - e^{2\delta\lambda}},
+			\\[1\baselineskip]
+		\beta(\lambda; \delta) 
+			&:= \frac{1}{1-2 \delta \zeta^*} 
+			= \frac{1-e^{2\delta\lambda}}{1+2\delta\lambda-e^{2\delta\lambda}},
+	\end{align*}
+	\label{sym:alphabeta}
+	are respectively determined by the residues of the integrand of $G_L^+$
+	and $G_R^+$ at $\xi=0$ and $\xi=\lambda$, $\zeta^*$ is the non-linear reflection
+	given by\label{sym:zetastar}
+	\[
+		\zeta^* := \zeta(-\lambda) = \zeta\big( - \lambda(\zeta) \big)
+	\]
+	and
+	\begin{align*}
+		K^+(x; \lambda, \delta) 
+				:= \frac{e^{-\pi |x|}}{2\pi} 
+					\int_{\mathbb R} e^{i x \xi} 
+						\frac{1}
+							{
+								\xi - \zeta(\lambda) 
+								\big( 
+									1-e^{-2\xi \delta} 
+								\big) 
+								+ i \sign(x) \pi
+							}
+					\, \mathrm{d}\xi
+	\end{align*}
+	results from shifting the contour of integration for the integral in $G_L^+$ and
+	$G_R^+$.
+\end{thm}
+
+
+\begin{thm}\label{thm1:krep}
+	Suppose $\alpha$, $\beta$, and $K^+$ are as defined in Theorem \ref{thm1:GFRep}.
+	Then the functions $\alpha$ and $\beta$ satisfy the following properties
+	\begin{align}
+		\lim_{\lambda\to0}|\alpha(\lambda; \delta)| 
+			= \lim_{\lambda\to0}|\beta(\lambda; \delta)| 
+			= \infty,\nonumber \\
+		\intertext{and} 
+		\label{eq1:PoleColapseResidue}
+		\lim_{\lambda\to0} \big[\alpha(\lambda; \delta) + \beta(\lambda; \delta)e^{ix\lambda}\big]
+			=  \frac{2}{3} + i \frac{x}{\delta}.
+		% \lim_{\lambda \to -\infty} \alpha(\lambda) 
+		% 	&= 1 
+		% 		& \lim_{\lambda \to \infty} \alpha(\lambda) 
+		% 			&= 0 \\
+		% \lim_{\lambda \to -\infty} \beta(\lambda) 
+		% 	&= 0 
+		% 		& \lim_{\lambda \to \infty} \beta(\lambda) 
+		% % 			&= 1 \\
+		% \lim_{\lambda\nearrow0} \alpha(\lambda) 
+		% 	&= \infty 
+		% 		& \lim_{\lambda\searrow0} \alpha(\lambda) 
+		% 			&= -\infty \\
+		% \lim_{\lambda\nearrow0} \beta(\lambda) 
+		% 	&= -\infty 
+		% 		& \lim_{\lambda\searrow0} \beta(\lambda) 
+		% 			&= \infty,
+	\end{align}
+	% and $\lim_{\lambda\to0} \alpha(\lambda) + \beta(\lambda) e^{ix\lambda} 
+	% = \frac{2}{3} + i x$.
+	Further, $K^+$ is uniformly bounded in $\lambda$ and
+	\begin{align}
+		K^+(x; \lambda, \delta) = 
+			\begin{cases}
+				C \log^+\left(\frac{1}{|x|}\right) + \mc O(1), & |x| < 1 \\
+				\mc O\( \frac{e^{-\pi|x|}}{|x|} \), & |x| \geq 1
+			\end{cases}
+	\end{align}
+	for some constant $C \in \mathbb C$, where $\mathbb C$\label{sym:Complex} 
+	denotes the set of all complex numbers and $\log^+$ is the function defined
+	by $\log^+(x):=\max\big\{ \log(x), \, 0 \big\}$.\label{sym:logplus}
+\end{thm}
+
+\begin{rmk}\label{rmk1:littlek}
+	An important and immediate consequence of Theorem \ref{thm1:krep} and our
+	work in Sections \ref{sec1:AsympK} and \ref{sec1:KSingularity} is that 
+	$K^+$ can be written as
+	\begin{align*}\label{eq1:littlek}
+		K^+(x; \lambda, \delta) = e^{-\pi|x|} k(x; \lambda, \delta)
+	\end{align*}
+	where $k(\dotarg; \lambda, \delta) \in L^2(\mathbb R)$ and $k$ is uniformly 
+	bounded in $\lambda$ for all real $\lambda$. Unless necessary to avoid 
+	confusion, we commonly write $k(x; \lambda, \delta)$ as $k(x)$.
+\end{rmk}
+
+We begin this chapter by first motivating our choice of Green's functions
+in Section \ref{sec1:RootsOfP}. 
+Since we need to know the locations of the 
+Green's functions' integrand singularities to be able to both justify 
+the contours of integration for the Green's functions and
+to justify the representation theorem above (Theorem \ref{thm1:GFRep}), 
+locating these singularities is also a primary task for Section 
+\ref{sec1:RootsOfP}.
+
+To simplify notation, throughout the remainder of this dissertation, we use notation
+\[
+	p(\xi; \lambda, \delta) := \xi - \zeta(\lambda) \big( 1-e^{-2\xi \delta} \big),
+	\label{sym:GFintegrand}
+\]
+where $e^{i\xi x} / p(\xi; \lambda, \delta)$ is the integrand for $G_L^+$ and $G_R^+$.
+Since it is occasionally more useful to consider the Green's functions as parameterized 
+by $\zeta$ rather than $\lambda$, we use the notation $p(\xi; \lambda, \delta)$ and
+$p(\xi; \zeta, \delta)$ interchangeably. Further, we will not always need to consider
+the af{}fects of the parameters $\lambda$ and $\delta$ in our subsequent analyses. In 
+such cases, we often use the shorter notation $p(\xi)$ or $p(\xi;\lambda)$ \textit{en lieu} 
+of the more cumbersome $p(\xi; \lambda, \delta)$ or $p(\xi; \zeta, \delta)$.
+
+As we see in Section \ref{sec1:RootsOfP}, the only roots of $p(\xi; \lambda, \delta)$ 
+in the complex strip 
+\[
+	\mathcal R_\delta := \{z \in \mathbb C ~:~ -\pi/\delta \leq \im z \leq \pi/\delta \}	
+\]
+are $\xi = 0$ and $\xi = \lambda$ (provided $\lambda \ne 0$). As such, we may
+use analyticity to write $G_L^+$ and $G_R^+$ as \label{sym:GFbndry}
+\begin{align*}
+	G_L^+(x; \lambda, \delta)
+		&:= 
+			\frac{1}{2\pi} 
+			\int_{\Gamma_L} 
+				e^{i\xi x} \frac{1}{p(\xi; \lambda, \delta)} 
+			\, \mathrm{d}\xi \\
+	G_R^+(x; \lambda, \delta) 
+		&:= 
+			\frac{1}{2\pi} 
+				\int_{\Gamma_R} 
+					e^{i\xi x} \frac{1}{p(\xi; \lambda, \delta)} 
+				\, \mathrm{d}\xi,
+\end{align*}
+where the symbol $\Gamma_L$ \label{sym:Gamma} is used to denote a contour from $-\infty$ to 
+$\infty$ along the real axis which is deformed in small circular arcs around 
+$\xi = 0$ and $\xi=\lambda$ so that the contour bypasses these two real roots 
+of $p$ from below (Figure \ref{fig1:GammaL}), and $\Gamma_R$ denotes the 
+corresponding contour which bypasses
+the roots $\xi = 0$ and $\xi=\lambda$ from above (Figure \ref{fig1:GammaR}). 
+
+\begin{figure}[H]
+	\centering
+	\def\outSpacing{1.3}
+	\def\innSpacing{1.3}
+	% \def\ep{.65}
+	\def\ep{.3}
+	\def\lambdaam{\innSpacing+\ep+\ep}
+	\def\arrowsize{15mm}
+	\def\dotsize{1pt}
+	\begin{subfigure}[t]{0.49\textwidth}
+		\centering
+		\begin{tikzpicture}[
+				directed/.style={
+					decoration={markings, mark=at position .55 with \arrow{stealth}[arrowhead=\arrowsize]},
+						postaction={decorate}
+				},
+				cont/.style={smooth, thick}
+			]
+			
+
+			% Draw the contour
+			\draw[cont, directed] ({-\outSpacing-\ep},0) -- ({-\ep}, 0);
+			\draw[cont, directed] ({\ep}, 0) -- ({\lambdaam - \ep},0);
+			\draw[cont, directed] 
+				({\lambdaam + \ep},0) -- ({\lambdaam + \ep + \outSpacing},0);
+
+
+			\draw[cont, domain=180:360, variable=\th]
+				plot ({\ep*cos(\th)}, {\ep*sin(\th)});
+			\draw[cont, domain=180:360, variable=\th]
+				plot ({\ep*cos(\th)+\lambdaam}, {\ep*sin(\th)});
+
+			% Draw zeros
+			\tkzDefPoint(0,0){zero}
+			\tkzDefPoint(\lambdaam,0){lambda}
+			\tkzLabelPoint[above](zero){$\xi=0$}
+			\tkzLabelPoint[above](lambda){$\xi=\lambda$}
+			\tkzLabelPoint[below](zero){\phantom{$\xi=0$}}
+			\tkzLabelPoint[below](lambda){\phantom{$\xi=\lambda$}}
+			\foreach \n in {zero, lambda}
+				\node at (\n)[circle, fill, inner sep=\dotsize]{};
+		\end{tikzpicture}
+		\caption{$\Gamma_L$ Contour}
+		\label{fig1:GammaL}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.49\textwidth}
+		\centering
+		\begin{tikzpicture}[
+				directed/.style={
+					decoration={markings, mark=at position .5 with \arrow{stealth}[arrowhead=\arrowsize]},
+						postaction={decorate}
+				},
+				cont/.style={smooth, thick}
+			]
+
+			%% Draw the contour
+			\draw[cont, directed] ({-\outSpacing-\ep},0) -- ({-\ep}, 0);
+			\draw[cont, directed] ({\ep}, 0) -- ({\lambdaam - \ep},0);
+			\draw[cont, directed] 
+				({\lambdaam + \ep},0) -- ({\lambdaam + \ep + \outSpacing},0);
+
+			\draw[cont, domain=180:360, variable=\th]
+				plot ({\ep*cos(\th)}, {-\ep*sin(\th)});
+			\draw[cont, domain=180:360, variable=\th]
+				plot ({\ep*cos(\th)+\lambdaam}, {-\ep*sin(\th)});
+
+
+			%% Draw zeros
+			\tkzDefPoint(0,0){zero}
+			\tkzDefPoint(\lambdaam,0){lambda}
+			\tkzLabelPoint[above](zero){\phantom{$\xi=0$}}
+			\tkzLabelPoint[above](lambda){\phantom{$\xi=\lambda$}}
+			\tkzLabelPoint[below](zero){$\xi=0$}
+			\tkzLabelPoint[below](lambda){$\xi=\lambda$}
+			\foreach \n in {zero, lambda}
+				\node at (\n)[circle, fill, inner sep=\dotsize]{};
+		\end{tikzpicture}
+		\caption{$\Gamma_R$ Contour}
+		\label{fig1:GammaR}
+	\end{subfigure}
+	\caption{Contours of integration $\Gamma_L$ and $\Gamma_R$ for $G_L$ and $G_R$.}
+	\label{fig1:GammaStarContours}
+\end{figure}
+
+\begin{rmk}\label{rmk1:StarNotation}
+	Throughout this dissertation, we commonly use the symbol ``$\star$''
+	as a place holder for both $L$ and $R$. For example, if we write ``$G_\star$ 
+	($\star = L \text{, or } R$) are a bounded as a convolution operators,'' then 
+	what we mean is that ``both $G_L$ and $G_R$ are bounded as convolution 
+	operators.'' As a further example of how we use this notational convention, 
+	please see the following two very important remarks.
+\end{rmk}
+
+
+
+
+\begin{rmk}\label{rmk1:ResidueLimits}
+	When $\lambda = 0$, the function $\zeta(\lambda; \delta)$ is technically 
+	undefined. However, since 
+	$\lim_{\lambda\to0}\zeta(\lambda; \delta) = \frac{1}{2\delta}$, $\lambda = 0$
+	is a removable singularity of $\zeta$. As such, we define 
+	$\zeta(\lambda; \delta) := \frac{1}{2\delta}$. Further, the case $\lambda=0$ 
+	also corresponds to the case when the two roots $\xi = 0$ and $\xi = \lambda$ 
+	of the function $p$\textemdash{}which are simple when 
+	$\lambda \ne 0$\textemdash{}coalesce to form a single double zero of $p$. Under 
+	the caveat that we define $\zeta(0; \delta):= \frac{1}{2\delta}$, a direct computation 
+	shows that the residue of $e^{ix\xi} / p(\xi; 0, \delta)$ at $\xi = 0$ is 
+	$\frac{2}{3} + i \frac{x}{\delta}$\textemdash{}hence the piecewise (in $\lambda$)
+	definition of $G_L^+$ and $G_R^+$ in \eqref{eq1:GFrepLong}.
+	Thus, even though the residue sum 
+	\[
+		\mathpzc R_\star (x; \lambda, \delta) 
+			:= i 
+				\left[
+					\alpha(\lambda; \delta) + \beta(\lambda; \delta) e^{i\lambda x}
+				\right] \chi_\star
+			\qquad (\star = L \text{, or } R)
+	\]
+	is not technically defined at 
+	$\lambda = 0$, it nonetheless makes sense for us to agree on the convention 
+	that
+	\[
+		\mathpzc R_\star(x; \lambda = 0; \delta)
+			:= \left[ i \frac{2}{3} - \frac{x}{\delta} \right] \, \chi_\star.
+		\qquad (\star = L \text{, or } R)
+	\]
+	Under this convention, \eqref{eq1:GFrepLong} can be written slightly more succinctly as
+	\begin{subequations}
+		\label{eq1:GFrep}
+		\begin{align}
+			\label{eq1:GLrep}
+			G_L^+(x; \lambda, \delta)
+				&=
+					K^+(x; \lambda, \delta) 
+					+ \mathpzc R_L(x; \lambda, \delta)\\
+			\label{eq1:GRrep}
+			G_R^+(x; \lambda, \delta) &= 
+				K^+(x; \lambda, \delta) 
+					- \mathpzc R_R(x; \lambda, \delta).
+		\end{align}
+	\end{subequations}
+\end{rmk}
+
+
+
+
+\begin{rmk}\label{rmk1:ContourAdjustment}
+	Continuing to our discussion on the case of $\lambda = 0$ and the 
+	coalescing of the Green's function integrand poles $\xi = 0$, $\xi = \lambda$,
+	under this scenario, we take the contours $\Gamma_\star$ 
+	($\star = L \text{, or } R$) such that they have only one circular deformation
+	away from the real line which allows them to bypass the single (double) pole
+	at $\xi = 0$. 
+\end{rmk}
+
+
+
+\end{document}

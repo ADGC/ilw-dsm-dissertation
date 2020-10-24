@@ -1,0 +1,228 @@
+%%======================================
+%% Appendix 2: Harmonic Analysis Results
+%%======================================
+
+\documentclass[../dissertation.tex]{subfiles}
+
+\begin{document}
+
+In Sections \ref{sec3:CauchyTrans} and \ref{sec3:BndE} we use multiple results
+from Grafakos' book \textit{Classical Fourier Analysis}. Statements of these 
+results are given without proof in this appendix. The theorem, corollary and definition 
+numbering within this appendix is consistent with the numbering found in \cite{Grafakos}.
+Unless otherwise stated, throughout this appendix $G$ is assumed to be a locally
+compact group, and $\lambda$ an invarniant Haar measure on $G$.
+
+
+\begin{mdefn}{1.1.1}[Distribution function]
+	Let $X$ be a measurable space and let $\mu$ be a positive, not necessarily 
+	finite, measure on $X$. For $f$ a measurable function on $X$, the
+	\textit{distribution function} of $f$ is the function $d_f$ defined 
+	on $[0, \infty)$ as follows:
+	\begin{align*}
+		d_f(\alpha) = \mu\big(\{ x\in X\,:\,|f(x)|>\alpha \}\big)
+	\end{align*}
+\end{mdefn}
+
+\begin{mdefn}{1.1.5}[Weak $L^p$]
+	Let $X$ be a measurable space and let $\mu$ be a positive, not necessarily 
+	finite, measure on $X$. For $0<p<\infty$, the space \textit{weak} $L^p(X, \mu)$
+	is defined as the set of all $\mu$-measurable functions $f$ such that
+	\begin{align*}
+		\|f\|_{L^{p,\infty}} 
+			&=\inf
+				\left\{ 
+					C>0 \,:\, \mathrm{d}_f(\alpha) \leq \frac{C^p}{\alpha^p}
+					\qquad \text{for all}\quad \alpha>0
+				\right\} \\
+			&= \sup\{ \gamma d_f(\gamma)^{1/p} \, : \, \gamma>0 \}
+	\end{align*}
+	is finite. The space $weak$-$L^\infty(X, \mu)$ is by definition $L^\infty(X, \mu)$.
+	The weak $L^p$ spaces are denoted by $L^{p, \infty}(X, \mu)$.\label{sym:weakLp}
+\end{mdefn}
+
+
+\begin{mthm}{1.2.10}[Minkowski's inequality]
+	Let $1 \leq p \leq \infty$. For $f$ in $L^p(G)$ and $g$ in $L^1(G)$
+	we have that $g*f$ exists $\lambda$-\textit{a.e.} and satisfies 
+	\[
+		\|g*f\|_{L^p(G)} \leq \|g\|_{L^1(G)} \|f\|_{L^p(G)}.
+	\]
+\end{mthm}
+
+\begin{mdefn}{1.2.15}[Approximate Identity]
+	An approximate identity (as $\varepsilon\to0)$ is a family of $L^1(G)$
+	function $k_\varepsilon$ with the following three properties:
+	\begin{itemize}
+		\item[(i)] There exists a constant $c > 0$ such that 
+			$\|k_\varepsilon\|_{L^1(G)} \leq c$ for all $\varepsilon > 0$.
+		\item[(ii)] $\int_G k_\varepsilon \, \mathrm{d}\lambda(x) = 1$ for all $\varepsilon > 0$.
+		\item[(iii)] For any neighborhood $V$ of the identity element $e$ of the group
+			$G$ we have $\int_{V^c}|k_\varepsilon (x)| \, \mathrm{d}\lambda(x) \to 0$ as 
+			$\varepsilon \to 0$.
+	\end{itemize}
+\end{mdefn}
+
+\begin{mthm}{1.2.19}
+	Let $k_\varepsilon$ be an approximate identity on a locally compact group $G$
+	with left Haar measure $\lambda$.
+	\begin{itemize}
+		\item[(1)] If $f$ lies in $L^p(G)$ for $1\leq p < \infty$, then 
+			$\|k_\varepsilon*f-f\|\to 0$ as $\varepsilon \to 0$. 
+		\item[(2)] Let $f$ be a function in $L^\infty(G)$ that is uniformly 
+			continuous on a subset $K$ of $G$, in the sense that for all $\delta>0$,
+			there is a neighborhood $V$ of the identity element such that for all
+			$x \in K$ and $y \in V$ whe have $|f(y^{-1}x)-f(x)| < \delta$. Then 
+			we have that $\|k_\varepsilon*f- f\|_{L^\infty(K)} \to 0$ as 
+			$\varepsilon \to 0$. In particular, if $f$ is bounded and continous
+			at a point $x_0\in G$, then $(k_\varepsilon * f)(x_0) \to f(x_0)$ 
+			as $\varepsilon \to 0$. 
+	\end{itemize}
+\end{mthm}
+
+
+\begin{mthm}{1.2.21}
+	Let $k_\varepsilon$ be a family of functions on a locally compact group $G$ 
+	that satisfies properties (i) and (iii) of Definition 1.2.15 and also
+	\[
+		\int_G k_\varepsilon (x) \, \mathrm{d}\lambda(x) = a
+	\]
+	for some fixed $a \in \mathbb C$ for all $\varepsilon >0$. Let $f\in L^p(G)$
+	for some $1\leq p \leq \infty$.
+	\begin{itemize}
+		\item[(a)] If $1 \leq p < \infty$, then $\| k_\varepsilon * f - a f\|_{L^p(G)} \to 0$
+			as $\varepsilon \to 0$.
+		\item[(b)] If $p = \infty$ and $f$ is uniformly continuous on a subset $K$ of $G$, in 
+			the sense that for any $\delta>0$ there is a neighborhood $V$ of the identity 
+			element in $G$ such that $\sup_{x\in G} \sup_{y\in V} |f(y^{-1} x)- f(x)| \leq \delta$,
+			then we have that $\|k_\varepsilon * f - a f\|_{L^\infty(K)} \to 0$ as
+			$\varepsilon \to 0$.
+	\end{itemize}
+\end{mthm}
+
+
+\begin{mdefn}{2.1.9}
+	Given a function $g$ on $\mathbb R^n$ and $\varepsilon >0$, we denote by 
+	$g_\varepsilon$ the fullowing function:
+	\[
+		g_\varepsilon(x) = \varepsilon^{-n} g(\varepsilon^{-1}x).
+	\]
+\end{mdefn}
+
+The following theorem involves the Hardy-Littlewood maximal function
+$\mathpzc M(f)$ which Grafakos defines as
+\begin{align*}
+	\mathpzc M(f) 
+		&:= \sup_{\varepsilon > 0} \frac{1}{v_n \, \varepsilon^n} 
+			\int_{\mathbb R^n}
+				|f(x-y)| \chi_{B(0,1)} \left(\dfrac{y}{\varepsilon}\right) 
+			\, \mathrm{d}y \\
+		&= \sup_{\varepsilon > 0} (|f| * k_\varepsilon)(x),
+\end{align*}
+where $v_n$ denotes the volume of the unit ball $B(0,1)$ and $k:=v_n^{-1} \, \chi_{B(0,1)}$.
+
+\begin{mthm}{2.1.10}
+	Let $k\geq 0$ be a function $[0, \infty)$ that is continuous except at a 
+	finite number of points. Suppose that $K(x) = k(|x|)$ is an integrable function 
+	on $\mathbb R^n$ that satisfies 
+	\[
+		K(x) \geq K(y), \qquad \text{whenever }|x| \leq |y|,
+	\]
+	\textit{i.e.,} $k$ is decreasing. Then the following estimate is true:
+	\begin{align}\label{eqAp:2.1.9}
+		\sup_{\varepsilon > 0} (|f| * K_\varepsilon)(x) \leq \|K\|_{L^1} \mathpzc M(f)(x)
+	\end{align}
+	for all locally integrable functions $f$ on $\mathbb R^n$.
+\end{mthm}
+
+Grafakos defines the term \textbf{radially decreasing majorant} in the following
+remark.
+
+\begin{mrmk}{2.1.11}
+	Theorem 2.1.10 can be generalized as follows. If $K$ is an $L^1$ function on
+	$\mathbb R^n$ such that $|K(x)| \leq k_0(|x|) = K_0(x)$, where $k_0$ is nonnegative
+	decreasing function on $[0,\infty)$ that is continuous except at a finiate number 
+	of points, then \eqref{eqAp:2.1.9} holds with $\|K\|_{L^1}$ replaced by
+	$\|K_0\|_{L^1}$. Such $K_0$ is called a \textit{radially decreasing majorant} of
+	$K$. 
+\end{mrmk}
+
+
+\begin{mthm}{2.1.14}
+	Let $(X, \mu)$, $(Y, \nu)$ be measurable spaces and let $0< p < \infty$, 
+	$0<q<\infty$. Suppose that $D$ is a dense subspace of $L^p(X,\mu)$, 
+	$T_\varepsilon$ is a linear operator that maps $L^p(X,\mu)$ into a subspace 
+	of measurable functions, which are defined everywhere on $Y$. For $y\in Y$, 
+	define a sublinear operator
+	\[
+		T_*(f)(y) = \sup_{\varepsilon>0} |T_\varepsilon (f)(y)|
+	\]
+	and assume that $T_*(f)$ is $\mu$-measurable for any $f\in L^p(X,\mu)$.
+	Suppose that for some $B>0$ and for al $f \in L^p(X)$ we have
+	\[
+		\| T_*(f) \|_{L^{q,\infty }} \leq B \|f\|_{L^p}
+	\]
+	and that for all $f\in D$,
+	\[
+		\lim_{\varepsilon\to0} T_\varepsilon (f) = T(f)
+	\]
+	exists and is finite $\nu$-\textit{a.e.} (and defines a linear operator on $D$).
+	Then for all functions $f$ in $L^p(X,\mu)$ the limit above exists and is
+	finite $\nu$-\textit{a.e.}, and defines a linear operator $T$ on $L^p(X)$
+	(uniquely extending $T$ defined on $D$) that satisfies
+	\[
+		\| T(f) \|_{L^{q,\infty}} \leq B \|f\|_{L^p}
+	\]
+	for all functions $f$ in $L^p(X)$.
+\end{mthm}
+
+
+\begin{mcor}{2.1.19}[Dif{}ferentiation theorem for approximate identities]
+	Let $K$ be a function on $\mathbb R^n$ that has an integrable radially 
+	decreasing majorant. Let $c = \int_{\mathbb R^n} K(x) \, \mathrm{d}x$. Then for all 
+	$f \in L^p(\mathbb R^n)$ and $1 \leq p < \infty$, 
+	\[
+		\big( f * K_\varepsilon \big)(x) \to c f(x)
+	\]
+	for almost all $x \in \mathbb R^n$ as $\varepsilon \to 0$.
+\end{mcor}
+
+
+\begin{mprop}{2.2.16}[Hausedorf{}f-Young inequality]
+	For every function $f$ in $L^p(\mathbb R^n)$ we have the estimate
+	\[
+		\left\|\wh f \right\|_{L^{q}} \leq \|f\|_{L^p}
+	\]
+	whenever $1\leq p\leq 2$ and $q:= \frac{p}{p-1}$ denotes the 
+	H\"older conjugate of $p$.
+\end{mprop}
+
+
+\begin{mthm}{5.1.5}
+	Let $1\leq p < \infty$. For any $f \in L^p(\mathbb R)$ we have
+	\[
+		f*Q_\varepsilon - H^{(\varepsilon)}(f) \to 0
+	\]
+	in $L^p$ and almost everywhere as $\varepsilon \to 0$. Moreover, for 
+	$\phi \in \mathscr S(\mathbb R)$ we have
+	\[
+		F_\phi(x + iy)
+			= \frac{i}{\pi} \int_{-\infty}^{+\infty} 
+					\frac{\phi(t)}{x+iy - t}
+				\, \mathrm{d}t
+			\to \phi(x) + i H(\phi)(x)
+	\]
+	as $y\nearrow0$ for all $x \in \mathbb R$.
+\end{mthm}
+
+
+\begin{mthm}{5.1.12}
+	There exists a constant $C$ such that for all $1< p< \infty$ we have 
+	\[
+		\|H^{(*)}(f)\|_{L^p} 
+			\leq C \max \big(p, (p-1)^{-2}\big) \|f\|_{L^p}.
+	\]
+\end{mthm}
+
+
+\end{document}

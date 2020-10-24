@@ -1,0 +1,360 @@
+%%===================================================================
+%% Subsection 4.01.02: Integral Equation Solutions are Jost Solutions
+%%===================================================================
+
+\documentclass[../dissertation.tex]{subfiles}
+
+\begin{document}
+\subsection{Integral Equation Solutions are Jost Solutions}\label{subsec4:IEtoDE}
+
+We continue in this subsection with our discussion of the equivalence of 
+the linear spectral problem with prescribed asymptotics its corresponding
+integral equation reformulation by turning our attention to showing 
+that the analytic continuation $M$ to the strip $\mathcal S_1$ of a 
+function $M^+$ satisfying 
+Definition \ref{dfn4:IEsoln} satisfies Definition \ref{dfn4:DEsoln}.
+
+From Proposition \ref{prop2:Tasymp} and our work in Chapter \ref{cptr03:xContin},
+we already know that any function $M^+$ satisfying Definition \ref{dfn4:IEsoln}
+has an analytic continuation to the complex strip $\mathcal S_1$ which
+satisfies part (a) of property \ref{itm:asymp}, and property \ref{itm:space} 
+and property \ref{itm:cont} of Definition \ref{dfn4:DEsoln}. As such, our task in this 
+section is to first show that 
+the boundary value $M^-$ satisfies property \ref{itm:asymp}, which
+we do in Lemma \ref{lma4:upperasymp}. We then show in Lemma \ref{lma4:IEtoDE4}
+$M$ has decomposition satisfying property \ref{itm:decomp}, and prove 
+in \ref{lma4:IEtoDE5} that $M$ satisfies property \ref{itm:jost}\textemdash{}that is,
+$M$ weakly solves \eqref{eq4:LinSpecProb}.
+
+
+\begin{lma}\label{lma4:upperasymp}
+	Suppose then $M^+$ satisfies Definition \ref{dfn4:IEsoln} and denote by $M$
+	the analytic continuation of $M^+$ to the complex strip $\mathcal S_1$. The 
+	upper boundary value $M^-$ of $M$ satisfies asymptotic condition (b) of 
+	property \ref{itm:asymp} from Definition \ref{dfn4:DEsoln}. That is, there 
+	exist $M_1$, $M_2$ so that 
+	\[
+		M^-(x) -1 = M_1(x) + M_2(x), 
+	\]
+	where 
+	\[
+		\inn{x}^{1+\upsilon} | M_1(x) | \lesssim 1
+	\]
+	as $x\to -\infty$ and 
+	\[
+		\inn{\dotarg}^\tau M_2 \in L^2(\mathbb R)
+	\]
+	for any $\upsilon \in (0,1]$ and $\tau \in [0,1)$.
+\end{lma}
+\begin{proof}
+	Recall from Equation \eqref{eq3:GLminus} of Theorem \ref{eq3:GstarMinus} in 
+	Section \ref{sec3:Intro} that 
+	\begin{align*}
+		M^-(x) - 1
+			&= G_L(\dotarg; \lambda)^- * \big[u\,M^+\big](x) \\
+			&= 
+				\bigg[
+					\mathfrak C(\dotarg, 2) + \mathpzc R_L(\dotarg+i2; \lambda)
+				\bigg] 
+				* 
+				\big[u\,M^+\big](x)
+				+
+				\left[E - \frac{1}{2}\right]\big[u\,M^+\big](x)
+	\end{align*}
+	Define
+	\begin{align*}
+		I_1(x;\lambda) &:= \mathfrak C(\dotarg, 2) * \big[u\,M^+\big](x) \\
+		I_2(x;\lambda) &:= \mathpzc R_L(\dotarg+i2; \lambda) * \big[u\,M^+\big](x) \\
+		I_3(x;\lambda) &:= \left[E - \frac{1}{2}\right]\big[u\,M^+\big](x),
+	\end{align*}
+	and set
+	\begin{align*}
+		M_1(x;\lambda) :=  I_1(x;\lambda) + I_2(x;\lambda),
+			\qquad\text{and}\qquad
+		M_2(x;\lambda) := \left[E - \frac{1}{2}\right]\big[u\,M^+\big](x).
+	\end{align*}
+	
+	A result of Fefferman-Stein from the theory of Calder\'on-Zygmund operators
+	with Muckenhaupt $A_p$ weights holds that Calder\'on-Zygmund operators are 
+	bounded between $L^p(\omega \,dx)$ if $1 < p < \infty $ and $\omega \in A_p$.
+	Since $|\dotarg|^\iota$ is an $A_2$-weight in $\mathbb R^1$ for any 
+	$\iota\in [0, 1)$ and the exponentially weighted Hilbert trasnform is a 
+	Calder\'on-Zygmund operator, we have that
+	\[
+		\int_{\mathbb R} (1+|x|)^{2\iota} \left|(Ef)(x)\right|^2 \, \mathrm{d}x
+			\lesssim_{\iota} 
+				\int_{\mathbb R}(1+|x|)^{2\iota} |f(x)|^2 \, \mathrm{d}x
+	\]
+	for any $\iota \in [0, 1)$. Hence, since $u\in L^{2,4}(\mathbb R)$ implies 
+	$u\,M^+ \in L^{2,\tau}(\mathbb R)$ for $\tau \in [0, 3]$, we conclude
+	that $E(uM^+) \in L^{2, \tau}(\mathbb R)$ and thus $M_2 \in L^{2,\tau}(\mathbb R)$
+	for $\tau \in [0, 1)$.
+
+	Since 
+	\[
+		\mathfrak C(x, 2)
+			= \frac{e^{-\pi|x|}}{2\pi}	\
+				\int_{\mathbb R} e^{ix\xi} \rho\big(\xi, 2, \sign(x)\big) \, \mathrm{d}x,
+	\]
+	where $\rho$ is absolutely integrable in $\xi$, it is easy to see that 
+	$\mathfrak C(\dotarg, 2)$ is bounded by a Schwartz class function. As such, 
+	a simple application of Dominated Convergence implies 
+	$\inn{x}^{1+\upsilon} I_1(x; \lambda) \to 0$ as $x\to -\infty$ for each 
+	$\lambda \in \mathbb R$. 
+
+	For $I_2$, we note that $\mathpzc R_L$ grows linearly only when $\lambda=0$
+	and is otherwise bounded. As such, we verify that 
+	$\inn{x}^{1+\upsilon} I_2(x; \lambda =0)$ is bounded for $\upsilon \in (0,1]$
+	and $x < 0$ and note that the corresponding result for $\lambda \ne 0$ follows.
+	Now
+	\begin{align*}
+		I_2(x; \lambda=0) 
+			= 
+				\int_{-\infty}^x 
+					\left(i\frac{2}{3} - (x - x')\right) u(x')\,M^+(x')
+				\,dx.
+	\end{align*}
+	Assuming $x < 0$, then $\inn{x'} \geq \inn{x}$, $\inn{x}^{-1} \geq \inn{x'}^{-1}$, and
+	\[
+		\inn{x-x'} \leq \inn{x} + \inn{x'} \lesssim \inn{x'}
+	\]
+	whenever $x' \leq x$.
+	% \lsidenote{This is the tightest bound on $I_2$ I've been able to find. 
+	% Not sure if it is enough to get $\inn{x}^{1+\upsilon}I_2$ bounded.}
+	Consequently
+	\begin{align*}
+		|I_2(x; \lambda = 0)|
+			&\lesssim \int_{-\infty}^x \inn{x - x'} |u(x')| \left|M^+(x')\right| \, \mathrm{d}x' 
+				\\
+			&\lesssim 
+				\inn{x}^{-1-\upsilon} 
+				\int_{-\infty}^x 
+					\inn{x'}^{2+\upsilon} |u(x')| \inn{x'} 
+					\left(\inn{x'}^{-1} \left|M^+(x')\right| \right)
+				\, \mathrm{d}x'
+				\\
+			&\lesssim 
+				\inn{x}^{-1-\upsilon} 
+				\nm{M^+}_{\inn{\dotarg}L^\infty} \
+				\nm{u}_{\inn{\dotarg}^{3+\upsilon}L^1},
+	\end{align*}
+	where $\nm{u}_{\inn{\dotarg}^{3+\upsilon}L^1}<\infty$ as 
+	\begin{align*}
+		\nm{u}_{\inn{\dotarg}^{3+\upsilon}L^1}
+			= 
+				\left| 
+					\int_{\mathbb R} 
+						\inn{x}^{-1+\upsilon}\inn{x}^{4} u(x) 
+					\, \mathrm{d}x
+				\right|
+			\leq 
+				\nm{\inn{\dotarg}^{-1+\upsilon}}_{L^2} 
+				\nm{\inn{\dotarg}^{4} u}_{L^2},
+	\end{align*}
+	and $-1+\upsilon < -\frac{1}{2}$ implies 
+	$\inn{\dotarg}^{-1+\upsilon} \in L^2(\mathbb R)$. It therefore follows that 
+	$\inn{x}^{1+\upsilon} |M_1(x)| \lesssim 1$ for $x < 0$. 
+\end{proof}
+
+
+\begin{lma}\label{lma4:IEtoDE4}
+	Suppose then $M^+$ satisfies Definition \ref{dfn4:IEsoln}. Then 
+	its analytic continuation $M$ to the complex strip $\mathcal S_1$
+	satisfies property \ref{itm:decomp} of Definition \ref{dfn4:DEsoln}.
+	That is, there is a decomposition $M(z) = M_c(z) + M_s(z)$ for 
+	$0 < \im  z < 2$ so that 
+	\begin{itemize}
+		\item[(a)] $M_c$ extends to a continuous function on the closure
+			$\ol{\mathcal S}_1$ of $\mathcal S_1$ with 
+			\[
+				\mathop{\lim_{x\to-\infty}}_{x\in \mathbb R} M_c(x+2i) = 1	
+			\]
+		\item[(b)] The estimates
+			\[
+				\|M_s(\dotarg+iy)\|_{L^\infty} \leq (2-y)^{-1/2}, \qquad
+				\sup_{0\leq y < 2} \|M_s(\dotarg+iy)\|_{L^2} < \infty
+			\]
+			hold. Moreover, $M_s$ has an $L^2$ boundary value 
+			$M_s^-(x):= \lim_{\varepsilon \searrow 0} M_s\big(\dotarg+i(2-\varepsilon)\big)$
+			on $\im z = 2$ with $M_s(x+iy) \to M_s^-(x)$ for almost every
+			$x$.
+	\end{itemize}
+\end{lma}
+\begin{proof}
+	Recalling the discussion following Theorem \ref{thm3:main_result}, 
+	we note that 
+	\begin{align*}
+		M(z) = M_c(z) + M_s(z),
+	\end{align*}
+	where 
+	\begin{align*}
+		M_c(x+iy) 
+			:= 1 
+				+ 
+				\big[
+					\mathfrak C(\dotarg, y) + \mathpzc R_L(\dotarg+iy; \lambda)
+				\big]
+				*
+				\big[u\,M^+\big](x)
+	\end{align*}
+	and
+	\begin{align*}
+		M_s(x+iy)
+			:= \mathcal E_{2-y} \big[u\,M^+\big](x).
+	\end{align*}
+	That $M_c(x+i2)$ is continous for $x \in \mathbb R$ follows from our work in 
+	Sections \ref{sec3:Analyticity} and \ref{sec3:ContPart}. Further,
+	since $\mathfrak C(x, 2)$ is bounded by Schwartz class function, it is easy 
+	to show through direct computation that 
+	$\mathfrak C(\dotarg, 2) * [u\,M^+](x) \to 0$ as $|x| \to \infty$.
+	By following the proof of Proposition \ref{prop2:Tasymp}, one can 
+	also easily show that $\mathpzc R_L(\dotarg + i2; \lambda) * [u\,M^+] \to 0$
+	as $x \to -\infty$ for every real $\lambda$, which implies $M_c(x+i2) \to 1$ as 
+	$x \to - \infty$. Lastly, the convergence of $M_r(x+iy)$ to $M_r^-(x)$ and the 
+	estimates on $\|M_s(\dotarg+iy)\|_{L^\infty}$ and 
+	$\sup_{0\leq y < 2} \|M_s(\dotarg+iy)\|_{L^2}$ are all consequences of our 
+	analyses in Sections \ref{sec3:CauchyTrans} and \ref{sec3:BndE}.
+\end{proof}
+
+
+\begin{lma}\label{lma4:IEtoDE5}
+	The analytic continuation $M$ of 
+	a solution $M^+$ of integral equation form of the linear spectral problem 
+	as defined by Definition \ref{dfn4:IEsoln} also satisfies property \ref{itm:jost}
+	of Definition \ref{dfn4:DEsoln} and is therefore a Jost solution.
+\end{lma}
+\begin{proof}
+	%%====================================================================
+	%% Begin direct thievery (with modification) from Prof. Perry's notes.
+	%% Rewrite this section later.
+	%%====================================================================
+	To prove that the solution $M$ of \eqref{dfn4:IEsoln} solves 
+	\eqref{eq4:LinSpecProb} in the sense of Definition \ref{dfn4:DEsoln} we 
+	first consider the case $u \in C_0^\infty(\mathbb R)$. It is not dif{}ficult to 
+	see that if $u \in C_0^\infty(\mathbb R)$, $M$ is also $C^\infty$. By Laurent 
+	Schwartz's formulation of the Paley-Wiener Theorem \cite{Schwartz1952}, the 
+	function $\widehat{u\,M^+}$ is entire and rapidly decaying in $\xi$ for 
+	$\im \xi$ bounded. Thus we may compute 
+	\[ 
+		M^+(x) - 1 
+			= \int_{\Gamma_L} \frac{e^{i\xi x}}{p(\xi)} \wh{u\,M^+}(\xi) \, \mathrm{d}\xi
+	\]
+	where the right-hand side makes sense owing to the analyticity of $\wh{uM}$. 
+	We also have
+	\[
+		M(x+iy) - 1 
+			= 
+				\int_{\Gamma_L} 
+					\frac{e^{i\xi x} e^{-y\xi}}{p(\xi)} \wh{u\,M^+}(\xi) 
+				\, \mathrm{d}\xi
+	\]
+	from which it follows that
+	\[ 
+		\frac{1}{i} \frac{\partial M^+}{\partial x}(x)  - \zeta(M^+(x) - M^-(x))
+			=	\int_{\Gamma_L} e^{i\xi x} \wh{u\,M^+}(\xi) \, \mathrm{d}\xi 
+			= u(x) M^+(x)
+	\]
+	for each $x$, where we used analyticity of $\widehat{u\,M^+}$ to deform the 
+	contour from $\Gamma_L$ to $\mathbb R$. 
+
+	Now let $u \in X$ and let $\{ u_n \}$ be a sequence from $C_0^\infty(\mathbb R)$ 
+	with $u_n \to u$ in $X$. Let $M_n$ be the corresponding solution of 
+	\eqref{eq4:MPluseq} for $u=u_n$. For any $\varphi \in C_0^\infty(\mathbb R)$ we have
+	\begin{align}\label{eq4:Mnweak}
+		\frac{1}{i} \inn{\varphi', \, M^+_n} - \zeta \inn{\varphi,\,M_n^+ - M_n^-}  
+			- \inn{\varphi, \, u_n M^+_n} = 0.
+	\end{align}
+	As $u_n \to u$ in $X$ it follows that $M_n \to M$ in $L^\infty$, hence 
+	$u_n M_n \to uM$ in $L^{1,2}$. To show that $M$ is a weak solution, 
+	that is, $M$ satisfies \eqref{eq4:Mnweak}, it
+	suf{}fices to show that for any $\varphi \in C_0^\infty(\mathbb R)$,  the 
+	dif{}ferences
+	\[
+		\inn{\varphi', \, M^+-M^+_n}, \quad
+		\inn{\varphi, \, (M^\pm - M_n^\pm)}, \quad
+		\inn{\varphi, \, u\,M^+ - u_n\,M_n^+}
+	\]
+	all converge to zero as $n \to \infty$. 
+	Note that 
+	\begin{align*}
+		\left|\inn{\varphi', \, M^+-M^+_n}\right|
+			&= \left|\int_{\mathbb R} \phi'\big(M^+ - M_n^+\big) \, \mathrm{d}x \right| \\
+			&\leq \nm{M^+ - M_n^+}_{\inn{\dotarg}L^\infty} \nm{\inn{\dotarg}\phi'}_{L^1}.
+	\end{align*}
+	Since $\phi' \in C_0^\infty$ implies $\nm{\inn{\dotarg}\phi'}_{L^1}$ and the map 
+	$B_X(0, c_0) \ni u \mapsto M\in\inn{\dotarg}L^\infty(\mathbb R)$ is Lipschitz
+	by Lemma \ref{lma4:cont}, it follows that
+	\[
+		\lim_{n\to\infty} \inn{\varphi', \, M^+-M^+_n} = 0.
+	\]
+	A similar argument also shows that 
+	\[
+		\lim_{n\to\infty} \inn{\varphi, \, (M^+ - M_n^+)}= 0
+	\]
+	The Lipschitz continuity of the map 
+	$B_X(0, c_0) \ni u \mapsto u\,M \in L^1(\mathbb R)$ (Lemma \ref{prop4:uMcont}) 
+	in conjunction with the fact that $\phi$ is bounded again implies
+	\[
+		\lim_{n\to\infty} \inn{\varphi, \, u\,M^+ - u_n\,M_n^+} = 0.
+	\]
+
+	To prove $\inn{\varphi, \, (M^- - M_n^-)} \to 0$ as $n \to \infty$, we 
+	recall that
+
+	\[
+		\big[M^-(x;\lambda)- M_n^-(x;\lambda)\big]
+			= \left[M^-_c(x;\lambda) - \left( M_n^- \right)_c(x;\lambda)\right] 
+				+ \left[M^-_s(x;\lambda) - \left( M_n^- \right)_s(x;\lambda)\right]
+	\]
+	where
+	\begin{align}
+		 M^-_c(x;\lambda) - \left( M_n^- \right)_c(x;\lambda)
+			= 
+				\big[ 
+					\mathfrak C(\dotarg, 2) + \mathpzc R_L(\dotarg+i2, \lambda)
+				\big] 
+				*
+				\big[u\,M^+ - u_n\,M_n^+](x)
+	\end{align}
+	and
+	\begin{align}\label{ILW.Mnr}
+		 &M^-_s(x;\lambda) - \left( M_n^- \right)_s(x;\lambda) \\
+			&\qquad= 
+				E\big[u\,M^+(\dotarg;\lambda)- u_n\,M_n^+(\dotarg;\lambda)\big](x)
+				- \frac{1}{2} \big[u\,M^+(x;\lambda)- u_n\,M_n^+(x;\lambda)\big]
+	\end{align}
+	Hence, using the fact that $\phi \in C_0^\infty(\mathbb R)$ implies 
+	$\inn{\dotarg} \phi \in L^1$ and estimate \eqref{eq3:tlma2} from 
+	Technical Lemma \ref{tlma2:1} we find for all $\lambda \in \mathbb R$
+	\begin{align*}
+		\inn{\phi, \, M^-_c - \left( M_n^- \right)_c }
+			&\leq \nm{\inn{\dotarg} \phi }_{L^1} 
+				\nm{M^-_c - \left( M_n^- \right)_c}_{\inn{\dotarg} L^\infty} 
+				\\
+			&\leq \nm{\inn{\dotarg} \phi }_{L^1}
+				\nm{M^+ - M_n^+}_{L^{1,1}} 
+				\nm{\mathfrak C(\dotarg, 2) + \mathpzc R_L(\dotarg + i2)}_{\inn{\dotarg}L^\infty}
+	\end{align*}
+	Again appealing to Lemma \ref{prop4:uMcont} we conclude,  
+	\begin{align*}
+		\lim_{n\to\infty} \inn{\phi, \, M^-_c - \left( M_n^- \right)_c } = 0.
+	\end{align*}
+	Lastly, to prove
+	\begin{align*}
+		\lim_{n\to\infty} \inn{\phi, \, M^-_s - \left( M_n^- \right)_s}
+			= 0,
+	\end{align*}
+	we can use the $\inn{\dotarg} L^\infty$ convergence of $M_n^+$ to $M^+$, the $X$-convergence 
+	of $u_n$ to $u$, and dominated convergence to show that the right-hand side of 
+	\eqref{ILW.Mnr} goes to zero in $L^2$ as $n \to \infty$, and, by passing to a 
+	subsequence, goes to zero almost everywhere. 
+\end{proof}
+
+
+
+
+\label{lastpagePenultimateSection}
+
+
+
+\end{document}

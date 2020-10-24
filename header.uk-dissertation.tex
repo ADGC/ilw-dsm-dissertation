@@ -1,0 +1,200 @@
+% \documentclass[final]{ukthesis}
+
+% \usepackage{bm} %% Addes the \bm command for bolding certain math symbols
+
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{bm} %% Adds the \bm command for bolding certain math symbols
+\usepackage{mathrsfs,  mathtools}
+\usepackage{dsfont, bbding, moresize}
+\usepackage{setspace}
+% \usepackage{hyperref}
+% \usepackage{mathabx}
+% \usepackage{boisik}
+\usepackage{subfiles}
+\usepackage{pgfplots}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+\usepackage{longtable}
+
+
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+
+
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{arrows, calc, intersections}
+
+
+
+
+\def\cs#1{\texttt{\char`\\#1}}
+
+
+\input{header}
+
+%%=============================================
+%% Allow the use of specific symbols from mathb
+%%=============================================
+\DeclareFontFamily{U}{mathb}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathb}{m}{n}{
+      <5> <6> <7> <8> <9> <10> gen * mathb
+      <10.95> mathb10 <12> <14.4> <17.28> <20.74> <24.88> mathb12
+      }{}
+\DeclareSymbolFont{mathb}{U}{mathb}{m}{n}
+\DeclareMathSymbol{\righttoleftarrow}{3}{mathb}{"FD}
+
+
+
+%%========================
+%% Project Specific Macros
+%%========================
+\newcommand{\earsdown}{
+\begin{tikzpicture}[scale=0.1]
+	\draw (-2.5, 0) -- (-1.5,0);
+	\draw (-0.5, 0) -- (0.5,0);
+	\draw (1.5, 0) -- (2.5,0);
+	\draw (-1.5,0) arc (180:360:0.5);
+	\draw (0.5,0) arc (180:360:0.5);
+\end{tikzpicture}
+}
+
+\newcommand{\earsup}{
+\begin{tikzpicture}[scale=0.1]
+	\draw (-2.5, 0) -- (-1.5,0);
+	\draw (-0.5, 0) -- (0.5,0);
+	\draw (1.5, 0) -- (2.5,0);
+	\draw (-1.5,0) arc (180:0:0.5);
+	\draw (0.5,0) arc (180:0:0.5);
+\end{tikzpicture}
+}
+
+\def\toitself{\righttoleftarrow}
+
+%%===================
+%% Margin Note Macros
+%%===================
+\usepackage{marginnote}
+\def\marginnotetextwidth{1.5 in}
+\usepackage{ulem}
+
+\newcommand{\lsidenote}[1]{
+  \reversemarginpar
+  \marginnote{
+    \scriptsize
+    \color{red}
+    \begin{OnehalfSpace}
+      #1
+    \end{OnehalfSpace}
+  }
+}
+
+
+\newcommand{\rsidenote}[1]{
+  \marginnote{
+    \scriptsize
+    \color{red}
+    \begin{OnehalfSpace}
+      #1
+    \end{OnehalfSpace}
+  }
+}
+
+
+
+
+%%=================
+%% Wide Check Macro
+%%=================
+%% code from mathabx.sty and mathabx.dcl, needed to make \wc (\widecheck) command work
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{
+      <5> <6> <7> <8> <9> <10>
+      <10.95> <12> <14.4> <17.28> <20.74> <24.88>
+      mathx10
+      }{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+\DeclareFontSubstitution{U}{mathx}{m}{n}
+\DeclareMathAccent{\widecheck}{0}{mathx}{"71}
+\DeclareMathAccent{\wideparen}{0}{mathx}{"75}
+
+%%=====================
+%% Theorem Environments
+%%=====================
+\theoremstyle{plain}      \newtheorem{thm}{Theorem}[section]
+% \numberwithin{thm}{section}
+\theoremstyle{plain}      \newtheorem*{thm*}{Theorem}%[section]
+\theoremstyle{plain}      \newtheorem{lma}[thm]{Lemma}%[section]
+\theoremstyle{plain}      \newtheorem{tlma}[thm]{Technical Lemma}%[section]
+\theoremstyle{plain}      \newtheorem*{lma*}{Lemma}
+\theoremstyle{plain}      \newtheorem{cor}[thm]{Corollary}%[section]
+\theoremstyle{plain}      \newtheorem*{cor*}{Corollary}%[section]
+\theoremstyle{plain}      \newtheorem{claim}[thm]{Claim}%[section]
+\theoremstyle{plain}      \newtheorem*{claim*}{Claim}
+\theoremstyle{plain}      \newtheorem{prop}[thm]{Proposition}%[section]
+\theoremstyle{plain}      \newtheorem*{prop*}{Proposition}%[section]
+\theoremstyle{plain}      \newtheorem{observation}{Observation}
+\theoremstyle{plain}      \newtheorem{property}{Property}
+\theoremstyle{remark}     \newtheorem{rmk}{Remark}
+\theoremstyle{remark}     \newtheorem*{rmk*}{Remark}
+\theoremstyle{remark}     \newtheorem*{rcl}{Recall}
+% \theoremstyle{remark}     \newtheorem*{fact}{Fact}
+\theoremstyle{definition} \newtheorem{defn}[thm]{Definition}%[section]
+\theoremstyle{definition} \newtheorem*{defn*}{Definition}%[section]
+\theoremstyle{definition} \newtheorem{ex}{Example}[section]
+\theoremstyle{definition} \newtheorem*{ex*}{Example}%[section]
+
+
+\theoremstyle{plain}      \newtheorem{result}{Result}
+\theoremstyle{plain}      \newtheorem{formResult}[result]{Formal Result}
+\theoremstyle{plain}      \newtheorem{desResult}{Desired Result}
+
+
+\newtheorem{manualtheoreminner}{Theorem}
+\newenvironment{mthm}[1]{%
+  \renewcommand\themanualtheoreminner{#1}%
+  \manualtheoreminner
+}{\endmanualtheoreminner}
+
+\newtheorem{manualcorollaryinner}{Corollary}
+\newenvironment{mcor}[1]{%
+  \renewcommand\themanualcorollaryinner{#1}%
+  \manualcorollaryinner
+}{\endmanualcorollaryinner}
+
+\newtheorem{manualpropositioninner}{Proposition}
+\newenvironment{mprop}[1]{%
+  \renewcommand\themanualpropositioninner{#1}%
+  \manualpropositioninner
+}{\endmanualpropositioninner}
+
+\newtheorem{manuallemmainner}{Lemma}
+\newenvironment{mlma}[1]{%
+  \renewcommand\themanuallemmainner{#1}%
+  \manuallemmainner
+}{\endmanuallemmainner}
+
+\theoremstyle{definition}
+\newtheorem{manualdefinitioninner}{Definition}
+\newenvironment{mdefn}[1]{%
+  \renewcommand\themanualdefinitioninner{#1}%
+  \manualdefinitioninner
+}{\endmanualdefinitioninner}
+
+\theoremstyle{definition}
+\newtheorem{manualremarkinner}{Remark}
+\newenvironment{mrmk}[1]{%
+  \renewcommand\themanualremarkinner{#1}%
+  \manualremarkinner
+}{\endmanualremarkinner}
+
+%%=============================
+%% Additional Typesetting Tools
+%%=============================
+
+\def\namedlabel#1#2{\begingroup
+    #2%
+    \def\@currentlabel{#2}%
+    \phantomsection\label{#1}\endgroup
+}

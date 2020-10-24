@@ -1,0 +1,149 @@
+\documentclass[final, leqno]{ukthesis}
+
+\include{header.uk-dissertation}
+
+\usepackage[pdfauthor={Joel Klipfel},
+            pdftitle={The Direct Scattering Map for the 
+            	Intermediate Long Wave Equation},
+            pdfsubject={Inverse Scattering},
+            pdfkeywords={Inverse Scattering, Intermediate Long Wave Equation, Dispersive Waves, Diffeo-Integral Equations, Partial Differential Equations},
+            pdfproducer={Latex with hyperref},
+            pdfcreator={latex->dvips->ps2pdf},
+            pdfpagemode=UseOutlines,
+            bookmarksopen=true,
+            letterpaper,
+            bookmarksnumbered=true]{hyperref}
+\usepackage{memhfixc}
+\usepackage{multirow}
+
+% \input{NewCenturyLikeFont}
+
+% \DeclareSymbolFont{myletters}{OML}{ztmcm}{m}{it}
+% \DeclareMathSymbol{\lambda}{\mathord}{myletters}{"15}
+% \usepackage{newtxtext,newtxmath}
+
+% \setmainfont{Times New Roman}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\numberwithin{equation}{chapter}
+
+\begin{document}
+% \blindtext
+%author data
+\author{Joel Klipfel}
+\title{\MakeUppercase{THE DIRECT SCATTERING MAP FOR THE INTERMEDIATE LONG WAVE EQUATION}}
+% \include{Abstract/abstract.tex}
+\abstract{
+	In the early 1980's, Kodama, Ablowitz and Satsuma, together with Santini, 
+	Ablowitz and Fokas, 
+	developed the formal inverse scattering theory of the 
+	Intermediate Long Wave (ILW) equation and explored its connections with 
+	the Benjamin-Ono (BO) and KdV equations. 
+	The ILW equation
+	\begin{align*}
+		u_t + \frac{1}{\delta} u_x + 2 u u_x + Tu_{xx} = 0, 
+	\end{align*}
+	models the behavior of long internal gravitational waves in stratified fluids of 
+	depth
+	$0< \delta < \infty$, where $T$ is a singular operator which depends 
+	on the depth $\delta$.
+	In the limit 
+	$\delta \to 0$, the ILW reduces to the Korteweg de Vries (KdV) equation, and in the 
+	limit $\delta \to \infty$, the ILW (at least formally) reduces to the Benjamin-Ono (BO) 
+	equation. 
+
+	While the KdV
+	equation is very well understood, a rigorous analysis of inverse scattering for the 
+	ILW equation remains to be accomplished. There
+	is currently no rigorous proof that the Inverse Scattering Transform
+	outlined by Kodama \textit{et al.} solves the ILW, even for small data.
+	In this dissertation, we seek to help ameliorate this gap in knowledge
+	by presenting a mathematically rigorous construction
+	of the direct scattering map for the ILW's Inverse Scattering Transform.
+}
+
+\advisor{Peter Perry}
+\keywords{Inverse Scattering, Intermediate Long Wave Equation}
+\dgs{Ben Braun}
+\orcidaddress{}
+%the title pages
+\frontmatter
+\maketitle
+\begin{dedication}
+	To University of Kentucky Graduate Student Congress {\color{red} will write 
+	nice dedication later $\ldots$}
+\end{dedication}
+\begin{acknowledgments}
+	\textbf{To be acknowledged:} Prof. Peter Perry, Prof. Allen Wu, Dr. Nandita Sahajpal, Prof. Zhongwei Shen, 
+	Prof. Sumit Das, Prof. Lawrence Harris, Prof. Peter Hislop, Prof. Ribhu Kaul, Hilbert, Fiona, Rejeana Cassady, Christine Levitt, Sheri Rhine, Dr. Morris Grubbs, 
+	Carol Taylor-Shim, Prof. Mat Johnson, $\ldots$
+	{\color{red} will write nice acknowledgement later $\ldots$}
+\end{acknowledgments}
+
+\begin{KeepFromToc}
+	\tableofcontents\clearpage
+\end{KeepFromToc}
+\listoffigures\clearpage
+% \listoftables\clearpage
+%----------------------------------------------
+
+
+
+
+\mainmatter
+
+
+\begin{DoubleSpace}
+
+%========================
+% Chapter 0: Introduction
+%========================
+\subfile{Chapter0-Intro/Chapter0-Intro.tex}
+
+
+%%===================================================
+%% Chapter 1: Green's Function: Lower Boundary Values
+%%===================================================
+\subfile{Chapter1-GF/Chapter1-GF.tex}
+
+
+%%=================================================
+%% Chapter 2: Green's Functions: Mapping Properties
+%%=================================================
+\subfile{Chapter2-GFmapping/Chapter2-GFmapping.tex}
+
+%%====================================================
+%% Chapter 3: Green's Functions: Analytic Continuation
+%%====================================================
+\subfile{Chapter3-xContin/Chapter3-xContin.tex}
+
+
+%%=======================================================
+%% Chapter 4: JOST SOLUTIONS \& THE DIRECT SCATTERING MAP
+%%=======================================================
+\subfile{Chapter4-Jost/Chapter4-Jost.tex}
+
+
+\end{DoubleSpace}
+
+%-----------------------------------------------
+\backmatter
+
+%%=========
+%% Appendix
+%%=========
+\begin{theappendices}
+	\subfile{Appendices/Appendices}
+\end{theappendices}
+
+
+\bibliographystyle{plain}
+\bibliography{Bibliography/dissertation.bibliography}
+\nocite{*}
+
+
+\chapter{Vita}
+\subfile{vita.tex}
+
+\end{document}

@@ -1,0 +1,183 @@
+%%==========================
+%% Section 3.0: Introduction
+%%==========================
+
+\documentclass[../dissertation.tex]{subfiles}
+
+\begin{document}
+\setcounter{section}{-1}
+\section{Introduction}\label{sec3:Intro}
+In order to work with the integral 
+equations \eqref{eq0:JostIE} instead of the the linear spectral problem (with 
+prescribed asymptotics) \eqref{eq0:SpecProb}, we need to know that the two are 
+equivalent in the sense that solutions to one solve the other and \textit{vise
+versa}. As we explore further in Chapter \ref{cptr04:DM}, doing so requires
+us to first understand the analytic properties of the Green's functions 
+$G_\star^+$ ($\star = L \text{, or }R$), taken as convolution operators, where 
+we use $G_\star^+$ in accordance with Remark \ref{rmk1:StarNotation} as a 
+shorthand to refer to both $G_L^+$ and $G_R^+$. Specifically, we need to show 
+the existence of functions $G_\star(z=x+iy; \lambda)$ analytic in the strip 
+$\{z \in \mathbb C ~:~ 0 < \im z < 2 \}$ with respective 
+lower and upper boundary values $G_\star^+$ and $G_\star^-$. As we 
+see in Section \ref{sec3:Analyticity}, showing that $G_\star^+$ taken as a 
+convolution operator extends analytically (in $x$) to the strip 
+$\{z \in \mathbb C ~:~ 0 < \im z < 2 \}$ is straightforward. However, proving the 
+existence of an upper boundary value $G_\star^-$ defined along the line $\im z = 2$
+is much more delicate and is the primary focus of this chapter. Indeed, the principle
+result of this chapter is summarized in the theorem below:
+\begin{thm}\label{thm3:main_result}
+	The Green's Functions $G_\star^+$ ($\star = L \text{, or }R$) extend to 
+	functions $G_\star$ analytic 
+	on the strip $\mathcal S_1 = \{z \in \mathbb C ~:~ 0 < \im z < 2 \}$.
+	For 
+	$f \in L^1(\mathbb R) \cap L^p(\mathbb R)$ ($1< p \leq 2$), the limit
+	\begin{align}\label{eq3:lim}
+		\lim_{y\nearrow 2} G_\star^+(\dotarg+iy)*f = G_\star^- * f
+	\end{align}
+	converges both pointwise almost everywhere ($a.e.$\label{sym:ae}) and in 
+	$L^{p,1}$ 
+	for all real $\lambda$. If $\lambda \ne 0$, then the limit 
+	\eqref{eq3:lim} converges pointwise $a.e.$ and in $L^p$. 
+	Moreover, $G_\star^-$ is a bounded
+	convolution type operator on $L^p$ given by 
+	\begin{subequations} \label{eq3:GstarMinus}
+		\begin{align} 
+		\label{eq3:GLminus}
+		G_L^- * f(x)
+			&= \mathfrak C(\dotarg, 2) * f(x) + Ef(x) - \frac{1}{2} f(x) \\
+			&\quad + i \, \alpha(\lambda) \int_{-\infty}^x f(x')\, \mathrm{d}x' 
+				+ i\, \beta(\lambda) \,e^{i\lambda x} \, e^{-2\lambda} 
+					\int_{-\infty}^x e^{i\lambda x'} f(x')\, \mathrm{d}x' 
+				\nonumber \\
+			&= 
+				\underbrace{
+					\bigg[\mathfrak C(\dotarg, 2) + \mathpzc R_L(\dotarg+i2; \lambda)\bigg]
+				}_{\text{continuous limit}}
+				* f(x)
+				+ 
+				\underbrace{
+					\left[E - \frac{1}{2}\right]
+				}_{\text{singular limit}}f(x)
+				\nonumber \\[0.3\baselineskip]
+		\label{eq3:GRminus}
+		G_R^- * f(x)
+			&= \mathfrak C(\dotarg, 2) * f(x) + Ef(x) - \frac{1}{2} f(x) \\
+			&\quad - i \, \alpha(\lambda) \int_{-\infty}^x f(x')\, \mathrm{d}x' 
+				- i\, \beta(\lambda) \,e^{i\lambda x} \, e^{-2\lambda} 
+					\int_{-\infty}^x e^{i\lambda x'} f(x')\, \mathrm{d}x' 
+				\nonumber \\
+			&= 
+				\underbrace{
+					\bigg[\mathfrak C(\dotarg, 2) - \mathpzc R_R( \dotarg+i2; \lambda)\bigg]
+				}_{\text{continuous limit}}
+				* f(x) 
+				+
+				\underbrace{
+					\left[E - \frac{1}{2}\right]
+				}_{\text{singular limit}}f(x)
+				\nonumber 
+		\end{align}
+	\end{subequations}
+	where
+	\[
+		Ef(x) 
+			:= \frac{1}{2\pi i} \pv \int_{\mathbb R} 
+					\frac{e^{-\pi|x-x'|}}{x-x'} f(x') 
+				\, \mathrm{d}x', \label{sym:ExpHil}
+	\]
+	the convolution operator $\mathfrak C$\label{sym:mathfrakC} is defined as
+	\begin{align}\label{eq3:GFcont}
+		\mathfrak C(x,y)
+			:= \frac{1}{2\pi} e^{-\pi|x|} \, e^{- \sign(x) \, i \pi y }
+				\int_{\mathbb R} e^{ix \xi} \rho\big(\xi, y, \sign(x)\big) \, \mathrm{d}\xi,
+	\end{align}
+	for
+	\begin{align}\label{eq0:smallR}
+		\rho\big(\xi, y, \sign(x); \lambda\big)
+			:= 	
+				\begin{cases}
+					\dfrac{e^{-y\xi}}{p(\xi; \lambda) + \sign(x) i\pi}, & \xi > 0\\
+					\\
+					\dfrac{1}{\zeta(\lambda)} 
+					\dfrac{\big(\zeta(\lambda)- \xi - \sign(x) \, i\pi \big)e^{(2-y)\xi} }
+							{p(\xi; \lambda) + \sign(x) \, i\pi},
+						&	\xi < 0.
+				\end{cases}
+	\end{align}
+	and
+	\begin{align}
+		\mathpzc R_\star (x+iy; \lambda) 
+			:= i 
+				\left[
+					\alpha(\lambda) 
+					+ \beta(\lambda) e^{i\lambda x}e^{-\lambda y}
+				\right] \chi_\star
+	\end{align}
+	is the convolution operator defined in Remark \ref{rmk1:ResidueLimits} from 
+	Chapter \ref{cptr01:GF}.
+\end{thm}
+
+\begin{rmk}
+	As we see in Section \ref{sec3:Analyticity}, the ef{}fect of choosing the 
+	function space for $f$
+	as $L^1(\mathbb R) \cap L^p(\mathbb R)$ for $p\in (1, 2]$ is to ensure that 
+	$\|G_\star(\dotarg + iy) *f \|_{L^\infty} \lesssim \|f\|_{L^1\cap L^p}$. That is, 
+	for fixed $y \in (0, 2)$, the convolution operator $G_\star(\dotarg+iy)$ is 
+	a bounded operator from $L^1(\mathbb R) \cap L^p(\mathbb R)$ into 
+	$L^\infty(\mathbb R)$.
+\end{rmk}
+
+Given its resemblance to the Hilbert transform, we often refer to $E$ in this 
+document as the exponentially weighted Hilbert transform. Equation 
+\eqref{eq3:GLminus} results from decomposing the operator $K$ from equations 
+\eqref{eq3:ILW.GFz.rep} and \eqref{eq3:ILW.K.z} into a convolution operator 
+$R$ which is well behaived under the limit $y\nearrow 2$ plus a singular Cauchy 
+transform like operator. The later is resposible for the 
+$Ef(x) - \frac{1}{2} f(x)$ term in equation \eqref{eq3:GLminus}.
+
+In Chapter \ref{cptr04:DM} as we show the equivalence of the linear spectral 
+problem and the integral equations \eqref{eq0:JostIE}, we repeatedly make use 
+of the fact that $G_L^-$ can be decomposed as indicated in 
+\eqref{eq3:GstarMinus}\textemdash{}as a continuous operator plus a singular operator. 
+More specifically, if $M$ is a function analytic on the complex $\mathcal S_1$ 
+with a lower boundary value $M^+\in \inn{\dotarg} L^\infty(\mathbb R)$ so that
+\[
+	M(x+iy) = M_0(x) + G_L(\dotarg + iy) * \big(u\,M^+\big)(x),
+\]
+for some sufficiently reasonable forcing function $M_0$ and some 
+$u \in X$, then, as a consequence of Theorem \ref{thm3:main_result},
+we may decompose $M$ as $M(z) = M_c(z) + M_s(z)$, 
+where $M_c(z)$ has the continuous upper boundary value $M_c^-(x)$ given by 
+\[
+	M_c^-(x) 
+		= 
+			M_0^-(x)
+			+
+			\bigg[\mathfrak C(\dotarg, 2) + \mathpzc R_R( \dotarg+i2; \lambda)\bigg]
+			* \big[u\,M_c^+\big](x)
+\]
+and $M_s(z)$ has a ``singular'' upper boundary value $M_s^-(x)$ only in $L^2$ sense
+which is given by
+\[
+	M_s^-(x) 
+		=
+			\left[E - \frac{1}{2}\right]  \big[u\,M_c^+\big](x).
+\]
+Of course, a function $N$ analytic on $\mathcal S_1$ with an analogous property
+involving $G_R$ ({\em i.e.} $N = N_0 + G_R * uN$) will also have the same 
+sort of decomposition based on \eqref{eq3:GRminus}. This property is the 
+motivation for property (iv) in Definition \ref{dfn4:DEsoln}.
+% given our work in this chapter, we are able to analytically 
+% extend the operator $T^+_{\star, \lambda, u}$ to an operator $T_{\star, \lambda, u}^y$
+% on $y
+
+
+As a final (informal) remark, throughout this chapter\textemdash{}and particularly in 
+Sections \ref{sec3:CauchyTrans} and \ref{sec3:BndE}\textemdash{}we repeatedly
+make use of results found in Loukas Grafakos' book \textit{Classical Fourier 
+Analysis} (\cite{Grafakos}). In the appendix titled 
+\hyperref[app:HA]{Harmonic Analysis Results}, we provide statements
+of these results without proof.
+
+
+\end{document}

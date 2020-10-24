@@ -1,0 +1,48 @@
+%%=================================================
+%% Section 1.01: Motivation of the Greens Functions
+%%=================================================
+
+\documentclass[../dissertation.tex]{subfiles}
+
+\begin{document}
+\section{Motivation for the Greens Functions}\label{sec1:Motivation}
+\label{sec:Motivation}
+
+
+To motivate our choice of Greens function for this linear spectral
+problem, suppose there exists a function $G$ satisfying $L_\delta(G^+)(x) = \delta_0(x)$, 
+where $\delta_0(x)$ denotes the Dirac delta function (not to be confused with the 
+parameter $\delta$). Formally, by taking the Fourier transform of both sides of
+$L_\delta(G^+)(x) = \delta(x)$, we have
+\[
+	1 
+		= \xi \, \wh G^+ - \zeta \( \wh G^+ - \wh G^- \)
+		= \big[ \xi - \zeta \(1 - e^{-2\delta\xi}\) \big] \wh G^+
+		= p(\xi; \zeta, \delta) \, \wh G^+,
+\]
+where 
+\begin{align*}
+	p(\xi; \lambda, \delta) 
+		&= \xi - \zeta\(1 - e^{-2\delta \xi}\) \\
+		&= \( \frac{\xi}{1 - e^{-2\delta \xi}} - \zeta \)\(1 - e^{-2\delta \xi}\) \\
+		&= \big(\zeta(\xi) - \zeta(\lambda)\big)\(1 - e^{-2\delta \xi}\).
+\end{align*}
+However, this approach is somewhat problematic, given that the function $p$ has roots
+$\xi = 0$ and $\xi = \lambda$ along the real line. So, instead defining a single 
+Greens function for the spectral problem \eqref{eq:JostDE} based on taking the 
+inverse Fourier transform of $1/p$, we instead define two dif{}ferent Greens functions
+$G_L^+$ and $G_R^+$ based on taking two dif{}ferent ``Fourier inverse like'' transforms of
+$1/p$ for which the respective contours of integration avoids the roots of $p$. 
+Specifically, 
+	\begin{align*}
+		G_L^+(x; \lambda, \delta)
+			&:= \frac{1}{2\pi} \int\limits_{{\Gamma_L}} e^{i\xi x} \frac{1}{p(\xi; \lambda, \delta)} \, \mathrm{d}\xi \\
+		G_R^+(x; \lambda, \delta) 
+			&:= \frac{1}{2\pi} \int\limits_{{\Gamma_R}} e^{i\xi x} \frac{1}{p(\xi; \lambda, \delta)} \, \mathrm{d}\xi
+	\end{align*}
+where the contour ${\Gamma_L}$ bypasses the roots $\xi = 0$ and $\xi = \lambda$ from below and
+and the contour ${\Gamma_R}$ bypasses the roots $\xi = 0$ and $\xi = \lambda$ from above, as mentioned 
+in the previous section. 
+
+
+\end{document}
