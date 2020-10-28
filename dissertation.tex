@@ -28,6 +28,27 @@
 
 \numberwithin{equation}{chapter}
 
+\def\chzerotitle{INTRODUCTION}
+\def\chzeroloc{Chapter0-Intro/Chapter0-Intro.tex}
+
+\def\chonetitle{GREEN'S FUNCTIONS: LOWER BOUNDARY VALUES}
+\def\choneloc{Chapter1-GF/Chapter1-GF.tex}
+
+\def\chtwotitle{GREENS FUNCTIONS: MAPPING PROPERTIES}
+\def\chtwoloc{Chapter2-GFmapping/Chapter2-GFmapping.tex}
+
+\def\chthreetitle{GREEN'S FUNCTIONS: ANALYTIC CONTINUATION}
+\def\chthreeloc{Chapter3-xContin/Chapter3-xContin.tex}
+
+\def\chfourtitle{JOST SOLUTIONS \& THE DIRECT SCATTERING MAP}
+\def\chfourloc{Chapter4-Jost/Chapter4-Jost.tex}
+
+\def\apploc{Appendices/Appendices}
+
+\def\bibloc{Bibliography/dissertation.bibliography}
+
+\def\vitaloc{vita.tex}
+
 \begin{document}
 % \blindtext
 %author data
@@ -71,8 +92,8 @@
 \frontmatter
 \maketitle
 \begin{dedication}
-	To University of Kentucky Graduate Student Congress {\color{red} will write 
-	nice dedication later $\ldots$}
+	To University of Kentucky Graduate Student Congress, whose community of graduate students, 
+	professional students and postdocs helped support me through graduate school.
 \end{dedication}
 \begin{acknowledgments}
 	\textbf{To be acknowledged:} Prof. Peter Perry, Prof. Allen Wu, Dr. Nandita Sahajpal, Prof. Zhongwei Shen, 
@@ -99,30 +120,30 @@
 %========================
 % Chapter 0: Introduction
 %========================
-\subfile{Chapter0-Intro/Chapter0-Intro.tex}
+\subfile{\chzeroloc}
 
 
 %%===================================================
 %% Chapter 1: Green's Function: Lower Boundary Values
 %%===================================================
-\subfile{Chapter1-GF/Chapter1-GF.tex}
+\subfile{\choneloc}
 
 
 %%=================================================
 %% Chapter 2: Green's Functions: Mapping Properties
 %%=================================================
-\subfile{Chapter2-GFmapping/Chapter2-GFmapping.tex}
+\subfile{\chtwoloc}
 
 %%====================================================
 %% Chapter 3: Green's Functions: Analytic Continuation
 %%====================================================
-\subfile{Chapter3-xContin/Chapter3-xContin.tex}
+\subfile{\chthreeloc}
 
 
 %%=======================================================
 %% Chapter 4: JOST SOLUTIONS \& THE DIRECT SCATTERING MAP
 %%=======================================================
-\subfile{Chapter4-Jost/Chapter4-Jost.tex}
+\subfile{\chfourloc}
 
 
 \end{DoubleSpace}
@@ -134,16 +155,16 @@
 %% Appendix
 %%=========
 \begin{theappendices}
-	\subfile{Appendices/Appendices}
+	\subfile{\apploc}
 \end{theappendices}
 
 
 \bibliographystyle{plain}
-\bibliography{Bibliography/dissertation.bibliography}
+\bibliography{\bibloc}
 \nocite{*}
 
 
 \chapter{Vita}
-\subfile{vita.tex}
+\subfile{\vitaloc}
 
 \end{document}
