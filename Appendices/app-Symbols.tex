@@ -6,6 +6,8 @@
 
 \begin{document}
 
+\newcommand{\indexsection}[1]{\noindent\textbf{#1}}
+
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
@@ -24,6 +26,213 @@
 		% \vspace{-1\baselineskip}
 	}
 
+\indexsection{Chapter 0 Notation}
+
+\begin{centering}
+	\begin{longtable}{R{.115\textwidth}|L{.74\textwidth}|C{.145\textwidth}}
+	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
+	\hline                                      
+	\endfirsthead
+	\multicolumn{3}{c}%
+	{Chapter 0 Notation -- \textit{Continued from previous page}} \\
+	\hline
+	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
+	\hline
+	\endhead
+	\hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
+	\endfoot
+	\hline
+	\endlastfoot
+	
+	$:=$ & defined to be; for example $a := b$ means ``$a$ is defined to be 
+			$b$
+		& p.\pageref{sym0:def} \\
+	$\delta$ & depth of stratified fluids\textemdash{}typically taken 
+			to be $\delta=1$ 
+		& p.\pageref{sym:delta} \\
+	$\pv$ & Cauchy principle value; given by 
+		{
+			\begin{align*}
+				\pv\int_{\mathbb R} f(x) \, \mathrm{d}x
+					:= \lim_{\varepsilon \searrow 0} \int_{|x|>\varepsilon} f(x) \, \mathrm{d}x
+			\end{align*}
+		}
+		& p.\pageref{sym0:pv} \\	
+	$\mathcal S_\delta$ & the complex strip
+			$\{z \in \mathbb C ~:~ 0 < \im z < 2\delta\}$ 
+		& p.\pageref{sym:Sdelta} \\
+	$f^+$ & lower boundary $f^+(x) := 
+			\lim_{y\searrow0} f(x+ i y)$ of a function $f$ analytic on $S_\delta$,
+			where $x, y \in \mathbb R$ 
+		& p.\pageref{sym:bndries} \\
+	$f^-$ & upper boundary $f^-(x) := \lim_{y\nearrow0} f(x+ i 2y)$ of a 
+			function $f$ analytic on $S_\delta$, where $x, y \in \mathbb R$
+		& p.\pageref{sym:bndries} \\
+	$L_\delta$ & operator on functions analytic in the complex strip 
+		$\mathcal S_\delta$; given by 
+		{
+			\begin{align*}
+				L_\delta (\Psi) 
+					:= \frac{1}{i} \frac{\partial}{\partial x} \Psi^+ 
+					- \zeta \left(\Psi^+ - \Psi^-\right) = u \Psi^+
+			\end{align*}
+		}
+		& p.\pageref{eq0:SpecProb} \\
+	$\lambda$ & a spectral parameter for the linear spectral problem 
+			\eqref{eq0:SpecProb} 
+		& p.\pageref{sym:zeta} \\
+	$\zeta$ & a spectral parameter for \eqref{eq0:SpecProb} commonly
+			parameterized by $\lambda$	as 
+			$\displaystyle \zeta(\lambda; \delta) 
+				= \frac{\lambda}{1-e^{-2\delta\lambda}}$ 
+		& p.\pageref{sym:zeta} \\
+	$\lambda(\zeta)$ &  inverse of the map $\lambda \to \zeta(\lambda)$ 
+		& p.\pageref{sym:lambda} \\
+	
+	$\inn{x}$ & short-hand notation for $\big(1 + |x|^2\big)^{1/2}$
+		& p.\pageref{sym:xbracket} \\
+	$B_Y(y_0, r)$ & the open ball $\{ y \in Y ~:~ \|y - y_0\|_Y < r  \}$ in 
+		the metric space $Y$ with radius $r$ centered at $y_0 \in Y$
+		& p.\pageref{sym:ball} \\	
+	$M_1$, $M_e$, $N_1$, $N_e$ & depending on context, either Jost solutions 
+		or analytic extensions of solutions to the integral equations
+		\eqref{eq0:JostIE}
+		& p.\pageref{defn0:jost}, p.\pageref{eq0:JostIE} \\
+	$M_1^+$, $M_e^+$, $N_1^+$, $N_e^+$ & depending on context, either solutions
+		to the integral equations \eqref{eq0:JostIE} or lower boundary 
+		values of the Jost solutions
+		& p.\pageref{eq0:JostIE}, p.\pageref{defn0:jost} \\
+	$r(\lambda; \delta)$ & reflection coefficent; given by
+		{
+			\begin{align*}
+				r(\lambda; \delta) = \frac{b(\lambda; \delta)}{a(\lambda; \delta)},
+			\end{align*}
+			where
+			\begin{align*}
+				b(\lambda)
+				&:= 
+					\frac{i}{1-2\delta\zeta(-\lambda)} 
+					\int_{\mathbb R} e^{-i\lambda x} 
+						u(x) \, M_1^+(x; \lambda,\delta) 
+					\, \mathrm{d}x
+					\\
+			a(\lambda)
+				&:=
+					1 
+					+ \frac{i}{1-2\delta \zeta(\lambda)}
+						\int_{\mathbb R} 
+							u(x) \, M_1^+(x; \lambda,\delta) 
+						\, \mathrm{d}x
+			\end{align*}
+		} 
+		& p.\pageref{sym0:reflection} \\
+	$\mathscr D$ & the direct scattering map for the Intermediate Long Wave (ILW) equation; maps
+		ILW initial data $u$ to the corresponding reflection coefficient $r$
+		& p.\pageref{sym0:DSM} \\
+	$G_L$, $G_R$ & formal Green's functions corresponding to the linear spectral problem 
+		\eqref{eq0:SpecProb}
+		& p.\pageref{eq0:GFL},  p.\pageref{eq0:GFR}\\
+	$\alpha(\lambda; \delta)$ & residue of $e^{iz\xi}/p(\xi)$ at the $\xi=0$
+		pole; given by 
+		{\begin{align*}
+			\alpha(\lambda; \delta)
+				= \frac{1}{1-2\delta\zeta(\lambda; \delta)}
+		\end{align*}}
+		& p.\pageref{sym0:residues} \\
+	$\beta(\lambda; \delta)$ & $e^{iz\lambda}$ times the residue of 
+		$e^{iz\xi}/p(\xi)$ at the $\xi=\lambda$ pole; given by 
+		{\begin{align*}
+			\alpha(\lambda; \delta)
+				= \frac{1}{1-2\delta\zeta(-\lambda; \delta)}
+		\end{align*}}
+		& p.\pageref{sym0:residues} \\
+	$K^+$ & non-residue term resulting from shifting the integration contours of 
+		$G_L^+$ and $G_R^+$
+		& p.\pageref{sym0:K} \\
+	$T_{\star, \lambda, u}$ & bounded operators on 
+		$\inn{\dotarg}L^\infty(\mathbb R)$ given by
+		{
+		\begin{align*}
+			T_{\star, \lambda, u} f(x) 
+				:= \big[ G_\star^+(\dotarg; \lambda) \big] * (u\,f)(x),
+		\end{align*}
+		where $\star = L$ or $R$
+		}
+		& p.\pageref{eq0:Tstar} \\
+	\end{longtable}
+\end{centering}
+
+
+\newpage
+
+\indexsection{Chapter 1 Notation}
+
+
+
+\begin{centering}
+\begin{longtable}{R{.115\textwidth}|L{.74\textwidth}|C{.145\textwidth}}
+	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
+	\hline                                      
+	\endfirsthead
+	\multicolumn{3}{c}%
+	{Chapter 1 Notation -- \textit{Continued from previous page}} \\
+	\hline
+	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
+	\hline
+	\endhead
+	\hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
+	\endfoot
+	\hline
+	\endlastfoot
+
+\end{longtable}
+\end{centering}
+
+
+
+\newpage
+
+\indexsection{Chapter 2 Notation}
+\begin{centering}
+\begin{longtable}{R{.115\textwidth}|L{.74\textwidth}|C{.145\textwidth}}
+	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
+	\hline                                      
+	\endfirsthead
+	\multicolumn{3}{c}%
+	{Chapter 2 Notation -- \textit{Continued from previous page}} \\
+	\hline
+	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
+	\hline
+	\endhead
+	\hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
+	\endfoot
+	\hline
+	\endlastfoot
+
+\end{longtable}
+\end{centering}
+
+
+
+
+\begin{centering}
+\begin{longtable}{R{.115\textwidth}|L{.74\textwidth}|C{.145\textwidth}}
+	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
+	\hline                                      
+	\endfirsthead
+	\multicolumn{3}{c}%
+	{Chapter 1 Notation -- \textit{Continued from previous page}} \\
+	\hline
+	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
+	\hline
+	\endhead
+	\hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
+	\endfoot
+	\hline
+	\endlastfoot
+
+\end{longtable}
+\end{centering}
 \begin{centering}
 \begin{longtable}{R{.115\textwidth}|L{.74\textwidth}|C{.145\textwidth}}
 	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\

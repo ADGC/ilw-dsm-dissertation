@@ -179,7 +179,9 @@ define Jost solutions as follows:
 
 For a given 
 $u(x)$, the corresponding output $r = \mathscr D u$ of direct scattering map is
-given by $r(\lambda; \delta) = b(\lambda;\delta) / a(\lambda; \delta)$, where
+given by 
+$r(\lambda; \delta) = b(\lambda;\delta) / a(\lambda; \delta)$,\label{sym0:reflection} 
+where
 \begin{align*}
 	b(\lambda)
 		&:= 
@@ -209,7 +211,7 @@ In this dissertation, we prove the following result:
 	is the ball in the 
 	space $X$ about zero with radius $c_0$.\footnote{See Theorem \ref{thm4:Dwelldefined}
 	in Section \ref{sec4:DM} of Chapter \ref{cptr04:DM}.}
-	Further, $\mathscr D$ is 
+	Further, $\mathscr D$\label{sym0:DSM} is 
 	Lipschitz continuous as a map from $B_X(0, c_0)$ to 
 	$L^\infty\big((-\infty, k]\cup[k, \infty)\big)$ for each fixed 
 	$k>0$.\footnote{See Theorem \ref{thm4:DlipR} in Section \ref{sec4:DM} of Chapter 
@@ -313,7 +315,7 @@ through \ref{cptr03:xContin} of this dissertation.
 We begin our study of the Green's functions $G_L$, $G_R$ in Chapter 
 \ref{cptr01:GF} by analyzing the properties of the lower boundary 
 values $G_L^+$, $G_R^+$ as functions.
-Using a combination of classical analysis and 
+Using a combination of a contour shift
 and several dyadic decompositions, we show
 that the boundary values $G_L^+$ and $G_R^+$ can be represented as 
 \begin{align}\label{eq0:GFrep}
@@ -335,18 +337,18 @@ where $G_L(z; \lambda, \delta) = \overline{G_R(-\re z +i\im z; \lambda, \delta)}
 	\beta(\lambda; \delta) 
 		= \frac{1}{1 - 2\delta\lambda(-\lambda) e^{-2\delta\lambda}},
 \end{align*}
-and the function $K^+$ satisfies the properties
+\label{sym0:residues}and the function $K^+$\label{sym0:K} satisfies the properties
 \begin{itemize}
 	\item[(i)] $K^+(x) = \mathcal O \left( \frac{e^{-\pi|x|}}{x} \right)$ 
 		for $|x| \geq 1$, and
-	\item[(ii)] $|K(x)| \leq C + C \log\left(\frac{1}{|x|}\right)$ for $|x| < 1$.
+	\item[(ii)] $|K^+(x)| \leq C + C \log\left(\frac{1}{|x|}\right)$ for $|x| < 1$.
 \end{itemize}
 
 Our study of the boundary values $G_L^+$, $G_R^+$ continues in Chapter 
 \ref{cptr02:GFmapping} as we use \ref{eq0:GFrep} to understand the mapping
 properties of $G_L^+$, $G_R^+$ as convolution operators. More specifically, 
 we study the operators $T_{L, \lambda, u}$, $T_{R, \lambda, u}$ given by
-\begin{align}
+\begin{align} \label{eq0:Tstar}
 	T_{L, \lambda, u} f:= G_L^+(\dotarg; \lambda, \delta)*(uf) 
 	\qquad \text{and} \qquad 
 	T_{R, \lambda, u} f:= G_R^+(\dotarg; \lambda, \delta)*(uf) 
