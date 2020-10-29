@@ -26,6 +26,109 @@
 		% \vspace{-1\baselineskip}
 	}
 
+
+\indexsection{Fundamental Notation}
+\begin{centering}
+	\begin{longtable}
+		{R{.115\textwidth}|L{.74\textwidth}|C{.145\textwidth}}
+		\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
+		\hline                                      
+		\endfirsthead
+		\multicolumn{3}{c}%
+		{Fundamental Notation -- \textit{Continued from previous page}} \\
+		\hline
+		\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
+		\hline
+		\endhead
+		\hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
+		\endfoot
+		\hline
+		\endlastfoot
+		$:=$ & defined to be; for example $a := b$ means ``$a$ is defined to be 
+			$b$''
+			& p.\pageref{sym0:def} \\
+		$\pv$ & Cauchy principle value; given by 
+			{
+				\begin{align*}
+					\pv\int_{\mathbb R} f(x) \, \mathrm{d}x
+						:= \lim_{\varepsilon \searrow 0} \int_{|x|>\varepsilon} f(x) \, \mathrm{d}x
+				\end{align*}
+			}
+			& p.\pageref{sym0:pv} \\
+		\textit{a.e.} & abbreviation for almost everywhere & p.\pageref{sym:ae}\\
+		$\mathbb R$ & the set of all real numbers & p.\pageref{sym:Reals} \\
+		$\mathbb C$ & the set of all complex numbers & p.\pageref{sym:Complex} \\
+		$m(\dotarg)$ & Lebesgue measure on $\mathbb R$ & p.\pageref{sym:lebesguemeasure} \\
+		$\mathcal F$, $\hat{(\dotarg)}$ & Fourier transform defined as 
+			\begin{talign}
+				\hat f(\xi)
+						:= \(\mathcal F f\)(\xi)
+						= \int_{\mathbb R} e^{-i x \xi} f(x) \, \mathrm{d}x
+			\end{talign}
+				& p.\pageref{sym:fourier} \\[-1\baselineskip]
+		$\mathcal F^{-1}$, $\check{(\dotarg)}$ & inverse Fourier transform defined 
+			as
+			\begin{talign}
+					\check g(x)
+						:= \(\mathcal F^{-1}g\)(x)
+						= \frac{1}{2 \pi} \int_{\mathbb R} e^{i x \xi} g(\xi) \, \mathrm{d}\xi
+			\end{talign}
+			& p.\pageref{sym:fourier} \\
+		$(\dotarg\pm i0)$ & implied limit of $(\dotarg \pm i \varepsilon)$ as 
+				$\varepsilon \searrow 0$ 
+			& p.\pageref{sym:i0} \\
+		$f^+$ & lower boundary $f^+(x) := 
+				\lim_{y\searrow0} f(x+ i y)$ of a function $f$ analytic on $S_\delta$,
+				where $x, y \in \mathbb R$ 
+			& p.\pageref{sym:bndries} \\
+		$f^-$ & upper boundary $f^-(x) := \lim_{y\nearrow0} f(x+ i 2y)$ of a 
+				function $f$ analytic on $S_\delta$, where $x, y \in \mathbb R$
+			& p.\pageref{sym:bndries} \\
+		$\lesssim$ & $q \lesssim s$ means there exists some fixed constant $C$ so 
+			that $q \leq C\,s$ & p.\pageref{sym:lesssim} \\
+		$\log_+ t$ & the function given by $\max\big\{ 0, \, \log(t) \big\}$
+			& p.\pageref{sym:logplus} \\
+		$\inn{x}$ & short-hand notation for $\big(1 + |x|^2\big)^{1/2}$
+			& p.\pageref{sym:xbracket} \\
+		$L^{p,s}(\mathbb R)$ & space of measurable functions with 
+			\[
+				\|f\|_{L^{p,s}}
+					:= \left(\int_{\mathbb R} \inn{x}^{sp} |f(x)|^p \right)^{1/p}
+					< \infty
+			\]
+			& p.\pageref{defn2:Lps} \\
+		$\langle\dotarg\rangle L^\infty(\mathbb R)$ & space of measurable functions with 
+			\begin{talign}
+				\|f\|_{\inn{\dotarg} L^\infty}
+					:= \esssup_{x\in \mathbb R} \left| \inn{x}^{-1} f(x)  \right|
+			\end{talign}
+			finite
+			& p.\pageref{defn2:wLp} \\
+		$B_Y(y_0, r)$ & the open ball $\{ y \in Y ~:~ \|y - y_0\|_Y < r  \}$ in 
+			the metric space $Y$ with radius $r$ centered at $y_0 \in Y$
+			& p.\pageref{sym:ball} \\
+		$Y\to Z$ & a map from a space $Y$ to a space $Z$
+			& p.\pageref{sym:mapsto} \\
+		$Y \toitself$ & a map from a space $Y$ into itself
+			& p.\pageref{sym:toitself} \\
+		$\|\dotarg\|_{Y\to Z}$ & the induced operator norm for an operator with domain 
+			$Y$ and co-domain $Z$
+			& p.\pageref{sym:opnorm} \\
+		$\chi_A$ & characteristic function on a set $A$; given by 
+			{\begin{align*}
+				\chi_A(x) := 
+					\begin{cases}
+						1, & x \in A \\
+						0, & \text{otherwise}
+					\end{cases}
+			\end{align*}}
+			& p.\pageref{sym:chi} \\
+	\end{longtable}
+\end{centering}
+
+
+\newpage
+
 \indexsection{Chapter 0 Notation}
 
 \begin{centering}
@@ -44,20 +147,11 @@
 	\hline
 	\endlastfoot
 	
-	$:=$ & defined to be; for example $a := b$ means ``$a$ is defined to be 
-			$b$
-		& p.\pageref{sym0:def} \\
+	
 	$\delta$ & depth of stratified fluids\textemdash{}typically taken 
 			to be $\delta=1$ 
 		& p.\pageref{sym:delta} \\
-	$\pv$ & Cauchy principle value; given by 
-		{
-			\begin{align*}
-				\pv\int_{\mathbb R} f(x) \, \mathrm{d}x
-					:= \lim_{\varepsilon \searrow 0} \int_{|x|>\varepsilon} f(x) \, \mathrm{d}x
-			\end{align*}
-		}
-		& p.\pageref{sym0:pv} \\	
+		
 	$\mathcal S_\delta$ & the complex strip
 			$\{z \in \mathbb C ~:~ 0 < \im z < 2\delta\}$ 
 		& p.\pageref{sym:Sdelta} \\
