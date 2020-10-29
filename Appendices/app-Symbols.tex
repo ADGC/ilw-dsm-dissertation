@@ -182,7 +182,6 @@
 		& p.\pageref{sym:zeta} \\
 	$\lambda(\zeta)$ &  inverse of the map $\lambda \to \zeta(\lambda)$ 
 		& p.\pageref{sym:lambda} \\
-	
 	$\inn{x}$ & short-hand notation for $\big(1 + |x|^2\big)^{1/2}$
 		& p.\pageref{sym:xbracket} \\
 	$B_Y(y_0, r)$ & the open ball $\{ y \in Y ~:~ \|y - y_0\|_Y < r  \}$ in 
@@ -264,22 +263,140 @@
 
 
 \begin{centering}
-\begin{longtable}{R{.115\textwidth}|L{.74\textwidth}|C{.145\textwidth}}
-	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
-	\hline                                      
-	\endfirsthead
-	\multicolumn{3}{c}%
-	{Chapter 1 Notation -- \textit{Continued from previous page}} \\
-	\hline
-	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
-	\hline
-	\endhead
-	\hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
-	\endfoot
-	\hline
-	\endlastfoot
-
-\end{longtable}
+	\begin{longtable}{R{.115\textwidth}|L{.74\textwidth}|C{.145\textwidth}}
+		\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
+		\hline                                      
+		\endfirsthead
+		\multicolumn{3}{c}%
+		{Chapter 1 Notation -- \textit{Continued from previous page}} \\
+		\hline
+		\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
+		\hline
+		\endhead
+		\hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
+		\endfoot
+		\hline
+		\endlastfoot
+		$\mathscr D$ & the direct scattering map for the Intermediate Long Wave (ILW) equation; maps
+			ILW initial data $u$ to the corresponding reflection coefficient $r$
+			& p.\pageref{sym0:DSM} \\
+		$\star$ & used as a placeholder for both $L$ and $R$; for example, if a 
+			statement contains the notation 
+			``$G_\star$ ($\star = L \text{, or } R$),'' then it is equally 
+			true (or not true) for both $G_L$ and $G_R$
+			& p.\pageref{rmk1:StarNotation} \\
+		$f^+$ & lower boundary $f^+(x) := 
+				\lim_{y\searrow0} f(x+ i y)$ of a function $f$ analytic on $S_\delta$,
+				where $x, y \in \mathbb R$ 
+			& p.\pageref{sym:bndries} \\
+		$f^-$ & upper boundary $f^-(x) := \lim_{y\nearrow0} f(x+ i 2y)$ of a 
+				function $f$ analytic on $S_\delta$, where $x, y \in \mathbb R$
+			& p.\pageref{sym:bndries} \\
+		$\delta$ & depth of stratified fluids\textemdash{}typically taken 
+				to be $\delta=1$ 
+			& p.\pageref{sym:delta} \\
+		$\lambda$ & a spectral parameter for the linear spectral problem 
+				\eqref{eq0:SpecProb} 
+			& p.\pageref{sym:zeta} \\
+		$\zeta$ & a spectral parameter for \eqref{eq0:SpecProb} commonly
+				parameterized by $\lambda$	as 
+				$\displaystyle \zeta(\lambda; \delta) 
+					= \frac{\lambda}{1-e^{-2\delta\lambda}}$ 
+			& p.\pageref{sym:zeta} \\
+		$\lambda(\zeta)$ &  inverse of the map $\lambda \to \zeta(\lambda)$ 
+			& p.\pageref{sym:lambda} \\
+		$\zeta^*$ & nonlinear reflection $\zeta\big(-\lambda(\zeta)\big)$ 
+			& p.\pageref{sym:zetastar} \\
+		$G_\star^+$ & lower boundary value of the Greens' function whose contour
+			of integration is $\Gamma_\star$; given by 
+				{
+				\begin{align*}
+						G_\star^+(x; \lambda, \delta)
+							:=
+								\frac{1}{2\pi} 
+								\int_{\Gamma_\star}
+									e^{i x \xi} \,
+									\frac{1}{p(\xi; \lambda, \delta)}
+								\, \mathrm{d}\xi
+					\end{align*}
+				}
+			& p.\pageref{sym:GFbndry} \\
+		${\Gamma_L}$ & contour along the real line which bypasses the roots of $p$
+				from below
+			& p.\pageref{sym:Gamma} \\
+		${\Gamma_R}$ & contour along the real line which bypasses the roots of $p$
+				from above
+			& p.\pageref{sym:Gamma} \\
+		$p$ & Fourier symbol of the Green's functions; 
+				given by
+				\[
+					p(\xi; \lambda, \delta)
+						= \xi - \zeta(\lambda) \( 1- e^{-2\delta \xi} \)
+				\]
+				and commonly denoted as $p(\xi; \lambda, \delta)$, 
+				$p(\xi; \zeta, \delta)$, $p(\xi; \lambda)$, 
+				$p(\xi; \zeta)$, and $p(\xi)$.
+			& p.\pageref{sym:GFintegrand} \\
+		$\alpha(\lambda; \delta)$ & residue of $e^{iz\xi}/p(\xi)$ at the $\xi=0$
+			pole; given by 
+			{\begin{align*}
+				\alpha(\lambda; \delta)
+					= \frac{1}{1-2\delta\zeta(\lambda; \delta)}
+			\end{align*}}
+			& p.\pageref{sym:alphabeta} \\
+		$\beta(\lambda; \delta)$ & $e^{iz\lambda}$ times the residue of 
+			$e^{iz\xi}/p(\xi)$ at the $\xi=\lambda$ pole; given by 
+			{\begin{align*}
+				\alpha(\lambda; \delta)
+					= \frac{1}{1-2\delta\zeta(-\lambda; \delta)}
+			\end{align*}}
+			& p.\pageref{sym:alphabeta} \\
+		$K^+$ & non-residue term resulting from shifting the integration contours of 
+			$G_L^+$ and $G_R^+$
+			& p.\pageref{sym1:K} \\
+		$\log_+ t$ & the function given by $\max\big\{ 0, \, \log(t) \big\}$
+			& p.\pageref{sym:logplus} \\
+		$\mathcal R_\delta$ & the complex strip about the real axis given by
+				{
+					\begin{align*}
+						:= \{z \in \mathbb C ~:~ -\pi/\delta \leq \im z \leq \pi/\delta \}	
+					\end{align*}
+				}
+		$\mathpzc R_\star$ & sum residues of $e^{iz\xi}/p(\xi)$ at the $\xi=0$ and $\xi=\lambda$ 
+				poles 
+			& p.\pageref{sym1:ressum} \\
+		$\delta_a$ & Dirac delta-function centered at $x=a$ 
+			& p.\pageref{sym:dirac} \\
+		$W_k$ & $k^{th}$ branch ($k \in \mathbb Z$) of the complex Lambert $W$ function
+			& p.\pageref{sym1:Wk} \\
+		$\Sigma_{\sign(x)}$ & the integration contour
+				$\mathbb R + i \sign(x) \pi$
+			& p.\pageref{sym1:SigRealLine} \\
+		$\Sigma\big(R,~\sign(x)\big)$ & the integration contour $(-R, R) + i \sign(x) \pi$,
+				where $R > 0$ and $(-R, R):= \{x \mathbb R ~:~ -R < x < R\}$
+			& p.\pageref{sym1:SigR} \\
+		$K_\zeta$ & the integral function given by 
+				{
+					\begin{align*}
+						K_\zeta(x) 
+							:= \int_{\mathbb R} 
+								\frac{e^{ix \xi}}{\xi - \zeta\left(1-e^{-2\xi}\right)+i\pi}
+							\, \mathrm{d}\xi
+					\end{align*}
+				}
+			& p.\pageref{sym1:Kzeta} \\
+		$K_q$ & the integral function given by 
+				{
+					\begin{align*}
+						K_q(x) 
+							:= \int_{\mathbb R} 
+								\frac{e^{ix\xi} \chi\left( 2^{-q} x \xi\right)}
+									{\xi - \zeta\left(1-e^{-2\xi}\right)+i\pi}
+							\, \mathrm{d}\xi
+					\end{align*}
+				}
+			& p.\pageref{sym1:Kq} \\
+	\end{longtable}
 \end{centering}
 
 
@@ -308,14 +425,14 @@
 
 
 
-
+\indexsection{Chapter 3 Notation}
 \begin{centering}
 \begin{longtable}{R{.115\textwidth}|L{.74\textwidth}|C{.145\textwidth}}
 	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
 	\hline                                      
 	\endfirsthead
 	\multicolumn{3}{c}%
-	{Chapter 1 Notation -- \textit{Continued from previous page}} \\
+	{Chapter 3 Notation -- \textit{Continued from previous page}} \\
 	\hline
 	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
 	\hline
@@ -327,6 +444,29 @@
 
 \end{longtable}
 \end{centering}
+
+
+\indexsection{Chapter 4 Notation}
+\begin{centering}
+\begin{longtable}{R{.115\textwidth}|L{.74\textwidth}|C{.145\textwidth}}
+	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
+	\hline                                      
+	\endfirsthead
+	\multicolumn{3}{c}%
+	{Chapter 4 Notation -- \textit{Continued from previous page}} \\
+	\hline
+	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
+	\hline
+	\endhead
+	\hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
+	\endfoot
+	\hline
+	\endlastfoot
+
+\end{longtable}
+\end{centering}
+
+
 \begin{centering}
 \begin{longtable}{R{.115\textwidth}|L{.74\textwidth}|C{.145\textwidth}}
 	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\

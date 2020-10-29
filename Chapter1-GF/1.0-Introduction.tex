@@ -35,43 +35,6 @@ to first study mapping properties of $G_L^+$, $G_R^+$ as convolution operators
 extend analytically in the variable $x$ to the complex strip $\mathcal S_\delta$
 (Chapter \ref{cptr03:xContin}).
 
-% with this 
-% chapter's main results summarized below in Theorem's \ref{thm1:GFRep} and 
-% \ref{thm1:krep}. This analysis is continuo
-
-% The focus of this chapter is to provide a heuristic motivation for our definitions
-% of $G_L$ and $G_R$ (Section \ref{sec1:Motivation}), and study the properties 
-% of the lower boundary values $G_L^+$ and $G_R^+$ as functions on $\mathbb R$ (Sections)
-
-% the Intermediate Long Wave equation 
-% Inverse Scattering Transform
-
-
-
-% In this chapter, we study the basic mapping properties of the lower boundary values $G_L^+$, $G_R^+$
-% for the Green's functions $G_L$ and $G_R$ introduced in equation \eqref{eq0:GFs} of Section 
-% \ref{sec0:DM}. In particular, we ultimately show in Section \ref{sec1:MappingProps} that
-% $G_L^+$ and $G_R^+$ taken as convolutions operators are bounded linear operators from 
-% $L^1(\mathbb R) \cap L^p(\mathbb R)$ to $L^\infty(\mathbb R)$, for $p \in (1, 2]$, which 
-% satisfy
-% \begin{align}\label{eq1:introMappingProp}
-% 	\lim_{x\to-\infty} \big(G_L^+ * f\big) (x) 
-% 		= \lim_{x\to+\infty} \big(G_R^+ * f\big) (x)
-% 		= 0
-% \end{align}
-% for $f \in L^1(\mathbb R) \cap L^p(\mathbb R)$. 
-
-% This result helps us to analyze the integral equations \eqref{eq0:JostIE} in Chpater 
-% \ref{cptr04:DM} and prove
-% that solutions to these equations satisfy the asymptotic conditions given in 
-% \eqref{eq0:JostDEasymp}.
-
-% Central to proving this result is the is the following representation theorem 
-% (Theorem \ref{thm1:GFRep}) derived in Section \ref{sec1:GreensFunctions} 
-% and Theorem \ref{thm1:krep}, which establishes some important bounds on $G_L^+$
-% and $G_R^+$. The proof for Theorem \ref{thm1:krep} is given in Sections 
-% \ref{sec1:AsympK} and \ref{sec1:KSingularity}.
-
 We summarize the primary results of this chapter below in Theorems
 \ref{thm1:GFRep} and \ref{thm1:krep}.
 
@@ -155,7 +118,7 @@ We summarize the primary results of this chapter below in Theorems
 							}
 					\, \mathrm{d}\xi
 	\end{align*}
-	results from shifting the contour of integration for the integral in $G_L^+$ and
+	\label{sym1:K}results from shifting the contour of integration for the integral in $G_L^+$ and
 	$G_R^+$.
 \end{thm}
 
@@ -194,13 +157,13 @@ We summarize the primary results of this chapter below in Theorems
 	\begin{align}
 		K^+(x; \lambda, \delta) = 
 			\begin{cases}
-				C \log^+\left(\frac{1}{|x|}\right) + \mc O(1), & |x| < 1 \\
+				C \log_+\left(\frac{1}{|x|}\right) + \mc O(1), & |x| < 1 \\
 				\mc O\( \frac{e^{-\pi|x|}}{|x|} \), & |x| \geq 1
 			\end{cases}
 	\end{align}
 	for some constant $C \in \mathbb C$, where $\mathbb C$\label{sym:Complex} 
 	denotes the set of all complex numbers and $\log^+$ is the function defined
-	by $\log^+(x):=\max\big\{ \log(x), \, 0 \big\}$.\label{sym:logplus}
+	by $\log_+(x):=\max\big\{ \log(x), \, 0 \big\}$.\label{sym:logplus}
 \end{thm}
 
 \begin{rmk}\label{rmk1:littlek}
@@ -383,7 +346,7 @@ the roots $\xi = 0$ and $\xi=\lambda$ from above (Figure \ref{fig1:GammaR}).
 				\right] \chi_\star
 			\qquad (\star = L \text{, or } R)
 	\]
-	is not technically defined at 
+	\label{sym1:ressum}is not technically defined at 
 	$\lambda = 0$, it nonetheless makes sense for us to agree on the convention 
 	that
 	\[
