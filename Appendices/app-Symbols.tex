@@ -87,7 +87,13 @@
 				function $f$ analytic on $S_\delta$, where $x, y \in \mathbb R$
 			& p.\pageref{sym:bndries} \\
 		$\lesssim$ & $q \lesssim s$ means there exists some fixed constant $C$ so 
-			that $q \leq C\,s$ & p.\pageref{sym:lesssim} \\
+				that $q \leq C\,s$; the constant $C$ is commonly referred to as 
+				``the implied constant'' & p.\pageref{sym:lesssim} \\
+		$\lesssim_k$ & $q \lesssim s$ means there exists some constant
+				$C := C(k)$ depending only on the parameter $k$ so that
+				$q \leq C \, s$; the constant $C$ is commonly referred as ``the 
+				implied constant''  
+			& p.\pageref{sym:lesssimdep} \\
 		$\log_+ t$ & the function given by $\max\big\{ 0, \, \log(t) \big\}$
 			& p.\pageref{sym:logplus} \\
 		$\inn{x}$ & short-hand notation for $\big(1 + |x|^2\big)^{1/2}$
@@ -408,22 +414,91 @@
 
 \indexsection{Chapter 2 Notation}
 \begin{centering}
-\begin{longtable}{R{.115\textwidth}|L{.74\textwidth}|C{.145\textwidth}}
-	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
-	\hline                                      
-	\endfirsthead
-	\multicolumn{3}{c}%
-	{Chapter 2 Notation -- \textit{Continued from previous page}} \\
-	\hline
-	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
-	\hline
-	\endhead
-	\hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
-	\endfoot
-	\hline
-	\endlastfoot
-
-\end{longtable}
+	\begin{longtable}{R{.115\textwidth}|L{.74\textwidth}|C{.145\textwidth}}
+		\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
+		\hline                                      
+		\endfirsthead
+		\multicolumn{3}{c}%
+		{Chapter 2 Notation -- \textit{Continued from previous page}} \\
+		\hline
+		\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
+		\hline
+		\endhead
+		\hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
+		\endfoot
+		\hline
+		\endlastfoot
+		$\inn{x}$ & short-hand notation for $\big(1 + |x|^2\big)^{1/2}$
+			& p.\pageref{sym2:xbracket} \\
+		$L^{p,s}(\mathbb R)$ & space of measurable functions with 
+				\[
+					\|f\|_{L^{p,s}}
+						:= \left(\int_{\mathbb R} \inn{x}^{sp} |f(x)|^p \right)^{1/p}
+						< \infty
+				\]
+			& p.\pageref{defn2:Lps} \\
+		$\langle\dotarg\rangle L^\infty(\mathbb R)$ & space of measurable functions with 
+				\begin{talign}
+					\|f\|_{\inn{\dotarg} L^\infty}
+						:= \esssup_{x\in \mathbb R} \left| \inn{x}^{-1} f(x)  \right|
+				\end{talign}
+				finite
+			& p.\pageref{defn2:wLp} \\
+		$L_\xi^p(\mathbb R)$ & space of measurable functions which are $L^p$ integrable
+				with respect to the variable $\xi$; similar subscript notation
+				is used for other function spaces
+			& p.\pageref{sym2:Lpxi} \\
+		$\star$ & used as a placeholder for both $L$ and $R$; for example, if a 
+				statement contains the notation 
+				``$G_\star$ ($\star = L \text{, or } R$),'' then it is equally 
+				true (or not true) for both $G_L$ and $G_R$
+			& p.\pageref{rmk1:StarNotation} \\
+		$T_{\star, \lambda, u}$ & bounded operator on 
+				$\inn{\dotarg}L^\infty(\mathbb R)$ given by
+				{
+				\begin{align*}
+					T_{\star, \lambda, u} f(x) 
+						:= \big[ G_\star^+(\dotarg; \lambda) \big] * (u\,f)(x)
+				\end{align*}
+				}
+				based on context, $T_{\star, \lambda, u}$ is sometimes denoted 
+				by $T_\star$, $T_{\star, \lambda}$, or $T_\lambda$
+			& p.\pageref{eqn2:Tdefn} \\
+		$X$ & space of potentials $u$ with $\nm{\inn{\dotarg}^{4} u}_{L^2} < \infty$
+			& p.\pageref{defn2:X} \\
+		$\lesssim_k$ & $q \lesssim s$ means there exists some constant
+				$C := C(k)$ depending only on the parameter $k$ so that
+				$q \leq C \, s$; the constant $C$ is commonly referred as ``the 
+				implied constant''  
+			& p.\pageref{ILW.GL.bdp} \\
+		$\chi_\pm$ & the characteristic functions $\chi_-:= \chi_{(-\infty, 0)}$, 
+				$\chi_+:= \chi_{(0, \infty)}$ on the respective intervals
+				$(-\infty, 0)$ and $(0, \infty)$
+			& p.\pageref{sym2:chipm} \\
+		$G$ & as specified in Remark \ref{rmk2:notation}, $G(x,\lambda)$ 
+				and $G(\lambda)$ are occasionally used to as shorthand 
+				notations for $G_\star^+(x; \lambda)$
+			& p.\pageref{rmk2:notation} \\
+		$G_h(\lambda)$ & the difference quotient of $G_\star^+$ with respect to 
+				$\lambda$; given by 
+				\begin{align*}
+					G_h(\lambda) := \frac{G(\lambda+h) - G(\lambda)}{h}
+				\end{align*}
+			& p.\pageref{sym2:Gh} \\
+		$\ds\left(\frac{1}{p_\lambda(\xi)}\right)_{h}$
+			& the difference quotient of $1/p$ with respect to $\lambda$;
+				\begin{align*}
+					\left(\frac{1}{p_\lambda(\xi)}\right)_{h}
+						:= \frac{1}{h}\,
+							\left[
+								\frac{1}{p(\xi; \lambda +h)}
+								-\frac{1}{p(\xi; \lambda)}
+							\right]
+				\end{align*}
+			& p.\pageref{sym2:pdiffquot} \\
+		$\Res_{z=c}f$ & complex residue of a function $f$ at the pole $z = c$
+			& p.\pageref{eq2:gzerores}
+	\end{longtable}
 \end{centering}
 
 
@@ -470,319 +545,319 @@
 \end{centering}
 
 
-\begin{centering}
-\begin{longtable}{R{.115\textwidth}|L{.74\textwidth}|C{.145\textwidth}}
-	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
-	\hline                                      
-	\endfirsthead
-	\multicolumn{3}{c}%
-	{Notation -- \textit{Continued from previous page}} \\
-	\hline
-	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
-	\hline
-	\endhead
-	\hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
-	\endfoot
-	\hline
-	\endlastfoot
-	% Notation & Meaning & First Use \\
-	% \hline
-	$:=$ & defined to be; for example $a := b$ means ``$a$ is defined to be 
-			$b$
-		& p.\pageref{sym:def} \\
-	$\delta$ & depth of stratified fluids\textemdash{}typically taken 
-			to be $\delta=1$ 
-		& p.\pageref{sym:delta} \\
-	$\pv$ & Cauchy principle value; given by 
-		{
-			\begin{align*}
-				\pv\int_{\mathbb R} f(x) \, \mathrm{d}x
-					:= \lim_{\varepsilon \searrow 0} \int_{|x|>\varepsilon} f(x) \, \mathrm{d}x
-			\end{align*}
-		}
-		& p.\pageref{sym:pv} \\
-	\textit{a.e.} & abbreviation for almost everywhere & p.\pageref{sym:ae}\\
-	$\mathbb R$ & the set of all real numbers & p.\pageref{sym:Reals} \\
-	$\mathbb C$ & the set of all complex numbers & p.\pageref{sym:Complex} \\
-	$m(\dotarg)$ & Lebesgue measure on $\mathbb R$ & p.\pageref{sym:lebesguemeasure} \\
-	$\mathcal F$, $\hat{(\dotarg)}$ & Fourier transform defined as 
-		\begin{talign}
-			\hat f(\xi)
-					:= \(\mathcal F f\)(\xi)
-					= \int_{\mathbb R} e^{-i x \xi} f(x) \, \mathrm{d}x
-		\end{talign}
-			& p.\pageref{sym:fourier} \\[-1\baselineskip]
-	$\mathcal F^{-1}$, $\check{(\dotarg)}$ & inverse Fourier transform defined 
-		as
-		\begin{talign}
-				\check g(x)
-					:= \(\mathcal F^{-1}g\)(x)
-					= \frac{1}{2 \pi} \int_{\mathbb R} e^{i x \xi} g(\xi) \, \mathrm{d}\xi
-		\end{talign}
-		& p.\pageref{sym:fourier} \\
-	$\delta_a$ & Dirac delta-function centered at $x=a$ 
-		& p.\pageref{sym:dirac} \\
-	$(\dotarg\pm i0)$ & implied limit of $(\dotarg \pm i \varepsilon)$ as 
-			$\varepsilon \searrow 0$ 
-		& p.\pageref{sym:i0} \\
-	$\mathcal S_\delta$ & the complex strip
-			$\{z \in \mathbb C ~:~ 0 < \im z < 2\delta\}$ 
-		& p.\pageref{sym:Sdelta} \\
-	$f^+$ & lower boundary $f^+(x) := 
-			\lim_{y\searrow0} f(x+ i y)$ of a function $f$ analytic on $S_\delta$,
-			where $x, y \in \mathbb R$ 
-		& p.\pageref{sym:bndries} \\
-	$f^-$ & upper boundary $f^-(x) := \lim_{y\nearrow0} f(x+ i 2y)$ of a 
-			function $f$ analytic on $S_\delta$, where $x, y \in \mathbb R$
-		& p.\pageref{sym:bndries} \\
-	$\lambda$ & a spectral parameter for the linear spectral problem 
-			\eqref{eq0:SpecProb} 
-		& p.\pageref{sym:zeta} \\
-	$\zeta$ & a spectral parameter for \eqref{eq0:SpecProb} commonly
-			parameterized by $\lambda$	as 
-			$\displaystyle \zeta(\lambda; \delta) 
-				= \frac{\lambda}{1-e^{-2\delta\lambda}}$ 
-		& p.\pageref{sym:zeta} \\
-	$\lambda(\zeta)$ &  inverse of the map $\lambda \to \zeta(\lambda)$ 
-		& p.\pageref{sym:lambda} \\
-	$\zeta^*$ & nonlinear reflection $\zeta\big(-\lambda(\zeta)\big)$ 
-		& p.\pageref{sym:zetastar} \\
-	$L_\delta$ & operator on functions analytic in the complex strip 
-		$\mathcal S_\delta$; given by 
-		{
-			\begin{align*}
-				L_\delta (\Psi) 
-					:= \frac{1}{i} \frac{\partial}{\partial x} \Psi^+ 
-					- \zeta \left(\Psi^+ - \Psi^-\right) = u \Psi^+
-			\end{align*}
-		}
-		& p.\pageref{eq0:SpecProb} \\
-	$\log_+ t$ & the function given by $\max\big\{ 0, \, \log(t) \big\}$
-		& p.\pageref{sym:logplus} \\
-	$p$ & Fourier symbol of the Green's functions; 
-			given by
-			\[
-				p(\xi; \lambda, \delta)
-					= \xi - \zeta(\lambda) \( 1- e^{-2\delta \xi} \)
-			\]
-			and commonly denoted as $p(\xi; \lambda, \delta)$, 
-			$p(\xi; \zeta, \delta)$, $p(\xi; \lambda)$, 
-			$p(\xi; \zeta)$, and $p(\xi)$.
-		& p.\pageref{sym:GFintegrand} \\
-	${\Gamma_L}$ & contour along the real line which bypasses the roots of $p$
-		from below
-		& p.\pageref{sym:Gamma} \\
-	${\Gamma_R}$ & contour along the real line which bypasses the roots of $p$
-		from above
-		& p.\pageref{sym:Gamma} \\
-	$\inn{x}$ & short-hand notation for $\big(1 + |x|^2\big)^{1/2}$
-		& p.\pageref{sym:xbracket} \\
-	$L^{p,s}(\mathbb R)$ & space of measurable functions with 
-		\[
-			\|f\|_{L^{p,s}}
-				:= \left(\int_{\mathbb R} \inn{x}^{sp} |f(x)|^p \right)^{1/p}
-				< \infty
-		\]
-		& p.\pageref{defn2:Lps} \\
-	$\langle\dotarg\rangle L^\infty(\mathbb R)$ & space of measurable functions with 
-		\begin{talign}
-			\|f\|_{\inn{\dotarg} L^\infty}
-				:= \esssup_{x\in \mathbb R} \left| \inn{x}^{-1} f(x)  \right|
-		\end{talign}
-		finite
-		& p.\pageref{defn2:wLp} \\
-	$X$ & space of potentials $u$ with $\nm{\inn{\dotarg}^{4} u}_{L^2} < \infty$
-		% \begin{talign}
-		% 	\|u\|_X 
-		% 		:= \| \inn{\dotarg}^2 \, u(\dotarg) \|_{L^1} 
-		% 			+ 
-		% 			\left\|
-		% 				\log_+\left(\frac{1}{(\dotarg)}\right)
-		% 				* \inn{\dotarg} |u|
-		% 			\right\|_{L^\infty}
-		% \end{talign}
-		% finite
-		& p.\pageref{defn2:X} \\
-	$L^{p,\infty}$ & weak $L^p$ space; also denoted $weak$-$L^p$; please see
-		the ``Harmonic Analysis Results'' appendix for a definition
-		& p.\pageref{sym:weakLp}\\
-	$B_Y(y_0, r)$ & the open ball $\{ y \in Y ~:~ \|y - y_0\|_Y < r  \}$ in 
-		the metric space $Y$ with radius $r$ centered at $y_0 \in Y$
-		& p.\pageref{sym:ball} \\
-	$Y\to Z$ & a map from a space $Y$ to a space $Z$
-		& p.\pageref{sym:mapsto} \\
-	$Y \toitself$ & a map from a space $Y$ into itself
-		& p.\pageref{sym:toitself} \\
-	$\|\dotarg\|_{Y\to Z}$ & the induced operator norm for an operator with domain 
-		$Y$ and co-domain $Z$
-		& p.\pageref{sym:opnorm} \\
-	$G_\star^+$ & lower boundary value of the Greens' function whose contour
-		of integration is $\Gamma_\star$; given by 
-			{
-			\begin{align*}
-					G_\star^+(x; \lambda, \delta)
-						:=
-							\frac{1}{2\pi} 
-							\int_{\Gamma_\star}
-								e^{i x \xi} \,
-								\frac{1}{p(\xi; \lambda, \delta)}
-							\, \mathrm{d}\xi
-				\end{align*}
-			}
-		& p.\pageref{sym:GFbndry} \\
-	$T_{\star, \lambda, u}$ & bounded operator on 
-		$\inn{\dotarg}L^\infty(\mathbb R)$ given by
-		{
-		\begin{align*}
-			T_{\star, \lambda, u} f(x) 
-				:= \big[ G_\star^+(\dotarg; \lambda) \big] * (u\,f)(x)
-		\end{align*}
-		}
-		& p.\pageref{eqn2:Tdefn} \\
-	$G_\star$ & Green's function whose contour of integration is $\Gamma_\star$ 
-				($\star = L \text{, or } R$); given by 
-				\begin{align*}
-					G_\star(z; \lambda, \delta)
-						:=
-							\frac{1}{2\pi} 
-							\int_{\Gamma_\star}
-								e^{i z \xi} \,
-								\frac{1}{p(\xi; \lambda, \delta)}
-							\, \mathrm{d}\xi
-				\end{align*}
-		& p.\pageref{eq3:ILW.GFz} \\
-	$\mathpzc E_\varepsilon, ~\mathpzc P_\varepsilon$ & two families of convolution
-		operators given by
-		\[
-			\mathpzc E_\varepsilon(y)
-				:= \frac{1}{2\pi i} \frac{y}{y^2 + \varepsilon^2} e^{-\pi|y|},
-			\quad \text{and} \quad
-			\mathpzc P_\varepsilon(y)
-				:= \frac{1}{\pi} \frac{\varepsilon}{y^2 + \varepsilon^2} e^{-\pi|y|}
-		\]
-		& p.\pageref{sym:badCauchy} \\
-	$\mathcal E_{\varepsilon}$ & a family of convolution operators
-		given by
-		{\begin{align*}
-				\left( \mathcal E_\varepsilon f \right)(x)
-				&:=  \frac{e^{-i \pi (2-\varepsilon)}}{2 \pi i}
-					\int_{-\infty}^x
-						\frac{e^{-\pi|x-x'|}}{(x-x') - i\varepsilon} f(x')
-					\, \mathrm{d}x' \\
-				&\quad + \frac{e^{i \pi (2-\varepsilon)}}{2 \pi i}
-					\int_x^{\infty}
-						\frac{e^{-\pi|x-x'|} }{(x-x') - i\varepsilon} f(x')
-					\, \mathrm{d}x'
-		\end{align*}}
-		& p.\pageref{sym:almostExpCauchy} \\
-	$E_{\varepsilon}$ & exponentially weighted Cauchy transform; given by
-		\begin{align*}
-			E_{\varepsilon} f(x)
-				:= \frac{1}{2\pi i} \int_{\mathbb R}
-					\frac{e^{-\pi|x-x'|}}{(x-x') - i \varepsilon} f(x') \, \mathrm{d}x'
-		\end{align*}
-		& p.\pageref{sym:expCauchy} \\
-	$E^*$ & the maximal operator associated with the Cauchy transform
-		$E_{\varepsilon}$; given by
-		\begin{align*}
-			E^*f(x)
-				:= \( E_{\varepsilon} \)^* f(x)
-				:= \sup_{\varepsilon>0} \left\{\left|E_{\varepsilon} f(x)\right|\right\}.
-		\end{align*}
-		& p.\pageref{sym:maxCauchyT} \\
-	$M$ & The Hardy-Littlewood maximal operator; given by
-		\begin{align*}
-			M f(x)
-        		= \sup_{r > 0}
-        			\left\{
-        				\frac{1}{B(0, r)} \int_{B(0, r)} |f(x - x')| \, \mathrm{d}x'
-	        		\right\}.
-		\end{align*}
-		& p.\pageref{sym:hardy} \\
-	$E$ & exponentially weighted Hilbert Transform;
-		given by
-		\begin{align*}
-			Ef(x)
-				:= \frac{1}{2\pi i}
-					\pv \int_{\mathbb R} \frac{e^{-\pi|x-x'|}}{x-x'} f(x') \, \mathrm{d}x',
-		\end{align*}
-		where $\pv \int (\dotarg) \, \mathrm{d}\mu$ denotes a principle value integral.
-		& p.\pageref{sym:ExpHil} \\
-	$E^{(\varepsilon)}$ &  truncated exponentially weighted Hilbert Transform; given
-		by
-		\begin{align*}
-			E^{(\varepsilon)}f(x)
-				:= \frac{1}{2\pi i}
-					 \int_{|x'|\geq \varepsilon} \frac{e^{-\pi|x'|}}{x'} f(x-x') \, \mathrm{d}x'
-		\end{align*}
-		by definition,
-		$(Ef)(x) = \lim_{\varepsilon \searrow 0} E^{(\varepsilon)}f(x)$
-		& p.\pageref{sym:truncExpHil} \\
-	$\chi_A$ & characteristic function on a set $A$; given by 
-		{\begin{align*}
-			\chi_A(x) := 
-				\begin{cases}
-					1, & x \in A \\
-					0, & \text{otherwise}
-				\end{cases}
-		\end{align*}}
-		& p.\pageref{sym:chi} \\
-	$\star$ & used as a placeholder for both $L$ and $R$; for example, if a 
-		statement contains the notation 
-		``$G_\star$ ($\star = L \text{, or } R$),'' then it is equally 
-		true (or not true) for both $G_L$ and $G_R$
-		& p.\pageref{rmk1:StarNotation} \\
-	$M_1$, $M_e$, $N_1$, $N_e$ & depending on context, either Jost solutions 
-		or analytic extensions of solutions to the integral equations
-		\eqref{eq0:JostIE}
-		& p.\pageref{defn0:jost}, p.\pageref{eq0:JostIE} \\
-	$M_1^+$, $M_e^+$, $N_1^+$, $N_e^+$ & depending on context, either solutions
-		to the integral equations \eqref{eq0:JostIE} or lower boundary 
-		values of the Jost solutions
-		& p.\pageref{eq0:JostIE}, p.\pageref{defn0:jost} \\
-	$\alpha(\lambda; \delta)$ & residue of $e^{iz\xi}/p(\xi)$ at the $\xi=0$
-		pole; given by 
-		{\begin{align*}
-			\alpha(\lambda; \delta)
-				= \frac{1}{1-2\delta\zeta(\lambda; \delta)}
-		\end{align*}}
-		& p.\pageref{sym:alphabeta} \\
-	$\beta(\lambda; \delta)$ & $e^{iz\lambda}$ times the residue of 
-		$e^{iz\xi}/p(\xi)$ at the $\xi=\lambda$ pole; given by 
-		{\begin{align*}
-			\alpha(\lambda; \delta)
-				= \frac{1}{1-2\delta\zeta(-\lambda; \delta)}
-		\end{align*}}
-		& p.\pageref{sym:alphabeta} \\
-	$a$ & & \\
-	$b$ & & \\
-	$\mathpzc R_\star$ & sum residues of $e^{iz\xi}/p(\xi)$ at the $\xi=0$ and $\xi=\lambda$ 
-		poles & \\
-	$K$ & & \\
-	$\mathfrak C$ & the portion of $K$ with continuous limit to the upper 
-		boundary of $\mathcal S_\delta$; given by 
-		{
-			\begin{align*}
-				\mathfrak C(x,y)
-					:= \frac{1}{2\pi} e^{-\pi|x|} \, e^{- \sign(x) \, i \pi y }
-						\int_{\mathbb R} e^{ix \xi} \rho\big(\xi, y, \sign(x)\big) \, \mathrm{d}\xi,
-			\end{align*}
-		}
-		where $x \in \mathbb R$ and $y\in [0, 2]$
-		& p.\pageref{sym:mathfrakC} \\
-	$r$ & reflection coefficient; given by $r(\lambda) = b(\lambda) / a(\lambda)$ 
-		& \\
-	$\mathscr D$ 
-		& direct scattering map; given by  
-		$\mathscr D: B_X(0,c_0) \ni u \mapsto r \in \inn{\dotarg} L^\infty(\mathbb R)$
-		& p.\pageref{sym:DM} \\
-	$c_0$ & a strictly positive constant for which the integral equations \ref{eq0:JostIE}
-		admit unique solutions for every $u \in B_X(0, c_0)$ 
-		& p.\pageref{prop4:exist} \\
-	$\lesssim$ & $a \lesssim b$ means there exists some fixed constant $C$ so 
-		that $a \leq C\,b$ & p.\pageref{sym:lesssim} \\
-\end{longtable}
-\end{centering}
+% \begin{centering}
+% \begin{longtable}{R{.115\textwidth}|L{.74\textwidth}|C{.145\textwidth}}
+% 	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
+% 	\hline                                      
+% 	\endfirsthead
+% 	\multicolumn{3}{c}%
+% 	{Notation -- \textit{Continued from previous page}} \\
+% 	\hline
+% 	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
+% 	\hline
+% 	\endhead
+% 	\hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
+% 	\endfoot
+% 	\hline
+% 	\endlastfoot
+% 	% Notation & Meaning & First Use \\
+% 	% \hline
+% 	$:=$ & defined to be; for example $a := b$ means ``$a$ is defined to be 
+% 			$b$
+% 		& p.\pageref{sym:def} \\
+% 	$\delta$ & depth of stratified fluids\textemdash{}typically taken 
+% 			to be $\delta=1$ 
+% 		& p.\pageref{sym:delta} \\
+% 	$\pv$ & Cauchy principle value; given by 
+% 		{
+% 			\begin{align*}
+% 				\pv\int_{\mathbb R} f(x) \, \mathrm{d}x
+% 					:= \lim_{\varepsilon \searrow 0} \int_{|x|>\varepsilon} f(x) \, \mathrm{d}x
+% 			\end{align*}
+% 		}
+% 		& p.\pageref{sym:pv} \\
+% 	\textit{a.e.} & abbreviation for almost everywhere & p.\pageref{sym:ae}\\
+% 	$\mathbb R$ & the set of all real numbers & p.\pageref{sym:Reals} \\
+% 	$\mathbb C$ & the set of all complex numbers & p.\pageref{sym:Complex} \\
+% 	$m(\dotarg)$ & Lebesgue measure on $\mathbb R$ & p.\pageref{sym:lebesguemeasure} \\
+% 	$\mathcal F$, $\hat{(\dotarg)}$ & Fourier transform defined as 
+% 		\begin{talign}
+% 			\hat f(\xi)
+% 					:= \(\mathcal F f\)(\xi)
+% 					= \int_{\mathbb R} e^{-i x \xi} f(x) \, \mathrm{d}x
+% 		\end{talign}
+% 			& p.\pageref{sym:fourier} \\[-1\baselineskip]
+% 	$\mathcal F^{-1}$, $\check{(\dotarg)}$ & inverse Fourier transform defined 
+% 		as
+% 		\begin{talign}
+% 				\check g(x)
+% 					:= \(\mathcal F^{-1}g\)(x)
+% 					= \frac{1}{2 \pi} \int_{\mathbb R} e^{i x \xi} g(\xi) \, \mathrm{d}\xi
+% 		\end{talign}
+% 		& p.\pageref{sym:fourier} \\
+% 	$\delta_a$ & Dirac delta-function centered at $x=a$ 
+% 		& p.\pageref{sym:dirac} \\
+% 	$(\dotarg\pm i0)$ & implied limit of $(\dotarg \pm i \varepsilon)$ as 
+% 			$\varepsilon \searrow 0$ 
+% 		& p.\pageref{sym:i0} \\
+% 	$\mathcal S_\delta$ & the complex strip
+% 			$\{z \in \mathbb C ~:~ 0 < \im z < 2\delta\}$ 
+% 		& p.\pageref{sym:Sdelta} \\
+% 	$f^+$ & lower boundary $f^+(x) := 
+% 			\lim_{y\searrow0} f(x+ i y)$ of a function $f$ analytic on $S_\delta$,
+% 			where $x, y \in \mathbb R$ 
+% 		& p.\pageref{sym:bndries} \\
+% 	$f^-$ & upper boundary $f^-(x) := \lim_{y\nearrow0} f(x+ i 2y)$ of a 
+% 			function $f$ analytic on $S_\delta$, where $x, y \in \mathbb R$
+% 		& p.\pageref{sym:bndries} \\
+% 	$\lambda$ & a spectral parameter for the linear spectral problem 
+% 			\eqref{eq0:SpecProb} 
+% 		& p.\pageref{sym:zeta} \\
+% 	$\zeta$ & a spectral parameter for \eqref{eq0:SpecProb} commonly
+% 			parameterized by $\lambda$	as 
+% 			$\displaystyle \zeta(\lambda; \delta) 
+% 				= \frac{\lambda}{1-e^{-2\delta\lambda}}$ 
+% 		& p.\pageref{sym:zeta} \\
+% 	$\lambda(\zeta)$ &  inverse of the map $\lambda \to \zeta(\lambda)$ 
+% 		& p.\pageref{sym:lambda} \\
+% 	$\zeta^*$ & nonlinear reflection $\zeta\big(-\lambda(\zeta)\big)$ 
+% 		& p.\pageref{sym:zetastar} \\
+% 	$L_\delta$ & operator on functions analytic in the complex strip 
+% 		$\mathcal S_\delta$; given by 
+% 		{
+% 			\begin{align*}
+% 				L_\delta (\Psi) 
+% 					:= \frac{1}{i} \frac{\partial}{\partial x} \Psi^+ 
+% 					- \zeta \left(\Psi^+ - \Psi^-\right) = u \Psi^+
+% 			\end{align*}
+% 		}
+% 		& p.\pageref{eq0:SpecProb} \\
+% 	$\log_+ t$ & the function given by $\max\big\{ 0, \, \log(t) \big\}$
+% 		& p.\pageref{sym:logplus} \\
+% 	$p$ & Fourier symbol of the Green's functions; 
+% 			given by
+% 			\[
+% 				p(\xi; \lambda, \delta)
+% 					= \xi - \zeta(\lambda) \( 1- e^{-2\delta \xi} \)
+% 			\]
+% 			and commonly denoted as $p(\xi; \lambda, \delta)$, 
+% 			$p(\xi; \zeta, \delta)$, $p(\xi; \lambda)$, 
+% 			$p(\xi; \zeta)$, and $p(\xi)$.
+% 		& p.\pageref{sym:GFintegrand} \\
+% 	${\Gamma_L}$ & contour along the real line which bypasses the roots of $p$
+% 		from below
+% 		& p.\pageref{sym:Gamma} \\
+% 	${\Gamma_R}$ & contour along the real line which bypasses the roots of $p$
+% 		from above
+% 		& p.\pageref{sym:Gamma} \\
+% 	$\inn{x}$ & short-hand notation for $\big(1 + |x|^2\big)^{1/2}$
+% 		& p.\pageref{sym:xbracket} \\
+% 	$L^{p,s}(\mathbb R)$ & space of measurable functions with 
+% 		\[
+% 			\|f\|_{L^{p,s}}
+% 				:= \left(\int_{\mathbb R} \inn{x}^{sp} |f(x)|^p \right)^{1/p}
+% 				< \infty
+% 		\]
+% 		& p.\pageref{defn2:Lps} \\
+% 	$\langle\dotarg\rangle L^\infty(\mathbb R)$ & space of measurable functions with 
+% 		\begin{talign}
+% 			\|f\|_{\inn{\dotarg} L^\infty}
+% 				:= \esssup_{x\in \mathbb R} \left| \inn{x}^{-1} f(x)  \right|
+% 		\end{talign}
+% 		finite
+% 		& p.\pageref{defn2:wLp} \\
+% 	$X$ & space of potentials $u$ with $\nm{\inn{\dotarg}^{4} u}_{L^2} < \infty$
+% 		% \begin{talign}
+% 		% 	\|u\|_X 
+% 		% 		:= \| \inn{\dotarg}^2 \, u(\dotarg) \|_{L^1} 
+% 		% 			+ 
+% 		% 			\left\|
+% 		% 				\log_+\left(\frac{1}{(\dotarg)}\right)
+% 		% 				* \inn{\dotarg} |u|
+% 		% 			\right\|_{L^\infty}
+% 		% \end{talign}
+% 		% finite
+% 		& p.\pageref{defn2:X} \\
+% 	$L^{p,\infty}$ & weak $L^p$ space; also denoted $weak$-$L^p$; please see
+% 		the ``Harmonic Analysis Results'' appendix for a definition
+% 		& p.\pageref{sym:weakLp}\\
+% 	$B_Y(y_0, r)$ & the open ball $\{ y \in Y ~:~ \|y - y_0\|_Y < r  \}$ in 
+% 		the metric space $Y$ with radius $r$ centered at $y_0 \in Y$
+% 		& p.\pageref{sym:ball} \\
+% 	$Y\to Z$ & a map from a space $Y$ to a space $Z$
+% 		& p.\pageref{sym:mapsto} \\
+% 	$Y \toitself$ & a map from a space $Y$ into itself
+% 		& p.\pageref{sym:toitself} \\
+% 	$\|\dotarg\|_{Y\to Z}$ & the induced operator norm for an operator with domain 
+% 		$Y$ and co-domain $Z$
+% 		& p.\pageref{sym:opnorm} \\
+% 	$G_\star^+$ & lower boundary value of the Greens' function whose contour
+% 		of integration is $\Gamma_\star$; given by 
+% 			{
+% 			\begin{align*}
+% 					G_\star^+(x; \lambda, \delta)
+% 						:=
+% 							\frac{1}{2\pi} 
+% 							\int_{\Gamma_\star}
+% 								e^{i x \xi} \,
+% 								\frac{1}{p(\xi; \lambda, \delta)}
+% 							\, \mathrm{d}\xi
+% 				\end{align*}
+% 			}
+% 		& p.\pageref{sym:GFbndry} \\
+% 	$T_{\star, \lambda, u}$ & bounded operator on 
+% 		$\inn{\dotarg}L^\infty(\mathbb R)$ given by
+% 		{
+% 		\begin{align*}
+% 			T_{\star, \lambda, u} f(x) 
+% 				:= \big[ G_\star^+(\dotarg; \lambda) \big] * (u\,f)(x)
+% 		\end{align*}
+% 		}
+% 		& p.\pageref{eqn2:Tdefn} \\
+% 	$G_\star$ & Green's function whose contour of integration is $\Gamma_\star$ 
+% 				($\star = L \text{, or } R$); given by 
+% 				\begin{align*}
+% 					G_\star(z; \lambda, \delta)
+% 						:=
+% 							\frac{1}{2\pi} 
+% 							\int_{\Gamma_\star}
+% 								e^{i z \xi} \,
+% 								\frac{1}{p(\xi; \lambda, \delta)}
+% 							\, \mathrm{d}\xi
+% 				\end{align*}
+% 		& p.\pageref{eq3:ILW.GFz} \\
+% 	$\mathpzc E_\varepsilon, ~\mathpzc P_\varepsilon$ & two families of convolution
+% 		operators given by
+% 		\[
+% 			\mathpzc E_\varepsilon(y)
+% 				:= \frac{1}{2\pi i} \frac{y}{y^2 + \varepsilon^2} e^{-\pi|y|},
+% 			\quad \text{and} \quad
+% 			\mathpzc P_\varepsilon(y)
+% 				:= \frac{1}{\pi} \frac{\varepsilon}{y^2 + \varepsilon^2} e^{-\pi|y|}
+% 		\]
+% 		& p.\pageref{sym:badCauchy} \\
+% 	$\mathcal E_{\varepsilon}$ & a family of convolution operators
+% 		given by
+% 		{\begin{align*}
+% 				\left( \mathcal E_\varepsilon f \right)(x)
+% 				&:=  \frac{e^{-i \pi (2-\varepsilon)}}{2 \pi i}
+% 					\int_{-\infty}^x
+% 						\frac{e^{-\pi|x-x'|}}{(x-x') - i\varepsilon} f(x')
+% 					\, \mathrm{d}x' \\
+% 				&\quad + \frac{e^{i \pi (2-\varepsilon)}}{2 \pi i}
+% 					\int_x^{\infty}
+% 						\frac{e^{-\pi|x-x'|} }{(x-x') - i\varepsilon} f(x')
+% 					\, \mathrm{d}x'
+% 		\end{align*}}
+% 		& p.\pageref{sym:almostExpCauchy} \\
+% 	$E_{\varepsilon}$ & exponentially weighted Cauchy transform; given by
+% 		\begin{align*}
+% 			E_{\varepsilon} f(x)
+% 				:= \frac{1}{2\pi i} \int_{\mathbb R}
+% 					\frac{e^{-\pi|x-x'|}}{(x-x') - i \varepsilon} f(x') \, \mathrm{d}x'
+% 		\end{align*}
+% 		& p.\pageref{sym:expCauchy} \\
+% 	$E^*$ & the maximal operator associated with the Cauchy transform
+% 		$E_{\varepsilon}$; given by
+% 		\begin{align*}
+% 			E^*f(x)
+% 				:= \( E_{\varepsilon} \)^* f(x)
+% 				:= \sup_{\varepsilon>0} \left\{\left|E_{\varepsilon} f(x)\right|\right\}.
+% 		\end{align*}
+% 		& p.\pageref{sym:maxCauchyT} \\
+% 	$M$ & The Hardy-Littlewood maximal operator; given by
+% 		\begin{align*}
+% 			M f(x)
+%         		= \sup_{r > 0}
+%         			\left\{
+%         				\frac{1}{B(0, r)} \int_{B(0, r)} |f(x - x')| \, \mathrm{d}x'
+% 	        		\right\}.
+% 		\end{align*}
+% 		& p.\pageref{sym:hardy} \\
+% 	$E$ & exponentially weighted Hilbert Transform;
+% 		given by
+% 		\begin{align*}
+% 			Ef(x)
+% 				:= \frac{1}{2\pi i}
+% 					\pv \int_{\mathbb R} \frac{e^{-\pi|x-x'|}}{x-x'} f(x') \, \mathrm{d}x',
+% 		\end{align*}
+% 		where $\pv \int (\dotarg) \, \mathrm{d}\mu$ denotes a principle value integral.
+% 		& p.\pageref{sym:ExpHil} \\
+% 	$E^{(\varepsilon)}$ &  truncated exponentially weighted Hilbert Transform; given
+% 		by
+% 		\begin{align*}
+% 			E^{(\varepsilon)}f(x)
+% 				:= \frac{1}{2\pi i}
+% 					 \int_{|x'|\geq \varepsilon} \frac{e^{-\pi|x'|}}{x'} f(x-x') \, \mathrm{d}x'
+% 		\end{align*}
+% 		by definition,
+% 		$(Ef)(x) = \lim_{\varepsilon \searrow 0} E^{(\varepsilon)}f(x)$
+% 		& p.\pageref{sym:truncExpHil} \\
+% 	$\chi_A$ & characteristic function on a set $A$; given by 
+% 		{\begin{align*}
+% 			\chi_A(x) := 
+% 				\begin{cases}
+% 					1, & x \in A \\
+% 					0, & \text{otherwise}
+% 				\end{cases}
+% 		\end{align*}}
+% 		& p.\pageref{sym:chi} \\
+% 	$\star$ & used as a placeholder for both $L$ and $R$; for example, if a 
+% 		statement contains the notation 
+% 		``$G_\star$ ($\star = L \text{, or } R$),'' then it is equally 
+% 		true (or not true) for both $G_L$ and $G_R$
+% 		& p.\pageref{rmk1:StarNotation} \\
+% 	$M_1$, $M_e$, $N_1$, $N_e$ & depending on context, either Jost solutions 
+% 		or analytic extensions of solutions to the integral equations
+% 		\eqref{eq0:JostIE}
+% 		& p.\pageref{defn0:jost}, p.\pageref{eq0:JostIE} \\
+% 	$M_1^+$, $M_e^+$, $N_1^+$, $N_e^+$ & depending on context, either solutions
+% 		to the integral equations \eqref{eq0:JostIE} or lower boundary 
+% 		values of the Jost solutions
+% 		& p.\pageref{eq0:JostIE}, p.\pageref{defn0:jost} \\
+% 	$\alpha(\lambda; \delta)$ & residue of $e^{iz\xi}/p(\xi)$ at the $\xi=0$
+% 		pole; given by 
+% 		{\begin{align*}
+% 			\alpha(\lambda; \delta)
+% 				= \frac{1}{1-2\delta\zeta(\lambda; \delta)}
+% 		\end{align*}}
+% 		& p.\pageref{sym:alphabeta} \\
+% 	$\beta(\lambda; \delta)$ & $e^{iz\lambda}$ times the residue of 
+% 		$e^{iz\xi}/p(\xi)$ at the $\xi=\lambda$ pole; given by 
+% 		{\begin{align*}
+% 			\alpha(\lambda; \delta)
+% 				= \frac{1}{1-2\delta\zeta(-\lambda; \delta)}
+% 		\end{align*}}
+% 		& p.\pageref{sym:alphabeta} \\
+% 	$a$ & & \\
+% 	$b$ & & \\
+% 	$\mathpzc R_\star$ & sum residues of $e^{iz\xi}/p(\xi)$ at the $\xi=0$ and $\xi=\lambda$ 
+% 		poles & \\
+% 	$K$ & & \\
+% 	$\mathfrak C$ & the portion of $K$ with continuous limit to the upper 
+% 		boundary of $\mathcal S_\delta$; given by 
+% 		{
+% 			\begin{align*}
+% 				\mathfrak C(x,y)
+% 					:= \frac{1}{2\pi} e^{-\pi|x|} \, e^{- \sign(x) \, i \pi y }
+% 						\int_{\mathbb R} e^{ix \xi} \rho\big(\xi, y, \sign(x)\big) \, \mathrm{d}\xi,
+% 			\end{align*}
+% 		}
+% 		where $x \in \mathbb R$ and $y\in [0, 2]$
+% 		& p.\pageref{sym:mathfrakC} \\
+% 	$r$ & reflection coefficient; given by $r(\lambda) = b(\lambda) / a(\lambda)$ 
+% 		& \\
+% 	$\mathscr D$ 
+% 		& direct scattering map; given by  
+% 		$\mathscr D: B_X(0,c_0) \ni u \mapsto r \in \inn{\dotarg} L^\infty(\mathbb R)$
+% 		& p.\pageref{sym:DM} \\
+% 	$c_0$ & a strictly positive constant for which the integral equations \ref{eq0:JostIE}
+% 		admit unique solutions for every $u \in B_X(0, c_0)$ 
+% 		& p.\pageref{prop4:exist} \\
+% 	$\lesssim$ & $a \lesssim b$ means there exists some fixed constant $C$ so 
+% 		that $a \leq C\,b$ & p.\pageref{sym:lesssim} \\
+% \end{longtable}
+% \end{centering}
 
 
 \end{document}

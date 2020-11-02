@@ -13,24 +13,19 @@ grows linearly as a function of $x \in \mathbb R$ when $\lambda = 0$. This fact
 aligns with intuition, since the two simple poles $\xi = 0$ and $\xi=\lambda$ 
 of $1/p$ coalesce into a single double pole as $\lambda \to 0$. 
 Since $r$ is a function of $\lambda$, in order to prove the direct scattering 
-map $\mathcal D: u \mapsto r$ is well-defined and Lipschitz continuous, we 
+map $\mathscr D: u \mapsto r$ is well-defined and Lipschitz continuous, we 
 need estimates on the solutions to the integral equations 
 \eqref{eq0:JostIE}\textemdash{}and hence estimates on the Green's 
 functions\textemdash{}which are uniform in $\lambda$. This will allow us
 to obtain similarly uniform estimates on the scattering data derived from 
 the Jost solutions. 
-% That the 
-% reflection coefficient $r$ is a function of $\lambda$ means proving the direct 
-% map $\mathscr D: u \mapsto r$ is even well-defined\textemdash{}let alone 
-% Lipschitz continuous\textemdash{}often requires to obtain estimates that are 
-% independent of $\lambda$. 
 Given the linear growth of $G_\star^+$ as 
 $\lambda \to 0$, in order to obtain $\lambda$-independent estimates while 
 studying the mapping properties of $G_\star^+$, we commonly work over polynomially 
 weighted $L^p$ ($1\leq p \leq \infty$) weighted spaces defined in definitions 
 \ref{defn2:Lps} and \ref{defn2:wLp}. In order to avoid introducing poles when
 weighting by the reciprical of a polynomial, we introduce the notation 
-$\inn{x} := \sqrt{1+x^2}$ to represent a linear weight.
+$\inn{x} := \sqrt{1+x^2}$\label{sym2:xbracket} to represent a linear weight.
 
 \begin{defn}[$L^{p, s}$]\label{defn2:Lps}
 	For $1< p < \infty$ and $s\in (-\infty, \infty)$, we define $L^{p, s}(\mathbb R)$ 
@@ -85,7 +80,7 @@ $\inn{x} := \sqrt{1+x^2}$ to represent a linear weight.
 	sometimes use a subscript in conjunction with function space notation 
 	to avoid confusion. For example, $f \in L_\xi^p(\mathbb R)$ indicates 
 	that the function $f$ is $L^p$ integrable with respect to the variable
-	$\xi$. 
+	$\xi$.\label{sym2:Lpxi}
 \end{rmk}
 
 In addition to considering the mapping properties of $G_\star^+$, we also 
@@ -130,7 +125,7 @@ the residue terms of $G_\star^+$ for $\lambda = 0$ forces us to allow
 solutions to \eqref{eq2:JostIEreform} which grow at most linearly (\textit{i.e.}
 are $\inn{\dotarg}L^\infty$.) As we see in Proposition \ref{prop2:Tbnd}, requiring
 $\inn{\dotarg}^2 u$ is $L^1$ \textit{and} also requiring that the convolution
-of $\inn{\dotarg} u$ with $\log^+\left(\frac{1}{|x|}\right)$ be essentially bounded 
+of $\inn{\dotarg} u$ with $\log_+\left(\frac{1}{|x|}\right)$ be essentially bounded 
 ensures that $T_{\star, \lambda}$ is a bounded operator on 
 $\inn{\dotarg}L^\infty(\mathbb R)$ for all real $\lambda$. However, in order
 to ensure that solutions to \eqref{eq2:JostIEreform} satisfy the asymptotic 
@@ -172,7 +167,7 @@ $u$ as follows:
 	where we use $\inn{\dotarg, \dotarg }_{L^2}$ to denote the $L^2$ inner
 	product. Hence, $u \in X$ implies $u \in L^{1,2}(\mathbb R)$. A similar
 	use of the Cauchy-Schwarz inequality also shows that the convolution 
-	of $\log^+\left(\frac{1}{|x|}\right)$ with $\inn{\dotarg} u$ is bounded
+	of $\log_+\left(\frac{1}{|x|}\right)$ with $\inn{\dotarg} u$ is bounded
 	by $4 \|u\|_X$ for all $x \in \mathbb R$. 
 \end{rmk}
 
