@@ -273,7 +273,7 @@ as we take $R \to \infty$. Cauchy's theorem in conjunction with
 \begin{align} \label{eq1:Gffraw}
 	G_L^+(x; \lambda) =
 		\begin{cases}
-			\ds \frac{1}{2\pi} \mathop{\int}_{\RR-i\pi} \frac{e^{ix\xi}}{p(\xi)} \, \mathrm{d}\xi, 
+			\ds \frac{1}{2\pi} \int\limits_{\mathbb R-i\pi} \frac{e^{ix\xi}}{p(\xi)} \, \mathrm{d}\xi, 
 				&  x < 0 \\ ~\\
 			\ds i \, \Res_{\xi = 0}\( \frac{e^{ix\xi}}{p(\xi)} \)
 			+ i \, \Res_{\xi = \lambda}\( \frac{e^{ix\xi}}{p(\xi)} \)
@@ -289,6 +289,7 @@ where
 	\Res_{\xi = \lambda}\( \frac{e^{ix\xi}}{p(\xi)} \) 
 		= \frac{1-e^{2\lambda}}{1+2\lambda-e^{2\lambda}} \, e^{ix \lambda}.
 \]
+\label{sym1:res}
 We claim that 
 \[
 	K^+(x; \lambda)
