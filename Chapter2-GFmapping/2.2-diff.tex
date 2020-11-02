@@ -6,16 +6,16 @@
 
 \begin{document}
 
-\section{$\lambda$-Dif{}ferentiability}\label{sec2:diff}
+\section{$\lambda$-Differentiability}\label{sec2:diff}
 
 We begin this section by proving a useful variant of Young's inequality
 (Technical Lemma \ref{tlma2:1}) that we use in a number of proofs in this 
 dissertation. We then prove that that the operators $T_{\star, \lambda, u}$ are
 continuous in the spectral parameter $\lambda$ (Proposition 
 \ref{prop2:Tlamcont}). The remainder of this section the focuses on proving the 
-$\lambda$-dif{}ferentiability of $G_{\star}^+$. We direclty use the results 
+$\lambda$-differentiability of $G_{\star}^+$. We direclty use the results 
 from all four propositions in this section in proving that the Jost solution 
-boundary $M_1^+$ is dif{}ferentiable in $\lambda$, and hence has a 
+boundary $M_1^+$ is differentiable in $\lambda$, and hence has a 
 linearization in $\lambda$. The $\lambda$ linearization of $M_1^+$ is ultimately 
 used in the proof that the direct scattering map $\mathscr D$ is Lipschitz 
 continuous.
@@ -152,7 +152,7 @@ Technical Lemma \ref{tlma2:1}, we start with the proof of that lemma.
 
 \begin{prop}\label{prop2:ldervG}
 	For each fixed $x\ne 0$ and $\lambda \in \mathbb R$, the Green's function 
-	boundary $G_\star^+$ ($\star = L \text{, or } R$) is dif{}ferentiable in 
+	boundary $G_\star^+$ ($\star = L \text{, or } R$) is differentiable in 
 	the spectral parameter $\lambda$, and 
 	\begin{align*}
 		\frac{\partial}{\partial \lambda} G_\star^+(x; \lambda)
@@ -187,12 +187,12 @@ Technical Lemma \ref{tlma2:1}, we start with the proof of that lemma.
 \begin{proof}[Proof of Proposition \ref{prop2:ldervG}]
 	In accordance with Remark \ref{rmk2:notation}, we write $G_\star^+(x; \lambda)$ 
 	as either $G(x, \lambda)$ or as $G(\lambda)$. We further define $G_h$ to be the 
-	dif{}ference quotient
+	difference quotient
 	\[
 		G_h:= \frac{G(\lambda + h)- G(\lambda)}{h}.
 	\]
 	\label{sym2:Gh}
-	and seek to prove that $\lim_{h\to0} G_h$ converges. For $|h|>0$ suf{}ficiently 
+	and seek to prove that $\lim_{h\to0} G_h$ converges. For $|h|>0$ sufficiently 
 	small, we may assume by analyticity that $G(\lambda)$ and $G(\lambda+h)$ 
 	share the same contour of integration $\Gamma$. If $\lambda = 0$, the
 	contour $\Gamma$ runs along with a single small semi-circular detour below the 
@@ -221,7 +221,7 @@ Technical Lemma \ref{tlma2:1}, we start with the proof of that lemma.
 				\right]
 	\end{align*}
 	\label{sym2:pdiffquot}
-	as the dif{}ference quotient of $1/p$ with respect to $\lambda$.
+	as the difference quotient of $1/p$ with respect to $\lambda$.
 	Since 
 	\[
 		\left(\frac{1}{p_\lambda(\xi)}\right)_{h}
@@ -334,7 +334,7 @@ Technical Lemma \ref{tlma2:1}, we start with the proof of that lemma.
 \end{proof}
 
 \begin{prop}\label{prop2:ghconv}
-	The dif{}ference quotient
+	The difference quotient
 	\[
 		G_h(x; \lambda) := \frac{G_L^+(x; \lambda+h) - G_L^+(x; \lambda)}{h}
 	\]
