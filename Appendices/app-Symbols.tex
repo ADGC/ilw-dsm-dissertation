@@ -13,6 +13,32 @@
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 
+\newenvironment{indextable}[1]{
+	% \def\textwidth{6in}
+	% \begin{centering}
+		\begin{longtable}
+			{R{.66in}|L{4.24in}|C{.6in}}
+			% {R{.11\linewidth}|L{.79\linewidth}|C{.1\linewidth}}
+			% {R{.11\textwidth}|L{.79\textwidth}|C{.1\textwidth}}
+			\textbf{Symbol} & \textbf{Meaning} & \textbf{Ref.} \\
+			\hline                                      
+			\endfirsthead
+			\multicolumn{3}{c}%
+			{#1 -- \textit{Continued from previous page}} \\
+			\hline
+			\textbf{Symbol} & \textbf{Meaning} & \textbf{Ref.} \\
+			\hline
+			\endhead
+			\hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
+			\endfoot
+			\hline
+			\endlastfoot
+}
+{
+		\end{longtable}
+	% \end{centering}
+}
+
 \newenvironment{talign}
 	{
 		\newline
@@ -29,23 +55,10 @@
 
 \indexsection{Fundamental Notation}
 
-\begin{centering}
-	\begin{longtable}
-		{R{.115\textwidth}|L{.74\textwidth}|C{.145\textwidth}}
-		\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
-		\hline                                      
-		\endfirsthead
-		\multicolumn{3}{c}%
-		{Fundamental Notation -- \textit{Continued from previous page}} \\
-		\hline
-		\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
-		\hline
-		\endhead
-		\hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
-		\endfoot
-		\hline
-		\endlastfoot
-		$:=$ & defined to be; for example $a := b$ means ``$a$ is defined to be 
+% \the\linewidth
+
+\begin{indextable}{Fundamental Notation}
+	$:=$ & defined to be; for example $a := b$ means ``$a$ is defined to be 
 			$b$''
 			& p.\pageref{sym0:def} \\
 		$\pv$ & Cauchy principle value; given by 
@@ -104,7 +117,7 @@
 				$C := C(k)$ depending only on the parameter $k$ so that
 				$q \leq C \, s$; the constant $C$ is commonly referred as ``the 
 				implied constant''  
-			& p.\pageref{sym:lesssimdep} \\
+			& p.\pageref{sym2:lesssimdep} \\
 		$\log_+ t$ & the function given by $\max\big\{ 0, \, \log(t) \big\}$
 			& p.\pageref{sym:logplus} \\
 		$\inn{x}$ & short-hand notation for $\big(1 + |x|^2\big)^{1/2}$
@@ -132,33 +145,14 @@
 			& p.\pageref{sym:toitself} \\
 		$\|\dotarg\|_{Y\to Z}$ & the induced operator norm for an operator with domain 
 			$Y$ and co-domain $Z$
-			& p.\pageref{sym:opnorm} \\
-		
-	\end{longtable}
-\end{centering}
+			& p.\pageref{sym:opnorm}
+\end{indextable}
 
 
 \newpage
 
 \indexsection{Chapter 0 Notation}
-
-\begin{centering}
-	\begin{longtable}{R{.115\textwidth}|L{.74\textwidth}|C{.145\textwidth}}
-	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
-	\hline                                      
-	\endfirsthead
-	\multicolumn{3}{c}%
-	{Chapter 0 Notation -- \textit{Continued from previous page}} \\
-	\hline
-	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
-	\hline
-	\endhead
-	\hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
-	\endfoot
-	\hline
-	\endlastfoot
-	
-	
+\begin{indextable}{Chapter 0 Notation}
 	$\delta$ & depth of stratified fluids\textemdash{}typically taken 
 			to be $\delta=1$ 
 		& p.\pageref{sym:delta} \\
@@ -263,31 +257,13 @@
 		where $\star = L$ or $R$
 		}
 		& p.\pageref{eq0:Tstar} \\
-	\end{longtable}
-\end{centering}
+\end{indextable}
 
 
 \newpage
 
 \indexsection{Chapter 1 Notation}
-
-
-
-\begin{centering}
-	\begin{longtable}{R{.115\textwidth}|L{.74\textwidth}|C{.145\textwidth}}
-		\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
-		\hline                                      
-		\endfirsthead
-		\multicolumn{3}{c}%
-		{Chapter 1 Notation -- \textit{Continued from previous page}} \\
-		\hline
-		\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
-		\hline
-		\endhead
-		\hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
-		\endfoot
-		\hline
-		\endlastfoot
+\begin{indextable}{Chapter 1 Notation}
 		$\mathscr D$ & the direct scattering map for the Intermediate Long Wave (ILW) equation; maps
 			ILW initial data $u$ to the corresponding reflection coefficient $r$
 			& p.\pageref{sym0:DSM} \\
@@ -410,29 +386,14 @@
 					\end{align*}
 				}
 			& p.\pageref{sym1:Kq} \\
-	\end{longtable}
-\end{centering}
+\end{indextable}
 
 
 
 \newpage
 
 \indexsection{Chapter 2 Notation}
-\begin{centering}
-	\begin{longtable}{R{.115\textwidth}|L{.74\textwidth}|C{.145\textwidth}}
-		\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
-		\hline                                      
-		\endfirsthead
-		\multicolumn{3}{c}%
-		{Chapter 2 Notation -- \textit{Continued from previous page}} \\
-		\hline
-		\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
-		\hline
-		\endhead
-		\hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
-		\endfoot
-		\hline
-		\endlastfoot
+\begin{indextable}{Chapter 2 Notation}
 		$\inn{x}$ & short-hand notation for $\big(1 + |x|^2\big)^{1/2}$
 			& p.\pageref{sym2:xbracket} \\
 		$L^{p,s}(\mathbb R)$ & space of measurable functions with 
@@ -475,7 +436,7 @@
 				$C := C(k)$ depending only on the parameter $k$ so that
 				$q \leq C \, s$; the constant $C$ is commonly referred as ``the 
 				implied constant''  
-			& p.\pageref{ILW.GL.bdp} \\
+			& p.\pageref{sym2:lesssimdep} \\
 		$\chi_\pm$ & the characteristic functions $\chi_-:= \chi_{(-\infty, 0)}$, 
 				$\chi_+:= \chi_{(0, \infty)}$ on the respective intervals
 				$(-\infty, 0)$ and $(0, \infty)$
@@ -503,51 +464,82 @@
 			& p.\pageref{sym2:pdiffquot} \\
 		$\Res_{z=c}f$ & complex residue of a function $f$ at the pole $z = c$
 			& p.\pageref{eq2:gzerores}
-	\end{longtable}
-\end{centering}
+\end{indextable}
 
-
+\newpage
 
 \indexsection{Chapter 3 Notation}
-\begin{centering}
-\begin{longtable}{R{.115\textwidth}|L{.74\textwidth}|C{.145\textwidth}}
-	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
-	\hline                                      
-	\endfirsthead
-	\multicolumn{3}{c}%
-	{Chapter 3 Notation -- \textit{Continued from previous page}} \\
-	\hline
-	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
-	\hline
-	\endhead
-	\hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
-	\endfoot
-	\hline
-	\endlastfoot
-
-\end{longtable}
-\end{centering}
+\begin{indextable}{Chapter 3 Notation}
+		$\mathcal S_\delta$ & the complex strip about the real axis defined by
+				$\mathcal S_1 := \{z \in \mathbb C ~:~ 0 < \im z < 2 \}$
+			& p.\pageref{thm3:main_result} \\
+		$G_\star$ & analytic continuation of $G_\star^+$ to the analytic 
+				strip $\mathcal S_1$
+			& p.\pageref{thm3:main_result} \\
+		$G_\star^-$ & the upper boundary value of $G_\star$ defined as a 
+				distribution in that
+				\begin{align*}
+					G_\star^- * f = \lim_{y\nearrow 2} G_\star^+(\dotarg+iy)*f
+				\end{align*}
+				for $f \in L^1(\mathbb R) \cap L^p(\mathbb R)$ ($1< p \leq 2$)
+			& p.\pageref{eq3:lim} \\
+		$K$ & analytic continuation of $K^+$ to the $\mathcal S_1$
+			& p.\pageref{thm3:main_result} \\
+		$\mathfrak C$ & a portion of $K$ whose limit as $y\nearrow 2$ is 
+				a continuous limit operator; given by 
+				{
+					\begin{align*}
+						\mathfrak C(x,y)
+							:= \frac{1}{2\pi} e^{-\pi|x|} \, e^{- \sign(x) \, i \pi y }
+								\int_{\mathbb R} e^{ix \xi} \rho\big(\xi, y, \sign(x)\big) \, \mathrm{d}\xi,
+					\end{align*}
+				}
+				where $x \in \mathbb R$ and $y\in [0, 2]$
+			& p.\pageref{sym:mathfrakC} \\
+		$\rho$ & a function given by 
+				{
+					\begin{align*}
+						\rho\big(\xi, y, c; \lambda\big)
+							:= 	
+								\begin{cases}
+									\dfrac{e^{-y\xi}}{p(\xi; \lambda) + i \,c\, \pi}, 
+										& \xi > 0\\
+										\\
+									\dfrac{1}{\zeta(\lambda)} 
+									\dfrac{
+										\big(\zeta(\lambda)- \xi - c \, i\pi \big)
+										e^{(2-y)\xi} 
+									}
+									{p(\xi; \lambda) + i\,  c \, \pi},
+										&	\xi < 0.
+								\end{cases}
+					\end{align*}
+				}
+			& p.\pageref{eq0:smallR} \\
+		$\mathpzc R_\star$ & sum residues of $e^{iz\xi}/p(\xi)$ at the 
+				$\xi=0$ and $\xi=\lambda$ poles 
+			& p.\pageref{eq3:mathpzcR}\\
+		$\mathcal E_{\varepsilon}$ & a family of convolution operators
+				given by
+				{\begin{align*}
+						\left( \mathcal E_\varepsilon f \right)(x)
+						&:=  \frac{e^{-i \pi (2-\varepsilon)}}{2 \pi i}
+							\int_{-\infty}^x
+								\frac{e^{-\pi|x-x'|}}{(x-x') - i\varepsilon} f(x')
+							\, \mathrm{d}x' \\
+						&\quad + \frac{e^{i \pi (2-\varepsilon)}}{2 \pi i}
+							\int_x^{\infty}
+								\frac{e^{-\pi|x-x'|} }{(x-x') - i\varepsilon} f(x')
+							\, \mathrm{d}x'
+				\end{align*}}
+			& p.\pageref{sym:almostExpCauchy} \\
+\end{indextable}
 
 
 \indexsection{Chapter 4 Notation}
-\begin{centering}
-\begin{longtable}{R{.115\textwidth}|L{.74\textwidth}|C{.145\textwidth}}
-	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
-	\hline                                      
-	\endfirsthead
-	\multicolumn{3}{c}%
-	{Chapter 4 Notation -- \textit{Continued from previous page}} \\
-	\hline
-	\textbf{Symbol} & \textbf{Meaning} & \textbf{Reference} \\
-	\hline
-	\endhead
-	\hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
-	\endfoot
-	\hline
-	\endlastfoot
+\begin{indextable}{Chapter 4 Notation}
 
-\end{longtable}
-\end{centering}
+\end{indextable}
 
 
 % \begin{centering}
