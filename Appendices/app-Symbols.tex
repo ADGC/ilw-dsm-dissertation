@@ -60,6 +60,15 @@
 		$\mathbb R$ & the set of all real numbers & p.\pageref{sym:Reals} \\
 		$\mathbb C$ & the set of all complex numbers & p.\pageref{sym:Complex} \\
 		$\mathbb Z$ & the set of all integers &  \\
+		$\chi_A$ & characteristic function on a set $A$; given by 
+				{\begin{align*}
+					\chi_A(x) := 
+						\begin{cases}
+							1, & x \in A \\
+							0, & \text{otherwise}
+						\end{cases}
+				\end{align*}}
+			& p.\pageref{sym:chi} \\
 		$m(\dotarg)$ & Lebesgue measure on $\mathbb R$ & p.\pageref{sym:lebesguemeasure} \\
 		$\mathcal F$, $\hat{(\dotarg)}$ & Fourier transform defined as 
 			\begin{talign}
@@ -76,6 +85,8 @@
 						= \frac{1}{2 \pi} \int_{\mathbb R} e^{i x \xi} g(\xi) \, \mathrm{d}\xi
 			\end{talign}
 			& p.\pageref{sym:fourier} \\
+		$\Res_{z=c}f$ & complex residue of a function $f$ at the pole $z = c$
+			& p.\pageref{sym1:res} \\
 		$(\dotarg\pm i0)$ & implied limit of $(\dotarg \pm i \varepsilon)$ as 
 				$\varepsilon \searrow 0$ 
 			& p.\pageref{sym:i0} \\
@@ -122,15 +133,7 @@
 		$\|\dotarg\|_{Y\to Z}$ & the induced operator norm for an operator with domain 
 			$Y$ and co-domain $Z$
 			& p.\pageref{sym:opnorm} \\
-		$\chi_A$ & characteristic function on a set $A$; given by 
-			{\begin{align*}
-				\chi_A(x) := 
-					\begin{cases}
-						1, & x \in A \\
-						0, & \text{otherwise}
-					\end{cases}
-			\end{align*}}
-			& p.\pageref{sym:chi} \\
+		
 	\end{longtable}
 \end{centering}
 
@@ -345,6 +348,8 @@
 				$p(\xi; \zeta, \delta)$, $p(\xi; \lambda)$, 
 				$p(\xi; \zeta)$, and $p(\xi)$.
 			& p.\pageref{sym:GFintegrand} \\
+		$\Res_{z=c}f$ & complex residue of a function $f$ at the pole $z = c$
+			& p.\pageref{sym1:res} \\
 		$\alpha(\lambda; \delta)$ & residue of $e^{iz\xi}/p(\xi)$ at the $\xi=0$
 			pole; given by 
 			{\begin{align*}
