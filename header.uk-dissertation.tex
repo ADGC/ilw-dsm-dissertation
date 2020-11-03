@@ -1,15 +1,11 @@
 % \documentclass[final]{ukthesis}
 
-% \usepackage{bm} %% Addes the \bm command for bolding certain math symbols
 
 \usepackage{amsthm, amsmath, amssymb}
-\usepackage{bm} %% Adds the \bm command for bolding certain math symbols
+% \usepackage{bm} %% Adds the \bm command for bolding certain math symbols
 \usepackage{mathrsfs,  mathtools}
-\usepackage{dsfont, bbding, moresize}
+% \usepackage{dsfont, bbding, moresize}
 \usepackage{setspace}
-% \usepackage{hyperref}
-% \usepackage{mathabx}
-% \usepackage{boisik}
 \usepackage{subfiles}
 \usepackage{pgfplots}
 \usepackage{float}
@@ -188,6 +184,67 @@
   \renewcommand\themanualremarkinner{#1}%
   \manualremarkinner
 }{\endmanualremarkinner}
+
+
+%%===============================
+%% Longtable related environments
+%%===============================
+\newenvironment{talign}
+{
+  \newline
+  \begin{center}
+    $
+      \begin{aligned}
+}
+{
+      \end{aligned}
+    $
+  \end{center}
+  % \vspace{-1\baselineskip}
+}
+
+
+\newenvironment{teqn}
+{
+  \newline
+  \begin{center}
+    $\displaystyle
+}
+{
+    $
+  \end{center}
+}
+
+
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+
+\newenvironment{indextable}[1]{
+  \rowcolors{2}{gray!10}{white}
+  \begin{longtable}
+    {R{.66in}|L{4.29in}|C{.55in}}
+    \rowcolor{white}
+    \textbf{Symbol} & \textbf{Meaning} & \textbf{Ref.} \\
+    \hline                                      
+    \endfirsthead
+    \multicolumn{3}{c}%
+    {#1 -- \textit{Continued from previous page}} \\
+    \hline
+    \rowcolor{white}
+    \textbf{Symbol} & \textbf{Meaning} & \textbf{Ref.} \\
+    \hline
+    \endhead
+    \hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
+    \endfoot
+    \hline
+    \endlastfoot
+}
+{
+  \end{longtable}
+}
+
+
 
 %%=============================
 %% Additional Typesetting Tools

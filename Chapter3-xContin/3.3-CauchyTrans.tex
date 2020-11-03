@@ -261,8 +261,10 @@ holds for sufficiently ``nice'' functions. We do this next in Lemma
 	Let $f \in \mathscr S(\mathbb R)$ and use $E$ to denote
 	the operator given by
 	\[
-		Ef(x) =\frac{1}{2\pi i} \pv \int_{\mathbb R} \frac{f(x') e^{-\pi|x - x'|}}{x-x'}\,dx'.
+		Ef(x) =\frac{1}{2\pi i} \pv \int_{\mathbb R} \frac{f(x') e^{-\pi|x - x'|}}{x-x'}\,dx',
 	\]
+	where we use $\mathscr S(\mathbb R)$\label{sym3:schwartz} to denote the space of all Schwartz 
+	class functions on $\mathbb R$.
 	Then, for each $x \in \mathbb R$ the following pointwise limit holds
 	\[
 		\lim_{\varepsilon\to 0} E_\varepsilon f(x) = Ef(x) - \frac{1}{2} f(x).
@@ -373,6 +375,7 @@ to understanding its pointwise $a.e.$ and $L^p$ limits.
 \end{thm}
 \begin{proof}
 	Let $P_\varepsilon(y) = \frac{1}{\pi} \frac{\varepsilon}{y^2 + \varepsilon^2}$
+	\label{sym3:poisson}
 	denote the Poisson kernel. Since the family $P_\varepsilon$ is an approximate
 	identity, to prove Theorem \ref{thm:2.02-poisson} it suffices by 
 	\cite[Theorem 1.2.19]{Grafakos} to consider the pointwise $a.e.$ and $L^p$ 
@@ -537,10 +540,13 @@ of Theorem \ref{thm:truncEtoE}.
 %     \]	
 % \end{lma}
 
-In our proof of Lemma \ref{lma:Cotlar} we the standard analysis result shown in Proposition \ref{prop:Cotlar}.
+In our proof of Lemma \ref{lma:Cotlar} we use the standard analysis result 
+presented in Proposition \ref{prop:Cotlar}.
 
 \begin{prop}\label{prop:Cotlar}
-    Suppose $f \in L^1_{\text{loc}}(\mathbb R^n)$. If $\phi : \mathbb R^n \to \mathbb R$ is nonnegative, 
+    Suppose $f \in L^1_{\text{loc}}(\mathbb R^n)$, where $L^1_{\text{loc}}$ denotes
+    the space of all locally $L^1$ integrable functions on $\mathbb R$. 
+    If $\phi : \mathbb R^n \to \mathbb R$ is nonnegative, 
     radial, radially decreasing, and integrable, then
     \begin{align}\label{eq:2.02-cotprop}
     	\sup_{\varepsilon > 0} \left\{ \left| \phi_\varepsilon * f(x) \right| \right\} 

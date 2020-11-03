@@ -6,54 +6,12 @@
 
 \begin{document}
 
-\newcommand{\indexsection}[1]{\subsection{#1}}
-% \newcommand{\indexsection}[1]{\noindent\textbf{#1}}
 
-\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
-\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
-\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 
-\newenvironment{indextable}[1]{
-	% \def\textwidth{6in}
-	% \begin{centering}
-		\begin{longtable}
-			{R{.66in}|L{4.24in}|C{.6in}}
-			% {R{.11\linewidth}|L{.79\linewidth}|C{.1\linewidth}}
-			% {R{.11\textwidth}|L{.79\textwidth}|C{.1\textwidth}}
-			\textbf{Symbol} & \textbf{Meaning} & \textbf{Ref.} \\
-			\hline                                      
-			\endfirsthead
-			\multicolumn{3}{c}%
-			{#1 -- \textit{Continued from previous page}} \\
-			\hline
-			\textbf{Symbol} & \textbf{Meaning} & \textbf{Ref.} \\
-			\hline
-			\endhead
-			\hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
-			\endfoot
-			\hline
-			\endlastfoot
-}
-{
-		\end{longtable}
-	% \end{centering}
-}
 
-\newenvironment{talign}
-	{
-		\newline
-		\begin{center}
-			$
-				\begin{aligned}
-	}
-	{
-				\end{aligned}
-			$
-		\end{center}
-		% \vspace{-1\baselineskip}
-	}
 
-\indexsection{Fundamental Notation}
+
+\subsection{Fundamental Notation}
 
 % \the\linewidth
 
@@ -63,10 +21,10 @@
 			& p.\pageref{sym0:def} \\
 		$\pv$ & Cauchy principle value; given by 
 			{
-				\begin{align*}
+				\begin{teqn}
 					\pv\int_{\mathbb R} f(x) \, \mathrm{d}x
 						:= \lim_{\varepsilon \searrow 0} \int_{|x|>\varepsilon} f(x) \, \mathrm{d}x
-				\end{align*}
+				\end{teqn}
 			}
 			& p.\pageref{sym0:pv} \\
 		\textit{a.e.} & abbreviation for almost everywhere & p.\pageref{sym:ae}\\
@@ -74,30 +32,32 @@
 		$\mathbb C$ & the set of all complex numbers & p.\pageref{sym:Complex} \\
 		$\mathbb Z$ & the set of all integers &  \\
 		$\chi_A$ & characteristic function on a set $A$; given by 
-				{\begin{align*}
+				{\begin{teqn}
 					\chi_A(x) := 
 						\begin{cases}
 							1, & x \in A \\
 							0, & \text{otherwise}
 						\end{cases}
-				\end{align*}}
+				\end{teqn}}
 			& p.\pageref{sym:chi} \\
 		$m(\dotarg)$ & Lebesgue measure on $\mathbb R$ & p.\pageref{sym:lebesguemeasure} \\
 		$\mathcal F$, $\hat{(\dotarg)}$ & Fourier transform defined as 
-			\begin{talign}
+			\begin{teqn}
 				\hat f(\xi)
 						:= \(\mathcal F f\)(\xi)
 						= \int_{\mathbb R} e^{-i x \xi} f(x) \, \mathrm{d}x
-			\end{talign}
+			\end{teqn}
 				& p.\pageref{sym:fourier} \\[-1\baselineskip]
 		$\mathcal F^{-1}$, $\check{(\dotarg)}$ & inverse Fourier transform defined 
 			as
-			\begin{talign}
+			\begin{teqn}
 					\check g(x)
 						:= \(\mathcal F^{-1}g\)(x)
 						= \frac{1}{2 \pi} \int_{\mathbb R} e^{i x \xi} g(\xi) \, \mathrm{d}\xi
-			\end{talign}
+			\end{teqn}
 			& p.\pageref{sym:fourier} \\
+		$\mathscr S(\mathbb R)$ & space of all Schwartz class functions on $\mathbb R$
+			& p.\pageref{sym3:schwartz} \\
 		$\Res_{z=c}f$ & complex residue of a function $f$ at the pole $z = c$
 			& p.\pageref{sym1:res} \\
 		$(\dotarg\pm i0)$ & implied limit of $(\dotarg \pm i \varepsilon)$ as 
@@ -123,18 +83,18 @@
 		$\inn{x}$ & short-hand notation for $\big(1 + |x|^2\big)^{1/2}$
 			& p.\pageref{sym:xbracket} \\
 		$L^{p,s}(\mathbb R)$ & space of measurable functions with 
-			\[
+			\begin{teqn}
 				\|f\|_{L^{p,s}}
 					:= \left(\int_{\mathbb R} \inn{x}^{sp} |f(x)|^p \right)^{1/p}
 					< \infty
-			\]
+			\end{teqn}
 			& p.\pageref{defn2:Lps} \\
 		$\langle\dotarg\rangle L^\infty(\mathbb R)$ & space of measurable functions with 
-			\begin{talign}
+			\[
 				\|f\|_{\inn{\dotarg} L^\infty}
 					:= \esssup_{x\in \mathbb R} \left| \inn{x}^{-1} f(x)  \right|
-			\end{talign}
-			finite
+					< \infty
+			\]
 			& p.\pageref{defn2:wLp} \\
 		$B_Y(y_0, r)$ & the open ball $\{ y \in Y ~:~ \|y - y_0\|_Y < r  \}$ in 
 			the metric space $Y$ with radius $r$ centered at $y_0 \in Y$
@@ -151,12 +111,11 @@
 
 \newpage
 
-\indexsection{Chapter 0 Notation}
+\subsection{Chapter 0 Notation}
 \begin{indextable}{Chapter 0 Notation}
 	$\delta$ & depth of stratified fluids\textemdash{}typically taken 
 			to be $\delta=1$ 
 		& p.\pageref{sym:delta} \\
-		
 	$\mathcal S_\delta$ & the complex strip
 			$\{z \in \mathbb C ~:~ 0 < \im z < 2\delta\}$ 
 		& p.\pageref{sym:Sdelta} \\
@@ -170,11 +129,11 @@
 	$L_\delta$ & operator on functions analytic in the complex strip 
 		$\mathcal S_\delta$; given by 
 		{
-			\begin{align*}
+			\begin{teqn}
 				L_\delta (\Psi) 
 					:= \frac{1}{i} \frac{\partial}{\partial x} \Psi^+ 
 					- \zeta \left(\Psi^+ - \Psi^-\right) = u \Psi^+
-			\end{align*}
+			\end{teqn}
 		}
 		& p.\pageref{eq0:SpecProb} \\
 	$\lambda$ & a spectral parameter for the linear spectral problem 
@@ -202,11 +161,11 @@
 		& p.\pageref{eq0:JostIE}, p.\pageref{defn0:jost} \\
 	$r(\lambda; \delta)$ & reflection coefficent; given by
 		{
-			\begin{align*}
+			\begin{teqn}
 				r(\lambda; \delta) = \frac{b(\lambda; \delta)}{a(\lambda; \delta)},
-			\end{align*}
+			\end{teqn}
 			where
-			\begin{align*}
+			\begin{talign}
 				b(\lambda)
 				&:= 
 					\frac{i}{1-2\delta\zeta(-\lambda)} 
@@ -221,7 +180,7 @@
 						\int_{\mathbb R} 
 							u(x) \, M_1^+(x; \lambda,\delta) 
 						\, \mathrm{d}x
-			\end{align*}
+			\end{talign}
 		} 
 		& p.\pageref{sym0:reflection} \\
 	$\mathscr D$ & the direct scattering map for the Intermediate Long Wave (ILW) equation; maps
@@ -232,37 +191,35 @@
 		& p.\pageref{eq0:GFL},  p.\pageref{eq0:GFR}\\
 	$\alpha(\lambda; \delta)$ & residue of $e^{iz\xi}/p(\xi)$ at the $\xi=0$
 		pole; given by 
-		{\begin{align*}
+		\begin{teqn}
 			\alpha(\lambda; \delta)
 				= \frac{1}{1-2\delta\zeta(\lambda; \delta)}
-		\end{align*}}
+		\end{teqn}
 		& p.\pageref{sym0:residues} \\
 	$\beta(\lambda; \delta)$ & $e^{iz\lambda}$ times the residue of 
 		$e^{iz\xi}/p(\xi)$ at the $\xi=\lambda$ pole; given by 
-		{\begin{align*}
+		\begin{teqn}
 			\alpha(\lambda; \delta)
 				= \frac{1}{1-2\delta\zeta(-\lambda; \delta)}
-		\end{align*}}
+		\end{teqn}
 		& p.\pageref{sym0:residues} \\
 	$K^+$ & non-residue term resulting from shifting the integration contours of 
 		$G_L^+$ and $G_R^+$
 		& p.\pageref{sym0:K} \\
 	$T_{\star, \lambda, u}$ & bounded operators on 
 		$\inn{\dotarg}L^\infty(\mathbb R)$ given by
-		{
-		\begin{align*}
+		\begin{teqn}
 			T_{\star, \lambda, u} f(x) 
 				:= \big[ G_\star^+(\dotarg; \lambda) \big] * (u\,f)(x),
-		\end{align*}
+		\end{teqn}
 		where $\star = L$ or $R$
-		}
-		& p.\pageref{eq0:Tstar} \\
+		& p.\pageref{eq0:Tstar}
 \end{indextable}
 
 
 \newpage
 
-\indexsection{Chapter 1 Notation}
+\subsection{Chapter 1 Notation}
 \begin{indextable}{Chapter 1 Notation}
 		$\mathscr D$ & the direct scattering map for the Intermediate Long Wave (ILW) equation; maps
 			ILW initial data $u$ to the corresponding reflection coefficient $r$
@@ -296,8 +253,7 @@
 			& p.\pageref{sym:zetastar} \\
 		$G_\star^+$ & lower boundary value of the Greens' function whose contour
 			of integration is $\Gamma_\star$; given by 
-				{
-				\begin{align*}
+				\begin{teqn}
 						G_\star^+(x; \lambda, \delta)
 							:=
 								\frac{1}{2\pi} 
@@ -305,8 +261,7 @@
 									e^{i x \xi} \,
 									\frac{1}{p(\xi; \lambda, \delta)}
 								\, \mathrm{d}\xi
-					\end{align*}
-				}
+					\end{teqn}
 			& p.\pageref{sym:GFbndry} \\
 		${\Gamma_L}$ & contour along the real line which bypasses the roots of $p$
 				from below
@@ -328,17 +283,17 @@
 			& p.\pageref{sym1:res} \\
 		$\alpha(\lambda; \delta)$ & residue of $e^{iz\xi}/p(\xi)$ at the $\xi=0$
 			pole; given by 
-			{\begin{align*}
+			{\begin{teqn}
 				\alpha(\lambda; \delta)
 					= \frac{1}{1-2\delta\zeta(\lambda; \delta)}
-			\end{align*}}
+			\end{teqn}}
 			& p.\pageref{sym:alphabeta} \\
 		$\beta(\lambda; \delta)$ & $e^{iz\lambda}$ times the residue of 
 			$e^{iz\xi}/p(\xi)$ at the $\xi=\lambda$ pole; given by 
-			{\begin{align*}
+			{\begin{teqn}
 				\alpha(\lambda; \delta)
 					= \frac{1}{1-2\delta\zeta(-\lambda; \delta)}
-			\end{align*}}
+			\end{teqn}}
 			& p.\pageref{sym:alphabeta} \\
 		$K^+$ & non-residue term resulting from shifting the integration contours of 
 			$G_L^+$ and $G_R^+$
@@ -347,9 +302,9 @@
 			& p.\pageref{sym:logplus} \\
 		$\mathcal R_\delta$ & the complex strip about the real axis given by
 				{
-					\begin{align*}
+					\begin{teqn}
 						:= \{z \in \mathbb C ~:~ -\pi/\delta \leq \im z \leq \pi/\delta \}	
-					\end{align*}
+					\end{teqn}
 				}
 			& p.\pageref{sym1:Rcal} \\
 		$\mathpzc R_\star$ & sum residues of $e^{iz\xi}/p(\xi)$ at the $\xi=0$ and $\xi=\lambda$ 
@@ -367,23 +322,23 @@
 			& p.\pageref{sym1:SigR} \\
 		$K_\zeta$ & the integral function given by 
 				{
-					\begin{align*}
+					\begin{teqn}
 						K_\zeta(x) 
 							:= \int_{\mathbb R} 
 								\frac{e^{ix \xi}}{\xi - \zeta\left(1-e^{-2\xi}\right)+i\pi}
 							\, \mathrm{d}\xi
-					\end{align*}
+					\end{teqn}
 				}
 			& p.\pageref{sym1:Kzeta} \\
 		$K_q$ & the integral function given by 
 				{
-					\begin{align*}
+					\begin{teqn}
 						K_q(x) 
 							:= \int_{\mathbb R} 
 								\frac{e^{ix\xi} \chi\left( 2^{-q} x \xi\right)}
 									{\xi - \zeta\left(1-e^{-2\xi}\right)+i\pi}
 							\, \mathrm{d}\xi
-					\end{align*}
+					\end{teqn}
 				}
 			& p.\pageref{sym1:Kq} \\
 \end{indextable}
@@ -392,7 +347,7 @@
 
 \newpage
 
-\indexsection{Chapter 2 Notation}
+\subsection{Chapter 2 Notation}
 \begin{indextable}{Chapter 2 Notation}
 		$\inn{x}$ & short-hand notation for $\big(1 + |x|^2\big)^{1/2}$
 			& p.\pageref{sym2:xbracket} \\
@@ -404,10 +359,10 @@
 				\]
 			& p.\pageref{defn2:Lps} \\
 		$\langle\dotarg\rangle L^\infty(\mathbb R)$ & space of measurable functions with 
-				\begin{talign}
+				\begin{teqn}
 					\|f\|_{\inn{\dotarg} L^\infty}
 						:= \esssup_{x\in \mathbb R} \left| \inn{x}^{-1} f(x)  \right|
-				\end{talign}
+				\end{teqn}
 				finite
 			& p.\pageref{defn2:wLp} \\
 		$L_\xi^p(\mathbb R)$ & space of measurable functions which are $L^p$ integrable
@@ -422,10 +377,10 @@
 		$T_{\star, \lambda, u}$ & bounded operator on 
 				$\inn{\dotarg}L^\infty(\mathbb R)$ given by
 				{
-				\begin{align*}
+				\begin{teqn}
 					T_{\star, \lambda, u} f(x) 
 						:= \big[ G_\star^+(\dotarg; \lambda) \big] * (u\,f)(x)
-				\end{align*}
+				\end{teqn}
 				}
 				based on context, $T_{\star, \lambda, u}$ is sometimes denoted 
 				by $T_\star$, $T_{\star, \lambda}$, or $T_\lambda$
@@ -447,20 +402,20 @@
 			& p.\pageref{rmk2:notation} \\
 		$G_h(\lambda)$ & the difference quotient of $G_\star^+$ with respect to 
 				$\lambda$; given by 
-				\begin{align*}
+				\begin{teqn}
 					G_h(\lambda) := \frac{G(\lambda+h) - G(\lambda)}{h}
-				\end{align*}
+				\end{teqn}
 			& p.\pageref{sym2:Gh} \\
 		$\ds\left(\frac{1}{p_\lambda(\xi)}\right)_{h}$
 			& the difference quotient of $1/p$ with respect to $\lambda$;
-				\begin{align*}
+				\begin{teqn}
 					\left(\frac{1}{p_\lambda(\xi)}\right)_{h}
 						:= \frac{1}{h}\,
 							\left[
 								\frac{1}{p(\xi; \lambda +h)}
 								-\frac{1}{p(\xi; \lambda)}
 							\right]
-				\end{align*}
+				\end{teqn}
 			& p.\pageref{sym2:pdiffquot} \\
 		$\Res_{z=c}f$ & complex residue of a function $f$ at the pole $z = c$
 			& p.\pageref{eq2:gzerores}
@@ -468,75 +423,149 @@
 
 \newpage
 
-\indexsection{Chapter 3 Notation}
+
+%===================
+% Chapter 3 Notation
+%===================
+\subsection{Chapter 3 Notation}
+
 \begin{indextable}{Chapter 3 Notation}
-		$\mathcal S_\delta$ & the complex strip about the real axis defined by
-				$\mathcal S_1 := \{z \in \mathbb C ~:~ 0 < \im z < 2 \}$
-			& p.\pageref{thm3:main_result} \\
-		$G_\star$ & analytic continuation of $G_\star^+$ to the analytic 
-				strip $\mathcal S_1$
-			& p.\pageref{thm3:main_result} \\
-		$G_\star^-$ & the upper boundary value of $G_\star$ defined as a 
-				distribution in that
-				\begin{align*}
-					G_\star^- * f = \lim_{y\nearrow 2} G_\star^+(\dotarg+iy)*f
-				\end{align*}
-				for $f \in L^1(\mathbb R) \cap L^p(\mathbb R)$ ($1< p \leq 2$)
-			& p.\pageref{eq3:lim} \\
-		$K$ & analytic continuation of $K^+$ to the $\mathcal S_1$
-			& p.\pageref{thm3:main_result} \\
-		$\mathfrak C$ & a portion of $K$ whose limit as $y\nearrow 2$ is 
-				a continuous limit operator; given by 
-				{
-					\begin{align*}
-						\mathfrak C(x,y)
-							:= \frac{1}{2\pi} e^{-\pi|x|} \, e^{- \sign(x) \, i \pi y }
-								\int_{\mathbb R} e^{ix \xi} \rho\big(\xi, y, \sign(x)\big) \, \mathrm{d}\xi,
-					\end{align*}
-				}
-				where $x \in \mathbb R$ and $y\in [0, 2]$
-			& p.\pageref{sym:mathfrakC} \\
-		$\rho$ & a function given by 
-				{
-					\begin{align*}
-						\rho\big(\xi, y, c; \lambda\big)
-							:= 	
-								\begin{cases}
-									\dfrac{e^{-y\xi}}{p(\xi; \lambda) + i \,c\, \pi}, 
-										& \xi > 0\\
-										\\
-									\dfrac{1}{\zeta(\lambda)} 
-									\dfrac{
-										\big(\zeta(\lambda)- \xi - c \, i\pi \big)
-										e^{(2-y)\xi} 
-									}
-									{p(\xi; \lambda) + i\,  c \, \pi},
-										&	\xi < 0.
-								\end{cases}
-					\end{align*}
-				}
-			& p.\pageref{eq0:smallR} \\
-		$\mathpzc R_\star$ & sum residues of $e^{iz\xi}/p(\xi)$ at the 
-				$\xi=0$ and $\xi=\lambda$ poles 
-			& p.\pageref{eq3:mathpzcR}\\
-		$\mathcal E_{\varepsilon}$ & a family of convolution operators
-				given by
-				{\begin{align*}
-						\left( \mathcal E_\varepsilon f \right)(x)
-						&:=  \frac{e^{-i \pi (2-\varepsilon)}}{2 \pi i}
-							\int_{-\infty}^x
-								\frac{e^{-\pi|x-x'|}}{(x-x') - i\varepsilon} f(x')
-							\, \mathrm{d}x' \\
-						&\quad + \frac{e^{i \pi (2-\varepsilon)}}{2 \pi i}
-							\int_x^{\infty}
-								\frac{e^{-\pi|x-x'|} }{(x-x') - i\varepsilon} f(x')
-							\, \mathrm{d}x'
-				\end{align*}}
-			& p.\pageref{sym:almostExpCauchy} \\
+	$\mathcal S_\delta$ & the complex strip about the real axis defined by
+			$\mathcal S_1 := \{z \in \mathbb C ~:~ 0 < \im z < 2 \}$
+		& p.\pageref{thm3:main_result} \\
+	$G_\star$ & analytic continuation of $G_\star^+$ to the analytic 
+			strip $\mathcal S_1$
+		& p.\pageref{thm3:main_result} \\
+	$G_\star^-$ & the upper boundary value of $G_\star$ defined as a 
+			distribution in that
+			\begin{teqn}
+				G_\star^- * f = \lim_{y\nearrow 2} G_\star^+(\dotarg+iy)*f
+			\end{teqn}
+			for $f \in L^1(\mathbb R) \cap L^p(\mathbb R)$ ($1< p \leq 2$)
+		& p.\pageref{eq3:lim} \\
+	$K$ & analytic continuation of $K^+$ to the $\mathcal S_1$
+		& p.\pageref{thm3:main_result} \\
+	$\mathfrak C$ & a portion of $K$ whose limit as $y\nearrow 2$ is 
+			a continuous limit operator; given by 
+			\begin{teqn}
+				\mathfrak C(x,y)
+					:= \frac{1}{2\pi} e^{-\pi|x|} \, e^{- \sign(x) \, i \pi y }
+						\int_{\mathbb R} e^{ix \xi} \rho\big(\xi, y, \sign(x)\big) \, \mathrm{d}\xi,
+			\end{teqn}
+			where $x \in \mathbb R$ and $y\in [0, 2]$
+		& p.\pageref{sym:mathfrakC} \\
+	$\rho$ & a function given by 
+			{
+				\begin{teqn}
+					\rho\big(\xi, y, c; \lambda\big)
+						:= 	
+							\begin{cases}
+								\dfrac{e^{-y\xi}}{p(\xi; \lambda) + i \,c\, \pi}, 
+									& \xi > 0\\
+									\\
+								\dfrac{1}{\zeta(\lambda)} 
+								\dfrac{
+									\big(\zeta(\lambda)- \xi - c \, i\pi \big)
+									e^{(2-y)\xi} 
+								}
+								{p(\xi; \lambda) + i\,  c \, \pi},
+									&	\xi < 0.
+							\end{cases}
+				\end{teqn}
+			}
+		& p.\pageref{eq0:smallR} \\
+	$\mathpzc R_\star$ & sum residues of $e^{iz\xi}/p(\xi)$ at the 
+			$\xi=0$ and $\xi=\lambda$ poles 
+		& p.\pageref{eq3:mathpzcR}\\
+	$\mathcal E_{\varepsilon}$ & a family of convolution operators
+			given by
+			\begin{talign}
+					\left( \mathcal E_\varepsilon f \right)(x)
+					&:=  \frac{e^{-i \pi (2-\varepsilon)}}{2 \pi i}
+						\int_{-\infty}^x
+							\frac{e^{-\pi|x-x'|}}{(x-x') - i\varepsilon} f(x')
+						\, \mathrm{d}x' \\
+					&\quad + \frac{e^{i \pi (2-\varepsilon)}}{2 \pi i}
+						\int_x^{\infty}
+							\frac{e^{-\pi|x-x'|} }{(x-x') - i\varepsilon} f(x')
+						\, \mathrm{d}x'
+			\end{talign}
+		& p.\pageref{sym:almostExpCauchy} \\
+	$E_{\varepsilon}$ & exponentially weighted Cauchy transform; given by
+			\begin{teqn}
+				E_{\varepsilon} f(x)
+					:= \frac{1}{2\pi i} \int_{\mathbb R}
+						\frac{e^{-\pi|x-x'|}}{(x-x') - i \varepsilon} f(x') \, \mathrm{d}x'
+			\end{teqn}
+		& p.\pageref{sym:expCauchy} \\
+	$E$ & exponentially weighted Hilbert Transform;
+			given by
+			\begin{teqn}
+				Ef(x)
+					:= \frac{1}{2\pi i}
+						\pv \int_{\mathbb R} \frac{e^{-\pi|x-x'|}}{x-x'} f(x') \, \mathrm{d}x',
+			\end{teqn}
+			where $\pv \int (\dotarg) \, \mathrm{d}\mu$ denotes a principle value integral.
+		& p.\pageref{sym:ExpHil} \\
+	$\mathscr S(\mathbb R)$ & space of all Schwartz class functions on $\mathbb R$
+		& p.\pageref{sym3:schwartz} \\
+	$\mathpzc E_\varepsilon, ~\mathpzc P_\varepsilon$ & two families of convolution
+			operators given by
+			\[
+				\mathpzc E_\varepsilon(y)
+					:= \frac{1}{2\pi i} \frac{y}{y^2 + \varepsilon^2} e^{-\pi|y|},
+				\quad \text{and} \quad
+				\mathpzc P_\varepsilon(y)
+					:= \frac{1}{\pi} \frac{\varepsilon}{y^2 + \varepsilon^2} e^{-\pi|y|}
+			\]
+		& p.\pageref{sym:badCauchy} \\
+	$E^{(\varepsilon)}$ &  truncated exponentially weighted Hilbert Transform; given
+			by
+			\begin{teqn}
+				E^{(\varepsilon)}f(x)
+					:= \frac{1}{2\pi i}
+						 \int_{|x'|\geq \varepsilon} \frac{e^{-\pi|x'|}}{x'} f(x-x') \, \mathrm{d}x'
+			\end{teqn}
+			by definition,
+			$(Ef)(x) = \lim_{\varepsilon \searrow 0} E^{(\varepsilon)}f(x)$
+		& p.\pageref{sym:truncExpHil} \\
+	$P_\varepsilon$ & Poisson kernel; given by 
+			$P_\varepsilon(y) = \frac{1}{\pi}\frac{\varepsilon}{y^2+\varepsilon^2}$
+		& p.\pageref{sym3:poisson} \\
+	$E^*$ & the maximal operator associated with the Cauchy transform
+			$E_{\varepsilon}$; given by
+			\begin{teqn}
+				E^*f(x)
+					:= \( E_{\varepsilon} \)^* f(x)
+					:= \sup_{\varepsilon>0} \left\{\left|E_{\varepsilon} f(x)\right|\right\}.
+			\end{teqn}
+		& p.\pageref{sym:maxCauchyT} \\
+	$M$ & The Hardy-Littlewood maximal operator; given by
+			\begin{teqn}
+				M f(x)
+	        		= \sup_{r > 0}
+	        			\left\{
+	        				\frac{1}{B(0, r)} \int_{B(0, r)} |f(x - x')| \, \mathrm{d}x'
+		        		\right\}.
+			\end{teqn}
+		& p.\pageref{sym:hardy} \\
+	$m_E$ & Fourier multiplier for the exponentially weighted Hilbert transform; 
+			given by
+			\begin{teqn}
+				m_E(\xi) = \frac{1}{\pi} \arctan(\xi/\pi)
+			\end{teqn}
+		& p.\pageref{sym3:Emult} \\
+	$L^{p,\infty}$ & weak $L^p$ space; also denoted $weak$-$L^p$ 
+		& p.\pageref{sym:weakLp} \\
 \end{indextable}
+\newpage
 
 
-\indexsection{Chapter 4 Notation}
+%===================
+% Chapter 4 Notation
+%===================
+\subsection{Chapter 4 Notation}
+
 \begin{indextable}{Chapter 4 Notation}
 
 \end{indextable}
@@ -567,10 +596,10 @@
 % 		& p.\pageref{sym:delta} \\
 % 	$\pv$ & Cauchy principle value; given by 
 % 		{
-% 			\begin{align*}
+% 			\begin{teqn}
 % 				\pv\int_{\mathbb R} f(x) \, \mathrm{d}x
 % 					:= \lim_{\varepsilon \searrow 0} \int_{|x|>\varepsilon} f(x) \, \mathrm{d}x
-% 			\end{align*}
+% 			\end{teqn}
 % 		}
 % 		& p.\pageref{sym:pv} \\
 % 	\textit{a.e.} & abbreviation for almost everywhere & p.\pageref{sym:ae}\\
@@ -578,19 +607,19 @@
 % 	$\mathbb C$ & the set of all complex numbers & p.\pageref{sym:Complex} \\
 % 	$m(\dotarg)$ & Lebesgue measure on $\mathbb R$ & p.\pageref{sym:lebesguemeasure} \\
 % 	$\mathcal F$, $\hat{(\dotarg)}$ & Fourier transform defined as 
-% 		\begin{talign}
+% 		\begin{teqn}
 % 			\hat f(\xi)
 % 					:= \(\mathcal F f\)(\xi)
 % 					= \int_{\mathbb R} e^{-i x \xi} f(x) \, \mathrm{d}x
-% 		\end{talign}
+% 		\end{teqn}
 % 			& p.\pageref{sym:fourier} \\[-1\baselineskip]
 % 	$\mathcal F^{-1}$, $\check{(\dotarg)}$ & inverse Fourier transform defined 
 % 		as
-% 		\begin{talign}
+% 		\begin{teqn}
 % 				\check g(x)
 % 					:= \(\mathcal F^{-1}g\)(x)
 % 					= \frac{1}{2 \pi} \int_{\mathbb R} e^{i x \xi} g(\xi) \, \mathrm{d}\xi
-% 		\end{talign}
+% 		\end{teqn}
 % 		& p.\pageref{sym:fourier} \\
 % 	$\delta_a$ & Dirac delta-function centered at $x=a$ 
 % 		& p.\pageref{sym:dirac} \\
@@ -622,11 +651,11 @@
 % 	$L_\delta$ & operator on functions analytic in the complex strip 
 % 		$\mathcal S_\delta$; given by 
 % 		{
-% 			\begin{align*}
+% 			\begin{teqn}
 % 				L_\delta (\Psi) 
 % 					:= \frac{1}{i} \frac{\partial}{\partial x} \Psi^+ 
 % 					- \zeta \left(\Psi^+ - \Psi^-\right) = u \Psi^+
-% 			\end{align*}
+% 			\end{teqn}
 % 		}
 % 		& p.\pageref{eq0:SpecProb} \\
 % 	$\log_+ t$ & the function given by $\max\big\{ 0, \, \log(t) \big\}$
@@ -657,14 +686,14 @@
 % 		\]
 % 		& p.\pageref{defn2:Lps} \\
 % 	$\langle\dotarg\rangle L^\infty(\mathbb R)$ & space of measurable functions with 
-% 		\begin{talign}
+% 		\begin{teqn}
 % 			\|f\|_{\inn{\dotarg} L^\infty}
 % 				:= \esssup_{x\in \mathbb R} \left| \inn{x}^{-1} f(x)  \right|
-% 		\end{talign}
+% 		\end{teqn}
 % 		finite
 % 		& p.\pageref{defn2:wLp} \\
 % 	$X$ & space of potentials $u$ with $\nm{\inn{\dotarg}^{4} u}_{L^2} < \infty$
-% 		% \begin{talign}
+% 		% \begin{teqn}
 % 		% 	\|u\|_X 
 % 		% 		:= \| \inn{\dotarg}^2 \, u(\dotarg) \|_{L^1} 
 % 		% 			+ 
@@ -672,7 +701,7 @@
 % 		% 				\log_+\left(\frac{1}{(\dotarg)}\right)
 % 		% 				* \inn{\dotarg} |u|
 % 		% 			\right\|_{L^\infty}
-% 		% \end{talign}
+% 		% \end{teqn}
 % 		% finite
 % 		& p.\pageref{defn2:X} \\
 % 	$L^{p,\infty}$ & weak $L^p$ space; also denoted $weak$-$L^p$; please see
@@ -691,7 +720,7 @@
 % 	$G_\star^+$ & lower boundary value of the Greens' function whose contour
 % 		of integration is $\Gamma_\star$; given by 
 % 			{
-% 			\begin{align*}
+% 			\begin{teqn}
 % 					G_\star^+(x; \lambda, \delta)
 % 						:=
 % 							\frac{1}{2\pi} 
@@ -699,21 +728,21 @@
 % 								e^{i x \xi} \,
 % 								\frac{1}{p(\xi; \lambda, \delta)}
 % 							\, \mathrm{d}\xi
-% 				\end{align*}
+% 				\end{teqn}
 % 			}
 % 		& p.\pageref{sym:GFbndry} \\
 % 	$T_{\star, \lambda, u}$ & bounded operator on 
 % 		$\inn{\dotarg}L^\infty(\mathbb R)$ given by
 % 		{
-% 		\begin{align*}
+% 		\begin{teqn}
 % 			T_{\star, \lambda, u} f(x) 
 % 				:= \big[ G_\star^+(\dotarg; \lambda) \big] * (u\,f)(x)
-% 		\end{align*}
+% 		\end{teqn}
 % 		}
 % 		& p.\pageref{eqn2:Tdefn} \\
 % 	$G_\star$ & Green's function whose contour of integration is $\Gamma_\star$ 
 % 				($\star = L \text{, or } R$); given by 
-% 				\begin{align*}
+% 				\begin{teqn}
 % 					G_\star(z; \lambda, \delta)
 % 						:=
 % 							\frac{1}{2\pi} 
@@ -721,7 +750,7 @@
 % 								e^{i z \xi} \,
 % 								\frac{1}{p(\xi; \lambda, \delta)}
 % 							\, \mathrm{d}\xi
-% 				\end{align*}
+% 				\end{teqn}
 % 		& p.\pageref{eq3:ILW.GFz} \\
 % 	$\mathpzc E_\varepsilon, ~\mathpzc P_\varepsilon$ & two families of convolution
 % 		operators given by
@@ -735,7 +764,7 @@
 % 		& p.\pageref{sym:badCauchy} \\
 % 	$\mathcal E_{\varepsilon}$ & a family of convolution operators
 % 		given by
-% 		{\begin{align*}
+% 		{\begin{teqn}
 % 				\left( \mathcal E_\varepsilon f \right)(x)
 % 				&:=  \frac{e^{-i \pi (2-\varepsilon)}}{2 \pi i}
 % 					\int_{-\infty}^x
@@ -745,59 +774,59 @@
 % 					\int_x^{\infty}
 % 						\frac{e^{-\pi|x-x'|} }{(x-x') - i\varepsilon} f(x')
 % 					\, \mathrm{d}x'
-% 		\end{align*}}
+% 		\end{teqn}}
 % 		& p.\pageref{sym:almostExpCauchy} \\
 % 	$E_{\varepsilon}$ & exponentially weighted Cauchy transform; given by
-% 		\begin{align*}
+% 		\begin{teqn}
 % 			E_{\varepsilon} f(x)
 % 				:= \frac{1}{2\pi i} \int_{\mathbb R}
 % 					\frac{e^{-\pi|x-x'|}}{(x-x') - i \varepsilon} f(x') \, \mathrm{d}x'
-% 		\end{align*}
+% 		\end{teqn}
 % 		& p.\pageref{sym:expCauchy} \\
 % 	$E^*$ & the maximal operator associated with the Cauchy transform
 % 		$E_{\varepsilon}$; given by
-% 		\begin{align*}
+% 		\begin{teqn}
 % 			E^*f(x)
 % 				:= \( E_{\varepsilon} \)^* f(x)
 % 				:= \sup_{\varepsilon>0} \left\{\left|E_{\varepsilon} f(x)\right|\right\}.
-% 		\end{align*}
+% 		\end{teqn}
 % 		& p.\pageref{sym:maxCauchyT} \\
 % 	$M$ & The Hardy-Littlewood maximal operator; given by
-% 		\begin{align*}
+% 		\begin{teqn}
 % 			M f(x)
 %         		= \sup_{r > 0}
 %         			\left\{
 %         				\frac{1}{B(0, r)} \int_{B(0, r)} |f(x - x')| \, \mathrm{d}x'
 % 	        		\right\}.
-% 		\end{align*}
+% 		\end{teqn}
 % 		& p.\pageref{sym:hardy} \\
 % 	$E$ & exponentially weighted Hilbert Transform;
 % 		given by
-% 		\begin{align*}
+% 		\begin{teqn}
 % 			Ef(x)
 % 				:= \frac{1}{2\pi i}
 % 					\pv \int_{\mathbb R} \frac{e^{-\pi|x-x'|}}{x-x'} f(x') \, \mathrm{d}x',
-% 		\end{align*}
+% 		\end{teqn}
 % 		where $\pv \int (\dotarg) \, \mathrm{d}\mu$ denotes a principle value integral.
 % 		& p.\pageref{sym:ExpHil} \\
 % 	$E^{(\varepsilon)}$ &  truncated exponentially weighted Hilbert Transform; given
 % 		by
-% 		\begin{align*}
+% 		\begin{teqn}
 % 			E^{(\varepsilon)}f(x)
 % 				:= \frac{1}{2\pi i}
 % 					 \int_{|x'|\geq \varepsilon} \frac{e^{-\pi|x'|}}{x'} f(x-x') \, \mathrm{d}x'
-% 		\end{align*}
+% 		\end{teqn}
 % 		by definition,
 % 		$(Ef)(x) = \lim_{\varepsilon \searrow 0} E^{(\varepsilon)}f(x)$
 % 		& p.\pageref{sym:truncExpHil} \\
 % 	$\chi_A$ & characteristic function on a set $A$; given by 
-% 		{\begin{align*}
+% 		{\begin{teqn}
 % 			\chi_A(x) := 
 % 				\begin{cases}
 % 					1, & x \in A \\
 % 					0, & \text{otherwise}
 % 				\end{cases}
-% 		\end{align*}}
+% 		\end{teqn}}
 % 		& p.\pageref{sym:chi} \\
 % 	$\star$ & used as a placeholder for both $L$ and $R$; for example, if a 
 % 		statement contains the notation 
@@ -814,17 +843,17 @@
 % 		& p.\pageref{eq0:JostIE}, p.\pageref{defn0:jost} \\
 % 	$\alpha(\lambda; \delta)$ & residue of $e^{iz\xi}/p(\xi)$ at the $\xi=0$
 % 		pole; given by 
-% 		{\begin{align*}
+% 		{\begin{teqn}
 % 			\alpha(\lambda; \delta)
 % 				= \frac{1}{1-2\delta\zeta(\lambda; \delta)}
-% 		\end{align*}}
+% 		\end{teqn}}
 % 		& p.\pageref{sym:alphabeta} \\
 % 	$\beta(\lambda; \delta)$ & $e^{iz\lambda}$ times the residue of 
 % 		$e^{iz\xi}/p(\xi)$ at the $\xi=\lambda$ pole; given by 
-% 		{\begin{align*}
+% 		{\begin{teqn}
 % 			\alpha(\lambda; \delta)
 % 				= \frac{1}{1-2\delta\zeta(-\lambda; \delta)}
-% 		\end{align*}}
+% 		\end{teqn}}
 % 		& p.\pageref{sym:alphabeta} \\
 % 	$a$ & & \\
 % 	$b$ & & \\
@@ -834,11 +863,11 @@
 % 	$\mathfrak C$ & the portion of $K$ with continuous limit to the upper 
 % 		boundary of $\mathcal S_\delta$; given by 
 % 		{
-% 			\begin{align*}
+% 			\begin{teqn}
 % 				\mathfrak C(x,y)
 % 					:= \frac{1}{2\pi} e^{-\pi|x|} \, e^{- \sign(x) \, i \pi y }
 % 						\int_{\mathbb R} e^{ix \xi} \rho\big(\xi, y, \sign(x)\big) \, \mathrm{d}\xi,
-% 			\end{align*}
+% 			\end{teqn}
 % 		}
 % 		where $x \in \mathbb R$ and $y\in [0, 2]$
 % 		& p.\pageref{sym:mathfrakC} \\
