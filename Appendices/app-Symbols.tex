@@ -586,6 +586,43 @@
 			based on context, $T_{\star, \lambda, u}$ is sometimes denoted 
 			by $T_\star$, $T_{\star, \lambda}$, or $T_\lambda$
 		& p.\pageref{prop4:exist} \\
+	$a$, $b$, $\breve{a}$, $\breve{b}$
+		& coefficients for the scattering equations \eqref{eq3:M1N} and 
+			\eqref{eq3:N1M}; given by 
+			\begin{talign}
+				a(\lambda)
+					&:= 1 + i \alpha(\lambda) \,
+						\int_{\mathbb R} u(x) \, M_1^+(x; \lambda, u) \, \mathrm{d}x \\
+				b(\lambda)
+					&= i \beta(\lambda) \, 
+						\int_{\mathbb R} e^{-ix\lambda} \, u(x) \, M_1^+(x; \lambda, u) \, \mathrm{d}x \\
+				\breve{a}(\lambda)
+					&:= 1 + \alpha(\lambda)
+						\int_{\mathbb R} u(x) \, N_1(x; \lambda, u) \, \mathrm{d}x \\
+				\breve{b}(\lambda)
+					&= i \beta(\lambda) 
+						\int_{\mathbb R} e^{-ix\lambda} \, u(x) \, N_1(x; \lambda, u) \, \mathrm{d}x
+			\end{talign}
+		& p.\pageref{prop4:SD} \\
+	$\alpha(\lambda; \delta)$ & residue of $e^{iz\xi}/p(\xi)$ at the $\xi=0$
+			pole; given by 
+			{\begin{teqn}
+				\alpha(\lambda; \delta)
+					= \frac{1}{1-2\delta\zeta(\lambda; \delta)}
+			\end{teqn}}
+			& p.\pageref{sym:alphabeta} \\
+	$\beta(\lambda; \delta)$ & $e^{iz\lambda}$ times the residue of 
+			$e^{iz\xi}/p(\xi)$ at the $\xi=\lambda$ pole; given by 
+			{\begin{teqn}
+				\alpha(\lambda; \delta)
+					= \frac{1}{1-2\delta\zeta(-\lambda; \delta)}
+			\end{teqn}}
+		& p.\pageref{sym:alphabeta} \\
+	$\mathscr D$ & direct scattering map for the ILW; given by 
+			$\mathscr D: B_X(0, c_0) \ni u \mapsto r \in L_\lambda^\infty(\mathbb R)$
+		& p.\pageref{sym4:dsm} \\
+	$r$ & reflection coefficient; given by $r(\lambda) = b(\lambda) / a(\lambda)$
+		& p.\pageref{sym4:dsm}
 \end{indextable}
 
 
