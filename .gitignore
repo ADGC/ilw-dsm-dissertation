@@ -104,3 +104,6 @@ ENV/
 
 # Documents
 *.pdf
+
+# System files
+.DS_Store
