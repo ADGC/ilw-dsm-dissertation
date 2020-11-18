@@ -7,13 +7,12 @@
 \begin{document}
 
 
-
-
-\subsection{Fundamental Notation}
-
-% \the\linewidth
-
-\begin{indextable}{Fundamental Notation}
+%%=====================
+%% Fundamental Notation
+%%=====================
+\def\tabletitle{Fundamental Notation}
+\subsection{\tabletitle}
+\begin{indextable}{\tabletitle}
 	$:=$ & defined to be; for example $a := b$ means ``$a$ is defined to be 
 			$b$''
 			& p.\pageref{sym0:def} \\
@@ -109,9 +108,13 @@
 
 \newpage
 
-% \subsection{Chapter 0 Notation}
-\subsection{Chapter 1 Notation}
-\begin{indextable}{Chapter 0 Notation}
+%===================
+% Chapter 1 Notation
+%===================
+\def\tabletitle{Chapter 1 Notation}
+% \def\tabletitle{Chapter 0 Notation}
+\subsection{\tabletitle}
+\begin{indextable}{\tabletitle}
 	$\delta$ & depth of stratified fluids\textemdash{}typically taken 
 			to be $\delta=1$ 
 		& p.\pageref{sym:delta} \\
@@ -218,10 +221,13 @@
 
 
 \newpage
-
-% \subsection{Chapter 1 Notation}
-\subsection{Chapter 2 Notation}
-\begin{indextable}{Chapter 1 Notation}
+%===================
+% Chapter 2 Notation
+%===================
+\def\tabletitle{Chapter 2 Notation}
+% \def\tabletitle{Chapter 1 Notation}
+\subsection{\tabletitle}
+\begin{indextable}{\tabletitle}
 		$\mathscr D$ & the direct scattering map for the Intermediate Long Wave (ILW) equation; maps
 			ILW initial data $u$ to the corresponding reflection coefficient $r$
 			& p.\pageref{sym0:DSM} \\
@@ -348,10 +354,13 @@
 
 
 \newpage
-
-% \subsection{Chapter 2 Notation}
-\subsection{Chapter 3 Notation}
-\begin{indextable}{Chapter 2 Notation}
+%===================
+% Chapter 3 Notation
+%===================
+\def\tabletitle{Chapter 3 Notation}
+% \def\tabletitle{Chapter 2 Notation}
+\subsection{\tabletitle}
+\begin{indextable}{\tabletitle}
 		$\inn{x}$ & short-hand notation for $\big(1 + |x|^2\big)^{1/2}$
 			& p.\pageref{sym2:xbracket} \\
 		$L^{p,s}(\mathbb R)$ & space of measurable functions with 
@@ -428,12 +437,12 @@
 
 
 %===================
-% Chapter 3 Notation
+% Chapter 4 Notation
 %===================
-% \subsection{Chapter 3 Notation}
-\subsection{Chapter 4 Notation}
-
-\begin{indextable}{Chapter 3 Notation}
+\def\tabletitle{Chapter 4 Notation}
+% \def\tabletitle{Chapter 3 Notation}
+\subsection{\tabletitle}
+\begin{indextable}{\tabletitle}
 	$\mathcal S_\delta$ & the complex strip about the real axis defined by
 			$\mathcal S_1 := \{z \in \mathbb C ~:~ 0 < \im z < 2 \}$
 		& p.\pageref{thm3:main_result} \\
@@ -566,12 +575,12 @@
 
 
 %===================
-% Chapter 4 Notation
+% Chapter 5 Notation
 %===================
-% \subsection{Chapter 4 Notation}
-\subsection{Chapter 5 Notation}
-
-\begin{indextable}{Chapter 4 Notation}
+\def\tabletitle{Chapter 5 Notation}
+% \def\tabletitle{Chapter 4 Notation}
+\subsection{\tabletitle}
+\begin{indextable}{\tabletitle}
 	$M_1$, $M_e$, $N_1$, $N_e$ & depending on context, either Jost solutions 
 		or analytic extensions of solutions to the integral equations
 		\eqref{eq4:JostIE}
